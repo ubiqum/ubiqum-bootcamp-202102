@@ -4,33 +4,57 @@
     <link href="stylesheet.css" rel="stylesheet" type="text/css">
     <title>Weather website</title>
 </head>
-<header>
+<header class="wrapper-header">
     <h1>The weather in the cities</h1>
-    <img src="../sun.gif">
-    <img src="staff/rose-koning/clouds.gif">
-    <img src="staff/rose-koning/rain.gif">
+    <section>
+            <div class="header-image">
+                <img src="sun.gif" id="weather-img">
+                <img src="clouds.gif" id="weather-img">
+                <img src="rain.gif" id="weather-img">
+            </div>
+    </section>
 </header>
 <main>
     <section class="wrapper">
-        <div class="city" id="city1">
-            <h2 class="name">city 1</h2>
-            <div class="forecast">weather forecast</div>
-            <div class="temp">temperature</div>
+        <div class="city city1">
+            <h2 class="name">Madrid</h2>
+            <div class="forecast">Rain</div>
+            <div class="temp">11 °C</div>
         </div>
-        <div class="city">
-            <h2 class="name">city 2</h2>
-            <div class="forecast">weather forecast</div>
-            <div class="temp">temperature</div>
+        <div class="city city2">
+            <h2 class="name">Amsterdam</h2>
+            <div class="forecast">Cloudy</div>
+            <div class="temp">8°C</div>
         </div>
-        <div class="city">
-            <h2 class="name">city 3</h2>
-            <div class="forecast">weather forecast</div>
-            <div class="temp">temperature</div>
+        <div class="city city3">
+            <h2 class="name">New York</h2>
+            <div class="forecast">Partly cloudy</div>
+            <div class="temp">7°C</div>
         </div>
-        <div class="city">
-            <h2 class="name">city 4</h2>
-            <div class="forecast">weather forecast</div>
-            <div class="temp">temperature</div>
+        <div class="city city4">
+            <h2 class="name">London</h2>
+            <div class="forecast">Mostly cloudy</div>
+            <div class="temp">9°C</div>
+        </div>
+        <div class="city city5">
+            <h2 class="name">Paris</h2>
+            <div class="forecast">Rain</div>
+            <div class="temp">11 °C</div>
+        </div>
+        <div class="city city6">
+            <h2 class="name">Brussels</h2>
+            <div class="forecast">Showers</div>
+            <div class="temp">9°C</div>
+        </div>
+        <div class="city city7">
+            <h2 class="name">Stockholm</h2>
+            <div class="forecast">showers</div>
+            <div class="temp">5°C</div>
+        </div>
+        <div class="city city8">
+            <h2 class="name">Berlin</h2>
+            <div class="forecast">Cloudy</div>
+            <div class="temp">13°C</div>
         </div>
     </section>
 </main>
