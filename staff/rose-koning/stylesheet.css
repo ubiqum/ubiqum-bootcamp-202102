@@ -1,0 +1,57 @@
+h1{
+font-family:arial;
+font-size: 38px;
+color: gray;
+text-align:center;
+}
+
+h2{
+font-family: arial;
+font-size: 30px;
+color: blue;
+}
+
+header{
+
+}
+
+footer{
+text-align:center;
+
+}
+
+.wrapper{
+display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  grid-auto-rows: 200px;
+  align-items: flex start;
+
+}
+
+.city{
+display: block;
+width: 250px;
+border: black;
+border-style:double;
+border-radius: 25px;
+text-align: center;
+}
+
+.forecast{
+color:white;
+font-size:20px;
+font-weight:bold;
+background-color: red;
+opacity:0.5;
+}
+
+.temp{
+color:white;
+font-size:40px;
+padding:10px 10px;
+}
+
+h3{
+background-image: url ("city1.jpg");
+}
