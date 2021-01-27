@@ -1,0 +1,3 @@
+function stringToArray(text) {
+    // TODO
+}
