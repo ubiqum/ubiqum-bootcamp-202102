@@ -1,13 +1,13 @@
 grid {
   display: grid;
-  grid-template-columns: 1fr, 1fr;
-  grid-template-rows: 75px, 1fr, 1 fr, 1fr, 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: 75px, 1fr, 1fr, 1fr, 1fr;
   grid-template-areas:
-  "header header"
-  "navbar navbar"
-  "img img"
-  "events events"
-  "footer footer" ;
+  "header"
+  "navbar"
+  "img"
+  "events"
+  "footer";
 }
 h1 {
   color: black;
@@ -32,7 +32,8 @@ h2{
   background-color: rgb(6, 126, 162);
   grid-template-columns: 1fr, 1fr, 1fr;
   margin: 0px;
-  padding: 10px;
+  padding: 0px;
+  border: 0px;
   list-style-type: none;
 }
 .img{
@@ -44,11 +45,25 @@ h2{
 }
 .footer{
   grid-area: footer;
+  width:100%;
+  background-color:rgb(3, 61, 78) ;
+}
+.info{
+  grid-area: info;
 }
 li {
   display: block;
   float: left;
-  margin-left: 15px;
+  margin-left: 15px; 
+  padding:30px;
+  margin:0px;
+  border:0px;
+}
+li.active{
+  background-color: rgb(3, 61, 78);
+  padding:30px;
+  margin:0px;
+  border:0px;
 }
 
 
@@ -63,4 +78,43 @@ li {
   margin: 0px;
   padding: 10px;
   float: left;
+}
+
+@media only screen and (min-width: 650px) {
+  /* For tablets: */
+  grid {
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+    grid-template-rows: 75px, 1fr, 1 fr, 1fr;
+    grid-template-areas:
+    "header header"
+    "navbar navbar"
+    "img events"
+    "footer footer" ;
+}
+.img{
+  grid-area: img;
+  margin: 0px;
+  float:left;
+}
+  h1 {
+    color: black;
+    font-size: 50px;
+    text-align: center;
+  }
+  li {
+    display: block;
+    float: left;
+    margin-left: 20px;
+    font-size: 30px;
+  }
+  .logo {
+    height: 150px;
+    widows: 150px;
+    float: left;
+  }
+  .events{
+    grid-area: events;
+    float:center;
+  }
 }
