@@ -26,7 +26,8 @@ display: flex;
     width:30%;
 }
 .lat-image > img {
-
+background-image: url();
+background-size: cover;
 }
 
 .events {
