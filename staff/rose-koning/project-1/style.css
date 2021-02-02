@@ -1,0 +1,40 @@
+*{
+    display:grid;
+}
+h1 {
+  color: black;
+  font-size: 30px;
+  text-shadow: 1px 1px white;
+  float: right;
+}
+header {
+  background-color: rgb(3, 61, 78);
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+.wrapper{
+    grid-template-columns: 2;
+}
+.navbar {
+  background-color: rgb(6, 126, 162);
+  display: inline;
+  float: left;
+  margin: 0px;
+  padding: 10px;
+  list-style-type: none;
+}
+
+.logo {
+  height: 100px;
+  widows: 100px;
+  float: left;
+}
+.image-1{
+    display:grid;
+    height:300px;
+    width: 200px;
+    margin: 0px;
+    padding: 10px;
+    float: left;
+}
