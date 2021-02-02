@@ -1,40 +1,66 @@
-*{
-    display:grid;
+grid {
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-rows: 75px, 1fr, 1 fr, 1fr, 1fr;
+  grid-template-areas:
+  "header header"
+  "navbar navbar"
+  "img img"
+  "events events"
+  "footer footer" ;
 }
 h1 {
   color: black;
-  font-size: 30px;
-  text-shadow: 1px 1px white;
-  float: right;
+  font-size: 20px;
+  text-align: center;
 }
-header {
+h2{
+  text-align: center;
+}
+.header {
+  grid-area: header;
+  display:grid;
+  grid-template-columns: 200px, 1fr;
   background-color: rgb(3, 61, 78);
   width: 100%;
   margin: 0px;
   padding: 0px;
 }
-.wrapper{
-    grid-template-columns: 2;
-}
 .navbar {
+  grid-area: navbar;
+  display: grid;
   background-color: rgb(6, 126, 162);
-  display: inline;
-  float: left;
+  grid-template-columns: 1fr, 1fr, 1fr;
   margin: 0px;
   padding: 10px;
   list-style-type: none;
 }
+.img{
+  grid-area: img;
+  margin-left: 40px;
+}
+.events{
+  grid-area: events;
+}
+.footer{
+  grid-area: footer;
+}
+li {
+  display: block;
+  float: left;
+  margin-left: 15px;
+}
+
 
 .logo {
-  height: 100px;
-  widows: 100px;
+  height: 75px;
+  widows: 75px;
   float: left;
 }
-.image-1{
-    display:grid;
-    height:300px;
-    width: 200px;
-    margin: 0px;
-    padding: 10px;
-    float: left;
+.image-1 {
+  height: 300px;
+  width: 200px;
+  margin: 0px;
+  padding: 10px;
+  float: left;
 }
