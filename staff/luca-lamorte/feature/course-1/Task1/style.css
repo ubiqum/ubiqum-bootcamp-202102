@@ -1,0 +1,82 @@
+body {max-width:90%;
+margin:0 auto;
+}
+
+header {
+    display:flex;
+    width: 100%; 
+    background: antiquewhite;
+
+}
+
+header > ul {
+    width: 70%;
+}
+
+.main-container {
+width:100%;
+display: flex;
+}
+
+.logo{
+    width:30%;
+}
+
+.lat-image {
+    width:30%;
+}
+.lat-image > img {
+
+}
+
+.events {
+    width:70%;
+
+}
+
+.navbar{
+    display:flex;
+    flex-direction: column;
+
+}
+
+.navbar > ul
+{
+    display: flex;
+    margin-left:30%;
+}
+
+.navbar > ul > li
+{
+    margin-right: 30px;
+    font-size: 2rem;
+    font-family:montserrat;
+    list-style-type: none;
+    
+}
+
+
+h1
+{
+    font-size:4rem;
+    font-family:montserrat;
+}
+
+h2
+{
+    font-size:3rem;
+    font-family:montserrat;
+}
+h3
+{
+    font-size:2rem;
+    font-family:montserrat;
+}
+p
+{
+    font-size:1rem;
+    font-family:montserrat;
+}
+
+
+*{border:1px solid}
