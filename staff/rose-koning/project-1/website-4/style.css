@@ -1,0 +1,50 @@
+.grid{
+    grid-template-columns: 1fr, 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr, 600px, 1fr;
+    grid-template-areas: 
+    "header header header"
+    "picbar picbar picbar"
+    "navbar info img"
+    "footer footer footer"
+}
+
+header{
+    background-color: rgb(3, 61, 78);
+    width: 100%;
+    height: 100px;
+    grid-area: header;
+    color:rgb(189, 204, 209);
+    text-align: center;
+    padding-top: 20px;
+}
+.picbar{
+    grid-area: picbar;
+    background:linear-gradient(to bottom, transparent, white), url("assets/design2_image1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 250px;
+    background-position: bottom;
+}
+.navbar{
+    grid-area: navbar;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: rgb(6, 126, 162);
+    float:left;
+}
+li{
+    display:block;
+}
+.img{
+    grid-area: img;
+    float: right;
+    box-shadow: 30px 10px 10px 10px white inset;
+}
+.info{
+    grid-area: info;
+    position:relative;
+    
+}
