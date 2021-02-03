@@ -1,0 +1,78 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr, 1fr, 1fr;
+  grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr;
+  grid-template-areas:
+    "header  header navbar"
+    "picbar picbar picbar"
+    "pagebar pagebar pagebar"
+    "img events events"
+    "footer footer footer";
+}
+
+.header {
+  background-color: rgb(3, 61, 78);
+  height: 100px;
+  width: 100%;
+  margin: 0px;
+  float: left;
+  border: none;
+  grid-area: header;
+  font-size: 25px;
+  color: darkgray;
+  top: 10px;
+}
+
+.navbar {
+  grid-area: navbar;
+  width: 100%;
+  display: grid;
+  background-color: rgb(3, 61, 78);
+  grid-template-columns: 1fr, 1fr, 1fr;
+  list-style-type: none;
+}
+li {
+  display: block;
+  float: right;
+  padding-left: 30px;
+  padding-right: 60px;
+  padding-top: 40px;
+  font-size: 20px;
+  color: darkgray;
+}
+.pagebar {
+  background-color: rgb(3, 61, 78);
+  margin: 0px;
+  padding: 0px;
+  height: 100px;
+  width: 100%;
+  color: azure;
+  text-align: center;
+  font-size: 25px;
+  grid-area: pagebar;
+  border: none;
+}
+.img {
+  grid-area: img;
+  float: left;
+}
+.events {
+  grid-area: events;
+  text-align: left;
+}
+.picbar {
+  grid-area: picbar;
+  background-image: url("assets/design2_image1.jpg");
+  width: 100%;
+  height: 200px;
+}
+.logo {
+  width: 100px;
+  height: 100px;
+}
+h2 {
+  padding-left: 150px;
+}
+h3{
+    padding-left: 150px;
+}
