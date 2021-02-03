@@ -61,6 +61,7 @@ h1
 {
     font-size:4rem;
     font-family:montserrat;
+    align-self: center;
 }
 
 h2
@@ -80,4 +81,4 @@ p
 }
 
 
-*{border:1px solid}
+*{border:1px solid;box-sizing:border-box}
