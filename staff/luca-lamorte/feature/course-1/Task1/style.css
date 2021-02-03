@@ -1,5 +1,10 @@
-body {max-width:90%;
-margin:0 auto;
+body {    
+    max-width: 90%;
+    margin: 0px auto;
+    height: 99vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 header {
