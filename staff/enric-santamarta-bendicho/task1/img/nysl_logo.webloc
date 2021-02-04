@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>URL</key>
+	<string>https://s3.amazonaws.com/gbstool/emails/2027/nysl_logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20210203T173801Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=180900&amp;X-Amz-Credential=AKIAJBIZLMJQ2O6DKIAA%2F20210203%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=8f87c5656f757923fdd6fe76159f89eb210e9f0bef5fadd7857419ce3d4e08cb</string>
+</dict>
+</plist>
