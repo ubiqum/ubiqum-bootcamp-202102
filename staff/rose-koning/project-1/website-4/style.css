@@ -1,5 +1,5 @@
 .grid {
-    display:grid;
+  display: grid;
   grid-template-columns: 1fr, 1fr, 1fr;
   grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr;
   grid-template-areas:
@@ -13,9 +13,8 @@
 header {
   background-color: rgb(3, 61, 78);
   width: 100%;
-  height: 100px; 
+  height: 75px;
   grid-area: header;
-  text-align: center;
   padding-top: 20px;
 }
 .picbar {
@@ -25,43 +24,36 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 250px;
+  height: 75px;
   background-position: bottom;
   margin: 0px;
   padding: 0px;
 }
 .navbar {
   grid-area: navbar;
-  width: 200px;
+  width: 100px;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  background-color: rgb(6, 126, 162); 
+  background-color: rgb(6, 126, 162);
 }
 li {
   display: block;
-  padding:20px;
+  padding: 20px;
+  color: rgb(189, 204, 209);
 }
-li.active{
-    background-color: rgb(3, 61, 78)
-}
-.img {
-  grid-area: img;
-  background-image: url("assets/soccer_image1.jpg");
-  background-repeat: no-repeat;
-  background-position: right;
+li.active {
+  background-color: rgb(3, 61, 78);
 }
 .info {
   grid-area: info;
-  text-align: center;
+  text-align: left;
 }
 .pagebar {
   grid-area: pagebar;
   height: 50px;
   background-color: rgb(3, 61, 78);
-  text-align: center;
   color: rgb(189, 204, 209);
-  font-size: 20px;
 }
 .footer {
   grid-area: footer;
@@ -71,21 +63,124 @@ li.active{
   margin-top: 10px;
   text-align: center;
   color: rgb(189, 204, 209);
-  font-size: 20px; 
+  font-size: 20px;
   margin: 0px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
 }
 .logo {
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   position: relative;
 }
-h2{
-    text-align:center ;
-    margin: 5px;
-    color: rgb(189, 204, 209);
+h2 {
+  text-align: left;
+  margin: 5px;
+  color: rgb(189, 204, 209);
+  font-size: 17px;
 }
-h1{
-    text-align:center ;
+h1 {
+  text-align: left;
+  margin: 5px;
+  color: rgb(189, 204, 209);
+  font-size: 17px;
+}
+table{
+    width: 100%;
+}
+th{
+    border-spacing: 10px;
+    border-bottom: 3px solid black;
+}
+tr.group{
+    border-bottom: 1.5px solid black;
+}
+td{
+    margin:5px;
+}
+
+@media only screen and (min-width: 650px) {
+  /* For tablets: */
+  .grid {
+    display: grid;
+    grid-template-columns: 100px, 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr;
+    grid-template-areas:
+      "header header header"
+      "picbar picbar picbar"
+      "pagebar pagebar pagebar"
+      "navbar info img"
+      "footer footer footer";
+  }
+  .img {
+    grid-area: img;
+    background-image: url("assets/soccer_image1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-height: 200px;
+  }
+  .info {
+    grid-area: info;
+    text-align: left;
+    max-width: 300px;
+    margin-left: 0px;
+  }
+  h2 {
+    text-align: center;
     margin: 5px;
     color: rgb(189, 204, 209);
+    font-size: 17px;
+  }
+  h1 {
+    text-align: center;
+    margin: 5px;
+    color: rgb(189, 204, 209);
+    font-size: 17px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+   .header{
+       height: 150px;
+   }
+  .picbar {
+    height: 250px;
+  }
+  .navbar {
+    grid-area: navbar;
+    width: 250px;
+   height: 100vh;
+  }
+  li{
+      font-weight: 19px;
+  }
+  .img {
+    grid-area: img;
+    background-image: url("assets/soccer_image1.jpg");
+    background-repeat: no-repeat;
+    background-position: right;
+    min-height: 300px;
+  }
+  .logo {
+    width: 75px;
+    height: 75px;
+    position: relative;
+  }
+  h2 {
+    text-align: center;
+    font-size: 30px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 30px;
+  }
+  .footer {
+    height: 1000px;
+    font-size: 30px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+  }
 }
