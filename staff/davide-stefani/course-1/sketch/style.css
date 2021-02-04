@@ -1,0 +1,25 @@
+body{font-family:fantasy}
+.menu li {
+    list-style: none;
+    padding: 20px;
+    font: bold; 
+    display: inline-block;
+    text-align: center;
+
+}
+
+.titolo {
+    text-align: center;
+}
+.principale {
+    max-resolution: 20px;
+    width: 60%;
+    text-align: left;
+    float: right;
+
+}
+.logo-pics {
+    width: 30%;
+    float: left;
+
+}
