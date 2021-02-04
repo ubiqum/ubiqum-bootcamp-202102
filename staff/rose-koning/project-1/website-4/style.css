@@ -1,50 +1,91 @@
-.grid{
-    grid-template-columns: 1fr, 1fr, 1fr;
-    grid-template-rows: 1fr, 1fr, 600px, 1fr;
-    grid-template-areas: 
+.grid {
+    display:grid;
+  grid-template-columns: 1fr, 1fr, 1fr;
+  grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr;
+  grid-template-areas:
     "header header header"
     "picbar picbar picbar"
+    "pagebar pagebar pagebar"
     "navbar info img"
-    "footer footer footer"
+    "footer footer footer";
 }
 
-header{
-    background-color: rgb(3, 61, 78);
-    width: 100%;
-    height: 100px;
-    grid-area: header;
-    color:rgb(189, 204, 209);
-    text-align: center;
-    padding-top: 20px;
+header {
+  background-color: rgb(3, 61, 78);
+  width: 100%;
+  height: 100px; 
+  grid-area: header;
+  text-align: center;
+  padding-top: 20px;
 }
-.picbar{
-    grid-area: picbar;
-    background:linear-gradient(to bottom, transparent, white), url("assets/design2_image1.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 250px;
-    background-position: bottom;
+.picbar {
+  grid-area: picbar;
+  background: linear-gradient(to bottom, transparent, rgb(3, 61, 78)),
+    url("assets/design2_image1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 250px;
+  background-position: bottom;
+  margin: 0px;
+  padding: 0px;
 }
-.navbar{
-    grid-area: navbar;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: rgb(6, 126, 162);
-    float:left;
+.navbar {
+  grid-area: navbar;
+  width: 200px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(6, 126, 162); 
 }
-li{
-    display:block;
+li {
+  display: block;
+  padding:20px;
 }
-.img{
-    grid-area: img;
-    float: right;
-    box-shadow: 30px 10px 10px 10px white inset;
+li.active{
+    background-color: rgb(3, 61, 78)
 }
-.info{
-    grid-area: info;
-    position:relative;
-    
+.img {
+  grid-area: img;
+  background-image: url("assets/soccer_image1.jpg");
+  background-repeat: no-repeat;
+  background-position: right;
+}
+.info {
+  grid-area: info;
+  text-align: center;
+}
+.pagebar {
+  grid-area: pagebar;
+  height: 50px;
+  background-color: rgb(3, 61, 78);
+  text-align: center;
+  color: rgb(189, 204, 209);
+  font-size: 20px;
+}
+.footer {
+  grid-area: footer;
+  background-color: rgb(3, 61, 78);
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+  text-align: center;
+  color: rgb(189, 204, 209);
+  font-size: 20px; 
+  margin: 0px;
+}
+.logo {
+  width: 75px;
+  height: 75px;
+  position: relative;
+}
+h2{
+    text-align:center ;
+    margin: 5px;
+    color: rgb(189, 204, 209);
+}
+h1{
+    text-align:center ;
+    margin: 5px;
+    color: rgb(189, 204, 209);
 }
