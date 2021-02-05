@@ -1,12 +1,13 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr, 1fr, 1fr;
-  grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr;
+  grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
   grid-template-areas:
     "header header header"
     "picbar picbar picbar"
     "pagebar pagebar pagebar"
     "navbar info img"
+    "navbar details details"
     "footer footer footer";
 }
 
@@ -55,6 +56,11 @@ li.active {
   background-color: rgb(3, 61, 78);
   color: rgb(189, 204, 209);
 }
+.details{
+  grid-area: details;
+  text-align: center;
+  max-width: 50%;
+}
 .footer {
   grid-area: footer;
   background-color: rgb(3, 61, 78);
@@ -87,31 +93,37 @@ h1 {
   color: rgb(189, 204, 209);
   font-size: 17px;
 }
-table{
-    width: 100%;
+table.games{
+    width: 400px;
 }
 th{
-    border-spacing: 10px;
-    border-bottom: 3px solid black;
-}
-tr.group{
-    border-bottom: 1.5px solid black;
-}
-td{
-    margin:5px;
+  background-color: rgb(6, 126, 162);
 }
 
+tr:nth-child(even) {background: rgb(142, 167, 175)}
+tr:nth-child(odd){background: rgb(118, 161, 175) }
+
+/*table.locations{
+  width:100%;
+}
+tr.location{
+  background-color: none;
+}
+tr.location:nth-child(4n+1), tr:nth-child(4n+2) {
+  background: none;
+}*/
 @media only screen and (min-width: 650px) {
   /* For tablets: */
   .grid {
     display: grid;
     grid-template-columns: 100px, 1fr, 1fr;
-    grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
     grid-template-areas:
       "header header header"
       "picbar picbar picbar"
       "pagebar pagebar pagebar"
       "navbar info img"
+      "navbar details details"
       "footer footer footer";
   }
   .img {
@@ -150,7 +162,6 @@ td{
   .navbar {
     grid-area: navbar;
     width: 250px;
-   height: 100vh;
   }
   li{
       font-weight: 19px;
