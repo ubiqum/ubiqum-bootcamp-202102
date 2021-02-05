@@ -1,51 +1,54 @@
-* {
-    margin:0;
-    padding:0;
-}
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas:
-    "header header header";
-    "subheader subheader aside";
-    "nav section section";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "logo" "header" "subheader" "navigation" "info";
 }
-body{
-    font-family:fantasy
+
+.body {
+    font-family: fantasy
 }
-.header{
-   grid-area: header;
+
+.header {
+    grid-area: header;
     text-align: center;
-    background-image:url('images/design1_image1.jpg');
+    background-image: url('images/design1_image1.jpg');
+    border: 1px solid black;
 }
-.subheader{
+
+.subheader {
     grid-area: subheader;
     text-align: center;
+    border: 1px solid black;
 }
-.nav li {
-    grid-area: nav;
-    list-style: none;
-    text-align: center;
 
+.navigation {
+    grid-area: navigation;
+    text-align: center;
+    border: 1px solid black;
 }
-.section {
-    grid-area: section;
+
+.li {
+    grid-area: navigation;
+    list-style: none;
+}
+
+.info {
+    grid-area: info;
     text-align: left;
-}  
-.aside {
-    grid-area: aside;
-    justify-self: end;
+    border: 1px solid black;
 }
-@media screen and (min-width: 736px)
-{
+
+.logo {
+    grid-area: logo;
+    justify-self: center;
+}
+
+@media screen and (min-width: 768px) {
     .grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
-        grid-template-areas:
-        "header header header";
-        "subheader subheader aside";
-        "nav section section"
-    }  
+        grid-template-areas: "header header header" "subheader subheader logo" "navigation info info"
+    }
 }
