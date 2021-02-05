@@ -1,47 +1,78 @@
 .grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: "logo" "header" "subheader" "navigation" "info";
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas: 
+    "logo" 
+    "header"
+    "navigation" 
+    "subheader"  
+    "info"
+    ;
 }
 
-.body {
-    font-family: fantasy
+body {
+    font-family: fantasy;
 }
 
 .header {
     grid-area: header;
+    margin:0;
+    padding:0;
     text-align: center;
     background-image: url('images/design1_image1.jpg');
-    border: 1px solid black;
+    background-repeat:round;
+    background-size: contain;
 }
 
 .subheader {
+    color:blanchedalmond;
+    background-color: black;
     grid-area: subheader;
     text-align: center;
-    border: 1px solid black;
+    
+    
 }
 
 .navigation {
     grid-area: navigation;
     text-align: center;
-    border: 1px solid black;
+    margin:auto;
+    padding:0;
+    justify-self: center;
 }
 
-.li {
+.navigation li {
     grid-area: navigation;
     list-style: none;
+    display:inline-block;
+    padding: 15px;
 }
-
+h2 {
+    grid-area:info;
+    text-align: center;
+    margin: auto;
+    padding:auto;
+}
 .info {
     grid-area: info;
     text-align: left;
-    border: 1px solid black;
+    justify-self: center;
+    margin:auto;
+    padding:20px;
 }
 
 .logo {
     grid-area: logo;
+    background-color: black;
+    background-size:cover;
+    padding-left: 95px;
+    padding-right: auto;
+}
+article {
     justify-self: center;
+    margin: 0;
+    padding: auto;
 }
 
 @media screen and (min-width: 768px) {
@@ -49,6 +80,37 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
-        grid-template-areas: "header header header" "subheader subheader logo" "navigation info info"
+        grid-template-areas: 
+        "header header header" 
+        "subheader subheader logo" 
+        "navigation info info";
     }
-}
+    .header {
+        grid-area: header;
+        margin:0;
+        padding:0;
+        text-align: center;
+        background-image: url('images/design1_image1.jpg');
+        background-repeat:no-repeat;
+        background-size: cover;
+        background-position:center;
+    }
+    .navigation li {
+        grid-area: navigation;
+        list-style: none;
+        display: block;
+        padding: auto;
+    }
+    .subheader {
+        color:blanchedalmond;
+        background-color: black;
+        grid-area: subheader;
+        text-align: center;
+    }
+    .logo {
+        grid-area: logo;
+        background-color: black;
+        background-size:cover;
+        padding-left: 95px;
+        padding-right: auto;
+    }
