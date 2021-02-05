@@ -37,18 +37,26 @@ header {
   margin: 0;
   padding: 0;
   background-color: rgb(6, 126, 162);
+  length:100vh;
 }
-li {
+.navbar.li {
+  margin-left: 0px;
   display: block;
-  padding: 20px;
+  padding: 10px;
   color: rgb(189, 204, 209);
+  width: auto;
 }
-li.active {
+.navbar.li.active {
   background-color: rgb(3, 61, 78);
+}
+.li{
+color: black;
 }
 .info {
   grid-area: info;
+  min-width: 500px;
   text-align: left;
+  list-style-type:georgian;
 }
 .pagebar {
   grid-area: pagebar;
@@ -103,31 +111,22 @@ th{
 tr:nth-child(even) {background: rgb(142, 167, 175)}
 tr:nth-child(odd){background: rgb(118, 161, 175) }
 
-/*table.locations{
-  width:100%;
-}
-tr.location{
-  background-color: none;
-}
-tr.location:nth-child(4n+1), tr:nth-child(4n+2) {
-  background: none;
-}*/
+
 @media only screen and (min-width: 650px) {
   /* For tablets: */
   .grid {
     display: grid;
     grid-template-columns: 100px, 1fr, 1fr;
-    grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr;
     grid-template-areas:
       "header header header"
       "picbar picbar picbar"
       "pagebar pagebar pagebar"
-      "navbar info img"
-      "navbar details details"
+      "navbar details image"
       "footer footer footer";
   }
-  .img {
-    grid-area: img;
+  .image {
+    grid-area: image;
     background-image: url("assets/soccer_image1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
