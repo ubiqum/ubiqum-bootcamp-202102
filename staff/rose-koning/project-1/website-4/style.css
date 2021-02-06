@@ -1,0 +1,166 @@
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr, 1fr;
+      grid-template-columns: 1fr, 1fr;
+  -ms-grid-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
+      grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
+      grid-template-areas: "header header" "picbar picbar" "pagebar  pagebar" "navbar info" "navbar details" "footer footer";
+}
+
+.logo {
+  height: 75px;
+  widows: 75px;
+  position: relative;
+}
+
+.header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: header;
+  background-color: #033d4e;
+}
+
+.header .h1 {
+  color: #bdccd1;
+  font-size: 15px;
+  text-align: left;
+}
+
+.picbar {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: picbar;
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#033d4e)), url("assets/design2_image1.jpg");
+  background: linear-gradient(to bottom, transparent, #033d4e), url("assets/design2_image1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 75px;
+  background-position: bottom;
+  margin: 0px;
+  padding: 0px;
+}
+
+.pagebar {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: pagebar;
+  height: 50px;
+  background-color: #033d4e;
+}
+
+.pagebar .h2 {
+  color: #bdccd1;
+  font-size: 20px;
+  text-align: center;
+}
+
+.navbar {
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: navbar;
+  width: 60px;
+  list-style-type: none;
+  background-color: #067ea2;
+  length: 100vh;
+  margin-top: 15px;
+}
+
+.navbar .li {
+  margin-left: 0px;
+  display: block;
+  padding: 10px;
+  color: #bdccd1;
+  width: auto;
+}
+
+.navbar .active {
+  background-color: #033d4e;
+  color: #bdccd1;
+}
+
+.navbar .ul {
+  padding: 0;
+}
+
+.info {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: info;
+  min-width: 500px;
+  text-align: left;
+  font-size: 18px;
+}
+
+.info .h2 {
+  margin-top: 30px;
+  font-size: 19px;
+}
+
+.info .h3 {
+  font-size: 19px;
+}
+
+.details {
+  -ms-grid-row: 5;
+  -ms-grid-column: 2;
+  grid-area: details;
+}
+
+.details .li-rules {
+  margin-left: 0px;
+  font-size: 19px;
+  text-align: left;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+.details .h2 {
+  text-align: left;
+  margin-left: 0px;
+}
+
+.footer {
+  -ms-grid-row: 6;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: footer;
+  background-color: #033d4e;
+  height: 50px;
+  text-align: left;
+  color: #bdccd1;
+  bottom: 0;
+}
+
+.table-games {
+  table-layout: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table-games .th {
+  background-color: #067ea2;
+}
+
+.table-games tr:nth-child(even) {
+  background: #a5b2b6;
+}
+
+.table-games tr:nth-child(odd) {
+  background: #bcd1d8;
+}
+
+.table-locations {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table-locations .tr {
+  margin: 2px;
+}
+/*# sourceMappingURL=style.css.map */

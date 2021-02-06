@@ -1,197 +1,132 @@
+$darkblue: rgb(3, 61, 78);
+$medblue: rgb(6, 126, 162);
+$gray: rgb(189, 204, 209);
+
 .grid {
-    display: grid;
-    grid-template-columns: 1fr, 1fr, 1fr;
-    grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
-    grid-template-areas:
-      "header header header"
-      "picbar picbar picbar"
-      "pagebar pagebar pagebar"
-      "navbar info img"
-      "navbar details details"
-      "footer footer footer";
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
+  grid-template-areas:
+    "header header"
+    "picbar picbar"
+    "pagebar  pagebar"
+    "navbar info"
+    "navbar details"
+    "footer footer";
+}
+.logo {
+  height: 75px;
+  widows: 75px;
+  position: relative;
+}
+
+.header {
+  grid-area: header;
+  background-color: $darkblue;
+  .h1 {
+    color: $gray;
+    font-size: 15px;
+    text-align: left;
   }
-  
-  header {
-    background-color: rgb(3, 61, 78);
-    width: 100%;
-    height: 75px;
-    grid-area: header;
-    padding-top: 20px;
+}
+.picbar {
+  grid-area: picbar;
+  background: linear-gradient(to bottom, transparent, $darkblue),
+    url("assets/design2_image1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 75px;
+  background-position: bottom;
+  margin: 0px;
+  padding: 0px;
+}
+.pagebar {
+  grid-area: pagebar;
+  height: 50px;
+  background-color: $darkblue;
+  .h2 {
+    color: $gray;
+    font-size: 20px;
+    text-align: center;
   }
-  .picbar {
-    grid-area: picbar;
-    background: linear-gradient(to bottom, transparent, rgb(3, 61, 78)),
-      url("assets/design2_image1.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 75px;
-    background-position: bottom;
-    margin: 0px;
-    padding: 0px;
-  }
-  .navbar {
-    grid-area: navbar;
-    width: 100px;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(6, 126, 162);
-    length:100vh;
-  }
-  .navbar.li {
+}
+.navbar {
+  grid-area: navbar;
+  width: 60px;
+  list-style-type: none;
+  background-color: $medblue;
+  length: 100vh;
+  margin-top: 15px;
+  .li {
     margin-left: 0px;
     display: block;
     padding: 10px;
-    color: rgb(189, 204, 209);
+    color: $gray;
     width: auto;
   }
-  .navbar.li.active {
-    background-color: rgb(3, 61, 78);
+  .active {
+    background-color: $darkblue;
+    color: $gray;
   }
-  .li{
-  color: black;
+  .ul {
+    padding: 0;
   }
-  .info {
-    grid-area: info;
-    min-width: 500px;
+}
+.info {
+  grid-area: info;
+  min-width: 500px;
+  text-align: left;
+  font-size: 18px;
+  .h2 {
+    margin-top: 30px;
+    font-size: 19px;
+  }
+  .h3 {
+    font-size: 19px;
+  }
+}
+.details {
+  grid-area: details;
+  .li-rules {
+    margin-left: 0px;
+    font-size: 19px;
     text-align: left;
-    list-style-type:georgian;
+    max-width: 200px;
+    word-wrap: break-word;
   }
-  .pagebar {
-    grid-area: pagebar;
-    height: 50px;
-    background-color: rgb(3, 61, 78);
-    color: rgb(189, 204, 209);
+  .h2{
+      text-align: left;
+      margin-left: 0px;
   }
-  .details{
-    grid-area: details;
-    text-align: center;
-    max-width: 50%;
-  }
-  .footer {
-    grid-area: footer;
-    background-color: rgb(3, 61, 78);
-    width: 100%;
-    height: 50px;
-    margin-top: 10px;
-    text-align: center;
-    color: rgb(189, 204, 209);
-    font-size: 20px;
-    margin: 0px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 2.5rem;
-  }
-  .logo {
-    width: 50px;
-    height: 50px;
-    position: relative;
-  }
-  h2 {
-    text-align: left;
-    margin: 5px;
-    color: rgb(189, 204, 209);
-    font-size: 17px;
-  }
-  h1 {
-    text-align: left;
-    margin: 5px;
-    color: rgb(189, 204, 209);
-    font-size: 17px;
-  }
-  table.games{
-      width: 400px;
-  }
-  th{
+}
+.footer {
+  grid-area: footer;
+  background-color: $darkblue;
+  height: 50px;
+  text-align: left;
+  color: $gray;
+  bottom: 0;
+}
+
+.table-games {
+  table-layout: auto;
+  margin-left: auto;
+  margin-right: auto;
+  .th {
     background-color: rgb(6, 126, 162);
   }
-  
-  tr:nth-child(even) {background: rgb(142, 167, 175)}
-  tr:nth-child(odd){background: rgb(118, 161, 175) }
-  
-  
-  @media only screen and (min-width: 650px) {
-    /* For tablets: */
-    .grid {
-      display: grid;
-      grid-template-columns: 100px, 1fr, 1fr;
-      grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr;
-      grid-template-areas:
-        "header header header"
-        "picbar picbar picbar"
-        "pagebar pagebar pagebar"
-        "navbar details image"
-        "footer footer footer";
-    }
-    .image {
-      grid-area: image;
-      background-image: url("assets/soccer_image1.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      max-height: 200px;
-    }
-    .info {
-      grid-area: info;
-      text-align: left;
-      max-width: 300px;
-      margin-left: 0px;
-    }
-    h2 {
-      text-align: center;
-      margin: 5px;
-      color: rgb(189, 204, 209);
-      font-size: 17px;
-    }
-    h1 {
-      text-align: center;
-      margin: 5px;
-      color: rgb(189, 204, 209);
-      font-size: 17px;
-    }
+  tr:nth-child(even) {
+    background: rgb(165, 178, 182);
   }
-  @media only screen and (min-width: 1000px) {
-     .header{
-         height: 150px;
-     }
-    .picbar {
-      height: 250px;
-    }
-    .navbar {
-      grid-area: navbar;
-      width: 250px;
-    }
-    li{
-        font-weight: 19px;
-    }
-    .img {
-      grid-area: img;
-      background-image: url("assets/soccer_image1.jpg");
-      background-repeat: no-repeat;
-      background-position: right;
-      min-height: 300px;
-    }
-    .logo {
-      width: 75px;
-      height: 75px;
-      position: relative;
-    }
-    h2 {
-      text-align: center;
-      font-size: 30px;
-    }
-    h1 {
-      text-align: center;
-      font-size: 30px;
-    }
-    .footer {
-      height: 1000px;
-      font-size: 30px;
-      position: relative;
-      bottom: 0;
-      width: 100%;
-      height: 2.5rem;
-    }
+  tr:nth-child(odd) {
+    background: rgb(188, 209, 216);
   }
-  
+}
+.table-locations {
+  margin-left: auto;
+  margin-right: auto;
+  .tr {
+    margin: 2px;
+  }
+}
