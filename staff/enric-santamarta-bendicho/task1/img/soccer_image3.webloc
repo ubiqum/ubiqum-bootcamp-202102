@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>URL</key>
-	<string>https://s3.amazonaws.com/gbstool/emails/2027/soccer_image3.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20210203T173801Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=180900&amp;X-Amz-Credential=AKIAJBIZLMJQ2O6DKIAA%2F20210203%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=541ddc9d4833640c2cc4a4e48df39327fada362248b5909d7b91a18b5651d2e6</string>
+	<string>https://s3.amazonaws.com/gbstool/emails/2027/soccer_image3.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20210206T143933Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=180900&amp;X-Amz-Credential=AKIAJBIZLMJQ2O6DKIAA%2F20210206%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=2f71e029a798962ea7e0277825cbf27ad737ce042fe0e7dc846b0cc307cc32c6</string>
 </dict>
 </plist>
