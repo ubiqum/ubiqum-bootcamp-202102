@@ -1,0 +1,22 @@
+.menu{ list-style:none;
+    padding:5px;
+    font:bold 14px verdana;
+    display:inline-block;
+    text-align: left;}
+
+    .menu li{ list-style:none;
+        padding:5px;
+        font:bold 14px verdana;
+        display:inline-block;
+        text-align: left;}
+        .paragraph{ 
+           width: 40%;
+           margin: 40px;
+           padding:0px;
+           display:block;
+           
+            }
+            .head
+            { margin: 40px;}
+            .head2
+            { margin: 40px;}
