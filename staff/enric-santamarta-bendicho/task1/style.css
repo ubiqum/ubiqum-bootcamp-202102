@@ -1,22 +1,72 @@
+*{ 
+
+}
+
 .menu{ list-style:none;
     padding:5px;
+    margin-left: 60px;
     font:bold 14px verdana;
     display:inline-block;
-    text-align: left;}
+    text-align: center;}
 
     .menu li{ list-style:none;
-        padding:5px;
+        margin-left: 5px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding:0px;
         font:bold 14px verdana;
-        display:inline-block;
-        text-align: left;}
+        display:inline-block; 
+        text-align: left;} 
+
         .paragraph{ 
            width: 40%;
-           margin: 40px;
+           margin-left: 180px;
+           margin-bottom: 30px;
+           margin-top: 0px;
            padding:0px;
            display:block;
-           
-            }
-            .head
-            { margin: 40px;}
-            .head2
-            { margin: 40px;}
+           }
+                .head
+                { margin-left: 150px;
+                margin-bottom: 0px;
+                font-style: italic;
+                font-size: 60px;}
+                    .head2
+                    { margin-left: 150px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    font-style: italic;
+                    font-size: 30px;
+                    padding:0px;}
+            .head3  { margin-left: 150px;
+                margin-top: 0px;
+                margin-bottom: 30px;
+                font-style: italic;
+                font-size: 40px;
+    
+                padding:0px;}
+                .paragraph2{ 
+                    width: 40%;
+                    margin-left: 210px;
+                    margin-bottom: 30px;
+                    margin-top: 0px;
+                    padding:0px;
+                    display:block;
+                    }
+            .paragraph3{ 
+                width: 40%;
+                margin-left: 180px;
+                margin-bottom: 0px;
+                margin-top: 0px;
+                padding:0px;
+                display:block;
+                font-style: oblique;
+                }
+                .image{
+                 float: left;
+                display: block;
+                margin-left: 20px;
+                margin-top: 20px;
+                 }
+
+              
