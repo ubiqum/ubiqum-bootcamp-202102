@@ -17,6 +17,7 @@ body {
 
 .header {
     grid-area: header;
+    display: grid;
     margin:0;
     padding:0;
     text-align: center;
@@ -26,16 +27,17 @@ body {
 }
 
 .subheader {
+    grid-area: subheader;
+    display:grid;
     color:blanchedalmond;
     background-color: black;
-    grid-area: subheader;
+    background-size: cover;
     text-align: center;
-    
-    
 }
 
 .navigation {
     grid-area: navigation;
+    display:grid;
     text-align: center;
     margin:auto;
     padding:0;
@@ -48,26 +50,23 @@ body {
     display:inline-block;
     padding: 15px;
 }
-h2 {
-    grid-area:info;
-    text-align: center;
-    margin: auto;
-    padding:auto;
-}
+
 .info {
     grid-area: info;
-    text-align: left;
-    justify-self: center;
-    margin:auto;
-    padding:20px;
+    display:grid;
+    text-align: center;
+    margin: 20px;
 }
 
 .logo {
     grid-area: logo;
+    display:grid;
     background-color: black;
     background-size:cover;
     padding-left: 95px;
     padding-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 article {
     justify-self: center;
@@ -79,7 +78,7 @@ article {
     .grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-rows: 500px auto 1fr;
         grid-template-areas: 
         "header header header" 
         "subheader subheader logo" 
@@ -87,14 +86,16 @@ article {
     }
     .header {
         grid-area: header;
-        margin:0;
-        padding:0;
+        margin:20px;
+        padding:20px;
         text-align: center;
+        width: auto;
         background-image: url('images/design1_image1.jpg');
-        background-repeat:no-repeat;
-        background-size: cover;
-        background-position:center;
+        background-repeat: no-repeat ;
+        background-size: cover;  
+        background-position:0 0;
     }
+    
     .navigation li {
         grid-area: navigation;
         list-style: none;
@@ -106,11 +107,13 @@ article {
         background-color: black;
         grid-area: subheader;
         text-align: center;
+        background-size: auto;
     }
-    .logo {
-        grid-area: logo;
+    .logo {grid-area: logo;
         background-color: black;
         background-size:cover;
         padding-left: 95px;
         padding-right: auto;
     }
+}
+        
