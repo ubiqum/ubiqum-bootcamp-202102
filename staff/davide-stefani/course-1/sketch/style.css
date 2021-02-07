@@ -73,6 +73,9 @@ article {
     margin: 0;
     padding: auto;
 }
+.image{
+    display:none
+}
 
 @media screen and (min-width: 768px) {
     .grid {
@@ -81,7 +84,7 @@ article {
         grid-template-rows: 500px auto 1fr;
         grid-template-areas: 
         "header header header" 
-        "subheader subheader logo" 
+        "subheader subheader logo"
         "navigation info info";
     }
     .header {

@@ -1,0 +1,111 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto auto;
+    grid-template-areas: 
+    "header"
+    "image"
+    "navigation" 
+    "subheader"  
+    "info"
+    "logo"
+    ;
+}
+
+body {
+    font-family: fantasy;
+}
+
+.header {
+    grid-area: header;
+    display: grid;
+    margin:0;
+    padding:0;
+    text-align: center;
+    size: contain;
+}
+
+.image{
+    grid-area: image;
+    display: grid;
+    margin:0;
+    padding:0;
+    background-repeat:no-repeat;
+    background-size: contain;
+}
+.subheader {
+    grid-area: subheader;
+    display:grid;
+    color:rgb(21, 41, 97);
+    text-align: center;
+    padding: auto;
+}
+
+h3 {
+    color:rgb(21, 41, 97);
+}
+.navigation {
+    grid-area: navigation;
+    display:grid;
+    text-align: center;
+    margin:auto;
+    padding:0;
+    justify-self: center;
+}
+
+.navigation li {
+    grid-area: navigation;
+    list-style: none;
+    display:inline-block;
+    padding: auto;
+}
+
+li {
+    border: 2px solid black;
+    background-color: rgb(155, 210, 228);
+    color: rgb(21, 41, 97);
+}
+
+.info {
+    grid-area: info;
+    display:grid;
+    text-align: center;
+    margin: 20px;
+}
+
+.logo {
+    grid-area: logo;
+    display:grid;
+    background-size:cover;
+    padding-left: 95px;
+    padding-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+article {
+    justify-self: center;
+    margin: 0;
+    padding: auto;
+}
+
+h3 {
+    color: rgb(17, 197, 128);
+}
+@media screen and (min-width: 768px) {
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto 500px auto auto;
+        grid-template-areas: 
+        "header header navigation" 
+        "image image image"
+        "subheader subheader subheader" 
+        "logo info info";
+    }
+    .image{
+        grid-area: image;
+        display:grid;
+        background-image: url(images/design2_image1.jpg) ;
+
+    }
+}
