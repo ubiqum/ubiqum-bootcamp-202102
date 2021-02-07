@@ -9,8 +9,7 @@ body {
 
 header {
     display:flex;
-    width: 100%; 
-    background: antiquewhite;
+    width: 100%;
 
 }
 
@@ -35,7 +34,7 @@ header > ul {
 }
 
 .lat-image {
-    min-width:30%;
+    width:30%;
     display: flex;
     flex-direction: row-reverse;
 }
@@ -62,17 +61,16 @@ height: fit-content;
 .navbar > ul
 {
     display: flex;
-    margin-left:30%;
+    margin-left:calc(30% + 20px);
     padding: 0;
 }
 
 .navbar > ul > li
 {
     margin-right: 30px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family:montserrat;
     list-style-type: none;
-    
 }
 
 .navbar > ul > li > a{
@@ -83,17 +81,42 @@ height: fit-content;
 .main-container {
     width:100%;
     display: flex;
-
     }
 
 .events{
     padding: 10px 30px;
 }
 
-.event-container{
-padding: 10px 0;
+.about-us-container{
+padding: 10px 20px;
+width:70%;
 }
 
+.contact-container{
+    width:70%;
+    padding: 10px 0;
+    }
+
+    .event-container{
+        padding: 10px 0;
+        width:70%;
+        }
+
+.event-container > p {
+    margin-left: 20px;
+}
+
+
+.about-us-container > p {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.contact-container > p {
+    margin-left: 20px;
+    line-height: 2;
+    
+}
 
 h1
 {
@@ -110,9 +133,17 @@ h2
     font-family:montserrat;
     margin: 0;
 }
+
 h3
 {
-    font-size:1.5rem;
+    font-size:2rem;
+    font-family:montserrat;
+    margin: 0;    
+}
+h4
+{
+    font-size:1rem;
+    font-style: italic;
     font-family:montserrat;
     margin: 0;
 }
@@ -123,5 +154,76 @@ p
     margin: 0;
 }
 
+@media only screen and (max-width: 600px) {
 
-*{border:1px solid;box-sizing:border-box}
+    body {    
+        max-width: 100%;
+        height: auto;
+    }
+    h1
+{
+    font-size:2rem;
+    font-family:montserrat;
+    align-self: center;
+    margin: 0;
+    padding: 20px;;
+}
+
+h2
+{
+    font-size:1.5rem;
+    font-family:montserrat;
+    margin: 0;
+}
+
+h3
+{
+    font-size:1.2rem;
+    font-family:montserrat;
+    margin: 0;    
+}
+    .navbar > ul
+    {
+        display: flex;
+        margin-left:0%;
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    .contact-container > p {
+        margin-left: 20px;
+        line-height: 1;
+        
+    }
+
+    .navbar > ul > li
+{
+    padding: 20px 0;
+}
+.lat-image {
+    width:100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.lat-image > img {
+
+    max-width: 60%;
+   max-height: auto;
+    margin: 0 auto;
+}
+.main-container {
+
+    flex-wrap:wrap;
+        }
+        .about-us-container{
+
+            width:100%;
+            }
+  }
+
+  
+
+
+*{box-sizing:border-box}
+/* *{border:1px solid} */
