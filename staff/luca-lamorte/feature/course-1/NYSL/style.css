@@ -19,6 +19,7 @@ header {
     background-image: url('img/design1_image1.jpg');
     background-size: cover;
     background-position: center top;
+    
 }
 
 .hero > img {
@@ -36,6 +37,7 @@ header {
     color: white;
     height:60px;
     justify-content: space-around;
+    margin-bottom:20px;
 }
 
 .title > img{
@@ -44,7 +46,8 @@ header {
     height:100px;
     width:100px;
     align-self: center;
-    
+    position: absolute;
+    right: 50px;
 }
 
 .title > h2 {
@@ -89,7 +92,7 @@ header {
 }
 
 .navbar > ul > li > a:hover{
-    text-decoration: underline;
+    font-weight: bold;
 }  
 
 .main-container {
@@ -196,12 +199,16 @@ h3
     font-family:montserrat;
     margin: 0;    
 }
+
+.navbar{
+width:100%;
+margin-top: 20px;
+}
     .navbar > ul
     {
-        display: flex;
-        margin-left:0%;
-        padding: 0;
-        margin: 0 auto;
+ flex-direction: row;
+ height: auto;
+ width:100%
     }
 
     .contact-container > p {
@@ -221,20 +228,26 @@ h3
 }
 
 .lat-image > img {
-
     max-width: 60%;
    max-height: auto;
     margin: 0 auto;
-}
-.main-container {
-
+    }
+.main-container{
     flex-wrap:wrap;
-        }
-        .about-us-container{
+    }
 
-            width:100%;
-            }
-  }
+ .about-us-container{
+      width:100%;
+    }
+.title{
+    margin-bottom:0;
+}
+    .title > img{
+     position:initial;
+    }
+ 
+ 
+    }
 
   
 
