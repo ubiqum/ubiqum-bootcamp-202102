@@ -4,7 +4,7 @@
     grid-template-rows: auto auto auto auto auto auto;
     grid-template-areas: 
     "header"
-    "image"
+    "pic2"
     "navigation" 
     "subheader"  
     "info"
@@ -22,23 +22,24 @@ body {
     margin:0;
     padding:0;
     text-align: center;
-    size: contain;
 }
 
-.image{
-    grid-area: image;
-    display: grid;
-    margin:0;
-    padding:0;
-    background-repeat:no-repeat;
-    background-size: contain;
+.pic2{
+    grid-area: pic2;
+    width: 100%;
+    max-height: auto;
 }
+
+.pic1{
+    display:none
+}
+    
+
 .subheader {
     grid-area: subheader;
     display:grid;
     color:rgb(21, 41, 97);
     text-align: center;
-    padding: auto;
 }
 
 h3 {
@@ -57,7 +58,6 @@ h3 {
     grid-area: navigation;
     list-style: none;
     display:inline-block;
-    padding: auto;
 }
 
 li {
@@ -75,17 +75,15 @@ li {
 
 .logo {
     grid-area: logo;
-    display:grid;
-    background-size:cover;
-    padding-left: 95px;
-    padding-right: auto;
+    width: 85px;
+    height: 85px;
+    justify-self: center;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 article {
     justify-self: center;
     margin: 0;
-    padding: auto;
 }
 
 h3 {
@@ -98,14 +96,14 @@ h3 {
         grid-template-rows: auto 500px auto auto;
         grid-template-areas: 
         "header header navigation" 
-        "image image image"
+        "pic2 pic2 pic2"
         "subheader subheader subheader" 
         "logo info info";
     }
-    .image{
-        grid-area: image;
+    .pic2{
+        grid-area: pic2;
         display:grid;
-        background-image: url(images/design2_image1.jpg) ;
+        
 
     }
 }

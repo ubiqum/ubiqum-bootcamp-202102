@@ -1,0 +1,76 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    grid-template-areas: 
+    "logo"
+    "header"
+    "navigation" 
+    "subheader"  
+    "info"
+    "pic1"
+    "pic2"
+}
+.logo {
+    grid-area: logo;
+    width: 85px;
+    height: 85px;
+    justify-self: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.header {
+    grid-area: header;
+    display: grid;
+    margin:0;
+    padding:0;
+    text-align: center;
+}
+.navigation {
+    grid-area: navigation;
+    display:grid;
+    text-align: center;
+    margin:auto;
+    padding:0;
+    justify-self: center;
+}
+.navigation li {
+    grid-area: navigation;
+    list-style: none;
+    display:inline-block;
+}
+li {
+    border: 2px solid black;
+    background-color: rgb(173, 235, 148);
+    color: rgb(6, 90, 51);
+}
+.pic1{
+    grid-area: pic1;
+    width: 100%;
+    max-height: auto;
+}
+.pic2{
+    grid-area: pic2;
+    width: 100%;
+    max-height: auto;
+}
+
+@media screen and (min-width: 768px) {
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto auto auto;
+        grid-template-areas: 
+        "logo header header" 
+        "navigation navigation navigation"
+        "subheader subheader subheader" 
+        "info info pic1"
+        "info info pic2";
+    }
+    .subheader {
+        grid-area: subheader;
+        display:grid;
+        color:rgb(21, 41, 97);
+        text-align: center;
+    }
+}
