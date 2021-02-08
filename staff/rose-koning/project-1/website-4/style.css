@@ -8,6 +8,10 @@
       grid-template-areas: "header header" "picbar picbar" "pagebar  pagebar" "navbar info" "navbar details" "footer footer";
 }
 
+a {
+  text-decoration: none;
+}
+
 .logo {
   height: 75px;
   widows: 75px;
@@ -55,7 +59,7 @@
 
 .pagebar .h2 {
   color: #bdccd1;
-  font-size: 20px;
+  font-size: 2rem;
   text-align: center;
 }
 
@@ -64,14 +68,13 @@
   -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: navbar;
-  width: 60px;
+  width: 5rem;
   list-style-type: none;
   background-color: #067ea2;
-  length: 100vh;
-  margin-top: 15px;
+  margin-top: 1.5rem;
 }
 
-.navbar .li {
+.navbar.navbutton {
   margin-left: 0px;
   display: block;
   padding: 10px;
@@ -79,9 +82,8 @@
   width: auto;
 }
 
-.navbar .active {
+.navbar.navbutton.active {
   background-color: #033d4e;
-  color: #bdccd1;
 }
 
 .navbar .ul {
@@ -92,37 +94,46 @@
   -ms-grid-row: 4;
   -ms-grid-column: 2;
   grid-area: info;
-  min-width: 500px;
-  text-align: left;
-  font-size: 18px;
+  max-width: 50rem;
+  margin-left: 1rem;
 }
 
 .info .h2 {
-  margin-top: 30px;
-  font-size: 19px;
+  margin-top: 40px;
+  font-size: 2.5rem;
 }
 
 .info .h3 {
-  font-size: 19px;
+  font-size: 3rem;
+}
+
+.info .p {
+  font-size: 0.5 rem;
+  text-align: left;
+}
+
+.info .contact {
+  margin-top: 30px;
 }
 
 .details {
   -ms-grid-row: 5;
   -ms-grid-column: 2;
   grid-area: details;
+  margin-top: 30px;
 }
 
-.details .li-rules {
+.details .rules {
   margin-left: 0px;
-  font-size: 19px;
+  font-size: 1rem;
   text-align: left;
-  max-width: 200px;
+  max-width: 20rem;
   word-wrap: break-word;
 }
 
 .details .h2 {
   text-align: left;
-  margin-left: 0px;
+  margin-left: 0rem;
 }
 
 .footer {
@@ -131,7 +142,7 @@
   -ms-grid-column-span: 2;
   grid-area: footer;
   background-color: #033d4e;
-  height: 50px;
+  height: 3rem;
   text-align: left;
   color: #bdccd1;
   bottom: 0;
@@ -141,6 +152,7 @@
   table-layout: auto;
   margin-left: auto;
   margin-right: auto;
+  font-size: 1rem;
 }
 
 .table-games .th {
@@ -158,9 +170,75 @@
 .table-locations {
   margin-left: auto;
   margin-right: auto;
+  font-size: 1rem;
 }
 
 .table-locations .tr {
-  margin: 2px;
+  margin: 0.5rem;
+}
+
+@media only screen and (min-width: 650px) {
+  /* For tablets*/
+  .header .h1 {
+    color: #bdccd1;
+    font-size: 3rem;
+  }
+  .navbar {
+    width: 10rem;
+  }
+  .navbar.navbutton {
+    font-size: 1.5rem;
+  }
+  .details {
+    -ms-grid-row: 5;
+    -ms-grid-column: 2;
+    grid-area: details;
+    margin-top: 30px;
+  }
+  .details .rules {
+    font-size: 1.5rem;
+    max-width: 60rem;
+  }
+  .footer {
+    text-align: center;
+    font-size: 2.5rem;
+  }
+  .info {
+    margin-top: 30px;
+  }
+  .info .p {
+    font-size: 1.5rem;
+  }
+  .table-games {
+    font-size: 1.5rem;
+  }
+  .table-locations {
+    font-size: 2rem;
+  }
+  .details {
+    font-size: 1.5rem;
+  }
+  .info .contact {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  /* For desktop */
+  .grid {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr, 1fr, 1fr;
+        grid-template-columns: 1fr, 1fr, 1fr;
+    -ms-grid-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
+        grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
+        grid-template-areas: "header header header" "picbar picbar picbar" "pagebar  pagebar pagebar" "navbar info image" "navbar details details" "footer footer footer";
+  }
+  .image {
+    -ms-grid-row: 4;
+    -ms-grid-column: 3;
+    grid-area: image;
+    background-image: url("assets/soccer_image1.jpg");
+  }
 }
 /*# sourceMappingURL=style.css.map */

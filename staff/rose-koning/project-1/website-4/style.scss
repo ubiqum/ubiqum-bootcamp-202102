@@ -14,6 +14,9 @@ $gray: rgb(189, 204, 209);
     "navbar details"
     "footer footer";
 }
+a{
+  text-decoration: none;
+}
 .logo {
   height: 75px;
   widows: 75px;
@@ -31,8 +34,8 @@ $gray: rgb(189, 204, 209);
 }
 .picbar {
   grid-area: picbar;
-  background: linear-gradient(to bottom, transparent, $darkblue),
-    url("assets/design2_image1.jpg");
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#033d4e)), url("assets/design2_image1.jpg");
+  background: linear-gradient(to bottom, transparent, #033d4e), url("assets/design2_image1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -47,63 +50,72 @@ $gray: rgb(189, 204, 209);
   background-color: $darkblue;
   .h2 {
     color: $gray;
-    font-size: 20px;
+    font-size: 2rem;
     text-align: center;
   }
 }
 .navbar {
   grid-area: navbar;
-  width: 60px;
+  width: 5rem;
   list-style-type: none;
   background-color: $medblue;
-  length: 100vh;
-  margin-top: 15px;
-  .li {
+  margin-top: 1.5rem;
+
+  &.navbutton {
     margin-left: 0px;
     display: block;
     padding: 10px;
     color: $gray;
     width: auto;
+
+    &.active {
+      background-color:$darkblue;
+    }
   }
-  .active {
-    background-color: $darkblue;
-    color: $gray;
-  }
+
   .ul {
     padding: 0;
   }
 }
 .info {
   grid-area: info;
-  min-width: 500px;
-  text-align: left;
-  font-size: 18px;
+  max-width: 50rem;
+  margin-left: 1rem;
+
   .h2 {
-    margin-top: 30px;
-    font-size: 19px;
+    margin-top: 40px;
+    font-size: 2.5rem;
   }
   .h3 {
-    font-size: 19px;
+    font-size: 3rem;
+  }
+  .p {
+    font-size: 0.5 rem;
+    text-align: left;
+  }
+  .contact {
+    margin-top: 30px;
   }
 }
 .details {
   grid-area: details;
-  .li-rules {
+  margin-top: 30px;
+  .rules {
     margin-left: 0px;
-    font-size: 19px;
+    font-size: 1rem;
     text-align: left;
-    max-width: 200px;
+    max-width: 20rem;
     word-wrap: break-word;
   }
-  .h2{
-      text-align: left;
-      margin-left: 0px;
+  .h2 {
+    text-align: left;
+    margin-left: 0rem;
   }
 }
 .footer {
   grid-area: footer;
   background-color: $darkblue;
-  height: 50px;
+  height: 3rem;
   text-align: left;
   color: $gray;
   bottom: 0;
@@ -113,6 +125,7 @@ $gray: rgb(189, 204, 209);
   table-layout: auto;
   margin-left: auto;
   margin-right: auto;
+  font-size: 1rem;
   .th {
     background-color: rgb(6, 126, 162);
   }
@@ -126,7 +139,74 @@ $gray: rgb(189, 204, 209);
 .table-locations {
   margin-left: auto;
   margin-right: auto;
+  font-size: 1rem;
   .tr {
-    margin: 2px;
+    margin: 0.5rem;
   }
 }
+@media only screen and (min-width: 650px) {
+  /* For tablets*/
+  .header {
+    .h1 {
+      color: $gray;
+      font-size: 3rem;
+    }}
+  .navbar {
+    width: 10rem;
+    &.navbutton {
+      font-size: 1.5rem;}
+  }
+  .details {
+    grid-area: details;
+    margin-top: 30px;
+    .rules {
+      font-size: 1.5rem;
+      max-width: 60rem;
+    }
+  }
+    .footer {
+      text-align: center;
+      font-size: 2.5rem;
+    }
+    .info{
+      margin-top: 30px;
+      .p{
+        font-size: 1.5rem;
+      }
+    }
+    .table-games {
+      font-size: 1.5rem;
+    }
+    .table-locations {
+      font-size: 2rem;}
+
+    .details{
+      font-size: 1.5rem;
+    }
+    .info{
+      .contact{
+        font-size: 1.5rem;
+      }
+    }
+  }
+  @media only screen and (min-width: 1000px) {
+    /* For desktop */
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr, 1fr, 1fr;
+      grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
+      grid-template-areas:
+        "header header header"
+        "picbar picbar picbar"
+        "pagebar  pagebar pagebar"
+        "navbar info image"
+        "navbar details details"
+        "footer footer footer";
+    }
+
+    .image{
+      grid-area: image;
+      background-image: url("assets/soccer_image1.jpg");
+    }
+  }
