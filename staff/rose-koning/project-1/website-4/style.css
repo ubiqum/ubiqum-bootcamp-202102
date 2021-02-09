@@ -92,29 +92,32 @@ a {
   text-align: center;
 }
 
-.info .h2 {
+.info.h2 {
   margin-top: 40px;
   font-size: 2.5rem;
 }
 
-.info .h3 {
+.info.h3 {
   font-size: 3rem;
 }
 
-.info .p {
+.info.p {
   font-size: 0.5 rem;
   text-align: left;
 }
 
-.info .contact {
+.info.contact {
   margin-top: 30px;
+}
+
+.info.form {
+  text-align: left;
 }
 
 .details {
   -ms-grid-row: 5;
   -ms-grid-column: 2;
   grid-area: details;
-  margin-top: 30px;
 }
 
 .details .rules {
@@ -161,18 +164,28 @@ a {
   background: #bcd1d8;
 }
 
-.table-locations {
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1rem;
-}
-
-.table-locations .tr {
-  margin: 0.5rem;
-}
-
 .image {
   float: right;
+}
+
+.input {
+  width: 15rem;
+}
+
+.input.name {
+  width: 20rem;
+}
+
+.input.lname {
+  width: 20rem;
+}
+
+.input.address {
+  width: 50rem;
+}
+
+.input.guardian {
+  width: 50rem;
 }
 
 @media only screen and (min-width: 650px) {
@@ -189,7 +202,7 @@ a {
     -ms-grid-row: 5;
     -ms-grid-column: 2;
     grid-area: details;
-    margin-top: 30px;
+    font-size: 1.5rem;
   }
   .details .rules {
     font-size: 1.5rem;
@@ -208,9 +221,6 @@ a {
   .table-locations {
     font-size: 2rem;
   }
-  .details {
-    font-size: 1.5rem;
-  }
   .info .contact {
     font-size: 1.5rem;
   }
@@ -218,5 +228,8 @@ a {
 
 @media only screen and (min-width: 1000px) {
   /* For desktop */
+  .details {
+    padding: 1rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */
