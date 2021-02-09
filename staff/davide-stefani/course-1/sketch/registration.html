@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Registration Form </title>
+    <meta charset="utf-8" />
+    <meta name="description" content="First NYSL webpage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-3.css">
+</head>
+
+<body class="grid">
+
+    <img class="logo" src="images/nysl_logo.png">
+
+    <img class="pic1" src="images/design1_image1.jpg">
+
+    <img class="pic2" src="images/design2_image1.jpg">
+
+    <header class="header">
+        <h1>NORTHSIDE YOUTH SOCCER LEAGUE</h1>
+    </header>
+
+    <section class="subheader">
+        <h2>REGISTRATION FORM</h2>
+    </section>
+
+    <nav class="navigation">
+        <ul>
+            <a href="home.html">
+                <li>HOME </li>
+            </a>
+            <a href="about.html">
+                <li>ABOUT NYSL</li>
+            </a>
+            <a href="contact.html">
+                <li>CONTACT</li>
+            </a>
+            <a href="rules.html">
+                <li>RULES & POLICIES</li>
+            </a>
+            <a href="game_info.html">
+                <li>GAME INFORMATION</li>
+            </a>
+            <a href="registration.html">
+                <li>REGISTRATION FORM</li>
+            </a>
+        </ul>
+    </nav>
+    <div class="info">
+        <form action="show_data.html" method="GET">
+
+            <p>Player's First Name:</p>
+            <p><input type="text" name="Name" value="First Name"></p>
+
+            <p>Player's Last Name:</p>
+            <p><input type="text" name="Surname" value="Last Name"></p>
+
+            <p>Street Address:</p>
+            <p><input type="text" name="Address" value="Address"></p>
+
+            <p>City:</p>
+            <p><input type="text" name="City" value="City"></p>
+
+            <p>Zip Code:</p>
+            <p><input type="text" name="ZIPcode" value="Zip Code"></p>
+
+            <p>Player's Birth Date:</p>
+            <p><input type="text" name="DOB" value="mm/dd/yyyy"></p>
+
+            <p>Player's Parent/Guardian:</p>
+            <p><input type="text" name="Full_Name" value="Full Name"></p>
+
+            <p>Contact Phone:</p>
+            <p><input type="text" name="Telephone" value="Phone number"></p>
+
+            <p>Contact E-mail:</p>
+            <p><input type="text" name="E-mail" value="E-mail address"></p>
+
+            <label>
+                Closest School
+                <select name="First School" required>
+                    <option value="AJ Katzenmaier" selected>AJ Katzenmaier</option>
+                    <option value="Greenbay">Greenbay</option>
+                    <option value="Howard A Yeager">Howard A Yeager</option>
+                    <option value="Marjorie P Hart">Marjorie P Hart</option>
+                    <option value="North Elementary">North Elementary</option>
+                    <option value="South Elementary">South Elementary</option>
+                </select>
+            </label>
+            <label>
+                Second Closest School
+                <select name="Second School" required>
+                    <option value="AJ Katzenmaier" selected>AJ Katzenmaier</option>
+                    <option value="Greenbay">Greenbay</option>
+                    <option value="Howard A Yeager">Howard A Yeager</option>
+                    <option value="Marjorie P Hart">Marjorie P Hart</option>
+                    <option value="North Elementary">North Elementary</option>
+                    <option value="South Elementary">South Elementary</option>
+                </select>
+            </label>
+
+            <p>What position(s) do you normally play? (check all that apply)</p>
+            <input type="checkbox" name="Play_Position" value="Forward" checked> Forward
+            <input type="checkbox" name="Play_Position" value="Midfield"> Midfield
+            <input type="checkbox" name="Play_Position" value="Defense"> Defense
+            <input type="checkbox" name="Play_Position" value="Goalkeeper"> Goalkeeper
+
+            <p>What position(s) do you want to play? (check all that apply)</p>
+            <input type="checkbox" name="Wanted_Position" value="Forward" checked> Forward
+            <input type="checkbox" name="Wanted_Position" value="Midfield"> Midfield
+            <input type="checkbox" name="Wanted_Position" value="Defense"> Defense
+            <input type="checkbox" name="Wanted_Position" value="Goalkeeper"> Goalkeeper
+
+            <p>Do you already have a uniform?</p>
+            <input type="radio" name="Uniform" value="Yes" checked> Yes
+            <input type="radio" name="Uniform" value="No"> No
+            
+            <p>Jersey size:</p>
+            <input type="radio" name="Jersey Size" value="Youth Small" checked> Youth Small
+            <input type="radio" name="Jersey Size" value="Youth Medium"> Youth Medium
+            <input type="radio" name="Jersey Size" value="Youth Large"> Youth Large
+            <input type="radio" name="Jersey Size" value="Small"> Small
+            <input type="radio" name="Jersey Size" value="Medium"> Medium
+            <input type="radio" name="Jersey Size" value="Large"> Large
+            <input type="radio" name="Jersey Size" value="Extra-Large"> Extra-Large
+
+            <p>Shorts size:</p>
+            <input type="radio" name="Shorts Size" value="Youth Small" checked> Youth Small
+            <input type="radio" name="Shorts Size" value="Youth Medium"> Youth Medium
+            <input type="radio" name="Shorts Size" value="Youth Large"> Youth Large
+            <input type="radio" name="Shorts Size" value="Small"> Small
+            <input type="radio" name="Shorts Size" value="Medium"> Medium
+            <input type="radio" name="Shorts Size" value="Large"> Large
+            <input type="radio" name="Shorts Size" value="Extra-Large"> Extra-Large
+
+            <article>
+                <h4>Permissiion to Play</h4>
+                <p>
+                    I, the parent or guardian of the minor registrant, agree that the registrant and I will abide by all
+                    the rules of the Northside Youth
+                    Soccer League (NYSL). In recognizing the possibility of physical injury associated with soccer and
+                    in consideration for the “League”
+                    accepting the registrant for its soccer programs and activities, I hereby release, discharge, and/or
+                    otherwise indemnify NYSL, their
+                    employees and associated personnel and volunteers, including the facilities used for practices and
+                    games, against any claim by or
+                    on behalf of the registrant as a result of the registrant’s participation in the program and/or
+                    being transported to or from NYSL
+                    sponsored activities, which transportation.
+                    By signing below, I hereby agree and authorize the above. In addition, by signing below, I also
+                    acknowledge that I have read the
+                    cancellation policy and agree to its terms.
+                </p>
+                <p>Parent/Guardian Signature:</p>
+                <p><input type="text" name="Digital Signature" value="Full Name"></p>
+                <p>Date:</p>
+                <p><input type="text" name="Date" value="mm/dd/yyyy"></p>
+            
+            </article>
+
+
+
+
+
+
+            <input class="btn btn-default" type="submit" name="submit" value="Register Now">
+        </form>
+
+
+    </div>
+</body>

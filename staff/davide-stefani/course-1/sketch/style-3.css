@@ -11,6 +11,9 @@
     "pic1"
     "pic2"
 }
+body{
+    background-color: rgb(204, 218, 245);
+}
 .logo {
     grid-area: logo;
     width: 85px;
@@ -25,6 +28,7 @@
     margin:0;
     padding:0;
     text-align: center;
+    color:rgb(21, 41, 97);
 }
 .navigation {
     grid-area: navigation;
@@ -44,6 +48,12 @@
     background-color: rgb(173, 235, 148);
     color: rgb(6, 90, 51);
     padding: 5px;
+}
+.subheader {
+    grid-area: subheader;
+    display:grid;
+    color:rgb(21, 41, 97);
+    text-align: center;
 }
 .info {
     grid-area: info;
@@ -77,11 +87,5 @@ h3{
         "subheader subheader subheader" 
         "info info pic1"
         "info info pic2";
-    }
-    .subheader {
-        grid-area: subheader;
-        display:grid;
-        color:rgb(21, 41, 97);
-        text-align: center;
     }
 }
