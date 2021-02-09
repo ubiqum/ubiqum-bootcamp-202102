@@ -1,8 +1,8 @@
 .grid {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 10vw 90vw;
-      grid-template-columns: 10vw 90vw;
+  -ms-grid-columns: auto 80vw;
+      grid-template-columns: auto 80vw;
   -ms-grid-rows: 9rem 12rem 6rem auto auto 3rem;
       grid-template-rows: 9rem 12rem 6rem auto auto 3rem;
       grid-template-areas: "header header" "picbar picbar" "pagebar pagebar" "navbar info" "navbar details" "footer footer";
@@ -88,7 +88,6 @@ a {
   -ms-grid-row: 4;
   -ms-grid-column: 2;
   grid-area: info;
-  padding: 1rem;
   text-align: center;
 }
 
@@ -110,8 +109,10 @@ a {
   margin-top: 30px;
 }
 
-.info.form {
+.info.form-contact {
+  padding: 0px;
   text-align: left;
+  width: 75vw;
 }
 
 .details {
@@ -166,26 +167,6 @@ a {
 
 .image {
   float: right;
-}
-
-.input {
-  width: 15rem;
-}
-
-.input.name {
-  width: 20rem;
-}
-
-.input.lname {
-  width: 20rem;
-}
-
-.input.address {
-  width: 50rem;
-}
-
-.input.guardian {
-  width: 50rem;
 }
 
 @media only screen and (min-width: 650px) {

@@ -4,7 +4,7 @@ $gray: rgb(189, 204, 209);
 
 .grid {
   display: grid;
-  grid-template-columns: 10vw 90vw;
+  grid-template-columns: auto 80vw;
   grid-template-rows: 9rem 12rem 6rem auto auto 3rem;
   grid-template-areas:
     "header header"
@@ -81,7 +81,6 @@ a {
 }
 .info {
   grid-area: info;
-  padding: 1rem;
   text-align: center;
 
   &.h2 {
@@ -98,8 +97,31 @@ a {
   &.contact {
     margin-top: 30px;
   }
-  &.form {
+  &.form-contact {
+    padding:0px;
     text-align: left;
+    width: 75vw;
+    &.__first-name{
+    
+    }
+    &.__last-name{
+  
+    }
+    &.__address{
+    
+
+    }
+    &.__city{
+   
+
+    } 
+    &.__zip{
+   
+
+    }
+    &.__dob{
+
+  }
   }
 }
 .details {
@@ -146,22 +168,6 @@ a {
   float: right;
 }
 
-.input{
-  width: 15rem;
-
-  &.name{
-    width: 20rem;
-  }
-  &.lname{
-    width: 20rem;
-  }
- &.address{
-   width: 50rem;
- }
- &.guardian{
-   width: 50rem;
- }
-}
 
 @media only screen and (min-width: 650px) {
   /* For tablets*/
