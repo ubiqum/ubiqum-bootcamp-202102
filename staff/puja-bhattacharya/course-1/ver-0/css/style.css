@@ -1,0 +1,94 @@
+  body {
+    font-family: "Rubik", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  a{
+    font-family:"Palatino Linotype", sans-serif;
+    font-weight:bold;
+  }
+
+  img.resize {
+    max-width:20%;
+    max-height:20%;
+    padding-left: 10px;
+    padding-top: 10px;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    color: #141618;
+    margin-bottom: 0px;
+    font-family: "Rubik", sans-serif;
+  }
+
+  h1{
+    font-family: "Algerian", sans-serif;
+    color: #001D38;
+    display: inline;
+    font-size: 227%;
+    text-align:left;
+ 
+  }
+  
+  h2, h3, h4, h5 {
+    font-family: "Palatino Linotype", sans-serif;
+    color: #001D38;
+   
+  }
+
+  .header-area {
+    left: 0;
+    right: 0;
+    width: 100%;
+    top: 0;
+    z-index: 9;
+    position: relative;
+  }
+
+
+.container {
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 960px;
+}
+
+
+.all-browsers {
+  margin: 0;
+  padding: 5px;
+  background-color: lightgray;
+}
+
+.all-browsers > h1, .browser {
+  margin: 30px;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.browser {
+  background: white;
+}
+
+.browser > h2, p {
+  margin: 1px;
+  font-size: 90%;
+}
+
+article{
+padding-top: 50px;
+font-family:"Palatino Linotype", sans-serif;
+}
+
+header {
+  background-color: rgb(160, 135, 135);
+  text-align:center;
+}
+
+.aligndiv {
+  text-align: center;
+}
