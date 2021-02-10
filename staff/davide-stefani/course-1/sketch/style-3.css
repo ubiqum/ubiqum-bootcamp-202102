@@ -42,12 +42,17 @@ body{
     grid-area: navigation;
     list-style: none;
     display:inline-block;
-}
-.navigation li {
     border: 2px solid black;
     background-color: rgb(173, 235, 148);
     color: rgb(6, 90, 51);
     padding: 5px;
+}
+.map-page {
+    border: 2px solid black;
+    background-color: rgb(173, 235, 148);
+    color: rgb(6, 90, 51);
+    padding: 5px;
+    justify-self: center;
 }
 .subheader {
     grid-area: subheader;
