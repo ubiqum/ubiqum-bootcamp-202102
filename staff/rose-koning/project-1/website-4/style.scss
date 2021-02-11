@@ -97,33 +97,9 @@ a {
   &.contact {
     margin-top: 30px;
   }
-  &.form-contact {
-    padding:0px;
-    text-align: left;
-    width: 75vw;
-    &.__first-name{
-    
-    }
-    &.__last-name{
   
-    }
-    &.__address{
-    
-
-    }
-    &.__city{
-   
-
-    } 
-    &.__zip{
-   
-
-    }
-    &.__dob{
-
-  }
-  }
 }
+
 .details {
   grid-area: details;
 
@@ -221,7 +197,141 @@ a {
 }
 @media only screen and (min-width: 1000px) {
   /* For desktop */
+  h3{
+    font-size: 1.3rem;
+  }
+  h4{
+    font-size: 1.2rem;
+  }
+  p{
+    font-size: 1.5rem;
+  }
+
   .details {
     padding: 1rem;
   }
+
+.form-contact {
+display:grid;
+font-size: 1.1rem;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: auto auto auto auto auto auto auto ;
+grid-template-areas: 
+"__first-name __last-name"
+"__address __address"
+"__city __zip"
+"__dob __gender"
+"__grade __grade"
+"__guardian __guardian"
+"__phone __email";
+
+input{
+  border-style: none none solid none;
+}
+}
+
+.form-contact__first-name{
+  grid-area: __first-name;
+  input{
+    width: 30vw;
+  }
+  }
+
+  .form-contact__last-name{
+    grid-area: __last-name;
+    input{
+      width: 30vw;
+    }
+  }
+
+  .form-contact__address{
+    grid-area: __address;
+    input{
+      width: 71.75vw;
+    }
+  }
+
+  .form-contact__city{
+    grid-area: __city;
+    input{
+      width: 32.98vw;
+    }
+    }
+
+  .form-contact__zip{
+    grid-area: __zip;
+    input{
+      width: 30.7vw;
+    }
+  }
+
+  .form-contact__dob{
+    grid-area: __dob;
+}
+
+.form-contact__gender{
+  grid-area: __gender;
+  }
+
+.form-contact__grade{
+  grid-area: __grade;
+}
+
+.form-contact__guardian{
+  grid-area: __guardian;
+  input{
+    width: 67.2vw;
+  }
+}
+
+.form-contact__phone{
+  grid-area: __phone;
+  input{
+    width: 28.5vw;
+  }
+}
+
+.form-contact__email{
+  grid-area: __email;
+  input{
+    width: 28.78vw;
+  }
+}
+.main-container {
+  padding: 1rem;
+  background-color: antiquewhite;
+}
+
+.main-cotainer__section {
+  padding: 1rem;
+  font-size: 1rem;
+  
+}
+
+.main-cotainer__section-content {
+  padding: 1rem;
+ 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.main-cotainer__section-cell {
+  padding: 1rem;
+
+}
+
+.list {
+  padding: 1rem;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.list__item {
+  list-style: none;
+  padding: 1rem;
+  width: 40%;
+}
 }
