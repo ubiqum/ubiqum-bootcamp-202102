@@ -1,40 +1,35 @@
 .grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto;
     grid-template-areas: 
-    "logo" 
+    "logo"
     "header"
     "navigation" 
     "subheader"  
     "info"
-    ;
+    "images"
+    
 }
-
-body {
-    font-family: fantasy;
+body{
+    background-color: rgb(204, 218, 245);
 }
-
+.logo {
+    grid-area: logo;
+    width: 85px;
+    height: 85px;
+    justify-self: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 .header {
     grid-area: header;
     display: grid;
     margin:0;
     padding:0;
     text-align: center;
-    background-image:url("images/design1_image1.jpg");
-    background-repeat:no-repeat;
-    background-size: cover;
+    color:rgb(21, 41, 97);
 }
-
-.subheader {
-    grid-area: subheader;
-    display:grid;
-    color:blanchedalmond;
-    background-color: black;
-    background-size: cover;
-    text-align: center;
-}
-
 .navigation {
     grid-area: navigation;
     display:grid;
@@ -43,85 +38,57 @@ body {
     padding:0;
     justify-self: center;
 }
-
 .navigation li {
     grid-area: navigation;
     list-style: none;
     display:inline-block;
-    padding: 15px;
+    border: 2px solid black;
+    background-color: rgb(173, 235, 148);
+    color: rgb(6, 90, 51);
+    padding: 5px;
 }
-
+.map-page {
+    border: 2px solid black;
+    background-color: rgb(173, 235, 148);
+    color: rgb(6, 90, 51);
+    padding: 5px;
+    justify-self: center;
+}
+.subheader {
+    grid-area: subheader;
+    display:grid;
+    color:rgb(21, 41, 97);
+    text-align: center;
+}
 .info {
     grid-area: info;
     display:grid;
-    text-align: center;
-    margin: 20px;
+    text-align: left;
+    margin-left: 20px;
 }
-
-.logo {
-    grid-area: logo;
-    display:grid;
-    width: 85px;
-    height: 85px;
-    padding: 10px;
-    justify-self: center;
-    background-color: black;
-    background-size:contain;
-}
-
-article {
-    justify-self: center;
-    margin: 0;
+h3{
+    color: rgb(31, 104, 2);
+    font-family:cursive;
 }
 .pic1{
-    display:none;
+    grid-area: pic1;
+    width: 100%;
 }
 .pic2{
-    display:none;
+    grid-area: pic2;
+    width: 100%;
 }
 
 @media screen and (min-width: 768px) {
     .grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 500px auto 1fr;
+        grid-template-rows: auto auto auto auto auto;
         grid-template-areas: 
-        "header header header" 
-        "subheader subheader logo"
-        "navigation info info";
-    }
-    .header {
-        grid-area: header;
-        margin:20px;
-        padding:20px;
-        text-align: center;
-        width: auto;
-        background-image: url('images/design1_image1.jpg');
-        background-repeat: no-repeat ;
-        background-size: cover;  
-        background-position:0 0;
-    }
-    
-    .navigation li {
-        grid-area: navigation;
-        list-style: none;
-        display: block;
-    }
-    .subheader {
-        grid-area: subheader;
-        color:blanchedalmond;
-        margin:20px;
-        padding:20px;
-        background-color: black;
-        text-align: center;
-        background-size: auto;
-    }
-    .logo {
-        grid-area: logo;
-        margin:20px;
-        padding:20px;
-        background-color: black;
-        background-size: auto;
+        "logo header header" 
+        "navigation navigation navigation"
+        "subheader subheader subheader" 
+        "info info pic1"
+        "info info pic2";
     }
 }
-        
