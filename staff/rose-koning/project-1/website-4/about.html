@@ -1,62 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About</title>
     <link rel="stylesheet" href="style.css" />
-</head>
+  </head>
 
-<body class="grid">
-    <header class="header">
-        <h1 class="header h1">
-            North Side Youth Soccer League<img src="assets/nysl_logo.png" alt="nysl logo" class="logo" />
-        </h1>
+  <body class="grid">
+    <header class="grid__header">
+      <h1 class="header__title">
+        North Side Youth Soccer League<img
+          src="assets/nysl_logo.png"
+          alt="nysl logo"
+          class="logo"
+        />
+      </h1>
     </header>
-    <section class="picbar"></section>
-    <section class="pagebar">
-        <h2 class="pagebar h2">About</h2>
+    <section class="grid__picbar"></section>
+    <section class="grid__pagebar">
+      <h2 class="pagebar__title">About</h2>
     </section>
-    <nav class="navbar">
-        <ul class="ul">
-            <a href="home.html" target="_self">
-                <li class="navbar navbutton">Home</li>
-            </a>
-            <a href="about.html" target="_self">
-                <li class="navbar navbutton active">About</li>
-            </a>
-            <a href="games.html" target="_self">
-                <li class="navbar navbutton">NYSL Game Schedule</li>
-            </a>
-            <a href="rules.html" target="_self">
-                <li class="navbar navbutton">NYSL Rules</li>
-            </a>
-            <a href="registration.html" target="_self">
-                <li class="navbar navbutton">Registration</li>
-            </a>
-            <a href="contact.html" target="_self">
-                <li class="navbar navbutton">Contact</li>
-            </a>
-        </ul>
-    </nav>
-    <div class="info">
-        <h2>Mission</h2>
-        <p class="info p">To support young athletes living in Chicago´s northside neighborhoods, who hava an interest in learning and
-            playing soccer, with opportunities to learn and practice skills related to the game of soccer, especially
-            those skills around team cooperation and good sportsmenship.</p>
-        <h2>Vision</h2>
-        <p class="info p">The Northside Youth Soccer League aspires to develop strong, well-rounded and mindful athletes through the
-            building of character, self-discipline and leadership.</p>
-        <h2>General Information</h2>
-        <p class="info p">The Northside Youth Soccer League was established in 1996 to provide athletes residing in Chicagos´s
-            northside neighborhoods and environment in which to learn and play soccer. To be a member of NYSL, you must
-            be between the ages of 4 - 12 and reside in a Chicago northside neighborhood. NYSL is ran by a small
-            full-time staff and relies on the generous volunteer time of parents and previous league members.</p>
-    </div>
-    <div class="image">
-    </div>
-    <footer class="footer"> North Side Youth Soccer League 2021</footer>
-</body>
+    <nav class="grid__navbar">
+      <ul class="navbar__options">
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="home.html" target="_self">Home</a>
+        </li>
 
+        <li class="navbar__navbutton  navbar__navbutton--active">
+          <a class="navbar__link" href="about.html" target="_self">About </a>
+        </li>
+
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="games.html" target="_self"
+            >NYSL Game Schedule</a
+          >
+        </li>
+
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="rules.html" target="_self"
+            >NYSL Rules
+          </a>
+        </li>
+
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="registration.html" target="_self"
+            >Registration
+          </a>
+        </li>
+
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="contact.html" target="_self">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="grid__info">
+      <h2 class="info__title">Mission</h2>
+      <p class="info__main">
+        To support young athletes living in Chicago´s northside neighborhoods,
+        who hava an interest in learning and playing soccer, with opportunities
+        to learn and practice skills related to the game of soccer, especially
+        those skills around team cooperation and good sportsmenship.
+      </p>
+      <h2 class="info___title">Vision</h2>
+      <p class="info__main">
+        The Northside Youth Soccer League aspires to develop strong,
+        well-rounded and mindful athletes through the building of character,
+        self-discipline and leadership.
+      </p>
+      <h2 class="info__title">General Information</h2>
+      <p class="info__main">
+        The Northside Youth Soccer League was established in 1996 to provide
+        athletes residing in Chicagos´s northside neighborhoods and environment
+        in which to learn and play soccer. To be a member of NYSL, you must be
+        between the ages of 4 - 12 and reside in a Chicago northside
+        neighborhood. NYSL is ran by a small full-time staff and relies on the
+        generous volunteer time of parents and previous league members.
+      </p>
+    </div>
+    <footer class="grid__footer">North Side Youth Soccer League 2021</footer>
+  </body>
 </html>

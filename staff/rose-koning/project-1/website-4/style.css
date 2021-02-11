@@ -8,17 +8,13 @@
       grid-template-areas: "header header" "picbar picbar" "pagebar pagebar" "navbar info" "navbar details" "footer footer";
 }
 
-a {
-  text-decoration: none;
-}
-
 .logo {
   height: 75px;
   widows: 75px;
   position: relative;
 }
 
-.header {
+.grid__header {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -26,13 +22,13 @@ a {
   background-color: #033d4e;
 }
 
-.header .h1 {
+.header__title {
   color: #bdccd1;
   font-size: 15px;
   text-align: left;
 }
 
-.picbar {
+.grid__picbar {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -46,7 +42,7 @@ a {
   padding: 0px;
 }
 
-.pagebar {
+.grid__pagebar {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -54,68 +50,74 @@ a {
   background-color: #033d4e;
 }
 
-.pagebar .h2 {
+.pagebar__title {
   color: #bdccd1;
   font-size: 2rem;
   text-align: center;
 }
 
-.navbar {
+.grid__navbar {
   -ms-grid-row: 4;
   -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: navbar;
-  list-style-type: none;
   background-color: #067ea2;
-}
-
-.navbar.navbutton {
-  margin-left: 0px;
-  display: block;
-  padding: 10px;
-  color: #bdccd1;
-}
-
-.navbar.navbutton.active {
-  background-color: #033d4e;
-}
-
-.navbar .ul {
   padding: 0;
 }
 
-.info {
+.navbar__navbutton {
+  margin-left: 0rem;
+  display: block;
+  padding: 10px;
+  color: #bdccd1;
+  list-style-type: none;
+}
+
+.navbar__navbutton--active {
+  background-color: #033d4e;
+}
+
+.navbar__options {
+  margin-left: 0rem;
+}
+
+.navbar__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.grid__info {
   -ms-grid-row: 4;
   -ms-grid-column: 2;
   grid-area: info;
   text-align: center;
 }
 
-.info.h2 {
+.info__title {
   margin-top: 40px;
   font-size: 2.5rem;
 }
 
-.info.h3 {
+.info__sub-title {
   font-size: 3rem;
 }
 
-.info.p {
+.info__main {
   font-size: 0.5 rem;
-  text-align: left;
+  text-align: center;
 }
 
-.info.contact {
+.info__contact {
   margin-top: 30px;
 }
 
-.details {
+.grid__details {
   -ms-grid-row: 5;
   -ms-grid-column: 2;
   grid-area: details;
 }
 
-.details .rules {
+.details__rules {
   margin-left: 0px;
   font-size: 1rem;
   text-align: left;
@@ -123,12 +125,12 @@ a {
   word-wrap: break-word;
 }
 
-.details .h2 {
+.details__header {
   text-align: left;
   margin-left: 0rem;
 }
 
-.footer {
+.grid__footer {
   -ms-grid-row: 6;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -159,66 +161,55 @@ a {
   background: #bcd1d8;
 }
 
-.image {
-  float: right;
-}
-
 @media only screen and (min-width: 650px) {
   /* For tablets*/
-  .header .h1 {
+  .header__title {
     color: #bdccd1;
     font-size: 3rem;
     text-align: center;
   }
-  .navbar.navbutton {
+  .navbar__navbutton {
     font-size: 1.5rem;
   }
-  .details {
+  .grid__details {
     -ms-grid-row: 5;
     -ms-grid-column: 2;
     grid-area: details;
     font-size: 1.5rem;
   }
-  .details .rules {
-    font-size: 1.5rem;
+  .details__rules {
+    font-size: 2rem;
     max-width: 60rem;
   }
-  .footer {
+  .grid__footer {
     text-align: center;
     font-size: 2.5rem;
   }
-  .info .p {
-    font-size: 1.5rem;
+  .info__main {
+    font-size: 1.7rem;
   }
   .table-games {
     font-size: 1.5rem;
   }
-  .table-locations {
-    font-size: 2rem;
-  }
-  .info .contact {
+  .info__contact {
     font-size: 1.5rem;
   }
 }
 
 @media only screen and (min-width: 1000px) {
   /* For desktop */
-  h3 {
-    font-size: 1.3rem;
-  }
-  h4 {
-    font-size: 1.2rem;
-  }
-  p {
-    font-size: 1.5rem;
-  }
-  .details {
+  .grid__details {
     padding: 1rem;
+  }
+  .details__main {
+    padding: 1rem;
+    font-size: 1.5rem;
   }
   .form-contact {
     display: -ms-grid;
     display: grid;
     font-size: 1.1rem;
+    padding: 1rem;
     -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
     -ms-grid-rows: auto auto auto auto auto auto auto;
@@ -314,11 +305,11 @@ a {
     padding: 1rem;
     background-color: antiquewhite;
   }
-  .main-cotainer__section {
+  .main-container__section {
     padding: 1rem;
     font-size: 1rem;
   }
-  .main-cotainer__section-content {
+  .main-container__section-content {
     padding: 1rem;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -330,7 +321,7 @@ a {
     -ms-flex-pack: distribute;
         justify-content: space-around;
   }
-  .main-cotainer__section-cell {
+  .main-container__section-cell {
     padding: 1rem;
   }
   .list {

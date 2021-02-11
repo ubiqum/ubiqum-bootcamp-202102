@@ -8,8 +8,8 @@
   </head>
 
   <body class="grid">
-    <header class="header">
-      <h1 class="header h1">
+    <header class="grid__header">
+      <h1 class="header__title">
         North Side Youth Soccer League<img
           src="assets/nysl_logo.png"
           alt="nysl logo"
@@ -17,34 +17,45 @@
         />
       </h1>
     </header>
-    <section class="picbar"></section>
-    <section class="pagebar">
-      <h2 class="pagebar h2">NYSL game schedule</h2>
+    <section class="grid__picbar"></section>
+    <section class="grid__pagebar">
+      <h2 class="pagebar__title">NYSL game schedule</h2>
     </section>
-    <nav class="navbar">
-      <ul class="ul">
-        <a href="home.html" target="_self">
-            <li class="navbar navbutton">Home</li>
-        </a>
-        <a href="about.html" target="_self">
-            <li class="navbar navbutton">About</li>
-        </a>
-        <a href="games.html" target="_self">
-            <li class="navbar navbutton active">NYSL Game Schedule</li>
-        </a>
-        <a href="rules.html" target="_self">
-            <li class="navbar navbutton">NYSL Rules</li>
-        </a>
-        <a href="registration.html" target="_self">
-            <li class="navbar navbutton">Registration</li>
-        </a>
-        <a href="contact.html" target="_self">
-            <li class="navbar navbutton">Contact</li>
-        </a>
-    </ul>
+    <nav class="grid__navbar">
+      <ul class="navbar__options">
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="home.html" target="_self">Home</a>
+        </li>
+
+        <li class="navbar__navbutton ">
+          <a class="navbar__link" href="about.html" target="_self">About </a>
+        </li>
+
+        <li class="navbar__navbutton navbar__navbutton--active">
+          <a class="navbar__link" href="games.html" target="_self"
+            >NYSL Game Schedule</a
+          >
+        </li>
+
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="rules.html" target="_self"
+            >NYSL Rules
+          </a>
+        </li>
+
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="registration.html" target="_self"
+            >Registration
+          </a>
+        </li>
+
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="contact.html" target="_self">Contact</a>
+        </li>
+      </ul>
     </nav>
-    <div class="info">
-      <h2 class="info h2">Fall schedule</h2>
+    <div class="grid__info">
+      <h2 class="info__title">Fall schedule</h2>
       <h3>* All games take place on Saturday.</h3>
       <table class="table-games">
         <tr>
@@ -142,8 +153,8 @@
         </tr>
       </table>
 
-      <h2 class="info h2">Game locations</h2>
-      <p>
+      <h2 class="info__title">Game locations</h2>
+      <p class="info__main">
         <b>AJ Katzenmaier Elementary</b> 24 W. Walton St., Chicago, IL 60610
         <br />
         <iframe
@@ -157,7 +168,7 @@
           tabindex="0"
         ></iframe>
       </p>
-      <p>
+      <p class="info__main">
         <b>Greenbay Elementary</b> 1734 N Orleans St, Chicago, IL 60614, USA
         <br />
         <iframe
@@ -171,7 +182,7 @@
           tabindex="0"
         ></iframe>
       </p>
-      <p>
+      <p class="info__main">
         <b>Howard A Yeager Elementary</b> 2245 N. Southport Ave., Chicago, IL
         60614
         <br />
@@ -186,7 +197,7 @@
           tabindex="0"
         ></iframe>
       </p>
-      <p>
+      <p class="info__main">
         <b>Marjorie P Hart Elementary</b> 2625 N. Orchard St., Chicago, IL 60614
         <br />
         <iframe
@@ -200,7 +211,7 @@
           tabindex="0"
         ></iframe>
       </p>
-      <p>
+      <p class="info__main">
         <b>North Elementary</b> 1409 N. Ogden Ave., Chicago, IL 60610
         <br />
         <iframe
@@ -214,7 +225,7 @@
           tabindex="0"
         ></iframe>
       </p>
-      <p>
+      <p class="info__main">
         <b>South Elementary</b> 2101 N. Fremont St., Chicago, IL 60614
         <br />
         <iframe
@@ -229,9 +240,8 @@
         ></iframe>
       </p>
     </div>
-    <div class="image"></div>
-    <div class="details">
-      <p>
+    <div class="grid__details">
+      <p class="details__main">
         <b>Facility Type:</b> Outdoor 
         <br>
         <b>Additional Information:</b> If deemed
@@ -246,6 +256,6 @@
         <b>Email:</b> michael.randall@chisoccer.org
       </p>
     </div>
-    <footer class="footer">North Side Youth Soccer League 2021</footer>
+    <footer class="grid__footer">North Side Youth Soccer League 2021</footer>
   </body>
 </html>
