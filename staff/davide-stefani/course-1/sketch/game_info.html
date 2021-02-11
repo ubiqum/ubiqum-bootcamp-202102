@@ -19,8 +19,6 @@
 
     <section class="subheader">
         <h2>NYSL GAME INFORMATION</h2>
-        <h3>Fall Schedule</h3>
-        <h4>* All games take place on Saturday.</h4>
     </section>
 
     <nav class="navigation">
@@ -46,6 +44,8 @@
         </ul>
     </nav>
     <div class="info">
+        <h3>Fall Schedule</h3>
+        <h4>* All games take place on Saturday.</h4>
         <table>
             <tr>
                 <th>SEPTEMBER </th>
@@ -107,11 +107,6 @@
                 <td>Greenbay</td>
                 <td>9:30 a.m.</td>
             </tr>
-
-
-        </table>
-        <br>
-        <table>
             <tr>
                 <th>OCTOBER </th>
                 <th>Teams</th>
@@ -251,39 +246,5 @@
         </div>
 
     </div>
-
-
-
 </body>
-<style>
-    .grid {
-        display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: auto auto auto auto auto;
-        grid-template-areas:
-            "logo"
-            "header"
-            "navigation"
-            "subheader"
-            "info"
-    }
-
-    .info {
-        width: 100%;
-    }
-
-    @media screen and (min-width: 768px) {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto auto auto auto auto;
-            grid-template-areas:
-                "logo header header"
-                "navigation navigation navigation"
-                "subheader subheader subheader"
-                "info info info"
-                "info info info";
-        }
-</style>
-
 </html>
