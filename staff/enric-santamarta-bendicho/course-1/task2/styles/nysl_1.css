@@ -24,12 +24,13 @@
     font-size: 40px;
     background-color: blue;
     margin-top: 0px;
+    color: white;
 }
 
 .logo {
     position: absolute;
     width: 120px;
-    top: 290px;
+    top: 200px;
     right: 300px;
 }
 
