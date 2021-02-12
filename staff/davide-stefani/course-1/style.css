@@ -27,6 +27,7 @@ body{
     text-align: center;
     color:rgb(201, 130, 37);
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 .navigation {
     grid-area: navigation;
@@ -44,6 +45,7 @@ body{
     background-color: rgb(173, 235, 148);
     color: rgb(6, 90, 51);
     padding: 5px;
+    border-radius: 50px;
    
 }
 .map-page {
