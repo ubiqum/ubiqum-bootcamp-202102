@@ -22,7 +22,7 @@
   background-color: #033d4e;
 }
 
-.header__title {
+.grid__header-title {
   color: #bdccd1;
   font-size: 15px;
   text-align: left;
@@ -50,7 +50,7 @@
   background-color: #033d4e;
 }
 
-.pagebar__title {
+.grid__pagebar-title {
   color: #bdccd1;
   font-size: 2rem;
   text-align: center;
@@ -93,31 +93,28 @@
   text-align: center;
 }
 
-.info__title {
+.grid__title {
   margin-top: 40px;
-  font-size: 2.5rem;
-}
-
-.info__sub-title {
   font-size: 3rem;
 }
 
-.info__main {
-  font-size: 0.5 rem;
-  text-align: center;
+.grid__sub-title {
+  font-size: 2.5rem;
 }
 
-.info__contact {
-  margin-top: 30px;
+.grid__main {
+  font-size: 1 rem;
+  text-align: center;
 }
 
 .grid__details {
   -ms-grid-row: 5;
   -ms-grid-column: 2;
   grid-area: details;
+  padding: 1rem;
 }
 
-.details__rules {
+.grid__details-rules {
   margin-left: 0px;
   font-size: 1rem;
   text-align: left;
@@ -125,7 +122,7 @@
   word-wrap: break-word;
 }
 
-.details__header {
+.grid__details-header {
   text-align: left;
   margin-left: 0rem;
 }
@@ -163,10 +160,14 @@
 
 @media only screen and (min-width: 650px) {
   /* For tablets*/
-  .header__title {
+  .grid__header-title {
     color: #bdccd1;
     font-size: 3rem;
     text-align: center;
+  }
+  .logo {
+    height: 100px;
+    width: 100px;
   }
   .navbar__navbutton {
     font-size: 1.5rem;
@@ -177,21 +178,20 @@
     grid-area: details;
     font-size: 1.5rem;
   }
-  .details__rules {
+  .grid__details-rules {
     font-size: 2rem;
-    max-width: 60rem;
   }
   .grid__footer {
     text-align: center;
     font-size: 2.5rem;
   }
-  .info__main {
+  .grid__main {
     font-size: 1.7rem;
   }
   .table-games {
     font-size: 1.5rem;
   }
-  .info__contact {
+  .grid__info-contact {
     font-size: 1.5rem;
   }
 }
@@ -200,10 +200,6 @@
   /* For desktop */
   .grid__details {
     padding: 1rem;
-  }
-  .details__main {
-    padding: 1rem;
-    font-size: 1.5rem;
   }
   .form-contact {
     display: -ms-grid;
@@ -303,7 +299,6 @@
   }
   .main-container {
     padding: 1rem;
-    background-color: antiquewhite;
   }
   .main-container__section {
     padding: 1rem;
