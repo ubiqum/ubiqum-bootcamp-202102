@@ -153,6 +153,32 @@ margin:0 auto;
         text-align: center;
     
 }
+.rules-container{
+    width:70%;
+    padding: 10px 0;
+    margin:0 auto;
+}
+
+.title-center > * {
+    text-align: center;
+    font-weight: bold;
+    line-height: 2;
+  
+}
+.title-center {
+
+    margin-bottom: 40px;
+}
+
+.rules-container > ul, .rules-container > ol  {
+margin-top:0;
+
+}
+
+.rules-container > ul > li, .rules-container > ol > li {
+    margin-bottom:20px;
+    
+    }
 
 h1
 {
@@ -173,7 +199,7 @@ h2
 
 h3
 {
-    font-size:2.5rem;
+    font-size:2rem;
     font-family:montserrat;
     margin: 0;    
 }
@@ -183,12 +209,26 @@ h4
     font-style: italic;
     font-family:montserrat;
     margin: 0;
+
+}
+h5
+{
+    font-size:1rem;
+    text-transform: uppercase;
+    font-family:montserrat;
+    font-weight: bold;
+    margin: 0;
+    
 }
 p
 {
     font-size:1rem;
     font-family:montserrat;
     margin: 0;
+}
+
+*{
+    font-family:montserrat;
 }
 
 
