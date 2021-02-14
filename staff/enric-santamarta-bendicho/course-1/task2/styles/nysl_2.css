@@ -1,3 +1,5 @@
+
+
 .menu {
     list-style: none;
     padding: 5px;
@@ -99,6 +101,7 @@ li a{color: white;
     margin-top: 0px;
     padding: 0px;
     display: block;
+    
 }
 
 .paragraph3 {
@@ -109,4 +112,5 @@ li a{color: white;
     padding: 0px;
     display: block;
     font-style: oblique;
+    
 }
