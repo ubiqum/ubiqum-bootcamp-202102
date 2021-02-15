@@ -1,6 +1,6 @@
 function lowestNumber(){
     debugger
-     var lowest = (numbers[0]);
+     var lowest = numbers[i];
      
          for(i=0; i<numbers.length ; i++){
      var currentNumber = (numbers[i]);
