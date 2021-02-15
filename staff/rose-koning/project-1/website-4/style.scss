@@ -5,7 +5,7 @@ $gray: rgb(189, 204, 209);
 .grid {
   display: grid;
   grid-template-columns: auto 80vw;
-  grid-template-rows: 11rem 6rem auto auto 3rem;
+  grid-template-rows: 8rem 5rem auto auto 1.5rem;
   grid-template-areas:
     "picbar picbar"
     "pagebar pagebar"
@@ -21,9 +21,8 @@ $gray: rgb(189, 204, 209);
 }
 
 .grid__picbar-title {
-  padding-left: 2.1rem;
   color: $gray;
-  font-size: 3.5rem;
+  font-size: 2rem;
   text-align: left;
 }
 .grid__picbar {
@@ -62,7 +61,6 @@ $gray: rgb(189, 204, 209);
   padding: 0;
 
   &__navbutton {
-    margin-left: 0rem;
     display: block;
     padding: 10px;
     color: $gray;
@@ -74,7 +72,7 @@ $gray: rgb(189, 204, 209);
   }
 
   &__options {
-    margin-left: 0rem;
+    margin-left: -15px;
   }
 
   &__link {
@@ -304,6 +302,10 @@ $gray: rgb(189, 204, 209);
 }
 @media only screen and (min-width: 1000px) {
   /* For desktop */
+  .grid {
+    grid-template-rows: 11rem 6rem auto auto 3rem;
+  
+  }
   .form-contact {
     display: grid;
     font-size: 1.1rem;

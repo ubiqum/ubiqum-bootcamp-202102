@@ -3,8 +3,8 @@
   display: grid;
   -ms-grid-columns: auto 80vw;
       grid-template-columns: auto 80vw;
-  -ms-grid-rows: 11rem 6rem auto auto 3rem;
-      grid-template-rows: 11rem 6rem auto auto 3rem;
+  -ms-grid-rows: 8rem 5rem auto auto 1.5rem;
+      grid-template-rows: 8rem 5rem auto auto 1.5rem;
       grid-template-areas: "picbar picbar" "pagebar pagebar" "navbar info" "navbar details" "footer footer";
 }
 
@@ -15,9 +15,8 @@
 }
 
 .grid__picbar-title {
-  padding-left: 2.1rem;
   color: #bdccd1;
-  font-size: 3.5rem;
+  font-size: 2rem;
   text-align: left;
 }
 
@@ -62,7 +61,6 @@
 }
 
 .navbar__navbutton {
-  margin-left: 0rem;
   display: block;
   padding: 10px;
   color: #bdccd1;
@@ -74,7 +72,7 @@
 }
 
 .navbar__options {
-  margin-left: 0rem;
+  margin-left: -15px;
 }
 
 .navbar__link {
@@ -335,6 +333,10 @@
 
 @media only screen and (min-width: 1000px) {
   /* For desktop */
+  .grid {
+    -ms-grid-rows: 11rem 6rem auto auto 3rem;
+        grid-template-rows: 11rem 6rem auto auto 3rem;
+  }
   .form-contact {
     display: -ms-grid;
     display: grid;
