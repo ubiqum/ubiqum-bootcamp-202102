@@ -17,12 +17,3 @@ if(age<ignasiAge){
 } else {(age==ignasiAge)
     console.log("You have the same age as Ignasi");
 }
-var course = ["Rose","Puja","Davide","Enric","Luca","Manuel"];
-course.sort();
-console.log(course[0]);
-console.log(course[5]);
-console.log (course);
-
-for(var i=0; i<course.length; i++) {
-console.log(course[i]);
-}
