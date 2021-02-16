@@ -1,17 +1,15 @@
-function split(text, pattern) {
-    for(i=0; i<text.length;i++){
-        if(text[i] === pattern){
-            text.replace(i,',');
-            var print=[];
-            print.push(text);
-        }
-        console.log(print);
-        }
+function split(text, pattern){
 
-  /*var print = [];
-  print.push(text.substr(0,(cutArray-1)));
-  print.push(text.substr(...cutArray,...cutArray))
-  console.log(print);*/
+var tempArray;
+for( var i=0; i<text.length ; i++){
+    var splitPoint = text.indexOf(pattern);
+    if (tempArray.length ===0){
+        tempArray.push(text.substring(0,splitpoint))
+    }
+    if(splitPoint!==" "){
+        tempArray.push(text.substring(i,splitPoint));
+    }
 }
-split("lots of words", "o");
 
+}
+split("hello world"," ");
