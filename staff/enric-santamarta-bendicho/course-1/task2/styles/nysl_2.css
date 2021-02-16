@@ -1,41 +1,41 @@
-
-
+*{ margin: 0px;}
 .menu {
     list-style: none;
     padding: 5px;
     margin-right: 0px;
     position: absolute;
-    top: 60px;
+    top: 40px;
     right: 10px;
-    display: inline-block;  
+    display: inline-block;
     color: white;
-
 }
 
-
-.menu li {
+.menu a {
     list-style: none;
     margin-left: 5px;
     margin-top: 0px;
     margin-top: 0px;
     padding: 0px;
-    font: bold 14px verdana; 
-   display: inline-block;
-  background-color:rgb(27, 150, 221); 
-  
-
+    font: bold 14px verdana;
+    display: inline-block;
+    background-color: rgb(27, 150, 221);
 }
 
-li a{color: white;
- text-decoration: none;
- background-color:rgb(27, 150, 221);
- padding: 5px 15px; 
- box-shadow: 5px 10px #000000;
+.menu a {
+    color: white;
+    text-decoration: none;
+    background-color: rgb(27, 150, 221);
+    padding: 5px 15px;
+    box-shadow: 5px 10px #000000;
+}
+.menu a:hover{ background-color: yellowgreen;
+    color: blueviolet;}
 
- }
+.menu a:{ background-color: yellowgreen;}
 
- li a:active{ background-color: yellowgreen;}
-
+.menu a:active {
+    background-color: yellowgreen;
+}
 
 .mark {
     text-align: center;
@@ -43,6 +43,7 @@ li a{color: white;
     background-color: wheat;
     margin-top: 0px;
     border-style: solid;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .logo {
@@ -52,27 +53,30 @@ li a{color: white;
     left: 30px;
 }
 
-
 .paragraph {
     width: 40%;
     margin-left: 230px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     margin-top: 0px;
     padding: 0px;
     display: block;
+    text-align: justify;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .head {
     margin-top: 0px;
     margin-left: 0px;
     margin-bottom: 0px;
-    padding-bottom: 230px;
+    padding-bottom: 150px;
     font-style: italic;
-    font-size: 60px;
-    background-image: url(img/design1_image1.jpg); 
+    font-size: 50px;
+    background-image: url(img/design1_image1.jpg);
     background-repeat: no-repeat;
-    background-size: 1300px; 
-    background-position:right 0px top 80px;
+    background-size: 100%;
+    background-position: left 0px top 70px;
+    font-family: fantasy;
+    text-align: center;
     
 }
 
@@ -83,6 +87,7 @@ li a{color: white;
     font-style: italic;
     font-size: 30px;
     padding: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .head3 {
@@ -92,6 +97,7 @@ li a{color: white;
     font-style: italic;
     font-size: 40px;
     padding: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .paragraph2 {
@@ -101,7 +107,7 @@ li a{color: white;
     margin-top: 0px;
     padding: 0px;
     display: block;
-    
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .paragraph3 {
@@ -112,5 +118,5 @@ li a{color: white;
     padding: 0px;
     display: block;
     font-style: oblique;
-    
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

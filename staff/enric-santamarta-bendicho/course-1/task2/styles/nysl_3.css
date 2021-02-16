@@ -1,3 +1,5 @@
+
+
 body {
     background-image: url(img/design2_image1.jpg);
     background-repeat: no-repeat;
@@ -10,12 +12,9 @@ body {
     padding: 5px;
     margin-left: 10px;
     font: bold 14px verdana;
-    display: inline-block;
+    display: block;
     text-align: center;
-    float: right;
-
-    
-    
+    float: left;
 }
 
 .mark {
@@ -24,9 +23,10 @@ body {
     background-color: wheat;
     margin-top: 0px;
     border-style: solid;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.menu li {
+.menu a {
     list-style: none;
     margin-left: 0px;
     margin-top: 50px;
@@ -36,44 +36,52 @@ body {
     display: block;
     text-align: left;
     font-size: 25px;
-   
 }
 
-.content{ background-color:#ffffffd1; 
-        margin-left: 0px;
-        margin-right: 0px;
-        width: 1000px;
-        height: 480px;
-        padding: 5px;
-        border: solid;
-        }  
+.content {
+    background-color: #ffffffd1;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    width: 1000px;
+    height: 480px;
+    padding: 5px;
+    border: solid;
+    float: right;
+}
 
-li a{
+.menu a {
     text-decoration: none;
-    background-color:#ffffffd1;
-    padding: 5px 15px; 
+    background-color: #ffffffd1;
+    padding: 5px 15px;
     box-shadow: 5px 10px #000000;
-   
-    } 
-   
+}
+
+.menu a:hover {
+    background-color: yellowgreen;
+    color: lightcoral;
+}
+
+.menu a:active {
+    background-color: yellowgreen;
+}
 
 .paragraph {
-    width: 40%;
+    width: 60%;
     margin-left: 230px;
     margin-bottom: 30px;
     margin-top: 0px;
     padding: 0px;
     display: block;
-    color: salmon;
-    background-color: slategrey;
-    border: solid;
+    text-align: justify;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 }
 
 .logo {
     position: absolute;
     width: 120px;
     top: 20px;
-    left: 120px;
+    left: 110px;
 }
 
 .head {
@@ -84,6 +92,7 @@ li a{
     background-color: rebeccapurple;
     text-align: center;
     border-style: solid;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .head2 {
@@ -93,7 +102,7 @@ li a{
     font-style: italic;
     font-size: 30px;
     padding: 0px;
-
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .head3 {
@@ -103,7 +112,7 @@ li a{
     font-style: italic;
     font-size: 40px;
     padding: 0px;
-    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .paragraph2 {
@@ -113,9 +122,9 @@ li a{
     margin-top: 0px;
     padding: 0px;
     display: block;
-    color: salmon;
-    border: solid;
-    background-color:slategrey;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 25px;
 }
 
 .paragraph3 {
@@ -126,8 +135,5 @@ li a{
     padding: 0px;
     display: block;
     font-style: oblique;
-    font-size: 40px;
-    color: blue;
-    border: solid;
-    background-color: slategray;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
