@@ -12,33 +12,7 @@
 <body class="grid">
 
     <img class="logo" src="images/nysl_logo.png" alt="nysl logo">
-    
-    <div class="images">
 
-        <img class="pic12" src="images/soccer_image10.jpg" alt="image">
-
-        <img class="pic1" src="images/design1_image1.jpg" alt="image">
-
-        <img class="pic2" src="images/design2_image1.jpg" alt="image">
-
-        <img class="pic3" src="images/soccer_image3.jpg" alt="image">
-
-        <img class="pic10" src="images/soccer_image8.jpg" alt="image">
-
-        <img class="pic11" src="images/soccer_image9.jpg" alt="image">
-
-        <img class="pic4" src="images/soccer_image4.jpg" alt="image">
-
-        <img class="pic5" src="images/soccer_image5.jpg" alt="image">
-
-        <img class="pic6" src="images/soccer_image6.jpg" alt="image">
-
-        <img class="pic7" src="images/soccer_image7.jpg" alt="image">
-
-        <img class="pic8" src="images/soccer_image1.jpg" alt="image">
-
-        <img class="pic9" src="images/soccer_image2.jpg" alt="image">
-    </div>
     <header class="header">
         <h1>NORTHSIDE YOUTH SOCCER LEAGUE</h1>
     </header>
@@ -70,9 +44,9 @@
         </ul>
     </nav>
     <section class="info">
-        <p>FIFA RULES SHALL GOVERN NYSL PLAY EXCEPT AS MODIFIED HEREIN</p>
-            <h3>SPORTSMANSHIP</h3>
+        <h2 id="fifarules">FIFA RULES SHALL GOVERN NYSL PLAY EXCEPT AS MODIFIED HEREIN</h2>
         <ul>
+            <h3>SPORTSMANSHIP</h3>
             <li>
                 The common interest that members of the Association share is to inspire
                 youth to practice the ideals of sportsmanship and fair play. Any player,
@@ -81,7 +55,6 @@
                 technical soccer background, expertise, accomplishments or standing.
             </li>
         </ul>
-    
         <ol>
             <h3>FIFA FIELD REGULATIONS</h3>
             <li>
@@ -351,3 +324,17 @@
 
 
 </html>
+<style>
+    @media screen and (min-width: 768px) {
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 75px auto 50px auto auto;
+            grid-template-areas:
+                "logo header header"
+                "navigation navigation navigation"
+                "subheader subheader subheader"
+                "info info info"
+                "info info info";
+        }
+</style>

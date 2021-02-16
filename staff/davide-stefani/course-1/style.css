@@ -2,18 +2,13 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto auto auto;
-    grid-template-areas: 
-    "logo"
-    "header"
-    "navigation" 
-    "subheader"  
-    "info"
-    "images"
-    
+    grid-template-areas: "logo" "header" "navigation" "subheader" "info" "images"
 }
-body{
+
+body {
     background-color: rgb(204, 218, 245);
 }
+
 .logo {
     grid-area: logo;
     width: 85px;
@@ -22,32 +17,37 @@ body{
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
 .header {
     grid-area: header;
     text-align: center;
-    color:rgb(201, 130, 37);
+    color: rgb(201, 130, 37);
     font-family: Arial, Helvetica, sans-serif;
-    
 }
+
 .navigation {
     grid-area: navigation;
-    display:grid;
     text-align: center;
-    margin:auto;
-    padding:0;
+    margin: auto;
+    padding: 0;
     justify-self: center;
 }
+
+a:any-link {
+    text-decoration: none;
+}
+
 .navigation li {
     grid-area: navigation;
     list-style: none;
-    display:inline-block;
+    display: inline-block;
     border: 2px solid black;
     background-color: rgb(173, 235, 148);
     color: rgb(6, 90, 51);
-    padding: 5px;
+    padding: 6px;
     border-radius: 50px;
-   
 }
+
 .map-page {
     border: 2px solid black;
     background-color: rgb(173, 235, 148);
@@ -55,69 +55,91 @@ body{
     padding: 5px;
     justify-self: center;
 }
+
 .subheader {
     grid-area: subheader;
-    display:grid;
-    color:rgb(21, 41, 97);
+    display: grid;
+    color: rgb(21, 41, 97);
     text-align: center;
     background-color: rgb(137, 182, 93);
-    border-radius: 15px 50px;
+    border-radius: 0px 50px;
 }
+
 .info {
     grid-area: info;
-    display:grid;
+    display: grid;
     text-align: left;
     margin-left: 20px;
+    padding-top: 20px;
 }
-h3{
+
+#fifarules {
     color: rgb(31, 104, 2);
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
 }
-.pic1{
+
+h3 {
+    color: rgb(31, 104, 2);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.pic1 {
     grid-area: images;
     width: 100%;
 }
-.pic2{
+
+.pic2 {
     grid-area: images;
     width: 100%;
 }
-.pic3{
+
+.pic3 {
     grid-area: images;
     width: 100%;
 }
-.pic4{
+
+.pic4 {
     grid-area: images;
     width: 100%;
 }
-.pic5{
+
+.pic5 {
     grid-area: images;
     width: 100%;
 }
-.pic6{
+
+.pic6 {
     grid-area: images;
     width: 100%;
 }
-.pic7{
+
+.pic7 {
     grid-area: images;
     width: 100%;
 }
-.pic8{
+
+.pic8 {
     grid-area: images;
     width: 100%;
 }
-.pic9{
+
+.pic9 {
     grid-area: images;
     width: 100%;
 }
-.pic10{
+
+.pic10 {
     grid-area: images;
     width: 100%;
 }
-.pic11{
+
+.pic11 {
     grid-area: images;
     width: 100%;
 }
-.pic12{
+
+.pic12 {
     grid-area: images;
     width: 100%;
 }
@@ -126,13 +148,8 @@ h3{
     .grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto auto auto auto auto;
-        grid-template-areas: 
-        "logo header header" 
-        "navigation navigation navigation"
-        "subheader subheader subheader" 
-        "info info images"
-        "info info images";
+        grid-template-rows: 75px auto 50px auto auto;
+        grid-template-areas: "logo header header" "navigation navigation navigation" "subheader subheader subheader" "info info images" "info info images";
     }
     .header {
         grid-area: header;
