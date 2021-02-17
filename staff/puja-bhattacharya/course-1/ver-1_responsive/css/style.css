@@ -215,7 +215,7 @@
     .grid{
       display:grid;
       grid-template-columns: 310px 1fr 30px;
-      grid-template-rows: 13% 70px 450px 8%;
+      grid-template-rows: 12% 65px 430px 8%;
       grid-template-areas: 
       "logo company-name ."
       "navigation-menu navigation-menu ."
