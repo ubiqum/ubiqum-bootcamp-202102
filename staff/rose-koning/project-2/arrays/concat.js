@@ -6,17 +6,13 @@ function roseray() {
 }
 
 roseray.prototype.concat = function (roseray2){
-    debugger
-newRay= new roseray;
-for(var i=0; i<this.length; i++){
-  newRay[i]=this[i];
-}
+debugger
 for(var j=0; j<roseray2.length; j++){
-    var add = (roseray2.length+j+1);
-    newRay[add]=roseray2[j];
+    add= this.length+j;
+this[add]=roseray2[j];
 }
-newRay.length= j+i;
-return newRay;
+this.length= add+1;
+return this;
 }
 a = new roseray ("a","B","C");
 b = new roseray ("e","f","g");
