@@ -17,6 +17,11 @@ body {
     float: left;
 }
 
+.section{
+        width: 80vw;
+        overflow-y: auto;
+    }
+    
 .mark {
     text-align: center;
     font-size: 40px;
@@ -34,8 +39,8 @@ body {
     padding: 0px;
     font: bold 14px verdana;
     display: block;
-    text-align: left;
-    font-size: 25px;
+    
+    font-size: 15px;
 }
 
 .content {
@@ -43,16 +48,18 @@ body {
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 0px;
-    width: 1000px;
+    width: 80%;
     height: 480px;
     padding: 5px;
     border: solid;
-    float: right;
+ 
+    display: flex;
+    height: 80vh;
 }
 
 .menu a {
     text-decoration: none;
-    background-color: #ffffffd1;
+    background-color: goldenrod;
     padding: 5px 15px;
     box-shadow: 5px 10px #000000;
 }
@@ -68,7 +75,7 @@ body {
 
 .paragraph {
     width: 60%;
-    margin-left: 230px;
+    margin-left: 20px;
     margin-bottom: 30px;
     margin-top: 0px;
     padding: 0px;
@@ -81,7 +88,7 @@ body {
     position: absolute;
     width: 120px;
     top: 20px;
-    left: 110px;
+    left: 100px;
 }
 
 .head {
@@ -96,9 +103,9 @@ body {
 }
 
 .head2 {
-    margin-left: 200px;
+    margin-left: 20px;
     margin-top: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 30px;
     font-style: italic;
     font-size: 30px;
     padding: 0px;
@@ -106,7 +113,7 @@ body {
 }
 
 .head3 {
-    margin-left: 200px;
+    margin-left: 20px;
     margin-top: 0px;
     margin-bottom: 30px;
     font-style: italic;
@@ -115,11 +122,11 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.paragraph2 {
+.paragraph3 {
     width: 40%;
-    margin-left: 250px;
+    margin-left: 50px;
     margin-bottom: 30px;
-    margin-top: 0px;
+    margin-top: 30px;
     padding: 0px;
     display: block;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -127,9 +134,9 @@ body {
     font-size: 25px;
 }
 
-.paragraph3 {
+.paragraph2 {
     width: 40%;
-    margin-left: 200px;
+    margin-left: 20px;
     margin-bottom: 0px;
     margin-top: 0px;
     padding: 0px;
@@ -137,3 +144,157 @@ body {
     font-style: oblique;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+.head4 {
+    width: 80%;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-size: 20px;
+    padding: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.list {
+    list-style: decimal; 
+    width: 60%;
+    margin-left: 20px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    display: list-item;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: justify;
+}
+
+.paragraph4 {
+    width: 60%;
+    margin-left: 20px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    display: block;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: justify;
+}
+
+.list2 {
+    list-style: lower-latin; 
+    width: 60%;
+    margin-left: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    padding: 0px;
+    display: list-item;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: justify;
+
+}
+
+.list3 {
+    list-style-type: square; 
+    width: 80%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    padding:0 px;
+    display: list-item;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: justify;
+}
+
+.list4 {
+    list-style-type:circle; 
+    width: 80%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    padding: 0px;
+    display: list-item;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: justify;
+  
+}
+.head5 {
+    width: 80%;
+    margin-left: 20px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-size: 20px;
+    padding: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   }
+   .table {
+    margin-left: 30px;
+    width: 74%;
+    border-collapse: collapse;
+}
+
+.playerinfo1 {
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-left: 30px;
+    display: flex;
+    flex-flow: wrap row;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: justify;
+}
+
+.playerinfo2 {
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.playerinfo4 {
+
+   width: 40vw;
+}
+
+
+.signature {
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-left: 30px;
+    display: flex;
+    flex-flow: wrap row;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.playerinfo3 {
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-left: 30px;
+    width: 60%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: justify;
+}
+
+.head6 {
+    width: 80%;
+    margin-top: 20px;
+    margin-left: 0px;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-size: 20px;
+    padding: 0px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.maps2{ 
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    width: 80vw;
+     }
+
+.maps{ border-right: 10vw;}
+
