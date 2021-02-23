@@ -18,6 +18,7 @@
 .section {
     width: 80vw;
     overflow-y: auto;
+    padding-top: 3rem;
 }
 
 .menu a {
