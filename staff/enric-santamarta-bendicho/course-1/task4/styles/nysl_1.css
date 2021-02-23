@@ -41,10 +41,6 @@
     color: blueviolet;
 }
 
-.menu a {
-    background-color: yellowgreen;
-}
-
 .mark {
     text-align: center;
     font-size: 40px;
@@ -304,4 +300,9 @@
 
 .input {
     margin-right: 2vw;
+}
+
+.table2 {
+    margin-left: auto;
+    margin-right: auto;
 }
