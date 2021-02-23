@@ -40,7 +40,7 @@
     color: blueviolet;
 }
 
-.menu a: {
+.menu a {
     background-color: yellowgreen;
 }
 
@@ -177,7 +177,7 @@
     margin-left: 30px;
     margin-bottom: 20px;
     margin-top: 0px;
-    padding: 0 px;
+    padding: 0px;
     display: list-item;
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: justify;
@@ -186,7 +186,7 @@
 .list4 {
     list-style-type: circle;
     width: 80%;
-    margin-left: 0px;
+    margin-left: 20px;
     margin-bottom: 20px;
     margin-top: 0px;
     padding: 0px;
@@ -208,8 +208,17 @@
 
 .table {
     margin-left: 30px;
-    width: 74%;
+    width: 100%;
     border-collapse: collapse;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    width: 80vw;
+}
+
+.table2 {
+    margin-right: 10vw;
 }
 
 .playerinfo1 {
@@ -217,10 +226,11 @@
     margin-top: 0px;
     padding: 0px;
     margin-left: 30px;
+    width: 80vw;
+    height: 10vw;
     display: flex;
     flex-flow: wrap row;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    text-align: justify;
 }
 
 .playerinfo2 {
@@ -235,10 +245,8 @@
 }
 
 .playerinfo4 {
-
-   width: 40vw;
+    width: 40vw;
 }
-
 
 .signature {
     margin-bottom: 30px;
@@ -271,11 +279,28 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.maps2{ 
+.maps2 {
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
     width: 80vw;
-     }
+}
 
-.maps{ border-right: 10vw;}
+.maps {
+    width: 30vw;
+    margin-left: 5vw;
+}
+
+.paragraph5 {
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-left: 30px;
+    width: 60%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: justify;
+}
+
+.input {
+    margin-right: 2vw;
+}

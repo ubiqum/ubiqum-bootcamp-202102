@@ -1,6 +1,8 @@
-*{ margin: 0px;}
+* {
+    margin: 0px;
+}
+
 .menu {
-  
     padding: 5px;
     margin-right: 0px;
     position: absolute;
@@ -10,15 +12,16 @@
     color: white;
 }
 
-.content{
+.content {
     display: flex;
     height: 80vh;
-    }
-.section{
-        width: 80vw;
-        overflow-y:auto;
-    }
-    
+}
+
+.section {
+    width: 80vw;
+    overflow-y: auto;
+}
+
 .menu a {
     list-style: none;
     margin-left: 5px;
@@ -37,10 +40,15 @@
     padding: 5px 15px;
     box-shadow: 5px 10px #000000;
 }
-.menu a:hover{ background-color: yellowgreen;
-    color: blueviolet;}
 
-.menu a:{ background-color: yellowgreen;}
+.menu a:hover {
+    background-color: yellowgreen;
+    color: blueviolet;
+}
+
+.menu a {
+    background-color: yellowgreen;
+}
 
 .menu a:active {
     background-color: yellowgreen;
@@ -80,13 +88,12 @@
     padding-bottom: 150px;
     font-style: italic;
     font-size: 50px;
-   background-image: url(img/design1_image1.jpg);
+    background-image: url(img/design1_image1.jpg);
     background-repeat: no-repeat;
-    background-size: 100%; 
+    background-size: 100%;
     font-family: fantasy;
     text-align: center;
     color: white;
-    
 }
 
 .head2 {
@@ -129,6 +136,7 @@
     font-style: oblique;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 .head4 {
     width: 80%;
     margin-left: 200px;
@@ -139,8 +147,9 @@
     padding: 0px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 .list {
-    list-style: decimal; 
+    list-style: decimal;
     width: 60%;
     margin-left: 230px;
     margin-bottom: 30px;
@@ -163,7 +172,7 @@
 }
 
 .list2 {
-    list-style: lower-latin; 
+    list-style: lower-latin;
     width: 60%;
     margin-left: 0px;
     margin-bottom: 20px;
@@ -172,66 +181,75 @@
     display: list-item;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: justify;
-
 }
 
 .list3 {
-    list-style-type: square; 
+    list-style-type: square;
     width: 80%;
     margin-left: 200px;
     margin-bottom: 20px;
     margin-top: 0px;
-    padding:0 px;
+    padding: 0px;
     display: list-item;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: justify;
 }
 
 .list4 {
-    list-style-type:circle; 
+    list-style-type: circle;
     width: 80%;
-    margin-left: 200px;
+    margin-left: 220px;
     margin-bottom: 20px;
     margin-top: 0px;
     padding: 0px;
     display: list-item;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: justify;
-  
 }
+
 .head5 {
     width: 80%;
+    margin-top: 30px;
+    margin-bottom: 30px;
     margin-left: 200px;
-    margin-top: 0px;
-    margin-bottom: 20px;
     font-style: italic;
     font-size: 20px;
     padding: 0px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-   }
-   .table {
-    margin-left: 30px;
-    width: 74%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.table {
+    margin-left: 200px;
+    width: 100%;
     border-collapse: collapse;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    width: 80vw;
+}
+
+.table2 {
+    margin-right: 10vw;
 }
 
 .playerinfo1 {
     margin-bottom: 30px;
-    margin-top: 0px;
+    margin-top: 30px;
     padding: 0px;
-    margin-left: 30px;
+    margin-left: 200px;
+    width: 80vw;
+    height: 10vw;
     display: flex;
     flex-flow: wrap row;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    text-align: justify;
 }
 
 .playerinfo2 {
     margin-bottom: 30px;
     margin-top: 0px;
     padding: 0px;
-    margin-left: 30px;
+    margin-left: 200px;
     display: flex;
     flex-direction: row;
     width: 80vw;
@@ -239,16 +257,14 @@
 }
 
 .playerinfo4 {
-
-   width: 40vw;
+    width: 40vw;
 }
-
 
 .signature {
     margin-bottom: 30px;
     margin-top: 0px;
     padding: 0px;
-    margin-left: 30px;
+    margin-left: 200px;
     display: flex;
     flex-flow: wrap row;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -258,7 +274,7 @@
     margin-bottom: 30px;
     margin-top: 0px;
     padding: 0px;
-    margin-left: 30px;
+    margin-left: 200px;
     width: 60%;
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: justify;
@@ -275,12 +291,28 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.maps2{ 
+.maps2 {
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
     width: 80vw;
-     }
+}
 
-.maps{ border-right: 10vw;}
+.maps {
+    width: 20vw;
+    margin-left: 200px;
+}
 
+.paragraph5 {
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-left: 200px;
+    width: 60%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: justify;
+}
+
+.input {
+    margin-right: 2vw;
+}
