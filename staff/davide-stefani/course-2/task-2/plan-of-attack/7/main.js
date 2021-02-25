@@ -2,6 +2,7 @@ var table = document.getElementById("senate-data");
 
 var members = data.results[0].members;
 
+var tbody = table.querySelector("tbody");
 
 members.forEach(function (member) {
 
@@ -29,5 +30,9 @@ members.forEach(function (member) {
   row.append(fullname, party, state, seniority, votepercentage)
 
   table.append(row)
+
+  tbody.append(row);
+
+  
 
 })
