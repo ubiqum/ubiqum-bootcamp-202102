@@ -34,20 +34,21 @@
   </head>
   <body>
     <header class="container row">
+      <img src="https://dummyimage.com/200X200/000/346346.jpg&text=TGIF" alt="TGIF Logo" class="img-thumbnail">
       <h1 class="col">TGIF</h1>
       <a class="col text-right" href="mailto:info@tgif.net" subject="subject text">info@tgif.net</a>
     </header>
     <nav>
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link" href="home.html">Home</a>
+          <a class="nav-link   active" href="home.html">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
         </li>
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle active"
+            class="nav-link dropdown-toggle"
             data-toggle="dropdown"
             href="#"
             role="button"
@@ -56,8 +57,8 @@
             >Congress 113</a
           >
           <div class="dropdown-menu">
-            <a class="dropdown-item active" href="senate-data.html">Senate</a>
-            <a class="dropdown-item" href="house-data.html">House</a>
+            <a class="dropdown-item " href="senate-data.html">Senate</a>
+            <a class="dropdown-item " href="house-data.html">House</a>
         </li>
         
         <li class="nav-item">
@@ -66,27 +67,22 @@
       </ul>
     </nav>
     <section class="container-fluid">
-      <h1 class="row">Senators</h1>
-      <p class="w-75 p-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut placeat suscipit, tempora, sunt debitis ab molestiae corrupti dolore hic ratione quod, in soluta temporibus odit eius nisi fuga natus? Aliquid?</p>
-    </section>
-
-    <section class="container-fluid">
-      <table id="resultTable" class="table table-hover">
-        <thead>
-          <th scope="col">Senator</th>
-          <th scope="col">Party Affilication</th>
-          <th scope="col">State</th>
-          <th scope="col">Seniority</th>
-          <th scope="col">Percentage of votes with party</th>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
-    <footer class="container text-center">
-        <div class="bg-light ">
-          <a class="" href="#">2021 TGIF | All Rights Reserved</a>
+        <h1>Welcome</h1>
+        <div class="row">
+            <div class="col">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel<span id="dots">...</span><span id="more">erisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, reprehenderit perferendis sunt ut eaque, dolore cupiditate quos similique voluptate totam culpa. Deleniti itaque officia similique cum esse. Nemo, debitis deserunt.</span></p>
+                <button onclick="myFunction()" id="myBtn">Read more</button>
+            </div>
+            <img class="col float-right img-thumbnail" style="max-width: 15rem;" src="https://dummyimage.com/200X200/000/346346.jpg&text=TGIF">
         </div>
-    </footer>
+       
+    </section>
+  
+    <footer class="container text-center">
+      <div class="bg-light ">
+        <a class="" href="#">2021 TGIF | All Rights Reserved</a>
+      </div>
+  </footer>
     <script src="113-congress-senate.js"></script>
     <script src="main.js"></script>
   </body>
