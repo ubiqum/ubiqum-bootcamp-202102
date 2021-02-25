@@ -1,4 +1,4 @@
-var dataSenate = {
+var data = {
     "status": "OK",
     "copyright": " Copyright (c) 2021 Pro Publica Inc. All Rights Reserved.",
     "results": [
