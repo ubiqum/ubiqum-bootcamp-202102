@@ -1,32 +1,46 @@
 var members = data.results[0].members;
 
-members.forEach(function (member) {
-  var table = document.getElementById("resultTable");
-  var tbody = table.querySelector("tbody")
-  var row = document.createElement("tr");
+var checkbox = document.getElementById("checkbox");
+checkbox.addEventListener(onchange, makeTable());
 
-  var name = document.createElement("td");
-  var hyperLink = document.createElement("a");
-  hyperLink.setAttribute("href", member.url);
-  hyperLink.setAttribute("target", "_blank");
-  hyperLink.innerText = member.first_name + " " + member.last_name;
-  name.append(hyperLink);
+function makeTable() {
+  var checkedBoxes = document.querySelectorAll("input[name=party]:checked");
+  var parties = [];
+  for (var i = 0; i < checkedBoxes.length; i++) {
+    parties.push(checkedBoxes[i].value);
+  }
+  members.filter(function (member) {
+    return parties.includes(member.party);
+  });
 
-  var party = document.createElement("td");
-  party.innerText = member.party;
+  members.forEach(function (member) {
+    var table = document.getElementById("resultTable");
+    var tbody = table.querySelector("tbody");
+    var row = document.createElement("tr");
 
-  var state = document.createElement("td");
-  state.innerText = member.state;
+    var name = document.createElement("td");
+    var hyperLink = document.createElement("a");
+    hyperLink.setAttribute("href", member.url);
+    hyperLink.setAttribute("target", "_blank");
+    hyperLink.innerText = member.first_name + " " + member.last_name;
+    name.append(hyperLink);
 
-  var seniority = document.createElement("td");
-  seniority.innerText = member.seniority;
+    var party = document.createElement("td");
+    party.innerText = member.party;
 
-  var percentageParty = document.createElement("td");
-  percentageParty.innerText = member.votes_with_party_pct + " %";
+    var state = document.createElement("td");
+    state.innerText = member.state;
 
-  row.append(name, party, state, seniority, percentageParty);
-  tbody.append(row);
-});
+    var seniority = document.createElement("td");
+    seniority.innerText = member.seniority;
+
+    var percentageParty = document.createElement("td");
+    percentageParty.innerText = member.votes_with_party_pct + " %";
+
+    row.append(name, party, state, seniority, percentageParty);
+    tbody.append(row);
+  });
+}
 
 function myFunction() {
   var dots = document.getElementById("dots");

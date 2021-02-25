@@ -71,6 +71,15 @@
     </section>
 
     <section class="container-fluid">
+      <div id="filter-input-wrapper">
+        <label for="democrat">Democrat</label>
+        <input value="D" type="checkbox" id="checkbox"name="party" onchange="makeTable()" />
+        <label for="republican">Republican</label>
+        <input value="R" type="checkbox" id="checkbox"name="party" />
+        <label for="independent">Independent</label>
+        <input value="I" type="checkbox" id="checkbox"name="party" />
+      </div>
+      <div id="wrapper"></div>
       <table id="resultTable" class="table table-hover">
         <thead>
           <th scope="col">Senator</th>
