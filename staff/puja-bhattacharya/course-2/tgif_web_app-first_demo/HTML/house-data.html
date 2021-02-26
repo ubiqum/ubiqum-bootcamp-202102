@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+  
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+  
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <title>Senate Data</title>
+    <title>House Data</title>
 </head>
 <body>
     <div class = "container">
@@ -32,8 +32,8 @@
                     <li><a href="index.html">Home</a></li>
                     <li class="dropdown active"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Congress 113 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li class="active"><a href="senate-data.html">Senate</a></li>
-                            <li><a href="house-data.html">House</a></li>
+                            <li><a href="senate-data.html">Senate</a></li>
+                            <li class="active"><a href="house-data.html">House</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -49,60 +49,60 @@
     <!--Table container-->
     <div  class="container">
         <h2>Senators</h2>
-        <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. 
+        <p>First convened in 1789, the composition and powers of the house are established in Article One of the U.S. Constitution. 
             Each state is represented by two senators, regardless of population, who serve staggered six-year terms. 
-            The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their 
+            The house has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their 
             ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, 
             military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials 
             impeached by the House.</p>
     
         <!-- Data representation starts-->
-        <table id = "senate_data" width = "100%"> </table>
+        <table id = "house_data" width = "100%"> </table>
                     
-        <script src= "/TGIF project/Data/pro-congress-113-senate.js">   </script>
+        <script src= "/TGIF project/Data/pro-congress-113-house.js">   </script>
                 
         <script>
-        //document.getElementById("senate-data").innerHTML = JSON.stringify(data,null,2);
+        //document.getElementById("house-data").innerHTML = JSON.stringify(data,null,2);
             
-            var senate_members = [];
-            senate_members = data.results[0].members;
+            var house_members = [];
+            house_members = data.results[0].members;
 
-            var senate_table = document.createElement("table");
-            senate_table.setAttribute("class", "table table-hover ");
-            //senate_table.border = "1";
-            var senate_row = senate_table.insertRow(-1);
+            var house_table = document.createElement("table");
+            house_table.setAttribute("class", "table table-hover ");
+            //house_table.border = "1";
+            var house_row = house_table.insertRow(-1);
             
-            var senate_head_cell;            
+            var house_head_cell;            
             var cell_value= ["Name", "Party", "State", "Years in Office", "% Votes w/ Party"];
 
             cell_value.forEach(headerFunction);            
             function headerFunction(item, index)
             {
-                senate_head_cell =  document.createElement("th");
-                senate_head_cell.innerHTML = cell_value[index];
-                senate_row.appendChild(senate_head_cell);
+                house_head_cell =  document.createElement("th");
+                house_head_cell.innerHTML = cell_value[index];
+                house_row.appendChild(house_head_cell);
             }
             
-            for(var vals of senate_members)
+            for(var vals of house_members)
             {   
                 console.log(vals);
-                var senate_keys = Object.keys(vals);
-                var senate_values = Object.values(vals);
-                //console.log("The senate keys are: " + senate_keys);
-                senate_row = senate_table.insertRow(-1);
-                var senate_header = ["senate_data_fullname", "senate_data_party", "senate_data_state", "senate_data_seniority", "senate_data_votes_with_party_pct"];
+                var house_keys = Object.keys(vals);
+                var house_values = Object.values(vals);
+                //console.log("The house keys are: " + house_keys);
+                house_row = house_table.insertRow(-1);
+                var house_header = ["house_data_fullname", "house_data_party", "house_data_state", "house_data_seniority", "house_data_votes_with_party_pct"];
                 //Task 6 - Hyperlink Name
                 var namelink = "<a href=" + '"' + vals.url + '"' +  "target=" + '"' + "_blank" + '"' + ">" + [vals.first_name, vals.last_name].join(" ") + "</a>" ;
-                var senate_cellValues = [namelink , vals.party, vals.state, vals.seniority, [vals.votes_with_party_pct, "%"].join(" ")];
-                senate_header.forEach(myFunction);
+                var house_cellValues = [namelink , vals.party, vals.state, vals.seniority, [vals.votes_with_party_pct, "%"].join(" ")];
+                house_header.forEach(myFunction);
                             
                 function myFunction(item, index)
                 {
-                senate_row.insertCell(-1).innerHTML = senate_cellValues[index];
+                house_row.insertCell(-1).innerHTML = house_cellValues[index];
                 }
             }
-            var senate_data = document.getElementById("senate_data");
-            senate_data.appendChild(senate_table);
+            var house_data = document.getElementById("house_data");
+            house_data.appendChild(house_table);
         
         </script>
         <div class="footer-basic text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
