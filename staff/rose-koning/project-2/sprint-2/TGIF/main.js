@@ -1,19 +1,34 @@
 var members = data.results[0].members;
 
-var checkbox = document.getElementById("checkbox");
-checkbox.addEventListener(onchange, makeTable());
+var checkboxes = document.querySelectorAll("input[name=party]");
+for (var i=0; i<checkboxes.length; i++){
+  var checkbox = checkboxes[i];
+  checkbox.addEventListener("change",function(){
+         makeTable()
+  })
+}
+var stateSelector = document.getElementById("states");
+  stateSelector.addEventListener("change",function(){
+    makeTable()
+  })
 
 function makeTable() {
+  $("#resultTable tr").remove(); 
   var checkedBoxes = document.querySelectorAll("input[name=party]:checked");
   var parties = [];
   for (var i = 0; i < checkedBoxes.length; i++) {
     parties.push(checkedBoxes[i].value);
   }
-  members.filter(function (member) {
-    return parties.includes(member.party);
-  });
 
-  members.forEach(function (member) {
+
+var selectedMembers =  members.filter(function (member) {
+  return (parties.includes(member.party));
+});
+var state= document.getElementById("states").value;
+var selectedMembersAfterState =  selectedMembers.filter(function (member) {
+  return (state.includes(member.state));
+});
+  selectedMembersAfterState.forEach(function (member) {
     var table = document.getElementById("resultTable");
     var tbody = table.querySelector("tbody");
     var row = document.createElement("tr");
