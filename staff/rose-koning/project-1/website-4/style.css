@@ -1,0 +1,358 @@
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 80vw;
+      grid-template-columns: auto 80vw;
+  -ms-grid-rows: 8rem 5rem auto auto 1.5rem;
+      grid-template-rows: 8rem 5rem auto auto 1.5rem;
+      grid-template-areas: "picbar picbar" "pagebar pagebar" "navbar info" "navbar details" "footer footer";
+}
+
+.logo {
+  height: 75px;
+  widows: 75px;
+  position: relative;
+}
+
+.grid__picbar-title {
+  color: #bdccd1;
+  font-size: 2rem;
+  text-align: left;
+}
+
+.grid__picbar {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: picbar;
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#033d4e)), url("assets/design2_image1.jpg");
+  background: linear-gradient(to bottom, transparent, #033d4e), url("assets/design2_image1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  margin: 0px;
+  padding: 0px;
+}
+
+.grid__pagebar {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: pagebar;
+  background-color: #033d4e;
+}
+
+.grid__pagebar-title {
+  color: #bdccd1;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.grid__navbar {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: navbar;
+}
+
+.navbar {
+  background-color: #067ea2;
+  padding: 0;
+}
+
+.navbar__navbutton {
+  display: block;
+  padding: 10px;
+  color: #bdccd1;
+  list-style-type: none;
+}
+
+.navbar__navbutton--active {
+  background-color: #033d4e;
+}
+
+.navbar__options {
+  margin-left: -15px;
+}
+
+.navbar__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar__options {
+  margin-left: 0rem;
+}
+
+.navbar__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.grid__info {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: info;
+  text-align: center;
+}
+
+.grid__title {
+  margin-top: 40px;
+  font-size: 3rem;
+}
+
+.grid__sub-title {
+  font-size: 2rem;
+}
+
+.grid__second-sub-title {
+  font-size: 1.5rem;
+}
+
+.grid__main {
+  padding: 0 1rem 0 1rem;
+  font-size: 1.2rem;
+  text-align: justify;
+}
+
+.grid__main--centered {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.grid__details {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: details;
+  padding: 1rem;
+}
+
+.grid__details-rules {
+  margin-left: 0px;
+  font-size: 1rem;
+  text-align: left;
+  max-width: 20rem;
+  word-wrap: break-word;
+}
+
+.grid__details-header {
+  text-align: left;
+  margin-left: 0rem;
+}
+
+.grid__footer {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: footer;
+  background-color: #033d4e;
+  height: 3rem;
+  text-align: left;
+  color: #bdccd1;
+  bottom: 0;
+}
+
+.table-games {
+  table-layout: auto;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem;
+}
+
+.table-games .th {
+  background-color: #067ea2;
+}
+
+.table-games tr:nth-child(even) {
+  background: #a5b2b6;
+}
+
+.table-games tr:nth-child(odd) {
+  background: #bcd1d8;
+}
+
+.form-contact__first-name {
+  grid-area: __first-name;
+}
+
+.form-contact__first-name input {
+  width: 30vw;
+}
+
+.form-contact__last-name {
+  grid-area: __last-name;
+}
+
+.form-contact__last-name input {
+  width: 30vw;
+}
+
+.form-contact__address {
+  grid-area: __address;
+}
+
+.form-contact__address input {
+  width: 71.75vw;
+}
+
+.form-contact__city {
+  grid-area: __city;
+}
+
+.form-contact__city input {
+  width: 32.98vw;
+}
+
+.form-contact__zip {
+  grid-area: __zip;
+}
+
+.form-contact__zip input {
+  width: 30.7vw;
+}
+
+.form-contact__dob {
+  grid-area: __dob;
+}
+
+.form-contact__gender {
+  grid-area: __gender;
+}
+
+.form-contact__grade {
+  grid-area: __grade;
+}
+
+.form-contact__guardian {
+  grid-area: __guardian;
+}
+
+.form-contact__guardian input {
+  width: 67.2vw;
+}
+
+.form-contact__phone {
+  grid-area: __phone;
+}
+
+.form-contact__phone input {
+  width: 28.5vw;
+}
+
+.form-contact__email {
+  grid-area: __email;
+}
+
+.form-contact__email input {
+  width: 28.78vw;
+}
+
+.main-container {
+  padding: 0.2rem;
+}
+
+.main-container__section {
+  padding: 0.2rem;
+  font-size: 1rem;
+}
+
+.main-container__section-content {
+  padding: 0.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.main-container__section-cell {
+  padding: 0.2rem;
+}
+
+.list {
+  padding: 1rem;
+  font-size: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.list__item {
+  list-style: none;
+  padding: 1rem;
+  width: 40%;
+}
+
+@media only screen and (min-width: 650px) {
+  /* For tablets*/
+  .grid__header-title {
+    color: #bdccd1;
+    font-size: 3rem;
+    text-align: center;
+  }
+  .logo {
+    height: 100px;
+    width: 100px;
+  }
+  .navbar__navbutton {
+    font-size: 1.5rem;
+  }
+  .grid__details {
+    -ms-grid-row: 4;
+    -ms-grid-column: 2;
+    grid-area: details;
+    font-size: 1.5rem;
+  }
+  .grid__details-rules {
+    font-size: 2rem;
+  }
+  .grid__footer {
+    text-align: center;
+    font-size: 2rem;
+  }
+  .grid__main {
+    font-size: 1.2rem;
+  }
+  .table-games {
+    font-size: 1.5rem;
+  }
+  .grid__info-contact {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  /* For desktop */
+  .grid {
+    -ms-grid-rows: 11rem 6rem auto auto 3rem;
+        grid-template-rows: 11rem 6rem auto auto 3rem;
+  }
+  .form-contact {
+    display: -ms-grid;
+    display: grid;
+    font-size: 1.1rem;
+    padding: 1rem;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto auto auto auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto auto auto;
+        grid-template-areas: "__first-name __last-name" "__address __address" "__city __zip" "__dob __gender" "__grade __grade" "__guardian __guardian" "__phone __email";
+  }
+  .form-contact input {
+    border-style: none none solid none;
+  }
+  .grid__details {
+    padding: 1rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */

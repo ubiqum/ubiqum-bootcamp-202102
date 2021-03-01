@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="grid">
+    <header class="grid__picbar">
+      <div class="main-container__section-content">
+          <div class="main-container__section-cell">
+        <h1 class="grid__picbar-title ">
+          North Side Youth Soccer League
+        </h1>
+          </div>
+          <div class="main-container__section-cell">
+        <img src="assets/nysl_logo.png" alt="nysl logo" class="logo">
+          </div>
+      </header>
+    <section class="grid__pagebar">
+      <h2 class="grid__pagebar-title">Registration</h2>
+    </section>
+    <nav class="grid__navbar navbar">
+      <ul class="navbar__options">
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="home.html" target="_self">Home</a>
+        </li>
+
+        <li class="navbar__navbutton ">
+          <a class="navbar__link" href="about.html" target="_self">About </a>
+        </li>
+
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="games.html" target="_self"
+            >NYSL Game Schedule</a
+          >
+        </li>
+
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="rules.html" target="_self"
+            >NYSL Rules
+          </a>
+        </li>
+
+        <li class="navbar__navbutton  navbar__navbutton--active">
+          <a class="navbar__link" href="registration.html" target="_self"
+            >Registration
+          </a>
+        </li>
+
+        <li class="navbar__navbutton">
+          <a class="navbar__link" href="contact.html" target="_self">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <form class="grid__info" action="submitted.html" method="get">
+      <div class="form">
+        <section class="form-contact">
+          <div class="form-contact__first-name">
+            <label for="first-name">First Name:</label>
+            <input type="text" name="first-name" id="first-name" />
+          </div>
+          <div class="form-contact__last-name">
+            <label for="last-name">Last Name:</label>
+            <input type="text" name="last-name" id="last-name" />
+          </div>
+          <div class="form-contact__address">
+            <label for="address">Street:</label>
+            <input type="text" name="address" id="address" />
+          </div>
+          <div class="form-contact__city">
+            <label for="city">City:</label>
+            <input type="text" name="city" id="city" />
+          </div>
+          <div class="form-contact__zip">
+            <label for="zip">Zip Code:</label>
+            <input type="number" name="zip" id="zip" />
+          </div>
+          <div class="form-contact__dob">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" name="dob" id="dob" />
+          </div>
+          <div class="form-contact__gender">
+            <label for="gender">Gender</label>
+            <input type="radio" name="gender" id="gender" value="male" />
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="gender" value="female" />
+            <label for="female">Female</label>
+          </div>
+          <div class="form-contact__grade">
+            <label for="grade">Grade</label>
+
+            <input
+              type="radio"
+              id="grade"
+              name="grade"
+              value="pre-school"
+              required
+            />
+            <label for="pre-school">Pre-School</label>
+
+            <input type="radio" id="grade" name="grade" value="1" required />
+            <label for="1">1st</label>
+
+            <input type="radio" id="grade" name="grade" value="2" required />
+            <label for="2">2nd</label>
+
+            <input type="radio" id="grade" name="grade" value="3" required />
+            <label for="3">3rd</label>
+
+            <input type="radio" id="grade" name="grade" value="4" required />
+            <label for="4">4th</label>
+
+            <input type="radio" id="grade" name="grade" value="5" required />
+            <label for="5">5th</label>
+          </div>
+          <div class="form-contact__guardian">
+            <label for="guardian">Parent/Guardian</label>
+            <input type="text" name="guardian" id="guardian" />
+          </div>
+          <div class="form-contact__phone">
+            <label for="phone">Contact Phone</label>
+            <input type="number" name="phone" id="phone" />
+          </div>
+          <div class="form-contact__email">
+            <label for="email">Contact Email</label>
+            <input type="text" name="email" id="email" />
+          </div>
+        </section>
+        <section class="main-container__section">
+          <h2>Which elementary schools do you live near?</h2>
+          <div class="main-container__section-content">
+            <div class="main-container__section-cell">
+              <h3>Closest school</h3>
+              <ul class="list">
+                <li class="list__item">
+                  <input type="radio" name="school-1" id="school-1" /><label
+                    for="school-1"
+                    >AJ Katzenmaier</label
+                  >
+                </li>
+                <li class="list__item">
+                  <input type="radio" name="school-1" id="school-1" /><label
+                    for="school-1"
+                    >Greenbay</label
+                  >
+                </li>
+                <li class="list__item">
+                  <input type="radio" name="school-1" id="school-1" /><label
+                    for="school-1"
+                    >Howard A Yeager</label
+                  >
+                </li>
+                <li class="list__item">
+                  <input type="radio" name="school-1" id="school-1" /><label
+                    for="school-1"
+                    >Marjorie P Hart</label
+                  >
+                </li>
+                <li class="list__item">
+                  <input type="radio" name="school-1" id="school-1" /><label
+                    for="school-1"
+                    >North Elementary</label
+                  >
+                </li>
+                <li class="list__item">
+                  <input type="radio" name="school-1" id="school-1" /><label
+                    for="school-1"
+                    >South Elementary</label
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="main-cotainer__section-cell">
+              <h3>Second Closest School</h3>
+              <ul class="list">
+                <li class="list__item">
+                  <input type="radio" name="school-2" id="school-2" /><label
+                    for="school-2"
+                    >AJ Katzenmaier</label
+                  >
+                </li>
+                <li class="list__item">
+                  <input type="radio" name="school-2" id="school-2" /><label
+                    for="school-2"
+                    >Greenbay</label
+                  >
+                </li>
+                <li class="list__item">
+                  <input type="radio" name="school-2" id="school-2" /><label
+                    for="school-2"
+                    >Howard A Yeager</label
+                  >
+                </li>
+                <li class="list__item">
+                  <input type="radio" name="school-2" id="school-2" /><label
+                    for="school-2"
+                    >Marjorie P Hart</label
+                  >
+                </li>
+                <li class="list__item">
+                  <input type="radio" name="school-2" id="school-2" />North
+                  <label for="school-2"> Elementary</label>
+                </li>
+                <li class="list__item">
+                  <input type="radio" name="school-2" id="school-2" />South
+                  <label for="school-2">Elementary</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="main-container__section">
+          <div class="main-container__section-content">
+            <div class="main-container__section-cell">
+              <h3>What position do you normally play?</h3>
+              <h5>(check all that apply)</h5>
+              <ul class="list">
+                <li class="list__item">
+                  <input
+                    type="checkbox"
+                    name="current-position"
+                    id="forward"
+                    value="forward"
+                  /><label for="forward">Forward</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="checkbox"
+                    name="current-position"
+                    id="midfield"
+                    value="midfield"
+                  /><label for="midfield">Midfield</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="checkbox"
+                    name="current-position"
+                    id="defense"
+                    value="defense"
+                  /><label for="defense">Defense</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="checkbox"
+                    name="current-position"
+                    id="goalkeeper"
+                    value="goalkeeper"
+                  /><label for="goalkeeper">Goalkeeper</label>
+                </li>
+              </ul>
+            </div>
+            <div class="main-cotainer__section-cell">
+              <h3>What position would you like to play?</h3>
+              <h5>(check all that apply)</h5>
+              <ul class="list">
+                <li class="list__item">
+                  <input
+                    type="checkbox"
+                    name="preferred-position"
+                    id="forward"
+                    value="forward"
+                  /><label for="forward">Forward</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="checkbox"
+                    name="preferred-position"
+                    id="midfield"
+                    value="midfield"
+                  /><label for="midfield">Midfield</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="checkbox"
+                    name="preferred-position"
+                    id="defense"
+                    value="defense"
+                  /><label for="defense">Defense</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="checkbox"
+                    name="preferred-position"
+                    id="goalkeeper"
+                    value="goalkeeper"
+                  /><label for="goalkeeper">Goalkeeper</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="main-container__section">
+          <input
+            type="checkbox"
+            name="has-uniform"
+            id="has-uniform"
+            value="Candidate has uniform"
+          /><label for="has-uniform"><b>Already Has a Uniform</b></label>
+          <div class="main-container__section-content">
+            <div class="main-container__section-cell">
+              <h3>jersey</h3>
+              <ul class="list">
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="jersey"
+                    id="ysmall"
+                    value="ysmall"
+                  /><label for="ysmall">Youth Small</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="jersey"
+                    id="ymedium"
+                    value="ymedium"
+                  /><label for="ymedium">Youth Medium</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="jersey"
+                    id="ylarge"
+                    value="ylarge"
+                  /><label for="ylarge">Youth Large</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="jersey"
+                    id="small"
+                    value="small"
+                  /><label for="small">Small</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="jersey"
+                    id="medium"
+                    value="medium"
+                  /><label for="medium">Medium</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="jersey"
+                    id="large"
+                    value="large"
+                  /><label for="large">Large</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="jersey"
+                    id="xlarge"
+                    value="xlarge"
+                  /><label for="xlarge">Extra Large</label>
+                </li>
+              </ul>
+            </div>
+
+            <div class="main-cotainer__section-cell">
+              <h3>Shorts</h3>
+              <ul class="list">
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="shorts"
+                    id="ysmall"
+                    value="ysmall"
+                  /><label for="ysmall">Youth Small</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="shorts"
+                    id="ymedium"
+                    value="ymedium"
+                  /><label for="ymedium">Youth Medium</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="shorts"
+                    id="ylarge"
+                    value="ylarge"
+                  /><label for="ylarge">Youth Large</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="shorts"
+                    id="small"
+                    value="small"
+                  /><label for="small">Small</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="shorts"
+                    id="medium"
+                    value="medium"
+                  /><label for="medium">Medium</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="shorts"
+                    id="large"
+                    value="large"
+                  /><label for="large">Large</label>
+                </li>
+                <li class="list__item">
+                  <input
+                    type="radio"
+                    name="shorts"
+                    id="xlarge"
+                    value="xlarge"
+                  /><label for="xlarge">Extra Large</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="main-container__section">
+          <p class="grid__main--centered">
+            I, the parent or guardian of the minor registrant, agree that the
+            registrant and I will abide by all the rules of the Northside Youth
+            Soccer League (NYSL). In recognizing the possibility of physical
+            injury associated with soccer and in consideration for the “League”
+            accepting the registrant for its soccer programs and activities, I
+            hereby release, discharge, and/or otherwise indemnify NYSL, their
+            employees and associated personnel and volunteers, including the
+            facilities used for practices and games, against any claim by or on
+            behalf of the registrant as a result of the registrant’s
+            participation in the program and/or being transported to or from
+            NYSL sponsored activities, which transportation.
+          </p>
+          <p class="grid__main--centered">
+            By signing below, I hereby agree and authorize the above. In
+            addition, by signing below, I also acknowledge that I have read the
+            cancellation policy and agree to its terms.
+          </p>
+
+          <label for="signature"><h3>Sign your full name here</h3></label
+          ><input type="text" name="signature" />
+          <input type="submit" />
+        </section>
+      </div>
+    </form>
+    <footer class="grid__footer"> North Side Youth Soccer League 2021©</footer>
+  </body>
+</html>
