@@ -1,0 +1,80 @@
+
+.menu{ list-style:none;
+    padding:5px;
+    margin-left: 60px;
+    font:bold 14px verdana;
+    display:inline-block;
+    text-align: center;}
+
+    .menu li{ list-style:none;
+        margin-left: 5px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding:0px;
+        font:bold 14px verdana;
+        display:inline-block; 
+        text-align: left;} 
+
+        .paragraph{ 
+           width: 40%;
+           margin-left: 230px;
+           margin-bottom: 30px;
+           margin-top: 0px;
+           padding:0px;
+           display:block;
+           }
+                .head
+                { margin-left: 200px;
+                margin-bottom: 0px;
+                font-style: italic;
+                font-size: 60px;}
+                    .head2
+                    { margin-left: 200px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    font-style: italic;
+                    font-size: 30px;
+                    padding:0px;}
+            .head3  { margin-left: 200px;
+                margin-top: 0px;
+                margin-bottom: 30px;
+                font-style: italic;
+                font-size: 40px;
+    
+                padding:0px;}
+                .paragraph2{ 
+                    width: 40%;
+                    margin-left: 250px;
+                    margin-bottom: 30px;
+                    margin-top: 0px;
+                    padding:0px;
+                    display:block;
+                    }
+            .paragraph3{ 
+                width: 40%;
+                margin-left: 200px;
+                margin-bottom: 0px;
+                margin-top: 0px;
+                padding:0px;
+                display:block;
+                font-style: oblique;
+                }
+                .image{
+                 float: left;
+                 border: 1px solid #9799a7;
+                padding: 4px;
+                margin: 8px 0 0 20px;
+                height: 120px;
+                max-width: 100%;
+                 }
+
+                 .image2{
+                    float: left;
+                    border: 1px solid #9799a7;
+                    padding: 4px;
+                    margin: 8px 0 0 20px;
+                    height: 120px;
+                    max-width: 100%;
+                    }
+
+              

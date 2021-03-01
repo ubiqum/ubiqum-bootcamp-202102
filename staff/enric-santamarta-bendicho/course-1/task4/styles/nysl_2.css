@@ -1,0 +1,324 @@
+* {
+    margin: 0px;
+}
+
+.menu {
+    padding: 5px;
+    margin-right: 0px;
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    display: inline-block;
+    color: white;
+}
+
+.content {
+    display: flex;
+    height: 80vh;
+}
+
+.section {
+    width: 80vw;
+    overflow-y: auto;
+    padding-top: 2rem;
+}
+
+.menu a {
+    list-style: none;
+    margin-left: 5px;
+    margin-top: 0px;
+    margin-top: 0px;
+    padding: 0px;
+    font: bold 14px verdana;
+    display: inline-block;
+    background-color: rgb(27, 150, 221);
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    background-color: rgb(27, 150, 221);
+    padding: 5px 15px;
+    box-shadow: 5px 10px #000000;
+}
+
+.menu a:hover {
+    background-color: yellowgreen;
+    color: blueviolet;
+}
+
+.menu a {
+    background-color: yellowgreen;
+}
+
+.menu a:active {
+    background-color: yellowgreen;
+}
+
+.mark {
+    text-align: center;
+    font-size: 40px;
+    background-color: wheat;
+    margin-top: 0px;
+    border-style: solid;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.logo {
+    position: absolute;
+    width: 120px;
+    top: 200px;
+    left: 30px;
+}
+
+.paragraph {
+    width: 60%;
+    margin-left: 230px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    padding: 0px;
+    display: block;
+    text-align: justify;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.head {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 150px;
+    font-style: italic;
+    font-size: 50px;
+    background-image: url(img/design1_image1.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    font-family: fantasy;
+    text-align: center;
+    color: white;
+}
+
+.head2 {
+    margin-left: 200px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-style: italic;
+    font-size: 30px;
+    padding: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.head3 {
+    margin-left: 200px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    font-style: italic;
+    font-size: 40px;
+    padding: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.paragraph2 {
+    width: 40%;
+    margin-left: 250px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    display: block;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.paragraph3 {
+    width: 40%;
+    margin-left: 200px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 0px;
+    display: block;
+    font-style: oblique;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.head4 {
+    width: 80%;
+    margin-left: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-size: 20px;
+    padding: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.list {
+    list-style: decimal;
+    width: 60%;
+    margin-left: 230px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    display: list-item;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: justify;
+}
+
+.paragraph4 {
+    width: 60%;
+    margin-left: 230px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    display: block;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: justify;
+}
+
+.list2 {
+    list-style: lower-latin;
+    width: 60%;
+    margin-left: 0px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    padding: 0px;
+    display: list-item;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: justify;
+}
+
+.list3 {
+    list-style-type: square;
+    width: 80%;
+    margin-left: 200px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    padding: 0px;
+    display: list-item;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: justify;
+}
+
+.list4 {
+    list-style-type: circle;
+    width: 80%;
+    margin-left: 220px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    padding: 0px;
+    display: list-item;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: justify;
+}
+
+.head5 {
+    width: 80%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 200px;
+    font-style: italic;
+    font-size: 20px;
+    padding: 0px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.table {
+    margin-left: 200px;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    width: 80vw;
+}
+
+.table2 {
+    margin-right: 10vw;
+}
+
+.playerinfo1 {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding: 0px;
+    margin-left: 200px;
+    width: 80vw;
+    height: 10vw;
+    display: flex;
+    flex-flow: wrap row;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.playerinfo2 {
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-left: 200px;
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.playerinfo4 {
+    width: 40vw;
+}
+
+.signature {
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-left: 200px;
+    display: flex;
+    flex-flow: wrap row;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.playerinfo3 {
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-left: 200px;
+    width: 60%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: justify;
+}
+
+.head6 {
+    width: 80%;
+    margin-top: 20px;
+    margin-left: 0px;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-size: 20px;
+    padding: 0px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.maps2 {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    width: 80vw;
+}
+
+.maps {
+    width: 20vw;
+    margin-left: 200px;
+}
+
+.paragraph5 {
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+    margin-left: 200px;
+    width: 60%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: justify;
+}
+
+.input {
+    margin-right: 2vw;
+}
+
+.table2 {
+    margin-left: auto;
+    margin-right: auto;
+}
