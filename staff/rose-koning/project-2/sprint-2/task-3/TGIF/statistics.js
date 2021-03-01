@@ -5,20 +5,32 @@ var group = members.reduce((r, a) => {
   return r;
  }, {});
  
-
-
 statistics.numberOfRepublicans = group.R.length;
 statistics.numberOfDemocrats= group.D.length;
 statistics.numberOfIndependents = group.ID.length;
 
 // republican votes compared to democrat votes
-var allPartyVotes = [];
-for (var i = 0; i < statistics.; i++) {
-  allPartyVotes.push(group[i].votes_with_party_pct);
-  }
+var partyVotes = [];
+var individualVotesR = []
+var individualVotesD = []
+for (var party in group) {
+  var senators = group[party];
+  for (var senator of senators) {
+    if(party==="R"){
+      var senatorVotesR = senator.votes_with_party_pct;
+      individualVotesR.push(senatorVotesR)}
+    if(party==="D"){
+      var senatorVotesD = senator.votes_with_party_pct;
+      individualVotesD.push(senatorVotesD)}
+  
+   var averageVotesR = ((individualVotesR.reduce((a, b) => a + b, 0))/statistics.numberOfRepublicans).toFixed(2);
+   var averageVotesD = ((individualVotesD.reduce((a, b) => a + b, 0))/statistics.numberOfDemocrats).toFixed(2);
+   var repComparedtoDem = ((averageVotesR-averageVotesD)/averageVotesD)*100;
+}
 
 
 
+}
 // var totalRepublicanVotes = [];
 //   for (var i = 0; i < stat; i++) {
 //     totalRepublicanVotes.push(republicanMembers[i].votes_with_party_pct);
