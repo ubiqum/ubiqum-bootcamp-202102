@@ -20,38 +20,32 @@ for (var party in group) {
     averages[party]= ((votes[party].reduce((a, b) => a + b, 0))/votes[party].length).toFixed(2)
   
 }
-var repComparedtoDem = (((averages.R-averages.D)/averages.D)*100).toFixed(2)
-;
+var repComparedtoDem = ((averages.R-averages.D)/averages.D)*100;
 statistics.democratVSRepublicanVotes= repComparedtoDem;
 }
 
   //lowest 10% votes
-  var lowestVotes={R:[],D:[],ID:[]};
-  var senatorsOrdered=[];
-  for (var party in group) {
-    var senators = group[party];
-    var tenPercent = Math.ceil((senators.length/100)*10);
-    senatorsOrdered.push(senators.sort((a, b) => {return a.votes_with_party_pct - b.votes_with_party_pct;}));
-        for (i=0; i< tenPercent; i++){
-          lowestVotes[party].push(senators[i])}
-        }
+  var lowestVotes=[]
+    var tenPercent = Math.ceil((members.length/100)*10);
+    var sortedMembers = members.sort(function (a, b) {
+      return a.missed_votes_pct > b.missed_votes_pct? 1 : -1;});
+    for (i=0; i< tenPercent; i++){
+      lowestVotes.push(sortedMembers[i])}
   
-  statistics.lowestVotesWithRepublicans=lowestVotes.R;
-  statistics.lowestVotesWithDemocrats=lowestVotes.D;
+        
+  statistics.lowestVotes=lowestVotes;
+ 
 
    //highest 10% votes
-   var highestVotes={R:[],D:[],ID:[]};
-   var senatorsOrdered=[];
-   for (var party in group) {
-     var senators = group[party];
-     var tenPercent = Math.ceil((senators.length/100)*10);
-     senatorsOrdered.push(senators.sort((a, b) => {return b.votes_with_party_pct - a.votes_with_party_pct;}));
-         for (i=0; i< tenPercent; i++){
-           highestVotes[party].push(senators[i])}
-         }
-   
-   statistics.highestVotesWithRepublicans=highestVotes.R;
-   statistics.highestVotesWithDemocrats=highestVotes.D;
+   var highestVotes=[]
+   var tenPercent = Math.ceil((members.length/100)*10);
+   var sortedMembers = members.sort(function (a, b) {
+     return a.missed_votes_pct > b.missed_votes_pct? -1 : 1;});
+   for (i=0; i< tenPercent; i++){
+     highestVotes.push(sortedMembers[i])}
+ 
+       
+ statistics.highestVotes=highestVotes;
 
 //10% least missed votes
 var leastVotes={R:[],D:[],ID:[]};
