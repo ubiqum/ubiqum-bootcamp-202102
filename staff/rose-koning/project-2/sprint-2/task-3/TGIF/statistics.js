@@ -7,7 +7,6 @@ var group = members.reduce((r, a) => {
  
 statistics.numberOfRepublicans = group.R.length;
 statistics.numberOfDemocrats= group.D.length;
-statistics.numberOfIndependents = group.ID.length;
 
 // republican votes compared to democrat votes
 var votes = {R:[],D:[],ID:[]};
