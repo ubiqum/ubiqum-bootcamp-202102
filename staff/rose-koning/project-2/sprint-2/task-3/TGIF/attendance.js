@@ -47,6 +47,7 @@ function makeTableMostEngaged(){
     tbody.append(row);
   } 
 }
+
 makeTableAtGlance();
 makeTableLeastEngaged();
 makeTableMostEngaged();

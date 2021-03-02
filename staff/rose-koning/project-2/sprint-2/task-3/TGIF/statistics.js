@@ -46,30 +46,24 @@ statistics.democratVSRepublicanVotes= repComparedtoDem;
        
  statistics.highestVotes=highestVotes;
 
-//10% least missed votes
-var leastVotes={R:[],D:[],ID:[]};
-var senatorsOrdered=[];
-for (var party in group) {
-  var senators = group[party];
-  var tenPercent = Math.ceil((senators.length/100)*10);
-  senatorsOrdered.push(senators.sort((a, b) => {return a.missed_votes_pct - b.missed_votes_pct;}));
-      for (i=0; i< tenPercent; i++){
-        leastVotes[party].push(senators[i])}
-      }
+//10% least loyal
+var leastLoyal=[]
+   var tenPercent = Math.ceil((members.length/100)*10);
+   var sortedMembers = members.sort(function (a, b) {
+     return a.votes_with_party_pct > b.votes_with_party_pct? 1 : -1;});
+   for (i=0; i< tenPercent; i++){
+     leastLoyal.push(sortedMembers[i])}
+ 
+       
+ statistics.leastLoyal=leastLoyal;
 
-statistics.leastVotesMissedRepublican=leastVotes.R;
-statistics.leastVotesMissedDemocrat=leastVotes.D;
-
-//10% most missed votes
-var mostVotes={R:[],D:[],ID:[]};
-var senatorsOrdered=[];
-for (var party in group) {
-  var senators = group[party];
-  var tenPercent = Math.ceil((senators.length/100)*10);
-  senatorsOrdered.push(senators.sort((a, b) => {return b.missed_votes_pct - a.missed_votes_pct;}));
-      for (i=0; i< tenPercent; i++){
-        mostVotes[party].push(senators[i])}
-      }
-
-statistics.mostVotesMissedRepublican=mostVotes.R;
-statistics.mostVotesMissedDemocrat=mostVotes.D;
+//10% most loyal
+var mostLoyal=[]
+   var tenPercent = Math.ceil((members.length/100)*10);
+   var sortedMembers = members.sort(function (a, b) {
+     return a.votes_with_party_pct > b.votes_with_party_pct? -1 : 1;});
+   for (i=0; i< tenPercent; i++){
+     mostLoyal.push(sortedMembers[i])}
+ 
+       
+ statistics.mostLoyal=mostLoyal;
