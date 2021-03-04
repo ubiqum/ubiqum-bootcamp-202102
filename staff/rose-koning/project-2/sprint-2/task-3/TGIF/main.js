@@ -10,6 +10,8 @@ $(function () {
     .then(function (data) {
       var members = data.results[0].members;
 
+      makeTable();
+
       var checkboxes = document.querySelectorAll("input[name=party]");
       for (var i = 0; i < checkboxes.length; i++) {
         var checkbox = checkboxes[i];
@@ -32,19 +34,23 @@ $(function () {
           parties.push(checkedBoxes[i].value);
         }
 
-        var selectedMembers = members.filter(function (member) {
-          if (parties.includes(member.party) === false) {
-            return members;
-          } else {
+        var selectedMembers;
+          if (parties.length=== 0){
+            selectedMembers=members}
+          else {members.filter(function (member) {
             return parties.includes(member.party);
-          }
-        });
+          })
+        };
         var state = document.getElementById("states").value;
-        var selectedMembersAfterState = selectedMembers.filter(function (
-          member
-        ) {
+        var selectedMembersAfterState;
+        if (state === "ALL"){
+          selectedMembersAfterState = selectedMembers;
+        }
+        else{
+        selectedMembersAfterState = selectedMembers.filter(function (
+          member){
           return state.includes(member.state);
-        });
+        })}
 
         selectedMembersAfterState.forEach(function (member) {
           var table = document.getElementById("resultTable");
