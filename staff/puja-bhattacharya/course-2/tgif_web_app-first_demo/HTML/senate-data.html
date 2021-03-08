@@ -35,6 +35,19 @@
                         <ul class="dropdown-menu">
                             <li class="active"><a href="senate-data.html">Senate</a></li>
                             <li><a href="house-data.html">House</a></li>
+
+                        </ul>
+                    </li>                    
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Attendance <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="senate-attendance.html">Senate</a></li>
+                            <li><a href="house-attendance.html">House</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Party Loyalty <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="senate-party-loyalty.html">Senate</a></li>
+                            <li><a href="house-party-loyalty.html">House</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -79,7 +92,7 @@
         <!-- Data representation starts-->
         <table id = "senate_data" width = "100%"> </table>
         
-        <script src= "/TGIF project/Data/pro-congress-113-senate.js">   </script>
+        <script src= "../Data/pro-congress-113-senate.js">   </script>
                 
         <script>
         //document.getElementById("senate-data").innerHTML = JSON.stringify(data,null,2);
@@ -176,7 +189,7 @@
                             filtered_senators.push(s_mem[i]);
                         if ((document.getElementById("Dem").checked === true) && (s_mem[i].party === "D"))
                             filtered_senators.push(s_mem[i]);
-                        if ((document.getElementById("Ind").checked === true) && (s_mem[i].party === "I"))
+                        if ((document.getElementById("Ind").checked === true) && (s_mem[i].party === "ID"))
                             filtered_senators.push(s_mem[i]);                   
                     }
                     else
@@ -185,7 +198,7 @@
                             filtered_senators.push(s_mem[i]);
                         if ((document.getElementById("Dem").checked === true) && (s_mem[i].party === "D") && (s_mem[i].state === state_value))
                             filtered_senators.push(s_mem[i]);
-                        if ((document.getElementById("Ind").checked === true) && (s_mem[i].party === "I") && (s_mem[i].state === state_value))
+                        if ((document.getElementById("Ind").checked === true) && (s_mem[i].party === "ID") && (s_mem[i].state === state_value))
                             filtered_senators.push(s_mem[i]);
                     }
                 }
@@ -236,8 +249,9 @@
             drpdn1.addEventListener("change", filterparty, false);
 
         </script>
+        
         <div class="footer-basic text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            <footer>  <p><strong>© 2016 TGIF | All Rights Reserved</strong></p></footer>
+            <footer>  <p><strong>© 2016 TGIF | All Rights Reserved.</strong></p></footer>
         </div>
     </div>
 </body>
