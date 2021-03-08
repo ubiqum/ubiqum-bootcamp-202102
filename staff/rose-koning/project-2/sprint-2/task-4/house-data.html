@@ -32,23 +32,17 @@
       crossorigin="anonymous"
     ></script>
   </head>
-
   <body>
     <header class="container row">
       <h1 class="col">TGIF</h1>
-      <a
-        class="col text-right"
-        href="mailto:info@tgif.net"
-        subject="subject text"
-        >info@tgif.net</a
-      >
+      <a class="col text-right" href="mailto:info@tgif.net" subject="subject text">info@tgif.net</a>
     </header>
     <nav>
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" href="home.html">Home</a>
+          <a class="nav-link   active" href="home.html">Home</a>
         </li>
-
+       
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -60,8 +54,8 @@
             >Congress 113</a
           >
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="senate-data.html">Senate</a>
-            <a class="dropdown-item" href="house-data.html">House</a>
+            <a class="dropdown-item " href="senate-data.html">Senate</a>
+            <a class="dropdown-item " href="house-data.html">House</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -75,8 +69,8 @@
             >Attendance</a
           >
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="senate-data.html">Senate</a>
-            <a class="dropdown-item" href="house-data.html">House</a>
+            <a class="dropdown-item " href="senate-data.html">Senate</a>
+            <a class="dropdown-item " href="house-data.html">House</a>
           </div>
         </li>
         <li class="nav-item">
@@ -86,13 +80,8 @@
     </nav>
     <section class="container-fluid">
       <h1 class="row">Senators</h1>
-      <p class="w-75 p-3">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut placeat
-        suscipit, tempora, sunt debitis ab molestiae corrupti dolore hic ratione
-        quod, in soluta temporibus odit eius nisi fuga natus? Aliquid?
-      </p>
+      <p class="w-75 p-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut placeat suscipit, tempora, sunt debitis ab molestiae corrupti dolore hic ratione quod, in soluta temporibus odit eius nisi fuga natus? Aliquid?</p>
     </section>
-
     <section class="container-fluid">
       <div class="row">
         <div id="filter-input-wrapper col">
@@ -101,11 +90,10 @@
           <label for="republican">Republican</label>
           <input value="R" type="checkbox" id="checkbox" name="party" />
           <label for="independent">Independent</label>
-          <input value="ID" type="checkbox" id="checkbox" name="party" />
+          <input value="I" type="checkbox" id="checkbox" name="party" />
         </div>
         <div class="col d-flex flex-row-reverse">
           <select name="states" id="states">
-            <option value="ALL">ALL</option>
             <option value="AL">AL</option>
             <option value="AK">AK</option>
             <option value="AZ">AZ</option>
@@ -157,11 +145,11 @@
             <option value="WV">WV</option>
             <option value="WI">WI</option>
             <option value="WY">WY</option>
+    
           </select>
-          <lable for="states">Select a state </lable>
+          <lable for="states">Select a state  </lable>
         </div>
-      </div>
-      <div id="wrapper"></div>
+        </div>
       <table id="resultTable" class="table table-hover">
         <thead>
           <th scope="col">Senator</th>
@@ -173,33 +161,13 @@
         <tbody></tbody>
       </table>
     </section>
-    <div class="app">
-      <table>
-          <thead>
-            <th>Name</th>
-            <th>party</th>
-            <th>state</th>
-            <th>Seniority</th>
-            <th>Percentage of votes with party</th>
-        </thead>
-        <tbody>
-          <tr v-for=" member in members">
-          <td>{{member.first_name}}{{member.last_name}}</td>
-          <td>{{member.party}}</td>
-          <td>{{member.state}}</td>
-          <td>{{member.seniority}}</td>
-          <td>{{member.votes_with_party_pct}}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
     <footer class="container text-center">
-      <div class="bg-light">
+      <div class="bg-light ">
         <a class="" href="#">2021 TGIF | All Rights Reserved</a>
       </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
-    <!-- <script src="113-congress-senate.js"></script> -->
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="113-congress-senate.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
