@@ -86,14 +86,15 @@
       <div class="row">
         <div id="filter-input-wrapper col">
           <label for="democrat">Democrat</label>
-          <input value="D" type="checkbox" id="checkbox" name="party" />
+          <input value="D" type="checkbox" id="checkbox" name="party" v-model="parties" @change="applyFilters"/>
           <label for="republican">Republican</label>
-          <input value="R" type="checkbox" id="checkbox" name="party" />
+          <input value="R" type="checkbox" id="checkbox" name="party" v-model="parties" @change="applyFilters"/>
           <label for="independent">Independent</label>
-          <input value="I" type="checkbox" id="checkbox" name="party" />
+          <input value="ID" type="checkbox" id="checkbox" name="party" v-model="parties" @change="applyFilters"/>
         </div>
         <div class="col d-flex flex-row-reverse">
-          <select name="states" id="states">
+          <select name="states" id="states" v-model="state" @change="applyFilters">
+            <option value=""></option>
             <option value="AL">AL</option>
             <option value="AK">AK</option>
             <option value="AZ">AZ</option>
@@ -145,29 +146,43 @@
             <option value="WV">WV</option>
             <option value="WI">WI</option>
             <option value="WY">WY</option>
-    
           </select>
-          <lable for="states">Select a state  </lable>
+          <lable for="states">Select a state </lable>
         </div>
-        </div>
-      <table id="resultTable" class="table table-hover">
-        <thead>
-          <th scope="col">Senator</th>
-          <th scope="col">Party Affilication</th>
-          <th scope="col">State</th>
-          <th scope="col">Seniority</th>
-          <th scope="col">Percentage of votes with party</th>
-        </thead>
-        <tbody></tbody>
-      </table>
+      </div>
+    </section>
+    <section>
+    
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Party</th>
+              <th>Seniority</th>
+              <th>State</th>
+              <th>Percentage of votes with party</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(member, key) in members">
+              <td>{{member.first_name}} {{member.last_name}}</td> 
+              <td>{{member.party}}</td>
+              <td>{{member.seniority}}</td>
+              <td>{{member.state}}</td>
+              <td>{{member.votes_with_party_pct}}</td>
+            </tr>
+          </tbody> 
+        </table>
+      </div>
     </section>
     <footer class="container text-center">
-      <div class="bg-light ">
+      <div class="bg-light">
         <a class="" href="#">2021 TGIF | All Rights Reserved</a>
       </div>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
-    <script src="113-congress-senate.js"></script>
-    <script src="main.js"></script>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <!-- <script src="113-congress-senate.js"></script> -->
+    <script src="congress-data.js"></script>
+    <script src="../logic.js"></script>
   </body>
 </html>
