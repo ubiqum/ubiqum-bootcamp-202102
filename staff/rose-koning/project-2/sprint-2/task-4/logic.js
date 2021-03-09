@@ -25,15 +25,27 @@ function filterMembers(parties, state) {
 // party info
 function partyMembers(){
 var members = data.results[0].members;
+var averages=[];
 var group = members.reduce((r, a) => {
   r[a.party] = [...r[a.party] || [], a];
   return r;
  }, {});
- var partyLength = [];
- partyLength.push(group.D.length,group.R.length,group.ID.length)
- return partyLength;
+ var votes = {R:[],D:[],ID:[]};
+var averages =[];
+for (var party in group) {
+  var senators = group[party];
+  for (var senator of senators) {
+    votes[party].push(senator.votes_with_party_pct);
+    
+    averages.push(averages[party]= ((votes[party].reduce((a, b) => a + b, 0))/votes[party].length).toFixed(2))
 }
-
+ var partyInfo = {D:[],R:[],ID:[]};
+ partyInfo.R.push(party="Republicans",length=group.R.length,average=averages[0])
+ partyInfo.D.push(party="Democrats",length=group.D.length,average=averages[1])
+ partyInfo.ID.push(party="Independents",length=group.ID.length,average=averages[2])
+ return partyInfo
+}
+}
 // high attendance
 function mostPresentMembers() {
   var members = data.results[0].members;
@@ -72,7 +84,7 @@ function leastPresentMembers() {
   
     for (var i = 0; loop; i++) {
       var member = members[i];
-  
+
       if (i < tenPercent) {
         lowPresentMembers.push(member);
       } else if (
@@ -83,8 +95,8 @@ function leastPresentMembers() {
       } else loop = false;
     }
     return lowPresentMembers;
+    
   }
-
   //10% most loyal
   function mostLoyalMembers() {
     var members = data.results[0].members;

@@ -9,6 +9,16 @@ fetch(url, {
   .then(function (_data) {
     data=_data;
 
+    var partyInfo = new Vue({
+      el: "#partyInfo",
+      data: {
+        membersPerParty:[]
+      },
+      created: function(){
+        this.$data.membersPerParty=partyMembers()
+      },
+    });
+    
     var lowloyalty = new Vue({
       el: "#lowloyalty",
       data: {
