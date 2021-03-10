@@ -1,4 +1,4 @@
-var table = document.getElementById("senate-data");
+var table = document.getElementById("table-data");
 
 var members = data.results[0].members;
 

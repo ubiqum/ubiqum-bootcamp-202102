@@ -3,7 +3,7 @@
     grid-template-columns: 100px 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: "logo" "title" "email";
-    margin-top: 15px;
+    margin-top: 15px; 
 }
 .logo{
     border-radius: 50px;
@@ -16,6 +16,13 @@
     text-align: right;
     padding-top: 25px;
 }
+.grid-filters{
+    display:grid;
+    grid-template-columns: 1fr 280px;
+    grid-template-rows: auto;
+    grid-template-areas: "checkBoxBar" "search-bar";
+}
+
 .main-grid{
     display:grid;
     grid-template-columns: 1fr 350px;
@@ -33,9 +40,10 @@
 }
 .image{
     padding-top: 100px;
-    
 }
-
+#dots{
+    display:none;
+}
 #moreBtn{
     padding: 15px 60px;
     background-color: white;
@@ -51,7 +59,7 @@
     width: 100%;
     padding-right: var(--bs-gutter-x,.75rem);
     padding-left: var(--bs-gutter-x,.75rem);
-    padding-top: var(--bs-gutter-x,.35rem);
+    padding-top: var(--bs-gutter-x,.75rem);
     padding-bottom:var(--bs-gutter-x,.35rem) ;
     margin-right: auto;
     margin-left: auto;
