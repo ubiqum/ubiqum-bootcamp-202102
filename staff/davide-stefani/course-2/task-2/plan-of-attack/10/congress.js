@@ -1,23 +1,8 @@
-
 var members = data.results[0].members;
 
-function filterTable(event) {
+fillTable(members);
 
-  var selectedParties = document.querySelectorAll('input[name=party]:checked')
-
-  selectedParties = Array.from(selectedParties)
-
-  var parties = selectedParties.map(function(checkbox){
-    return checkbox.value
-  })
-
-
-  var filtered = members.filter(function (member) {
-    return parties.includes(member.party);
-  })
-  return filtered;
-}
-
+function fillTable(members) {
   members.forEach(function (member) {
 
     var table = document.getElementById("table-data");
@@ -49,5 +34,30 @@ function filterTable(event) {
 
     tbody.append(row);
   });
+}
 
+function filterTable(event) {
+  var selectedParties = document.querySelectorAll('input[name=party]:checked')
 
+  selectedParties = Array.from(selectedParties)
+
+  var parties = selectedParties.map(function (checkbox) {
+    return checkbox.value
+  })
+  var filtered
+
+  if (parties.length == 0) {
+    filtered = members
+  } else {
+    filtered = members.filter(function (member) {
+      return parties.includes(member.party);
+    })
+  }
+  
+  var table = document.getElementById("table-data");
+  var tbody = table.querySelector("tbody");
+
+  tbody.innerHTML = ""
+
+  fillTable(filtered);
+}
