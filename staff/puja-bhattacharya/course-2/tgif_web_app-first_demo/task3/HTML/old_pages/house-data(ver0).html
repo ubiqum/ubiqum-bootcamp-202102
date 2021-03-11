@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>House Data</title>
+</head>
+<body>
+    <div class = "container">
+        <ul class="nav navbar-nav">
+            <li><img src = "../img/tgif_logo.jpg" alt = "Site logo" href="index.html" width ="25%" height = "25%"></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right"><br><br>
+            <li><span class="glyphicon glyphicon-envelope"><a target="_blank" rel="nofollow noreferrer noopener" 
+                href="mailto:info@tgif.net"> info@tgif.net &ensp;</a></span></li>
+    </div>
+            
+    <nav class="navbar navbar-inverse container">  
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown active"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Congress 113 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="senate-data.html">Senate</a></li>
+                            <li class="active"><a href="house-data.html">House</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>        
+
+    <!--<header>   
+        <div>
+        </div>
+    </header>-->
+
+    <!--Table container-->
+    <div  class="container">
+        <h2>Congressmen</h2>
+        <p>The major power of the House is to pass federal legislation that affects the entire country, 
+            although its bills must also be passed by the Senate and further agreed to by the U.S. President before 
+            becoming law (unless both the House and Senate re-pass the legislation with a two-thirds majority in each 
+            chamber). The House has some exclusive powers: the power to initiate revenue bills, to impeach officials 
+            (impeached officials are subsequently tried in the Senate), and to elect the U.S. President in case there 
+            is no majority in the Electoral College.</p>
+        <p>Each U.S. state is represented in the House in proportion to its population as measured in the census, 
+            but every state is entitled to at least one representative. </p>    
+        <!-- Data representation starts-->
+        <table id = "house_data" width = "100%"> </table>
+                    
+        <script src= "/TGIF project/Data/pro-congress-113-house.js">   </script>
+                
+        <script>
+        //document.getElementById("house-data").innerHTML = JSON.stringify(data,null,2);
+            
+            var house_members = [];
+            house_members = data.results[0].members;
+
+            var house_table = document.createElement("table");
+            house_table.setAttribute("id", "houseTable");
+
+            house_table.setAttribute("class", "table table-hover ");
+            //house_table.border = "1";
+            var house_row = house_table.insertRow(-1);
+            
+            var house_head_cell;            
+            var cell_value= ["Name", "Party", "State", "Years in Office", "% Votes w/ Party"];
+
+            cell_value.forEach(headerFunction);            
+            function headerFunction(item, index)
+            {
+                house_head_cell =  document.createElement("th");
+                house_head_cell.innerHTML = cell_value[index];
+                house_row.appendChild(house_head_cell);
+            }
+            
+            for(var vals of house_members)
+            {   
+                //console.log(vals);
+                var house_keys = Object.keys(vals);
+                var house_values = Object.values(vals);
+
+                //console.log("The house keys are: " + house_keys);
+                house_row = house_table.insertRow(-1);
+                var house_header = ["house_data_fullname", "house_data_party", "house_data_state", "house_data_seniority", "house_data_votes_with_party_pct"];
+                
+                //Task 6 - Hyperlink Name
+                var namelink = "<a href=" + '"' + vals.url + '"' +  "target=" + '"' + "_blank" + '"' + ">" + [vals.first_name, vals.last_name].join(" ") + "</a>" ;
+                var house_cellValues = [namelink , vals.party, vals.state, vals.seniority, [vals.votes_with_party_pct, "%"].join(" ")];
+                house_header.forEach(myFunction);
+                            
+                function myFunction(item, index)
+                {
+                house_row.insertCell(-1).innerHTML = house_cellValues[index];
+                }
+            }
+            var house_data = document.getElementById("house_data");
+            house_data.appendChild(house_table);
+        
+        </script>
+        <div class="footer-basic text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            <footer>  <p><strong>© 2016 TGIF | All Rights Reserved</strong></p></footer>
+        </div>
+    </div>
+</body>
+</html>

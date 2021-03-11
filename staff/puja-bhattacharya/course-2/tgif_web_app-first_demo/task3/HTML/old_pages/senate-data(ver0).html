@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senate Data</title>
+</head>
+<body>
+    <table id = "senate_data"></table>
+    <script src= "/TGIF project/Data/pro-congress-113-senate.js">   </script>
+    <script>
+    //document.getElementById("senate-data").innerHTML = JSON.stringify(data,null,2);
+            var mem = data.results;
+            const iterator = mem.values("members");
+            //Create a HTML Table element.
+            var table = document.createElement("TABLE");
+            table.border = "1";
+            //Add the header row.
+            var row = table.insertRow(-1);
+            var innerdata = [];
+            var keyVal = [];
+            for (const value of iterator) 
+            {
+                var senate = value.members ;
+                
+                var thFlag = 0;
+                // generate table header
+                for (z = 0; z < senate.length ; z++)
+                {   
+                    row = table.insertRow(-1);
+                    innerdata = senate[z];
+                    keyVal = Object.keys(innerdata);
+                    // add a new row
+                    row = table.insertRow(-1);
+
+                    //convert object to array
+                    var objVal = [];
+                    objVal = Object.values(innerdata);
+
+                    // generate header
+                    if (thFlag == 0)
+                    {
+                        for (var k = 0; k < keyVal.length; k++) {
+                            var headerCell = document.createElement("TH");
+                            headerCell.innerHTML = keyVal[k];
+                            row.appendChild(headerCell);
+                        }
+
+                        thFlag = 1;
+                        row = table.insertRow(-1);  
+                        for (p = 0 ; p < objVal.length ; p++)   
+                        {
+                            var cell = row.insertCell(-1);
+                            cell.innerHTML = objVal[p];
+                        }  
+                        
+                    }
+                    else
+                    {  
+                        row = table.insertRow(-1);  
+                        for (t = 0 ; t < objVal.length ; t++)   
+                        {
+                            var cell = row.insertCell(-1);
+                            cell.innerHTML = objVal[t];
+                        }                         
+                    }
+                    
+                }
+           }
+           var dvTable = document.getElementById("senate_data");
+            dvTable.appendChild(table);
+        </script>
+
+        
+    </body>
+</html>
