@@ -13,7 +13,7 @@ function getJurisdictionID(searchedState,callback) {
     })
     .then(function (data) {
       var listOfStates = data.results;
-
+      setDropDown(listOfStates)
       for (var i = 0; i < listOfStates.length; i++) {
         var state = listOfStates[i];
         if (state.id.includes("/state:"+ searchedState)) {
@@ -39,4 +39,19 @@ function setPages(pageNumbers){
     pageNumber.append(pageLink);
     ul.append(pageNumber)
     }
+}
+function setDropDown(listOfStates){
+  for(i=0; i<listOfStates.length;i++){
+  
+  string = listOfStates[i].id
+  locationState=string.indexOf("/state:") + 7
+  stateAcronym = string.substring(locationState,locationState+2)
+  dropDownMenu =document.getElementById("state-selection");
+
+  dropDownElement = document.createElement("a")
+  dropDownElement.className = "dropdown-item"
+  dropDownElement.href = "?state="+stateAcronym;
+  dropDownElement.innerText= listOfStates[i].name;
+
+  dropDownMenu.append(dropDownElement);}
 }
