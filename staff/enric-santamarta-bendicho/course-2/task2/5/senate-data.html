@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='eng'>
+
+<head>
+</head>
+
+<body>
+    <script src="pro-congress-113-senate.js"></script>
+
+
+
+
+    <table id="senate-data"></table>
+
+    <script>
+        var table = document.getElementById("senate-data")
+
+        var members = data.results[0].members;
+
+        var rows = ''
+
+        for (var i = 0; i <= members.length; i++) {
+
+            var row1 = '<tr><td>' + members[i].first_name + ' ' + members[i].middle_name + ' '
+            + members[i].last_name + ' ' + members[i].party + ' ' + members[i].state + ' ' +
+            members[i].seniority + ' ' + members[i].votes_with_party_pct + '%' + '</td></td>'
+            rows += row1
+
+
+
+            table.innerHTML = rows
+        }
+
+    </script>
+</body>
+
+</html>
