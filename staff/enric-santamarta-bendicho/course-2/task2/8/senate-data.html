@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang='eng'>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Enric Santamarta">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title class="title">Senators Page</title>
+</head>
+<header class="header">
+    <a href="mailto:info@git.net?subject=Reaching%20Out&body=How%20are%20you">info@tgif.net</a>
+</header>
+<nav class="menu">
+
+    <div class="container">
+       <div class="panel-group"> 
+            <div class="panel panel-deafult">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="home-starter-page.html" class="selector">Home</a>
+                        <a data-toggle="collapse" href="#collapse1" class="selector">Congress 113</a>
+                    </h4>
+                </div>
+             
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body"><a href="house-data.html">House</a></div>
+                    
+                    <div class="panel-body"><a href="senate-data.html">Senate</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+<body>
+    <div class="container">
+        <h2>Senators</h2>
+        <p class="maintext">First convened in 1789, the composition and powers of the Senate are established
+            in Article One of the U.S. Constitution. Each state is represented by two senators,
+            regardless of population, who serve staggered six-year terms. The Senate has several
+            exclusive powers not granted to the House, including consenting to treaties as a precondition
+            to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal
+            judges, other federal executive officials, military officers, regulatory officials, ambassadors,
+            and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+    </div>
+    <div class="container">
+        <script src="pro-congress-113-senate.js"></script>
+
+        <table id="senate-data" style="text-align: center;" class="table"></table>
+
+
+        <script>
+            var table = document.getElementById("senate-data")
+
+            var members = data.results[0].members;
+
+            var rows = ''
+            var names = ''
+            var party = ''
+            var state = ''
+            var seniority = ''
+            var votes = ''
+            var url = ''
+
+            var row1 = '<tr><th style="text-align:center;">' + "SENATOR" + '</th><th style="text-align:center;">'
+                + "PARTY AFFILIATION" + '</th><th style="text-align:center;">' + "STATE" + '</th><th style="text-align:center;">'
+                + "SENIORITY" + '</th><th style="text-align:center;">'
+                + "PERCENTAGE OF VOTES WITH PARTY"
+                + '</th></tr>'
+            rows += row1
+
+            for (var i = 0; i <= members.length; i++) {
+
+                url = members[i].url
+                names = (members[i].first_name) + ' ' + (members[i].middle_name ||= '')
+                    + ' ' + (members[i].last_name)
+                party = members[i].party
+                state = members[i].state
+                seniority = members[i].seniority
+                votes = members[i].votes_with_party_pct
+
+                var row2 = '<tr><td>' + '<a href = ' + url + '>' + names + '</a>' + '</td><td>' + party + '</td><td>' + state +
+                    '</td><td>' + seniority + '</td><td>' + votes + '%' + '</td></tr>'
+                rows += row2
+
+
+                table.innerHTML = rows
+            }
+
+            table.innerHTML = rows
+
+
+
+        </script>
+    </div>
+</body>
+<footer>
+    <div class="container-fluid">
+        <p class="footer"> &#169 2016 TGIF | All Rights Reserved </p>
+
+    </div>
+
+</footer>
+
+</html>
