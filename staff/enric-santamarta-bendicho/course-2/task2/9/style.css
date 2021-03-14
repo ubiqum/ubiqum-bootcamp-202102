@@ -1,7 +1,12 @@
 
-.header{
+.email{
     position: absolute;
-    margin-left: 65vw;
+    margin-left: 48vw;
+    margin-top: 3vw;
+}
+.logo{
+    margin-left: 10vw;
+    margin-top: 3vw;
 }
 .maintext{
     text-align: justify;
@@ -20,7 +25,7 @@
 
 }
 .selector{
-    margin-right: 2vw;
+    margin-right: 3vw;
 }
 
 .panel{
