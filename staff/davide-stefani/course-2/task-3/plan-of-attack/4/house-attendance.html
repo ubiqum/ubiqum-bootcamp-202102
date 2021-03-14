@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title> House Loyalty </title>
+    <title> House Attendence </title>
     <meta charset="utf-8" />
     <meta name="description" content=house-data />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,11 +72,22 @@
         </header>
 
         <div class="attendance-loyalty-grid">
-            <div class="attendance-text">
-                <h2>Party Loyalty</h2>
-                <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans
-                    respectively, tend to be the most faithful in voting for their party's nominee for office and
-                    legislation that backs their party's agenda. </p>
+            <div class="attendance-loyalty-text">
+                <h2>Attendance</h2>
+                <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each
+                    house.
+                    Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus,
+                    in
+                    most cases, debates continue even if a majority is not present.</p>
+
+                <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator
+                    stating
+                    "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most
+                    formal
+                    matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by
+                    electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice
+                    President
+                    may (if present) cast the tiebreaking vote.</p>
             </div>
 
             <div class="glance-table">
@@ -112,13 +123,13 @@
 
             <div class="last-engaged-loyal-table">
 
-                <h2>Least Loyal (Bottom 10% of Party)</h2>
+                <h2>Least Engaged (Bottom 10% Attendance)</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Number Party Votes</th>
-                            <th>% Party Votes</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -158,13 +169,13 @@
 
             <div class="most-engaged-loyal-table">
 
-                <h2>Most Loyal (Top 10% of Party)</h2>
+                <h2>Most Engaged (Top 10% Attendance)</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Number Party Votes</th>
-                            <th>% Party Votes</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -216,12 +227,12 @@
         </footer>
 
         <script> statistics = {
-                "numberOfDemocrats": 0,
-                "numberOfRepublicans": 0,
+                "numberOfDemocrats": 210,
+                "numberOfRepublicans": 240,
                 "numberOfIndependents": 0,
-                "democratsVotesPecetage": 0,
-                "republicansVotesPecetage":0,
-                "indipendentsVotesPecetage":0,
+                "democratsVotesPecetage": 89.68761904761897,
+                "republicansVotesPecetage": 93.35374999999998,
+                "indipendentsVotesPecetage": undefined,
                 "membersMostVote": 0,
                 "memberLeastVotes": 0,
                 "mostMissedVotes": 0,
@@ -237,7 +248,8 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
         <script src="pro-congress-113-house.js"></script>
-        <script src=""></script>
+        <script src="statistics.js"></script>
+
 </body>
 
 </html>
