@@ -5,14 +5,28 @@ function getJurisdictionID(searchedState,callback) {
   } else alert("there is no matching state found for" + searchedState);
 
   //get jurisdiction lists with jurisdictionID´s
+  if (!localStorage.jurisdictions)
   fetch(
     "https://v3.openstates.org/jurisdictions?classification=state&page=1&per_page=52&apikey=640d3190-2907-402a-afaf-6bd88f7caf3b"
   )
     .then(function (response) {
       return response.json();
     })
-    .then(function (data) {
-      var listOfStates = data.results;
+    .then(function (_data) {
+      data =_data;
+      
+      localStorage.jurisdictions= JSON.stringify(data,searchedState);
+      var jurisdictionID = searchState(data,searchedState)
+      callback(jurisdictionID)
+    });
+  else{
+      data= JSON.parse(localStorage.jurisdictions)
+      var jurisdictionID= searchState(data,searchedState)
+      callback(jurisdictionID)
+  }
+}
+function searchState(data, searchedState){
+var listOfStates = data.results;
       setDropDown(listOfStates)
       for (var i = 0; i < listOfStates.length; i++) {
         var state = listOfStates[i];
@@ -21,11 +35,8 @@ function getJurisdictionID(searchedState,callback) {
           break;
         }
       }
-      callback(jurisdictionID)
-    });
-}
-
-
+      return jurisdictionID;
+    }
 function setPages(pageNumbers){
     var ul = document.getElementById("page_numbers");
     for(i=1; i<(pageNumbers-1); i++){
