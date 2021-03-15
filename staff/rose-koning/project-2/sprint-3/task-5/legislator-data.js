@@ -14,11 +14,12 @@ if (page === null){
 //get jurisdictionID that coincides with the searchedState
 getJurisdictionID(searchedState, function (jurisdictionID) {
   //set default value of page to 1
-
   var url =
-    "https://v3.openstates.org/people?jurisdiction=" +
-    jurisdictionID +
-    "&page="+ page +"&per_page=10&apikey=640d3190-2907-402a-afaf-6bd88f7caf3b";
+  "https://v3.openstates.org/people?jurisdiction=" +
+  jurisdictionID +
+  "&page="+ page +"&per_page=10&apikey=640d3190-2907-402a-afaf-6bd88f7caf3b";
+
+  if (!localStorage[jurisdictionID+"-"+page]){
 
   fetch(url)
     .then(function (response) {
@@ -29,17 +30,14 @@ getJurisdictionID(searchedState, function (jurisdictionID) {
     var  data = _data;
     //construct elements in pagination bar
     var pageNumbers=data.pagination.max_page;
+    localStorage[jurisdictionID+"-"+page]=JSON.stringify(data);
+    makeVue(data,pageNumbers);
     
-    
-      var app = new Vue({
-        el: "#app",
-        data: {
-          legislators: data.results,
-        },
-        created: function(){
-            setPages(pageNumbers)
-        }
-      })
     })
-
-})
+  }
+  else{
+    data= JSON.parse(localStorage[jurisdictionID+"-"+page])
+    var pageNumbers=data.pagination.max_page;
+    makeVue(data,pageNumbers);
+  }
+  })

@@ -66,3 +66,15 @@ function setDropDown(listOfStates){
 
   dropDownMenu.append(dropDownElement);}
 }
+
+function makeVue(data, pageNumbers){
+  var app = new Vue({
+    el: "#app",
+    data: {
+      legislators: data.results,
+    },
+    created: function(){
+        setPages(pageNumbers)
+    }
+})
+}
