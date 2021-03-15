@@ -25,13 +25,13 @@ var indipendents = groupedParties.ID;
 var initialValue = 0;
 var sum_votes_Rep = republicans.reduce(function (accumulator, currentValue) {
     return accumulator + currentValue.votes_with_party_pct;
-},initialValue);
-var average_votes_Rep=sum_votes_Rep/republicans.length;
+}, initialValue);
+var average_votes_Rep = sum_votes_Rep / republicans.length;
 
 var sum_votes_Dem = democrats.reduce(function (accumulator, currentValue) {
     return accumulator + currentValue.votes_with_party_pct;
-},initialValue);
-var average_votes_Dem=sum_votes_Dem/democrats.length;
+}, initialValue);
+var average_votes_Dem = sum_votes_Dem / democrats.length;
 
 //make it a comment when calculate house as No indipendents
 /*
@@ -43,7 +43,7 @@ var average_votes_Ind=sum_votes_Ind/indipendents.length;
 
 // Identyfy Members who least votes with their Parties
 
-members.sort(function(a, b) {
+members.sort(function (a, b) {
     return a.votes_with_party_pct - b.votes_with_party_pct
 })
 
@@ -65,3 +65,26 @@ for (var i = 0; loop; i++) {
 false
 
 
+// Identyfy Members who most votes with their Parties
+
+var sortedReverses = members.sort(function (a, b) {
+    return b.votes_with_party_pct - a.votes_with_party_pct
+})
+
+
+var mostOftenVoteMembers = []
+
+var limit = Math.round(sortedReverses.length / 10)
+
+var loop = true
+
+for (var i = 0; loop; i++) {
+    var sortedReverse = sortedReverses[i]
+
+    if (i < limit) {
+        mostOftenVoteMembers.push(sortedReverse)
+    } else if (mostOftenVoteMembers[limit - 1].votes_with_party_pct === sortedReverse.votes_with_party_pct) {
+        mostOftenVoteMembers.push(sortedReverse)
+    } else loop = false
+}
+false
