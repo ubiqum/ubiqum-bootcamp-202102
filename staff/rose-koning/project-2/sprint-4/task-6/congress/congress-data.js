@@ -7,7 +7,7 @@ fetch(url, {
     return response.json();
   })
   .then(function (_data) {
-    data=_data;
+    data = _data;
     var app = new Vue({
       el: "#app",
       data: {
@@ -20,9 +20,14 @@ fetch(url, {
           this.members = filterMembers(this.parties, this.state, this);
         },
       },
-    }); 
-
-  })
-
-  jQuery('a.iframe').colorbox();
-
+      mounted: function () {
+        this.$nextTick(function () {
+          jQuery("a.iframe").colorbox({
+            iframe: true,
+            width: "80%",
+            height: "80%",
+          });
+        });
+      },
+    });
+  });
