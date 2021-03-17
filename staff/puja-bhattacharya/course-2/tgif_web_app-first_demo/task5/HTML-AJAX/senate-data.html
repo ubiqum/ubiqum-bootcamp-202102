@@ -160,28 +160,6 @@
                         smembers: senate_members
                     }
                 })
-
-                /*
-                var senate_table = document.createElement("table");
-                senate_table.setAttribute("id", "senateTable");
-                senate_table.setAttribute("class", "table table-hover ");
-                //senate_table.border = "1";
-                var senate_row = senate_table.insertRow(-1);
-                
-                var senate_head_cell;            
-                var cell_value= ["Name", "Party", "State", "Years in Office", "% Votes w/ Party"];
-
-                cell_value.forEach(headerFunction);            
-                function headerFunction(item, index)
-                {
-                    senate_head_cell =  document.createElement("th");
-                    senate_head_cell.innerHTML = cell_value[index];
-                    senate_row.appendChild(senate_head_cell);
-                }
-                var all_states = [];
-                var body = senate_table.createTBody();
-                body.setAttribute("id", "senatebody");
-                var senate_row1 = body.insertRow(-1);   */
                 var all_states = [];
                 for(var vals of senate_members)
                 {   
@@ -189,22 +167,6 @@
                     var senate_keys = Object.keys(vals);
                     var senate_values = Object.values(vals);
                     //console.log("The senate keys are: " + senate_keys);
-
-                    //senate_row1 = senate_table.insertRow(-1);
-                    //var senate_header = ["senate_data_fullname", "senate_data_party", "senate_data_state", "senate_data_seniority", "senate_data_votes_with_party_pct"];
-                    
-                    //Task 6 - Hyperlink Name
-                    //var namelink = "<a href=" + '"' + vals.url + '"' +  "target=" + '"' + "_blank" + '"' + ">" + [vals.first_name, vals.last_name].join(" ") + "</a>" ;
-                    //var senate_cellValues = [namelink , vals.party, vals.state, vals.seniority, [vals.votes_with_party_pct, "%"].join(" ")];
-                    
-                    /*senate_header.forEach(myFunction);
-                            
-                    function myFunction(item, index)
-                    {
-                        senate_row1.insertCell(-1).innerHTML = senate_cellValues[index]; 
-                    }*/
-
-                    //var senate_cellValues = [vals.state];
 
                     all_states.push(vals.state);
                 
@@ -229,9 +191,7 @@
                 }
                 //binding the dynamic drop to the dropdown list of html thereby setting default index.
                 document.getElementById("myList").appendChild(states).selectedIndex=unique_states[0];
-                /*
-                var senate_data = document.getElementById("senate_data");
-                senate_data.appendChild(senate_table);*/
+
             })
             
         </script>
@@ -295,10 +255,8 @@
                     function myFunction(item, index)
                     {
                         senate_row2.insertCell(-1).innerHTML = senate_cellValues[index]; 
-                        
                     } 
                 }
-
                 old_body.parentNode.replaceChild(body2, old_body);
 
             }
@@ -316,7 +274,7 @@
 
         </script>
 
-        <script src = "../JS-AJAX/all_states.js"></script>
+        <script src = "/TGIF project/task5/model/all_states.js"></script>
         <script src = "../JS-AJAX/utilities.js"></script>
         
         <div class="footer-basic text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

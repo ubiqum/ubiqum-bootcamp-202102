@@ -104,7 +104,7 @@
 
             <div id = "app4" class="col-sm-6 container" style ="text-align: right">
                 <h3 style = "text-shadow: 1px 1px;">House at a glance</h3> <br> 
-                <table id = "at-glance" class = "table table-hover table-bordered" style ="font-size: 15px;text-align:center;">
+                <table id = "houseAttendance-at-glance" class = "table table-hover table-bordered" style ="font-size: 15px;text-align:center;">
                     <thead>
                         <tr>
                             <th style = "text-align:center;">Party</th>
@@ -112,8 +112,8 @@
                             <th style = "text-align:center;">% Voted with Party</th>
                         </tr>
                     </thead>
-                    <tbody id = "glancebody">
-                        <tr v-for = "vals in smembers">
+                    <tbody id = "houseAttendance-glancebody">
+                        <tr v-for = "vals in hmembers">
                             <td> {{ vals.Party }} </td>
                             <td> {{ vals.Total }} </td>
                             <td> {{ vals.Average_percentage }} </td>
@@ -126,7 +126,7 @@
         <div class = "row">
             <div id = "app4" class="col-sm-6 container" style ="text-align: left">
                 <h3 style = "text-shadow: 1px 1px;">Least Engaged (Bottom 10% Attendance)</h3><br>
-                <table id = "bottom10" class = "table table-hover table-bordered" style ="font-size: 15px;text-align:center;">
+                <table id = "houseAttendance-bottom10" class = "table table-hover table-bordered" style ="font-size: 15px;text-align:center;">
                     <thead>
                         <tr>
                             <th style = "text-align:center;">Name</th>
@@ -134,11 +134,11 @@
                             <th style = "text-align:center;">% Missed</th>
                         </tr>
                     </thead>
-                    <tbody id= "bottom10body">
-                        <tr v-for = "senators in smembers">
-                            <td> <a v-bind:href = " senators.url "  target = "_blank">{{ senators.first_name}}  {{ senators.last_name}} </a>  </td>
-                            <td> {{ senators.missed_votes }} </td>
-                            <td> {{ senators.missed_votes_pct }} </td>
+                    <tbody id= "houseAttendance-bottom10body">
+                        <tr v-for = "house in hmembers">
+                            <td> <a v-bind:href = " house.url "  target = "_blank">{{ house.first_name}}  {{ house.last_name}} </a>  </td>
+                            <td> {{ house.missed_votes }} </td>
+                            <td> {{ house.missed_votes_pct }} </td>
                         </tr>
                     </tbody>
                 </table>
@@ -146,7 +146,7 @@
 
             <div id = "app4" class="col-sm-6 container" style ="text-align: left">
                 <h3 style = "text-shadow: 1px 1px;">Most Engaged (Top 10% Attendance)</h3><br>
-                <table id = "top10" class = "table table-hover table-bordered" style ="font-size: 15px;text-align:center;">
+                <table id = "houseAttendance-top10" class = "table table-hover table-bordered" style ="font-size: 15px;text-align:center;">
                     <thead>
                         <tr>
                             <th style = "text-align:center;">Name</th>
@@ -154,20 +154,21 @@
                             <th style = "text-align:center;">% Missed</th>
                         </tr>
                     </thead>
-                    <tbody id= "top10body">
-                        <tr v-for = "senators in smembers">
-                            <td> <a v-bind:href = " senators.url "  target = "_blank">{{ senators.first_name}}  {{ senators.last_name}} </a>  </td>
-                            <td> {{ senators.missed_votes }} </td>
-                            <td> {{ senators.missed_votes_pct }} </td>
+                    <tbody id= "houseAttendance-top10body">
+                        <tr v-for = "house in hmembers">
+                            <td> <a v-bind:href = " house.url "  target = "_blank">{{house.first_name}}  {{house.last_name}} </a>  </td>
+                            <td> {{ house.missed_votes }} </td>
+                            <td> {{ house.missed_votes_pct }} </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <script src = "../JS-AJAX/all_states.js"></script>
-        <script src = "../JS-AJAX/attendance_main_ajax.js"> </script>
-        <script src = "../JS-AJAX/utilities.js"></script>
+        <script src = "../model/all_states.js"></script>
+        <script src = "../JS-AJAX/utilities.js"></script>        
+        <script src = "../JS-AJAX/controller.js"> </script>
+        <script src = "../JS-AJAX/view.js"></script>
 
         <div class="text-center " style="background-color: rgba(0, 0, 0, 0.2)">
             <footer>  <p class = "copyright"><strong>© 2016 TGIF | All Rights Reserved.</strong></p></footer>
