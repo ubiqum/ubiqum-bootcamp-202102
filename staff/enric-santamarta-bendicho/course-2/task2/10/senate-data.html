@@ -59,51 +59,80 @@
             and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
     </div>
     <div class="container">
-        <script src="pro-congress-113-senate.js"></script>
+        <div class="checkBoxes">
+            Filter by party:
+            Democrat<input type="checkbox" value="D" name="party" id="Democrat" checked>
+            Republican<input type="checkbox" value="R" name="party" id="Republican" checked>
+            Independent<input type="checkbox" value="ID" name="party" id="Independent" checked>
 
+            <button type="submit" class="button1" value="clickMe" onclick="createList();">Refresh List</button>
+
+            <script src="pro-congress-113-senate.js"></script>
+        </div>
         <table id="senate-data" style="text-align: center;" class="table"></table>
 
 
         <script>
-            var table = document.getElementById("senate-data")
 
-            var members = data.results[0].members;
+            document.getElementById("clickMe").onclick = createList();
 
-            var rows = ''
-            var names = ''
-            var party = ''
-            var state = ''
-            var seniority = ''
-            var votes = ''
-            var url = ''
+            function createList() {
 
-            var headers = '<tr><th style="text-align:center;">' + "SENATOR" + '</th><th style="text-align:center;">'
-                + "PARTY AFFILIATION" + '</th><th style="text-align:center;">' + "STATE" + '</th><th style="text-align:center;">'
-                + "SENIORITY" + '</th><th style="text-align:center;">'
-                + "PERCENTAGE OF VOTES WITH PARTY"
-                + '</th></tr>'
-            rows += headers
-
-            for (var i = 0; i < members.length; i++) {
-
-                url = members[i].url
-                names = (members[i].first_name) + ' ' + (members[i].middle_name ||= '')
-                    + ' ' + (members[i].last_name)
-                party = members[i].party
-                state = members[i].state
-                seniority = members[i].seniority
-                votes = members[i].votes_with_party_pct
-
-                var row = '<tr><td>' + '<a href = ' + url + '>' + names + '</a>' + '</td><td>' + party + '</td><td>' + state +
-                    '</td><td>' + seniority + '</td><td>' + votes + '%' + '</td></tr>'
-                rows += row
+                var rows = ''
+                var names = ''
+                var party = ''
+                var state = ''
+                var seniority = ''
+                var votes = ''
+                var url = ''
+                var value = []
 
 
-                
+                var table = document.getElementById("senate-data")
+
+
+                var members = data.results[0].members;
+
+                var headers = '<tr><th style="text-align:center;">' + "SENATOR" + '</th><th style="text-align:center;">'
+                    + "PARTY AFFILIATION" + '</th><th style="text-align:center;">' + "STATE" + '</th><th style="text-align:center;">'
+                    + "SENIORITY" + '</th><th style="text-align:center;">'
+                    + "PERCENTAGE OF VOTES WITH PARTY"
+                    + '</th></tr>'
+                rows += headers
+
+                var selectedParties = document.querySelectorAll('input[name=party]:checked')
+
+                for (var o = 0; o < selectedParties.length; o++) {
+                    value.push(selectedParties[o].value)
+                }
+
+
+                for (var i = 0; i < members.length; i++) {
+
+                    url = members[i].url
+                    names = (members[i].first_name) + ' ' + (members[i].middle_name ||= '')
+                        + ' ' + (members[i].last_name)
+                    party = members[i].party
+                    state = members[i].state
+                    seniority = members[i].seniority
+                    votes = members[i].votes_with_party_pct
+
+                    for (var o = 0; o < value.length; o++) {
+                        if (value[o] == party) {
+
+
+                            var row = '<tr><td>' + '<a href = ' + url + '>' + names + '</a>' + '</td><td>' + party + '</td><td>' + state +
+                                '</td><td>' + seniority + '</td><td>' + votes + '%' + '</td></tr>'
+                            rows += row
+                        }
+                    }
+
+
+                }
+
+                table.innerHTML = rows
+
             }
-
-            table.innerHTML = rows
-
 
 
         </script>
