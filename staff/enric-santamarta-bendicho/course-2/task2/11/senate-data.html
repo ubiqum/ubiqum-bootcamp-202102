@@ -65,7 +65,15 @@
             Republican<input type="checkbox" value="R" name="party" id="Republican" checked onclick="createList();">
             Independent<input type="checkbox" value="ID" name="party" id="Independent" checked onclick="createList();">
 
+            <form name="filter" id="FilterForm" action="" method="">
+                <select id="state-filter" class="filter">
+                    <option value="">--Choose a State--</option>
+                    <option value="AR">Arizona</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="NY">New York</option>
 
+                </select>
+            </form>
             <script src="pro-congress-113-senate.js"></script>
         </div>
         <table id="senate-data" style="text-align: center;" class="table"></table>
@@ -73,9 +81,11 @@
 
         <script>
 
-            document.getElementById("clickMe").onclick = createList();
+           document.getElementById("clickMe").onclick = createList(); 
 
             function createList() {
+
+    
 
                 var rows = ''
                 var names = ''
@@ -85,7 +95,7 @@
                 var votes = ''
                 var url = ''
                 var value = []
-
+                var stateValue = $("state-filter").val();
 
                 var table = document.getElementById("senate-data")
 
@@ -132,6 +142,9 @@
                 table.innerHTML = rows
 
             }
+
+          
+
 
 
         </script>
