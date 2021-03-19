@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Vue compiled Javascript library-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- Mustache compiled JavaScript and Jquery Library-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+
+    <title>Senate Data</title>
+    <style>
+        .scrollable-menu {
+            height: auto;
+            max-height: 200px;
+            overflow-x: hidden;
+        }   
+        
+        .panel, .panel-body 
+        {
+            box-shadow: none;
+            text-align:justify;
+        }
+        /*
+        .panel-group .panel-heading 
+        {       padding: 0;        }*/
+            
+        .panel-group .panel-heading a 
+        {
+            display: block;
+            padding: 3px 5px;
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .panel-group .panel-heading a:after 
+        {
+            content: '-';
+            float: right;
+        }
+        
+        .panel-group .panel-heading a.collapsed:after 
+        {       content: '+';      }
+    </style> 
+</head>
+
+<body>
+    <div class = "container">
+        <ul class="nav navbar-nav">
+            <li><img src = "../img/tgif_logo.jpg" alt = "Site logo" href="index.html" width ="25%" height = "25%"></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right"><br><br>
+            <li><span class="glyphicon glyphicon-envelope"><a target="_blank" rel="nofollow noreferrer noopener" 
+                href="mailto:info@tgif.net"> info@tgif.net &ensp;</a></span></li>
+        </ul>
+    </div>
+            
+    <nav class="navbar navbar-inverse container">  
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Congress 113 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="senate-data.html">Senate</a></li>
+                            <li><a href="house-data.html">House</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Attendance <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="senate-attendance.html">Senate</a></li>
+                            <li><a href="house-attendance.html">House</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Party Loyalty <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="senate-party-loyalty.html">Senate</a></li>
+                            <li><a href="house-party-loyalty.html">House</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id = "States-drp"><a class="dropdown-toggle" data-toggle="dropdown" href="#">State Legislators <span class="caret"></span></a>
+                        <ul class="dropdown-menu scrollable-menu">
+                            <!--<li><a href="washington-legislator.html">Washington State Legislators</a></li>-->
+                            <script id = "Legislator-state-template" type = "text/template">
+                                {{#states}}
+                                <li><a href="legislator.html?state={{State Name}}">{{State Name}} Legislators</a></li>
+                                {{/states}}
+                            </script>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>        
+
+    <!--Content container-->
+    <div  class="container">
+        <div class = "row">
+            <div class="col-md-8">
+
+                <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="false">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title" > 
+                                <b><a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true"  aria-controls="collapseOne">
+                                    About Us
+                                </a></b>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <p>Openness, accountability, and honesty define government transparency. 
+                                    In a free society, transparency is government's obligation to share information with citizens. 
+                                    It is at the heart of how citizens hold their public officials accountable. 
+                                    Here at TGIF we believe that government should be transparent.</p>  
+                                <p>Governments exist to serve the people. 
+                                    Information on how officials conduct the public business and spend taxpayer money must be readily available and 
+                                    easily understood. This transparency allows good and just governance.  
+                                    Transparency promotes accountability and provides information for citizens about what their Government is doing.</p>  
+                                <p>We also believe that government should be participatory. 
+                                    Public engagement enhances the Government's effectiveness and improves the quality of its decisions. 
+                                    Knowledge is widely dispersed in society, and public officials benefit from having access to that dispersed knowledge. 
+                                    We invite you to use our site to become actively engaged in American government.</p>
+                                <p>TGIF works to disclose information in forms that the public can readily find and use. 
+                                    We solicit public feedback to identify information of greatest use to the public.</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                             <h4 class="panel-title">
+                                <b><a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true"  aria-controls="collapseOne">
+                                    Background History of Government Transparency
+                                </a></b>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">                
+                                <p>In the West, the idea that government should be open to public scrutiny and susceptible to public opinion dates back at least to the time of the Enlightenment,
+                                    when many philosophes made an attack on absolutist doctrine of state secrecy, a core part of their intellectual project. 
+                                    The passage of formal legislative instruments to this end can also be traced to this time with Sweden, 
+                                    for example, (which then included Finland as a Swedish-governed territory) enacting free press legislation as part of its constitution (Freedom of the Press Act, 1766). 
+                                    This approach, and that of the philosophes more broadly, is strongly related to recent historiography on the eighteenth-century public sphere.</p>
+
+                                <p>Influenced by Enlightenment thought, the revolutions in America (1776) and France (1789), freedom of the press enshrined provisions and requirements for public budgetary accounting and 
+                                    freedom of the press in constitutional articles. In the nineteenth century, attempts by Metternichean statesmen to row back on these measures were vigorously opposed by a number of 
+                                    eminent liberal politicians and writers, Bentham, Mill and Acton prominent among the latter.</p>
+
+                                <p>Open government is widely seen to be a key hallmark of contemporary democratic practice and is often linked to the passing of freedom of information legislation. 
+                                    Scandinavian countries claim to have adopted the first freedom of information legislation, dating the origins of its modern provisions to the eighteenth century and 
+                                    Finland continuing the presumption of openness after gaining independence in 1917, passing its Act on Publicity of Official Documents in 1951 (superseded by new legislation in 1999).</p>
+
+                                <p>The United States passed its Freedom of Information Act (FOIA) in 1966, FOIAs, Access to Information Acts (AIAs) or equivalent laws were passed in Denmark and Norway in 1970.</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src = "../img/tgif_home.jpg" width = "100%" height = "100%">
+            </div>                     
+        </div>
+
+        <script src = "/TGIF project/task5/model/all_states.js"></script>
+        <script src = "../JS-AJAX/utilities.js"></script>
+        
+        <div class="panel-footer text-center " style="background-color: rgba(0, 0, 0, 0.2)">
+            <footer>  <p class = "copyright"><strong>© 2016 TGIF | All Rights Reserved.</strong></p></footer>
+        </div>
+    </div>
+</body>
+
+</html>

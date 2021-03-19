@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senate Data</title>
+</head>
+<body>
+    <table id = "senate_data"></table>
+    <script src= "/TGIF project/Data/pro-congress-113-senate.js">   </script>
+    <script>
+    //document.getElementById("senate-data").innerHTML = JSON.stringify(data,null,2);
+        
+        var senate_members = [];
+        senate_members = data.results[0].members;
+
+        var senate_table = document.createElement("table");
+        senate_table.border = "1";
+        var senate_row = senate_table.insertRow(-1);
+         
+        // adding table header
+        var senate_head_cell1 = document.createElement("th");
+        senate_head_cell1.innerHTML = "Name";
+        senate_row.appendChild(senate_head_cell1);
+
+        var senate_head_cell2 = document.createElement("th");
+        senate_head_cell2.innerHTML = "Party";
+        senate_row.appendChild(senate_head_cell2);
+
+        var senate_head_cell3 = document.createElement("th");
+        senate_head_cell3.innerHTML = "State";
+        senate_row.appendChild(senate_head_cell3);
+
+        var senate_head_cell4 = document.createElement("th");
+        senate_head_cell4.innerHTML = "Years in Office";
+        senate_row.appendChild(senate_head_cell4);
+
+        var senate_head_cell5 = document.createElement("th");
+        senate_head_cell5.innerHTML = "% Votes w/ Party";
+        senate_row.appendChild(senate_head_cell5);
+
+        for(var vals of senate_members)
+        {
+            senate_keys = Object.keys(vals);
+            senate_values = Object.values(vals);
+
+            senate_row = senate_table.insertRow(-1);
+
+            var senate_data_fullname = senate_row.insertCell(-1);
+            senate_data_fullname.innerHTML = [vals.first_name,vals.last_name].join(" ");
+           
+            var senate_data_party = senate_row.insertCell(-1);
+            senate_data_party.innerHTML = vals.party;
+            
+            var senate_data_state = senate_row.insertCell(-1);
+            senate_data_state.innerHTML = vals.state;
+
+            var senate_data_seniority = senate_row.insertCell(-1);
+            senate_data_seniority.innerHTML = vals.seniority;
+
+            var senate_data_votes_with_party_pct = senate_row.insertCell(-1);
+            senate_data_votes_with_party_pct.innerHTML = [vals.votes_with_party_pct, "%"].join(" ");
+
+        }
+       
+        var senate_data = document.getElementById("senate_data");
+        senate_data.appendChild(senate_table);
+    </script>
+</body>
+</html>
