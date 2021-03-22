@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Games</title>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__title">NYSL</h1>
+      <img class="logo" src="nysl_logo.png" alt="NYSL logo" />
+    </header>
+    <div id="app">
+      <nav>
+        <ul class="navbar">
+          <li class="navbar__navbutton"><router-link to="/games">Games</router-link></li>
+          <li class="navbar__navbutton"><router-link to="/games">contact</router-link></li>
+        </ul>
+      </nav>
+      <router-view></router-view>
+    </div>
+    <footer class="footer"></footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="game-data.js"></script>
+    <script src="logic.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

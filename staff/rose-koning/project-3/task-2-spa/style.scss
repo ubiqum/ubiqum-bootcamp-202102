@@ -1,0 +1,62 @@
+$darkblue: rgb(3, 61, 78);
+$gray: rgb(189, 204, 209);
+
+.header {
+    display: grid;
+  background-color: $darkblue;
+  color: $gray;
+  text-align: center;
+  margin:0;
+   &__title{
+       margin:0;
+   }
+   grid-template-columns: 3fr 1fr;
+   grid-template-rows: 1fr;
+   grid-template-areas: 
+   "header__title logo";
+}
+
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:rgb(30, 90, 109);
+
+  &__navbutton {
+    display: inline;
+    color: $gray;
+    list-style-type: none;
+
+    &--active {
+      background-color: $darkblue;
+    }
+  }
+}
+
+.main{
+
+text-align: center;
+}
+
+.button{
+    background-color: #ddd;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+
+    &__locations{
+        display: block;
+    }
+}
+
+.logo{
+    width: 4rem;
+    height: 4rem;
+}
