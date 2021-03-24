@@ -1,0 +1,5 @@
+console.assert(JSON.stringify(longestWords(""))==JSON.stringify([]),'This is wrong result! -> ',longestWords(""));
+console.assert(JSON.stringify(longestWords("Hello, World!"))==JSON.stringify(["Hello","World"]),'This is wrong result! -> ',longestWords("Hello, World!"));
+console.assert(JSON.stringify(longestWords("How old are you?"))==JSON.stringify(["How", "old", "are", "you"]),'This is wrong result! -> ',longestWords("How old are you?"));
+console.assert(JSON.stringify(longestWords("I like eating icecream on the beach :)"))==JSON.stringify(["icecream"]),'This is wrong result! -> ',longestWords("I like eating icecream on the beach :)"));
+console.assert(JSON.stringify(longestWords("zero, one, two, three, four, five, six, seven, eight, nine, ten, ..."))==JSON.stringify(["three", "seven", "eight"]),'This is wrong result! -> ',longestWords("zero, one, two, three, four, five, six, seven, eight, nine, ten, ..."));
