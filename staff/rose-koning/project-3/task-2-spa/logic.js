@@ -18,17 +18,34 @@ function getTeams() {
         teams.push(game.teams[i]);
       }
     }
-   
-  })
-  sortedTeams =teams.sort();
+  });
+  sortedTeams = teams.sort();
   return sortedTeams;
 }
 
-function getGamesThisTeam(team){
+function getGamesThisTeam(team) {
   var games = gameData.game;
-  var filteredGames= games.filter(
-    function(games){
-      return games.teams.includes(team)
-  })
+  var filteredGames = games.filter(function (games) {
+    return games.teams.includes(team);
+  });
   return filteredGames;
+}
+
+function getGamesThisLocation(location) {
+  var games = gameData.game;
+  var filteredGames = games.filter(function (games) {
+    if (games.location === location) {
+      return games.location;
+    }
+  });
+  return filteredGames;
+}
+
+function getGameDetails(gameId){
+  var games = gameData.game;
+  var chosenGame = games.filter(function(games){
+    if(games.id=== gameId)
+    return games;
+  })
+  return chosenGame;
 }

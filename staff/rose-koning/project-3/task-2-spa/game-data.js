@@ -4,7 +4,7 @@ var gameData = {
       id: "0001",
       date: "9/01",
       time: "9:30 AM",
-      location: "AJ Katzenmaier",
+      location: "AJKatzenmaier",
       teams: ["U1", "U4"],
     },
     {
@@ -25,7 +25,7 @@ var gameData = {
       id: "0004",
       date: "9/08",
       time: "1:00 PM",
-      location: "Marjorie P Hart",
+      location: "MarjoriePHart",
       teams: ["U6", "U1"],
     },
     {
@@ -39,7 +39,7 @@ var gameData = {
       id: "0006",
       date: "9/15",
       time: "1:00 PM",
-      location: "AJ Katzenmaier",
+      location: "AJKatzenmaier",
       teams: ["U3", "U5"],
     },
     {
@@ -53,7 +53,7 @@ var gameData = {
       id: "0008",
       date: "9/22",
       time: "1:00 PM",
-      location: "Howard A Yeager",
+      location: "HowardAYeager",
       teams: ["U2", "U6"],
     },
     {
@@ -67,7 +67,7 @@ var gameData = {
       id: "0010",
       date: "10/06",
       time: "9:30 AM",
-      location: "Marjorie P Hart",
+      location: "MarjoriePHart",
       teams: ["U2", "U5"],
     },
     {
@@ -81,7 +81,7 @@ var gameData = {
       id: "0012",
       date: "10/13",
       time: "9:30 AM",
-      location: "Howard A Yeager",
+      location: "HowardAYeager",
       teams: ["U5", "U1"],
     },
     {
@@ -102,21 +102,21 @@ var gameData = {
       id: "0015",
       date: "10/20",
       time: "1:00 PM",
-      location: "Marjorie P Hart",
+      location: "MarjoriePHart",
       teams: ["U2", "U4"],
     },
     {
       id: "0016",
       date: "10/27",
       time: "9:30 AM",
-      location: "AJ Katzenmaier",
+      location: "AJKatzenmaier",
       teams: ["U3", "U1"],
     },
     {
       id: "0017",
       date: "10/27",
       time: "9:30 AM",
-      location: "Howard A Yeager",
+      location: "HowardAYeager",
       teams: ["U5", "U6"],
     },
   ],
