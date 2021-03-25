@@ -1,5 +1,4 @@
-var gameData = {
-  game: [
+var matches = [
     {
       id: "0001",
       date: "9/01",
@@ -119,5 +118,5 @@ var gameData = {
       location: "HowardAYeager",
       teams: ["U5", "U6"],
     },
-  ],
-};
+  ];
+

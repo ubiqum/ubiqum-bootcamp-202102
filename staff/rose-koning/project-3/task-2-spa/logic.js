@@ -1,6 +1,6 @@
 function getLocations() {
   var locations = [];
-  var games = gameData.game;
+  var games = matches;
   games.forEach((game) => {
     if (!locations.includes(game.location)) {
       locations.push(game.location);
@@ -11,7 +11,7 @@ function getLocations() {
 
 function getTeams() {
   var teams = [];
-  var games = gameData.game;
+  var games = matches;
   games.forEach((game) => {
     for (i = 0; i < 2; i++) {
       if (!teams.includes(game.teams[i])) {
@@ -24,7 +24,7 @@ function getTeams() {
 }
 
 function getGamesThisTeam(team) {
-  var games = gameData.game;
+  var games = matches;
   var filteredGames = games.filter(function (games) {
     return games.teams.includes(team);
   });
@@ -32,7 +32,7 @@ function getGamesThisTeam(team) {
 }
 
 function getGamesThisLocation(location) {
-  var games = gameData.game;
+  var games = matches;
   var filteredGames = games.filter(function (games) {
     if (games.location === location) {
       return games.location;
@@ -42,10 +42,19 @@ function getGamesThisLocation(location) {
 }
 
 function getGameDetails(gameId){
-  var games = gameData.game;
+  var games = matches;
   var chosenGame = games.filter(function(games){
     if(games.id=== gameId)
     return games;
   })
   return chosenGame;
+}
+
+function getLocationDetials(location){
+  var locations=locationDetails;
+  var selectedLocation = locations.filter(function(locations){
+    if(locations.id=== location)
+    return locations;
+  })
+  return selectedLocation;
 }

@@ -1,3 +1,17 @@
+body {
+  font-size: 1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+th {
+  font-size: 1.1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #8f999c;
+}
+
 .header {
   display: -ms-grid;
   display: grid;
@@ -28,6 +42,7 @@
   display: inline;
   color: #bdccd1;
   list-style-type: none;
+  text-decoration: none;
 }
 
 .navbar__navbutton--active {
@@ -42,17 +57,17 @@
   background-color: #ddd;
   border: none;
   color: black;
-  padding: 10px 20px;
+  padding: 5px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  margin: 4px 2px;
+  margin: 1px 1px;
   cursor: pointer;
   border-radius: 16px;
 }
 
-.button__locations {
-  display: block;
+.button__goback {
+  background-color: #58bddb;
 }
 
 .logo {

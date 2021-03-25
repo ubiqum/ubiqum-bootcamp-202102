@@ -1,6 +1,20 @@
 $darkblue: rgb(3, 61, 78);
 $gray: rgb(189, 204, 209);
+$darkGray: rgb(143, 153, 156);
 
+body{
+  font-size: 1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+th{
+  font-size: 1.1rem;
+}
+
+a{
+text-decoration: none;
+color: $darkGray;
+}
 .header {
     display: grid;
   background-color: $darkblue;
@@ -25,8 +39,9 @@ $gray: rgb(189, 204, 209);
 
   &__navbutton {
     display: inline;
-    color: $gray;
+    color:$gray;
     list-style-type: none;
+    text-decoration: none;
 
     &--active {
       background-color: $darkblue;
@@ -43,16 +58,16 @@ text-align: center;
     background-color: #ddd;
     border: none;
     color: black;
-    padding: 10px 20px;
+    padding: 5px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin: 4px 2px;
+    margin: 1px 1px;
     cursor: pointer;
     border-radius: 16px;
 
-    &__locations{
-        display: block;
+    &__goback{
+        background-color:rgb(88, 189, 219)
     }
 }
 
