@@ -1,0 +1,16 @@
+h1 {
+  background-color: plum;
+  border-style: dashed;
+  border-color: skyblue;
+  border-width: 1rem;
+  border-radius: 1rem;
+}
+
+p {
+  background-color: plum;
+  border-style: dotted;
+  border-color: white;
+  border-width: 0.5rem;
+  border-radius: 0;
+}
+/*# sourceMappingURL=style-2.css.map */

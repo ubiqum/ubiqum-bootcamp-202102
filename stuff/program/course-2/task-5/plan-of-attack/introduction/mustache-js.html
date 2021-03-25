@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="renderHello()">
+    <div id="target">Loading...</div>
+
+    <script src="https://unpkg.com/mustache@latest"></script>
+
+    <script id="template" type="x-tmpl-mustache">
+        <h1>Hello {{ firstName }}!</h1>
+    </script>
+
+    <script>
+        function getFirstName(fullName) {
+            return fullName.split(' ')[0]
+        }
+
+        function renderHello() {
+            var fullName = 'Peter Pan'
+            var template = document.getElementById('template').innerHTML;
+            var rendered = Mustache.render(template, { firstName: getFirstName(fullName) });
+            document.getElementById('target').innerHTML = rendered;
+        }
+    </script>
+</body>
+
+</html>

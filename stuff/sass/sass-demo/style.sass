@@ -1,0 +1,15 @@
+$back-color: plum
+
+@mixin round-border($style, $color, $width, $radius: 0)
+    border-style: $style
+    border-color: $color
+    border-width: $width
+    border-radius: $radius
+
+h1
+    background-color: $back-color
+    @include round-border(dashed, skyblue, 1rem, 1rem)
+
+p
+    background-color: $back-color
+    @include round-border(dotted, white, .5rem)

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function retrieveJurisdictions() {
+            return fetch('https://v3.openstates.org/jurisdictions?classification=state&include=organizations&page=1&per_page=52&apikey=b06603c6-f23e-4cfc-b9bd-7d67466101a4')
+                .then(response => response.json())
+                .then(data => {
+                    return data.results.map(jurisdiction => {
+                        return { id: jurisdiction.id, name: jurisdiction.name }
+                    })
+                })
+        }
+
+        retrieveJurisdictions()
+            .then(juris => console.log(juris))
+
+        retrieveJurisdictions()
+            .then(function (juris) {
+                document.body.innerHTML = juris.map(function (juri) {
+                    return '<h2>' + juri.id + ' ' + juri.name + '</h2>'
+                })
+            })
+    </script>
+</body>
+
+</html>

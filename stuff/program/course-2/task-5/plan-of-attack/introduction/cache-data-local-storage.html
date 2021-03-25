@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        if (!localStorage.jurisdictions)
+            fetch('https://v3.openstates.org/jurisdictions?classification=state&include=organizations&page=1&per_page=52&apikey=b06603c6-f23e-4cfc-b9bd-7d67466101a4')
+                .then(response => response.json())
+                .then(jurisdictions => {
+                    jurisdictions = jurisdictions.results.map(jurisdiction => {
+                        return { id: jurisdiction.id, name: jurisdiction.name }
+                    })
+
+                    // CACHE jurisdictions
+
+                    localStorage.jurisdictions = JSON.stringify(jurisdictions)
+
+                    debugger
+
+                    // USE just loaded jurisdictions here
+
+                    console.log('just loaded jurisdictions', jurisdictions)
+                })
+        else {
+            // RETRIEVE jurisdictions from cache
+
+            var jurisdictions = JSON.parse(localStorage.jurisdictions)
+
+            // USE pre-loaded jurisdictions here (from cache)
+
+            console.log('pre-loaded jurisdictions', jurisdictions)
+        }
+    </script>
+</body>
+
+</html>
