@@ -6,15 +6,11 @@ var percentPartyDemocrats = []
 var percentPartyRepublicans = []
 var percentPartyIndependents = []
 var percentParty = []
-var democratsLeastOftenVote = []
 var Names = []
-var PercentageNames2 = []
-var PercentageNames3 = []
 var LeastVotes = []
 var LeastVotesNames = []
 var MostVotes = []
 var MostVotesNames = []
-var tenPercent2 = 0
 var MissedVotes = []
 var MostMissedVotes = []
 var LeastMissedVotes = []
@@ -95,11 +91,11 @@ function PercentageNames(Percentage, Names) {
 }
 
 
-PercentageNames2 = PercentageNames(percentParty, Names)
-PercentageNames3 = PercentageNames(MissedVotes, Names)
+var PercentageNames2 = PercentageNames(percentParty, Names)
+var PercentageNames3 = PercentageNames(MissedVotes, Names)
 
 
-tenPercent2 = tenPercent(Names)
+var tenPercent2 = tenPercent(Names)
 
 
 sortLeastVotes(PercentageNames2)
