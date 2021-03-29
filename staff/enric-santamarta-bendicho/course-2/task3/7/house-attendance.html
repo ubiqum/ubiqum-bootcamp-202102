@@ -28,17 +28,12 @@
                     <div class="panel panel-deafult">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#collapse2" class="selector" aria-expanded="false">Home</a>
+                                <a  href="home.html" class="selector" >Home</a>
                                 <a data-toggle="collapse" href="#collapse1" class="selector" aria-expanded="false">Congress 113</a>
                                 <a data-toggle="collapse" href="#collapse3" class="selector" aria-expanded="false">Attendance</a>
                                 <a data-toggle="collapse" href="#collapse4" class="selector" aria-expanded="false">Party Loyalty</a>
                             </h4>
                         </div>
-                        <div id="collapse2" class="panel-collapse collapse">
-                            <div class="panel-body"><a href="home.html">Home</a></div>
-                        </div>
-        
-        
                         <div id="collapse1" class="panel-collapse collapse">
                             <div class="panel-body"><a href="house-data.html">House</a></div>
         
@@ -60,6 +55,9 @@
                     </div>
                 </div>
             </div>
+
+
+
         </nav>
 
         <body>
@@ -128,7 +126,7 @@ table.innerHTML = rows
 //least Engaged Members
 var statistics2 = mostMissedVotes2
 var statistics3 = mostMissedVotesNames
-var statistics6 = percentPartyMissed2
+var statistics4 = percentPartyMissed2
 
 
 
@@ -140,14 +138,14 @@ rows2 += '<tr><th>' + 'Name' + '</th><th>' + 'Number Missed Votes'
 
 for(var i=0;i<statistics3.length;i++) { 
     rows2 += '<tr><td>' + statistics3[i] + '</td><td>'+ 
-        statistics2[i]+'</td><td>'+ statistics6[i].toFixed(4) + '%'
+        statistics2[i]+'</td><td>'+ statistics4[i].toFixed(4) + '%'
          +'</td></tr>'}
 
 
 table2.innerHTML = rows2
 //most Engaged Members
-var statistics4 = leastMissedVotes2
-var statistics5 = leastMissedVotesNames
+var statistics5 = leastMissedVotes2
+var statistics6 = leastMissedVotesNames
 var statistics7 = percentPartyMissed
 
 var table3 = document.getElementById('mostEngagedtable')
@@ -156,9 +154,9 @@ var rows3 = ''
 rows3 += '<tr><th>' + 'Name' + '</th><th>' + 'Number Missed Votes'
     + '</th><th>' + '% Party Votes' + '</th></tr>'
 
-for (var i = 0;i<statistics4.length;i++){
-rows3 += '<tr><td>' + statistics5[i] + '</td><td>' +
-statistics4[i] + '</td><td>' + statistics7[i].toFixed(4) + '%' + '</td></tr>'
+for (var i = 0;i<statistics5.length;i++){
+rows3 += '<tr><td>' + statistics6[i] + '</td><td>' +
+statistics5[i] + '</td><td>' + statistics7[i].toFixed(4) + '%' + '</td></tr>'
 }
 
 

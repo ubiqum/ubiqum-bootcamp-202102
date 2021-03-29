@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <title class="title">Senate Party Loyality</title>
+    <title class="title">House Party Loyality</title>
 
 </head>
 
@@ -28,13 +28,13 @@
             <div class="panel panel-deafult">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a  href="home.html" class="selector" >Home</a>
+                        <a href="home.html" class="selector">Home</a>
                         <a data-toggle="collapse" href="#collapse1" class="selector">Congress 113</a>
                         <a data-toggle="collapse" href="#collapse3" class="selector">Attendance</a>
                         <a data-toggle="collapse" href="#collapse4" class="selector">Party Loyalty</a>
                     </h4>
                 </div>
-            
+
 
                 <div id="collapse1" class="panel-collapse collapse">
                     <div class="panel-body"><a href="house-data.html">House</a></div>
@@ -69,7 +69,7 @@
             Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and
             legislation that backs their party's agenda. </p>
 
-        <h2>Senate at a glance</h2>
+        <h2>House at a glance</h2>
         <table class="table table-striped" id='tableGlance'>
 
         </table>
@@ -86,84 +86,11 @@
 
     </div>
 
-    <script src="pro-congress-113-senate.js"></script>
+    <script src="pro-congress-113-house.js"></script>
+    <script src="variables.js"></script>
+    <script src="utils.js"></script>
     <script src="statistics.js"></script>
-    <script>
-        var rows = ''
-
-        var statistics = [
-            //numberOfRepublicans
-            {
-                party: 'Republicans',
-                numbers: republicans,
-                percentage: averageVotesRepublicans
-            },
-            //numberOfDemocrats
-            {
-                party: 'Democrats',
-                numbers: democrats,
-                percentage: averageVotesDemocrats
-            },
-            //numberOfIndependents
-            {
-                party: 'Independents',
-                numbers: independents,
-                percentage: averageVotesIndependents
-            }]
-
-        var table = document.getElementById('tableGlance')
-        var rows = ''
-
-        rows += '<tr><th>' + 'Party' + '</th><th>' + 'Number of Representants'
-            + '</th><th>' + 'Percentage of votes with Party' + '</th></tr>'
-
-
-        statistics.forEach(function (statistics) {
-            rows += '<tr><td>' + statistics.party + '</td><td>' + statistics.numbers +
-                '</td><td>' + statistics.percentage.toFixed(2) + '%' + '</td></tr>'})
-
-        table.innerHTML = rows
-    
-        //least Loyal Members
-        var statistics2 = leastVotesNumbers
-        var statistics3 = leastVotesNames
-        var statistics6 = percentParty
-      
-
-
-        var table2 = document.getElementById('leastLoyaltable')
-        var rows2 = ''
-
-        rows2 += '<tr><th>' + 'Name' + '</th><th>' + 'Number Party Votes'
-            + '</th><th>' + '% Party Votes' + '</th></tr>'
-
-        for(var i=0;i<statistics3.length;i++) { 
-            rows2 += '<tr><td>' + statistics3[i] + '</td><td>'+ 
-                statistics2[i]+'</td><td>'+ statistics6[i].toFixed(4) + '%'
-                 +'</td></tr>'}
-
-        
-        table2.innerHTML = rows2
-        //most loyal Members
-        var statistics4 = mostVotesNumbers
-        var statistics5 = mostVotesNames
-        var statistics7 = percentParty2
-
-       var table3 = document.getElementById('mostLoyaltable')
-        var rows3 = ''
-        
-        rows3 += '<tr><th>' + 'Name' + '</th><th>' + 'Number Party Votes'
-            + '</th><th>' + '% Party Votes' + '</th></tr>'
-        
-        for (var i = 0;i<statistics4.length;i++){
-        rows3 += '<tr><td>' + statistics5[i] + '</td><td>' +
-        statistics4[i] + '</td><td>' + statistics7[i].toFixed(4) + '%' + '</td></tr>'
-        }
-      
-
-      table3.innerHTML = rows3
-
-    </script>
+    <script src="view-loyalty.js"></script>
 </body>
 <footer>
     <div class="container-fluid">
