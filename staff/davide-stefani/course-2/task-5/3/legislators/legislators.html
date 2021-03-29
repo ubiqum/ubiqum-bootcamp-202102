@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title> Home Page </title>
+  <meta charset="utf-8" />
+  <meta name="description" content= />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/staff/davide-stefani/course-2/task-5/3/legislators/style.css">
+</head>
+
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js"></script>
+  <div class="container">
+
+    <header class="grid-header">
+      <img class="logo" src="https://dummyimage.com/100x100/e6e6e6/95bdde.jpg&text=TGIF" alt="TGIF Logo">
+      <h1 class="title">TGIF</h1>
+      <a class="email" href="mailto:info@tgif.net" subject="subject text">&#9993 info@tgif.net</a>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/staff/davide-stefani/course-2/task-5/1/main/home.html">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Congress 113</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/staff/davide-stefani/course-2/task-5/1/main/house-data.html">House</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/staff/davide-stefani/course-2/task-5/1/main/senate-data.html">Senate</a>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Attendance
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                href="/staff/davide-stefani/course-2/task-5/1/attendance/house-attendance.html">House</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item"
+                href="/staff/davide-stefani/course-2/task-5/1/attendance/senate-attendance.html">Senate</a>
+          </li>
+        </ul>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Party Loyalty
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"
+                href="/staff/davide-stefani/course-2/task-5/1/loyalty/house-loyalty.html">House</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item"
+                href="/staff/davide-stefani/course-2/task-5/1/loyalty/senate-loyalty.html">Senate</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              State Legistrators
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/staff/davide-stefani/course-2/task-5/1/legislators/legislators.html">Add
+                States and Filters</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/staff/davide-stefani/course-2/task-5/1/legislators/legislators.html">Add
+                States and filters</a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+    
+    <div class="legislators-info" onload="renderLegislators()">
+      <table id="legislators-data" class="table table-striped">
+        <thead>
+          <th> SENATOR</th>
+          <th> PARTY AFFILIATION</th>
+          <th> STATE</th>
+          <th> CHAMBER</th>
+
+        </thead>
+        <tbody id="target">
+        <script id="template" type="x-tmpl-mustache">
+          + "<tr>"
+            + "<td>{{ peopleAlabama.name }}</td>"
+            + "<td>{{ peopleAlabama.party }}</td>"
+            + "<td>{{ peopleAlabama.jurisdiction.name }}</td>"
+            + "<td>{{ peopleAlabama.current_role.title }}</td>"
+            + "</tr>"
+        </script>
+      </tbody>
+      </table>
+    </div>
+
+
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <p class="footer"> &#169; 2016 TGIF | All Rights Reserved</p>
+      </div>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+    
+    <script src="/staff/davide-stefani/course-2/task-5/3/legislators/people-alabama.js"></script>
+    <script src="/staff/davide-stefani/course-2/task-5/3/legislators/logic.js"></script>
+    
+</body>
+
+</html>

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/staff/davide-stefani/course-2/task-4/4/style.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
         </header>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="home.html">Home</a>
+            <a class="navbar-brand" href="/staff/davide-stefani/course-2/task-4/4/main/home.html">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,9 +34,9 @@
                             Congress 113
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="house-data.html">House</a>
+                            <a class="dropdown-item" href="/staff/davide-stefani/course-2/task-4/4/main/house-data.html">House</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="senate-data.html">Senate</a>
+                            <a class="dropdown-item" href="/staff/davide-stefani/course-2/task-4/4/main/senate-data.html">Senate</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">
@@ -46,9 +46,9 @@
                             Attendance
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="house-attendance.html">House</a>
+                            <a class="dropdown-item" href="/staff/davide-stefani/course-2/task-4/4/attendance/house-attendance.html">House</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="senate-attendance.html">Senate</a>
+                            <a class="dropdown-item" href="/staff/davide-stefani/course-2/task-4/4/attendance/senate-attendance.html">Senate</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">
@@ -58,9 +58,9 @@
                             Party Loyalty
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="house-loyalty.html">House</a>
+                            <a class="dropdown-item" href="/staff/davide-stefani/course-2/task-4/4/loyalty/house-loyalty.html">House</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="senate-loyalty.html">Senate</a>
+                            <a class="dropdown-item" href="/staff/davide-stefani/course-2/task-4/4/loyalty/senate-loyalty.html">Senate</a>
                     </li>
                 </ul>
             </div>
@@ -79,7 +79,7 @@
                     legislation that backs their party's agenda. </p>
             </div>
 
-            <div id="glance-table" class="table table-striped">
+            <div id="glanceBody" class="table table-striped">
 
                 <h2>House at a glance</h2>
                 <table>
@@ -91,6 +91,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr v-for="(group, key) in membersPerParty">
+                            <td>{{group[0]}}</td>
+                            <td>{{group[1]}}</td>
+                            <td>{{group[2]}}</td>
+                          </tr>
                     </tbody>
                 </table>
             </div>
@@ -107,6 +112,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr v-for="(member, key) in lowestLoyalty">
+                            <td>{{member.first_name}} {{member.middle_name}} {{member.last_name}}</td>
+                            <td>{{member.total_votes}}</td>
+                            <td>{{member.votes_with_party_pct}} %</td>
+                          </tr>
                     </tbody>
                 </table>
             </div>
@@ -123,9 +133,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr v-for="(member, key) in highestLoyalty">
+                            <td>{{member.first_name}} {{member.middle_name}} {{member.last_name}}</td>
+                            <td>{{member.total_votes}}</td>
+                            <td>{{member.votes_with_party_pct}} %</td>
+                          </tr>
                     </tbody>
                 </table>
             </div>
+
         </div>
 
         <footer class="footer">
@@ -134,7 +150,7 @@
             </div>
         </footer>
 
-
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -144,23 +160,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-        <script src="pro-congress-113-house.js"></script>
-        <script src="statistics.js"></script>
-        <script>
-            var statistics = {
-                numberOfDemocrats: democrats.length,
-                numberOfRepublicans: republicans.length,
-                numberOfIndependents: indipendents.length,
-                democratsVotesPercetage: average_votes_Dem,
-                republicansVotesPercetage: average_votes_Rep,
-                indipendentsVotesPercetage: average_votes_Ind,
-                membersMostVote: mostOftenVoteMembers,
-                membersLeastVotes: leastOftenVoteMembers,
-                mostMissedVotes: highMissedVotes,
-                leastMissedVotes: lowMissedVotes,
-            }
-        </script>
-        <script src="loyalty.js"></script>
+        <!-- <script src="pro-congress-113-house.js"></script> -->
+        
+        <script>var url="https://api.propublica.org/congress/v1/113/house/members.json"</script>
+        <script src="/staff/davide-stefani/course-2/task-4/4/loyalty/loyalty.js"></script>
+        <script src="/staff/davide-stefani/course-2/task-4/4/logic.js"></script>
 
 </body>
 

@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <title> House Loyalty </title>
+    <title> House Attendence </title>
     <meta charset="utf-8" />
     <meta name="description" content=house-data />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/staff/davide-stefani/course-2/task-4/4/style.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
         </header>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="home.html">Home</a>
+            <a class="navbar-brand" href="/staff/davide-stefani/course-2/task-4/4/main/home.html">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,9 +34,11 @@
                             Congress 113
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="house-data.html">House</a>
+                            <a class="dropdown-item"
+                                href="/staff/davide-stefani/course-2/task-4/4/main/house-data.html">House</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="senate-data.html">Senate</a>
+                            <a class="dropdown-item"
+                                href="/staff/davide-stefani/course-2/task-4/4/main/senate-data.html">Senate</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">
@@ -46,9 +48,11 @@
                             Attendance
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="house-attendance.html">House</a>
+                            <a class="dropdown-item"
+                                href="/staff/davide-stefani/course-2/task-4/4/attendance/house-attendance.html">House</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="senate-attendance.html">Senate</a>
+                            <a class="dropdown-item"
+                                href="/staff/davide-stefani/course-2/task-4/4/attendance/senate-attendance.html">Senate</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">
@@ -58,9 +62,11 @@
                             Party Loyalty
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="house-loyalty.html">House</a>
+                            <a class="dropdown-item"
+                                href="/staff/davide-stefani/course-2/task-4/4/loyalty/house-loyalty.html">House</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="senate-loyalty.html">Senate</a>
+                            <a class="dropdown-item"
+                                href="/staff/davide-stefani/course-2/task-4/4/loyalty/senate-loyalty.html">Senate</a>
                     </li>
                 </ul>
             </div>
@@ -72,17 +78,27 @@
         </header>
 
         <div class="attendance-loyalty-grid">
-            <div class="attendance-text">
-                <h2>Party Loyalty</h2>
-                <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans
-                    respectively, tend to be the most faithful in voting for their party's nominee for office and
-                    legislation that backs their party's agenda. </p>
+            <div class="attendance-loyalty-text">
+                <h2>Attendance</h2>
+                <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each
+                    house.
+                    Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus,
+                    in
+                    most cases, debates continue even if a majority is not present.</p>
+
+                <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator
+                    stating
+                    "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most
+                    formal
+                    matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by
+                    electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice
+                    President
+                    may (if present) cast the tiebreaking vote.</p>
             </div>
 
-            <div id="glance-table" class="table table-striped">
-
+            <div id="glanceBody" class="table table-striped">
                 <h2>House at a glance</h2>
-                <table>
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Party</th>
@@ -91,41 +107,56 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr v-for="(group, key) in membersPerParty">
+                            <td>{{group[0]}}</td>
+                            <td>{{group[1]}}</td>
+                            <td>{{group[2]}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div id="least-loyal-table" class="table table-striped">
-
-                <h2>Least Loyal (Bottom 10% of Party)</h2>
+            <div id="least-engaged-table" class="table table-striped">
+                <h2>Least Engaged (Bottom 10% Attendance)</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Number Party Votes</th>
-                            <th>% Party Votes</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr v-for="(member, key) in lowMissedVotes">
+                            <td>{{member.first_name}} {{member.middle_name}} {{member.last_name}}</td>
+                            <td>{{member.missed_votes}}</td>
+                            <td>{{member.missed_votes_pct}} %</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div id="most-loyal-table" class="table table-striped">
+            <div id="most-engaged-table" class="table table-striped">
 
-                <h2>Most Loyal (Top 10% of Party)</h2>
+                <h2>Most Engaged (Top 10% Attendance)</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Number Party Votes</th>
-                            <th>% Party Votes</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr v-for="member, key) in highMissedVotes">
+                            <td>{{member.first_name}} {{member.middle_name}} {{member.last_name}}</td>
+                            <td>{{member.missed_votes}}</td>
+                            <td>{{member.missed_votes_pct}} %</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
+
         </div>
 
         <footer class="footer">
@@ -134,7 +165,7 @@
             </div>
         </footer>
 
-
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -144,23 +175,12 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-        <script src="pro-congress-113-house.js"></script>
-        <script src="statistics.js"></script>
-        <script>
-            var statistics = {
-                numberOfDemocrats: democrats.length,
-                numberOfRepublicans: republicans.length,
-                numberOfIndependents: indipendents.length,
-                democratsVotesPercetage: average_votes_Dem,
-                republicansVotesPercetage: average_votes_Rep,
-                indipendentsVotesPercetage: average_votes_Ind,
-                membersMostVote: mostOftenVoteMembers,
-                membersLeastVotes: leastOftenVoteMembers,
-                mostMissedVotes: highMissedVotes,
-                leastMissedVotes: lowMissedVotes,
-            }
-        </script>
-        <script src="loyalty.js"></script>
+        <!-- <script src="pro-congress-113-house.js"></script> -->
+
+        <script>var url = "https://api.propublica.org/congress/v1/113/house/members.json"</script>
+
+        <script src="/staff/davide-stefani/course-2/task-4/4/attendance/attendance.js"></script>
+        <script src="/staff/davide-stefani/course-2/task-4/4/logic.js"></script>
 
 </body>
 
