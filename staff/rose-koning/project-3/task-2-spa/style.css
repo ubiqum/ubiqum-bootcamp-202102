@@ -1,5 +1,5 @@
 body {
-  font-size: 1rem;
+  font-size: 1,5rem;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
@@ -38,15 +38,8 @@ a {
   background-color: #1e5a6d;
 }
 
-.navbar__navbutton {
+.navbar__navitem {
   display: inline;
-  color: #bdccd1;
-  list-style-type: none;
-  text-decoration: none;
-}
-
-.navbar__navbutton--active {
-  background-color: #033d4e;
 }
 
 .main {
@@ -70,8 +63,27 @@ a {
   background-color: #58bddb;
 }
 
+.button__big {
+  font-size: 2rem;
+}
+
 .logo {
   width: 4rem;
   height: 4rem;
+}
+
+.map-container {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.map-container iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
 /*# sourceMappingURL=style.css.map */
