@@ -1,0 +1,12 @@
+console.assert(search("    ", "")==0,'search("    ", "") has wrong result:',search("    ", ""),' Expected result:',0);
+console.assert(search("salute 👋 you", "👋")==7,'search("salute 👋 you", "👋") has wrong result:',search("salute 👋 you", "👋"),' Expected result:',7);
+console.assert(search("Hello, World!", "World")==7,'search("Hello, World!", "World") has wrong result:',search("Hello, World!", "World"),' Expected result:',7);
+console.assert(search("Hello, World!", "ello")==1,'search("Hello, World!", "ello") has wrong result:',search("Hello, World!", "ello"),' Expected result:',1);
+console.assert(search("Hello, World!", "orld")==8,'search("Hello, World!", "orld") has wrong result:',search("Hello, World!", "orld"),' Expected result:',8);
+console.assert(search("Hello, World!", "What?")==-1,'search("Hello, World!", "What?") has wrong result:',search("Hello, World!", "What?"),' Expected result:',-1);
+console.assert(search("Hello, World!", "Hola")==-1,'search("Hello, World!", "Hola") has wrong result:',search("Hello, World!", "Hola"),' Expected result:',-1);
+console.assert(search("123🅰️🅱️", "🅰️")==3,'search("123🅰️🅱️", "🅰️") has wrong result:',search("123🅰️🅱️", "🅰️"),' Expected result:',3);
+console.assert(search("123🅰️🅱️", /🅰️/)==3,'search("123🅰️🅱️", /🅰️/) has wrong result:',search("123🅰️🅱️", /🅰️/),' Expected result:',3);
+console.assert(search("abcABC", /abc/)==0,'search("abcABC", /abc/) has wrong result:',search("abcABC", /abc/),' Expected result:',0);
+console.assert(search("abcABC", /ABC/)==3,'search("abcABC", /ABC/) has wrong result:',search("abcABC", /ABC/),' Expected result:',3);
+console.assert(search("abcABC", /ABC/i)==0,'search("abcABC", /ABC/i) has wrong result:',search("abcABC", /ABC/i),' Expected result:',0);

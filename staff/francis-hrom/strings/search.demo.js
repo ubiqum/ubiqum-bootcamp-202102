@@ -1,0 +1,13 @@
+console.log(search("    ", ""));
+console.log(search("salute 👋 you", "👋"));
+console.log(search("Hello, World!", "World"));
+console.log(search("Hello, World!", "ello"));
+console.log(search("Hello, World!", "orld"));
+console.log(search("Hello, World!", "What?"));
+console.log(search("Hello, World!", "Hola"));
+console.log(search("123🅰️🅱️", "🅰️"));
+console.log(search("123🅰️🅱️", /🅰️/));
+console.log(search("abcABC", /abc/));
+console.log(search("abcABC", /ABC/));
+console.log(search("abcABC", /ABC/i));
+console.log(search(123, '1'));
