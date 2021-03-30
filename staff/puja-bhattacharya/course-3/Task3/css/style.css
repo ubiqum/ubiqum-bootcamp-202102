@@ -1,0 +1,430 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }  
+   
+  html{
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Cambria, 'Times New Roman', serif;
+  }
+
+  nav{
+    width: 100%;
+    background:#6ab446;
+    overflow:hidden;
+    position:fixed;
+    top: 0;
+    align-self: center;
+  }
+
+  ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  li{
+    float: left;
+  }
+
+  a{
+    padding: 20px;
+    width: 70px;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+a.style1{
+  padding: 0px;
+  display:inline;
+}
+  #section1{
+    height: 700px;
+    background: url("../img/background.jpg") no-repeat center center fixed;
+    display: inline-block;
+    width: 100%;
+    padding-top: 10%;
+  }
+
+  #section2{
+    height: 700px;
+    background: url("../img/background.jpg") no-repeat center center fixed;
+    display: inline-block;
+    width: 100%;
+    padding-top: 10%;
+  }
+
+  #section3{
+    height: 700px;
+    background: url("../img/background.jpg") no-repeat center center fixed;
+    display: inline-block;
+    width: 100%;
+    padding-top: 10%;
+  }
+
+  #section4{
+    height: 1500px;
+    background: url("../img/background.jpg") no-repeat center center fixed;
+    display: inline-block;
+    width: 100%;
+    padding-top: 10%;
+  }
+
+  #section5{
+    height: 1000px;
+    background: url("../img/background.jpg") no-repeat center center fixed;
+    display: inline-block;
+    width: 100%;
+    padding-top: 10%;
+  }
+
+  #section6{
+    height: 700px;
+    background: url("../img/background.jpg") no-repeat center center fixed;
+    display: inline-block;
+    width: 100%;
+    padding-top: 10%;
+  }
+
+  h1{
+    margin: 100px;
+    text-align: center;
+    padding: 0;
+  }
+
+/************************************************/
+
+.img-logo{
+    float: none;
+    max-width:220%;
+    max-height:220%;
+    padding-left: 1%;
+    padding-top: 3%;
+    overflow:scroll;
+}
+
+.navbar {
+    background:#6ab446;
+    
+}
+.header {
+    width: 100%;
+    display:block;
+    background-size: cover;
+    background-position: center;
+    padding: 2px 50px;
+    align-items:center;
+}
+
+/* Navigation links */
+.navbar-nav a {
+    float: left;
+    padding: 5px;
+    font-size: 15px;
+    width: 16.66%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+    text-align: left; 
+}
+.nav-link,
+.navbar-brand {
+    color: #fff;
+    cursor: pointer;
+    
+}
+.nav-link {
+    margin-right: 1em !important;
+    display:inline-flex;
+}
+.nav-link:hover {
+    color: #000;
+}
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.company_name {
+    font-family: 'Bungee Shade', cursive;
+    text-shadow: 2px 2px #080707;
+    letter-spacing: 2px;
+    text-align:left;
+    font-size: 35px;
+}
+
+.features {
+    position: relative;
+}
+
+.feature-title {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.footer-copyright {
+    background-color: rgba(104, 99, 99, 0.2);
+    color:azure;
+    font-family:'Lucida Sans' ; 
+    font-weight:bold;
+    padding: 3px 0;
+}
+
+.tab1{ 
+    padding-left: 2em; 
+}
+
+.tab2{ 
+padding-left: 4em; 
+}
+
+.tab4{ 
+  padding-left: 8em; 
+}
+
+.tab6{ 
+    padding-left: 12em; 
+}
+
+.style_my_rules{
+    font-family:'Cambria';
+    color:black;
+    font-size: 70%;
+    text-align: left;
+    font-style:nospace;
+    letter-spacing:normal;
+    font-weight: normal;
+}
+.heading{
+    font-family:"Palatino Linotype ";
+    color:black;
+    font-size: 70%;
+    text-align: center;
+    letter-spacing: 0.2em;
+}
+img.animated-gif{
+    width: 25%;
+    height: auto;
+    margin:1% 0% 0% 40%;
+  }
+
+.aligndiv {
+text-align: center;
+}
+.panel-heading{
+    margin: 0;
+    padding: 5px;
+    background-color: lightgray;  
+    padding-left: 10px;
+    padding-right: 5px;
+    overflow: auto;
+}
+.panel-body{
+    background: aliceblue;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    overflow: auto;
+    direction: ltr;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding-left: 10px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+
+
+.content{
+  margin: 0;
+  padding-left: 5px;
+  background-color:lightgrey;
+  width: 81%;
+  height: 65%;
+  overflow: hidden;
+  position:absolute;
+
+}
+
+.content-with-borders {
+  font-size: 90%;
+  background:aliceblue;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 98%;
+  height: 88%;
+  overflow:auto;
+  position:absolute
+  };
+
+
+.nav li.active {
+    color:black;
+    text-decoration:underline;
+  }
+  
+
+table.style1{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+table.style1 th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+table.style1 tr:nth-child(odd){
+    background-color:aliceblue;
+}
+
+table {
+    border-collapse:collapse;
+    width:100%;
+    height: 50%;
+    margin: auto auto 0;
+    font-size: 1.0rem;
+    color: #4a788b;
+    border-radius: 5px;
+    table-layout:fixed;
+}
+
+
+
+table thead{
+    background-color: #d9f0fc;
+}
+
+table th, 
+table td{
+    border: 1px  #6fcfff;
+    padding: 5px 10px;
+}
+a:link, a:visited {
+    color: black;
+    text-decoration: none;
+  }
+  
+  a:hover, a:active {
+    color:blue;
+    font-weight: bold;
+    border-image-width: 5px;
+  }
+
+  
+/* mobile */
+@media screen and (max-width: 639px){
+  .title {
+      text-align: left;
+  }
+
+  .smart-table thead{
+      display: none;
+  }
+
+  .smart-table tr,
+  .smart-table td{
+      display: block;
+
+  }
+
+  .smart-table tr:not(:last-child){
+      border-bottom: 5px solid #5ca0c3;
+  }
+
+  .smart-table td{
+      padding-left: 54%;
+      position:relative;
+  }
+  
+  .smart-table td::before {
+      position: absolute;
+      padding: 5px;
+      left:0;
+      top:0;
+      bottom: 0;
+      width:45%;
+      content: attr(data-col-title);
+      font-weight: bold;
+      text-decoration: underline;
+      color:#fff;
+      background-color:#333;
+      
+  }
+  .company_name {
+    font-family: 'Bungee Shade', cursive;
+    text-shadow: 0.5px 0.5px #080707;
+    float: none;
+    display:inline-block;
+    text-align: center;
+    font-size:1em;
+    text-justify:auto;
+    letter-spacing:0.1rem;
+    justify-content: flex-end;  
+    padding-left: 10px;
+}
+.img-logo{
+  float: left;
+  max-width:30%;
+  max-height:30%;
+  padding-left: 5%;
+  padding-top: 10%;
+  overflow:scroll;
+  text-align: center;
+  padding-right: 5%;
+}
+}
+
+/* desktop */
+@media (min-width: 1024px){
+  .title {
+      text-align:center;
+  }
+  table{
+      width: 60%;
+      
+  }
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  
+  .company_name {
+      font-family: 'Bungee Shade', cursive;
+      text-shadow: 0.5px 0.5px #080707;
+      float: none;
+      display:inline-block;
+      text-align: center;
+      font-size:1em;
+      text-justify:auto;
+      letter-spacing:0.1rem;
+      justify-content: flex-end;  
+      padding-left: 10px;
+  }
+
+  .header a {
+      float: none;
+      display: block;
+      text-align: left;
+  }
+  
+  .img-logo{
+      float: left;
+      max-width:20%;
+      max-height:20%;
+      padding-left: 5%;
+      padding-top: 10%;
+      overflow:scroll;
+      text-align: center;
+      
+  }
+}
