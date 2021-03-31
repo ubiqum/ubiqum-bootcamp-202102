@@ -175,7 +175,7 @@ function retrieveJurisdictionIdByState(searchedState, callback) {
  }
  
  var listOfStates = data.results;
- function searchState(_data, searchedState) {
+ function searchState(data, searchedState) {
      
      setDropDown(listOfStates);
      for (var i = 0; i < listOfStates.length; i++) {
@@ -187,25 +187,14 @@ function retrieveJurisdictionIdByState(searchedState, callback) {
      }
      return jurisdictionID;
  }
- 
- function setDropDown(listOfStates) {
-     for (i = 0; i < listOfStates.length; i++) {
-         string = listOfStates[i].id;
-         locationState = string.indexOf("/state:") + 7;
-         stateAcronym = string.substring(locationState, locationState + 2);
-         dropDownMenu = document.getElementById("state-selection");
- 
-         dropDownElement = document.createElement("a");
-         dropDownElement.className = "dropdown-item";
-         dropDownElement.href = "?state=" + stateAcronym;
-         dropDownElement.innerText = listOfStates[i].name;
- 
-         dropDownMenu.append(dropDownElement);
-     }
- }
- 
+
  function retrieveLegislatorsByJurisdiction(jurisdictionID, page, callback) {
-     var url = `https://v3.openstates.org/people?jurisdiction=ocd-jurisdiction/country:us/state:${state.toLowerCase()}/government&page=${page}&per_page=10&apikey=de2b3634-5679-4a06-bb71-c350f876fbad`;
+     var url =
+     "https://v3.openstates.org/people?jurisdiction=" +
+     jurisdictionID +
+     "&page=" +
+     page +
+         "&per_page=10&apikey=de2b3634-5679-4a06-bb71-c350f876fbad";
  
      if (!localStorage[jurisdictionID + "-" + page]) {
          fetch(url)
@@ -215,7 +204,7 @@ function retrieveJurisdictionIdByState(searchedState, callback) {
              
              .then(function (_data) {
                  var legislators = _data;
-
+                 
                  localStorage[jurisdictionID + "-" + page] = JSON.stringify(legislators);
                  callback(legislators);
              });

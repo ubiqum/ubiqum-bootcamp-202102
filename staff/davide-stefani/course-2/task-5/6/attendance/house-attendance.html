@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <title> Senate Loyalty </title>
+    <title> House Attendence </title>
     <meta charset="utf-8" />
     <meta name="description" content=house-data />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/staff/davide-stefani/course-2/task-5/5/style.css">
+    <link rel="stylesheet" href="/staff/davide-stefani/course-2/task-5/6/style.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
         </header>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/staff/davide-stefani/course-2/task-5/5/main/home.html">Home</a>
+            <a class="navbar-brand" href="/staff/davide-stefani/course-2/task-5/6/main/home.html">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,10 +35,10 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item"
-                                href="/staff/davide-stefani/course-2/task-5/5/main/house-data.html">House</a>
+                                href="/staff/davide-stefani/course-2/task-5/6/main/house-data.html">House</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item"
-                                href="/staff/davide-stefani/course-2/task-5/5/main/senate-data.html">Senate</a>
+                                href="/staff/davide-stefani/course-2/task-5/6/main/senate-data.html">Senate</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">
@@ -49,10 +49,10 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item"
-                                href="/staff/davide-stefani/course-2/task-5/5/attendance/house-attendance.html">House</a>
+                                href="/staff/davide-stefani/course-2/task-5/6/attendance/house-attendance.html">House</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item"
-                                href="/staff/davide-stefani/course-2/task-5/5/attendance/senate-attendance.html">Senate</a>
+                                href="/staff/davide-stefani/course-2/task-5/6/attendance/senate-attendance.html">Senate</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">
@@ -63,20 +63,21 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item"
-                                href="/staff/davide-stefani/course-2/task-5/5/loyalty/house-loyalty.html">House</a>
+                                href="/staff/davide-stefani/course-2/task-5/6/loyalty/house-loyalty.html">House</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item"
-                                href="/staff/davide-stefani/course-2/task-5/5/loyalty/senate-loyalty.html">Senate</a>
+                                href="/staff/davide-stefani/course-2/task-5/6/loyalty/senate-loyalty.html">Senate</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
-                      <a class="dropdown-item"
-                        href="/staff/davide-stefani/course-2/task-5/5/legislators/legislators.html">State Legistrators</a>
-                      <div class="dropdown-menu" id="state-selection" aria-labelledby="navbarDropdown">
-                      </div>
+                        <a class="dropdown-item"
+                            href="/staff/davide-stefani/course-2/task-5/6/legislators/legislators.html">State
+                            Legistrators</a>
+                        <div class="dropdown-menu" id="state-selection" aria-labelledby="navbarDropdown">
+                        </div>
                     </li>
-                  </ul>
+                </ul>
             </div>
         </nav>
 
@@ -86,17 +87,27 @@
         </header>
 
         <div class="attendance-loyalty-grid">
-            <div class="attendance-text">
-                <h2>Party Loyalty</h2>
-                <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans
-                    respectively, tend to be the most faithful in voting for their party's nominee for office and
-                    legislation that backs their party's agenda. </p>
+            <div class="attendance-loyalty-text">
+                <h2>Attendance</h2>
+                <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each
+                    house.
+                    Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus,
+                    in
+                    most cases, debates continue even if a majority is not present.</p>
+
+                <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator
+                    stating
+                    "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most
+                    formal
+                    matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by
+                    electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice
+                    President
+                    may (if present) cast the tiebreaking vote.</p>
             </div>
 
             <div id="glanceBody" class="table table-striped">
-
-                <h2>Senate at a glance</h2>
-                <table>
+                <h2>House at a glance</h2>
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Party</th>
@@ -114,43 +125,45 @@
                 </table>
             </div>
 
-            <div id="least-loyal-table" class="table table-striped">
+            <div id="least-engaged-table" class="table table-striped">
 
-                <h2>Least Loyal (Bottom 10% of Party)</h2>
+                <h2>Least Engaged (Bottom 10% Attendance)</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Number Party Votes</th>
-                            <th>% Party Votes</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(member, key) in lowestLoyalty">
-                            <td><a v-bind:href="member.url" class="iframe">{{member.first_name}} {{member.middle_name}} {{member.last_name}}</a></td>
-                            <td>{{member.total_votes}}</td>
-                            <td>{{member.votes_with_party_pct}} %</td>
+                        <tr v-for="(member, key) in lowMissedVotes">
+                            <td><a v-bind:href="member.url" class="iframe">{{member.first_name}} {{member.middle_name}}
+                                    {{member.last_name}}</a></td>
+                            <td>{{member.missed_votes}}</td>
+                            <td>{{member.missed_votes_pct}} %</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div id="most-loyal-table" class="table table-striped">
+            <div id="most-engaged-table" class="table table-striped">
 
-                <h2>Most Loyal (Top 10% of Party)</h2>
+                <h2>Most Engaged (Top 10% Attendance)</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Number Party Votes</th>
-                            <th>% Party Votes</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(member, key) in highestLoyalty">
-                            <td><a v-bind:href="member.url" class="iframe">{{member.first_name}} {{member.middle_name}} {{member.last_name}}</a></td>
-                            <td>{{member.total_votes}}</td>
-                            <td>{{member.votes_with_party_pct}} %</td>
+                        <tr v-for="member, key) in highMissedVotes">
+                            <td><a v-bind:href="member.url" class="iframe">{{member.first_name}} {{member.middle_name}}
+                                    {{member.last_name}}</a></td>
+                            <td>{{member.missed_votes}}</td>
+                            <td>{{member.missed_votes_pct}} %</td>
                         </tr>
                     </tbody>
                 </table>
@@ -174,13 +187,14 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-        <!-- <script src="pro-congress-113-senate.js"></script> -->
+        <!-- <script src="pro-congress-113-house.js"></script> -->
 
-        <script>var url = "https://api.propublica.org/congress/v1/113/senate/members.json"</script>
-        <script src="/staff/davide-stefani/course-2/task-5/5/loyalty/loyalty.js"></script>
-        <script src="/staff/davide-stefani/course-2/task-5/5/legislators/states.js"></script>
-        <script src="/staff/davide-stefani/course-2/task-5/5/logic.js"></script>
-        <script src="/staff/davide-stefani/course-2/task-5/5/legislators/legislators-main.js"></script>
+        <script>var url = "https://api.propublica.org/congress/v1/113/house/members.json"</script>
+
+        <script src="/staff/davide-stefani/course-2/task-5/6/attendance/attendance.js"></script>
+        <script src="/staff/davide-stefani/course-2/task-5/6/legislators/states.js"></script>
+        <script src="/staff/davide-stefani/course-2/task-5/6/logic.js"></script>
+        <script src="/staff/davide-stefani/course-2/task-5/6/legislators/legislators-main.js"></script>
 
 </body>
 

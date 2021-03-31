@@ -10,14 +10,14 @@ function renderLegislatorsList(legislators) {
     });
 }
 
-var parameter= new URLSearchParams(window.location.search);
-var state = parameter.get("state");
+var parameterState = new URLSearchParams(window.location.search);
+var state = parameterState.get("state");
 if (state === null) {
     state = "AL";
 }
 var searchedState = state.toLowerCase();
-
-var page = parameter.get("page");
+var parameterPage = new URLSearchParams(window.location.search);
+var page = parameterPage.get("page");
 if (page === null) {
     page = 1
 }
@@ -31,7 +31,6 @@ retrieveJurisdictionIdByState(searchedState, function (jurisdictionID) {
         }
     );
 });
-
 
 function setPages(pageNumbers) {
     var ul = document.getElementById("page_numbers");
@@ -47,3 +46,20 @@ function setPages(pageNumbers) {
       ul.append(pageNumber);
     }
   }
+
+   
+ function setDropDown(listOfStates) {
+    for (i = 0; i < listOfStates.length; i++) {
+        string = listOfStates[i].id;
+        locationState = string.indexOf("/state:") + 7;
+        stateAcronym = string.substring(locationState, locationState + 2);
+        dropDownMenu = document.getElementById("state-selection");
+
+        dropDownElement = document.createElement("a");
+        dropDownElement.className = "dropdown-item";
+        dropDownElement.href = "?state=" + stateAcronym;
+        dropDownElement.innerText = listOfStates[i].name;
+
+        dropDownMenu.append(dropDownElement);
+    }
+}
