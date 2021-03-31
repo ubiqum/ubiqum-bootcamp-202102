@@ -107,10 +107,32 @@ const GameDetails = {
     <p class="text-center"><b>Teams:</b> {{games[0].teams.join(" against ")}}</p>
     </section>
     <section class="text-center">
-    <button id="sign-in-button" v-on:click="signIn"><i class="bi bi-person-fill"></i>Login with google</button>
+    <p v-if="!loggedIn">to see commands an pictures log in</p>
+    <button id="sign-in-button" v-on:click="signIn" v-if="!loggedIn"><i class="bi bi-person-fill"></i>Login with google</button>
     </section>
-    <section v-if="loggedIn">
-      <p>can you see this?</p>
+    <section v-if="loggedIn" class="text-center">
+    <button v-on:click="showPostStation">write post</button>
+      <div class="card" v-if="addPost">
+        <div class="card-header text-center" >
+          New Post
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title"><input v-model="subject" placeholder="add subject"></h5>
+          <p class="card-text"><textarea v-model="body" placeholder="write your post here"></textarea></p>
+          <input type="file">
+          <a v-on:click="writeNewPost" class="btn btn-primary">Add post</a>
+        </div>
+      </div>
+      <divv-for="(post, key) in recentPosts">
+      <div v-if="loggedIn" >
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{subject}}</h5>
+            <p class="card-text">{{body}}</p>
+          </div>
+        </div>
+      </div>
+      </div>
     </section>
     
     </div>`,
@@ -118,6 +140,12 @@ const GameDetails = {
     return {
       games: getGameDetails(this.$route.params.id),
       loggedIn: false,
+      subject: "",
+      body: "",
+      selectedImage: " ",
+      addPost: false,
+      gameID: this.$route.params.id,
+      recentPosts:getPosts(this.$route.params.id)
     };
   },
   methods: {
@@ -128,9 +156,19 @@ const GameDetails = {
         } else {
           this.loggedIn = false;
         }
-      });
+      })
     },
-  },
+    showPostStation(){
+      this.addPost = true;
+    },
+    writeNewPost(){
+      var uid = firebase.auth().currentUser.uid;
+      var username= firebase.auth().currentUser.displayName;
+      var picture = firebase.auth().currentUser.photoURL;
+      writeNewPost(this.gameID,uid,username,picture, this.subject, this.body)
+      this.addPost=false;
+    }
+  }
 };
 
 const LocationDetails = {

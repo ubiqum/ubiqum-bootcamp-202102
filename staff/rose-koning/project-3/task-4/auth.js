@@ -9,11 +9,6 @@ function newSignIn(callback) {
     firebase.auth().signInWithPopup(provider);
   }
 
-// get user information from authentication
-
-
-
-
 //store user info in database
 function writeUserData(userId, name, email, imageUrl) {
     firebase

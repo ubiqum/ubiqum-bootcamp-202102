@@ -1,4 +1,3 @@
-
 const routes = [
   { path: "/games", component: Games },
   { path: "/contact", component: Contact },

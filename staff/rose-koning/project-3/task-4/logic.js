@@ -59,5 +59,29 @@ function getLocationDetials(location){
   return selectedLocation;
 }
 
+function writeNewPost(gameID,uid, username, picture, subject, body){
+  // A post entry.
+  var postData = {
+    author: username,
+    uid: uid,
+    body: body,
+    subject: subject,
+    authorPic: picture
+  };
 
+  // Get a key for a new Post.
+  var newPostKey = firebase.database().ref().child('posts').push().key;
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  var updates = {};
+  updates['/posts/' + gameID+'/'+newPostKey] = postData;
+  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+
+  return firebase.database().ref().update(updates);
+}
+
+function getPosts(gameID){
+  var recentPosts = firebase.database().ref('posts/'+gameID).limitToLast(100);
+  return recentPosts;
+}
 
