@@ -107,7 +107,7 @@ const GameDetails = {
     <p class="text-center"><b>Teams:</b> {{games[0].teams.join(" against ")}}</p>
     </section>
     <section class="text-center">
-    <p v-if="!loggedIn">to see commands an pictures log in</p>
+    <p v-if="!loggedIn">to see comments an pictures log in</p>
     <button id="sign-in-button" v-on:click="signIn" v-if="!loggedIn"><i class="bi bi-person-fill"></i>Login with google</button>
     </section>
     <section v-if="loggedIn" class="text-center">
@@ -123,15 +123,17 @@ const GameDetails = {
           <a v-on:click="writeNewPost" class="btn btn-primary">Add post</a>
         </div>
       </div>
-      <divv-for="(post, key) in recentPosts">
-      <div v-if="loggedIn" >
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">{{subject}}</h5>
-            <p class="card-text">{{body}}</p>
+      <div v-for="(post,key) in recentPosts" class="text-center">
+        <div>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{post.title}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">written by:{{post.author}}</h6>
+              <p class="card-text">{{post.body}}</p>
+            </div>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
     
@@ -145,8 +147,13 @@ const GameDetails = {
       selectedImage: " ",
       addPost: false,
       gameID: this.$route.params.id,
-      recentPosts:getPosts(this.$route.params.id)
+      recentPosts: [],
     };
+  },
+  created: function () {
+    fetchPosts(this.$route.params.id, (posts) => {
+      this.recentPosts = posts;
+    });
   },
   methods: {
     signIn() {
@@ -156,40 +163,53 @@ const GameDetails = {
         } else {
           this.loggedIn = false;
         }
-      })
+      });
     },
-    showPostStation(){
+    showPostStation() {
       this.addPost = true;
     },
-    writeNewPost(){
+    writeNewPost() {
       var uid = firebase.auth().currentUser.uid;
-      var username= firebase.auth().currentUser.displayName;
+      var username = firebase.auth().currentUser.displayName;
       var picture = firebase.auth().currentUser.photoURL;
-      writeNewPost(this.gameID,uid,username,picture, this.subject, this.body)
-      this.addPost=false;
-    }
-  }
+      writeNewPost(
+        this.gameID,
+        uid,
+        username,
+        picture,
+        this.subject,
+        this.body
+      );
+      this.addPost = false;
+      this.recentPosts.push({
+        author: username,
+        image: picture,
+        title: this.subject,
+        body: this.body,
+      });
+    },
+  },
 };
 
 const LocationDetails = {
   template: `<div>
     <a class="button button__goback" href="javascript:history.go(-1)"> Go Back</a>
-    <h2 class="text-center">{{locations[0].name}}</h2>
-    <p class="text-center">{{locations[0].address}}</p>
-    <div id="map-container" class="z-depth-1-half map-container" style="height: 500px">
-    <iframe v-bind:src="locations[0].map" style="border:0;" allowfullscreen></iframe>
+    <h2 class="text-center">{{location.name}}</h2>
+    <p class="text-center">{{location.address}}</p>
+   
+    <div id="map"></div>
     </div>
     </div>`,
   data() {
     return {
-      locations: getLocationDetials(this.$route.params.location),
+      location: getLocationDetails(this.$route.params.location),
     };
   },
 };
-
-const SplashScreen = {};
 
 const Contact = {
   template: `<div><h1 class="text-center">Contact</h1>
   <p class="text-center">You can email us at info@NYSL.com</p></div>`,
 };
+
+

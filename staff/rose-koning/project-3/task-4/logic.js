@@ -41,47 +41,61 @@ function getGamesThisLocation(location) {
   return filteredGames;
 }
 
-function getGameDetails(gameId){
+function getGameDetails(gameId) {
   var games = matches;
-  var chosenGame = games.filter(function(games){
-    if(games.id=== gameId)
-    return games;
-  })
+  var chosenGame = games.filter(function (games) {
+    if (games.id === gameId) return games;
+  });
   return chosenGame;
 }
 
-function getLocationDetials(location){
-  var locations=locationDetails;
-  var selectedLocation = locations.filter(function(locations){
-    if(locations.id=== location)
-    return locations;
-  })
+function getLocationDetails(locationId) {
+  var locations = locationDetails;
+  var selectedLocation = locations.find(function (location) {
+    if (location.id === locationId) return true;
+  });
   return selectedLocation;
 }
 
-function writeNewPost(gameID,uid, username, picture, subject, body){
+function writeNewPost(gameID, uid, username, picture, subject, body) {
   // A post entry.
   var postData = {
     author: username,
     uid: uid,
     body: body,
     subject: subject,
-    authorPic: picture
+    authorPic: picture,
   };
 
   // Get a key for a new Post.
-  var newPostKey = firebase.database().ref().child('posts').push().key;
+  var newPostKey = firebase.database().ref().child("posts").push().key;
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   var updates = {};
-  updates['/posts/' + gameID+'/'+newPostKey] = postData;
-  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+  updates["/posts/" + gameID + "/" + newPostKey] = postData;
+  updates["/user-posts/" + uid + "/" + newPostKey] = postData;
 
   return firebase.database().ref().update(updates);
 }
+function fetchPosts(gameID, callback) {
+  var commentsRef = firebase
+    .database()
+    .ref("posts/" + gameID)
+    .limitToLast(100);
+  var posts = [];
+  commentsRef.once("value", (snap) => {
+    snap.forEach((post) => {
+      var key = post.key;
+      var title = post.val().subject;
+      var body = post.val().body;
+      var author = post.val().author;
+      var image = post.val().authorPic;
+      var post = { key, title, body, author, image };
+      posts.push(post);
+    });
 
-function getPosts(gameID){
-  var recentPosts = firebase.database().ref('posts/'+gameID).limitToLast(100);
-  return recentPosts;
+    callback(posts);
+  });
 }
+
 
