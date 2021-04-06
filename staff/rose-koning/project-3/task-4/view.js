@@ -196,15 +196,27 @@ const LocationDetails = {
     <a class="button button__goback" href="javascript:history.go(-1)"> Go Back</a>
     <h2 class="text-center">{{location.name}}</h2>
     <p class="text-center">{{location.address}}</p>
-   
+    <p> latitude {{coordinates.lat}} longtitude {{coordinates.lng}}</p>
     <div id="map"></div>
     </div>
     </div>`,
   data() {
     return {
       location: getLocationDetails(this.$route.params.location),
+      coordinates:{
+        lat: 0,
+        lng:0
+      }
     };
   },
+  created(){
+    this.$getLocation({})
+    .then(coordinates =>{
+      this.coordinates = coordinates
+      initMap(this.location, coordinates)
+    })
+    
+  }
 };
 
 const Contact = {
@@ -212,4 +224,27 @@ const Contact = {
   <p class="text-center">You can email us at info@NYSL.com</p></div>`,
 };
 
-
+// Initialize and add the map
+function initMap(location, coordinates) {
+  // The location of Uluru
+var locationLat = location.geo[0];
+var locationLng = location.geo[1];
+var myLocationLat = coordinates.lat;
+var myLocationlng = coordinates.lng;
+  const clubLocation= {lat: locationLat, lng: locationLng};
+  const myLocation = {lag: myLocationLat, lng: myLocationlng};
+  // The map, centered at mylocation
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: clubLocation,
+  });
+  // The marker, positioned at Uluru
+  const locationMarker = new google.maps.Marker({
+    position: clubLocation,
+    map: map,
+  });
+  const userMarker = new google.maps.Marker({
+    position: myLocation,
+    map: map,
+  });
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="cache.appcache">
+  
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -64,11 +65,10 @@
       crossorigin="anonymous"
     ></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script> -->
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"
-  ></script>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-browser-geolocation@1.8.0/dist/vue-geolocation.min.js"></script>
     <script src="firebase.js"></script>
     <script src="games.js"></script>
     <script src="locations.js"></script>
@@ -76,5 +76,8 @@
     <script src="view.js"></script>
     <script src="auth.js"></script>
     <script src="main.js"></script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeeC1S_BCq6l6bPtDiTXsOUiDzgkHvTl4&callback=initMaps&libraries=&v=weekly"
+  ></script>
   </body>
 </html>
