@@ -119,7 +119,6 @@ const GameDetails = {
         <div class="card-body text-center">
           <h5 class="card-title"><input v-model="subject" placeholder="add subject"></h5>
           <p class="card-text"><textarea v-model="body" placeholder="write your post here"></textarea></p>
-          <input type="file">
           <a v-on:click="writeNewPost" class="btn btn-primary">Add post</a>
         </div>
       </div>
@@ -144,7 +143,6 @@ const GameDetails = {
       loggedIn: false,
       subject: "",
       body: "",
-      selectedImage: " ",
       addPost: false,
       gameID: this.$route.params.id,
       recentPosts: [],
@@ -171,22 +169,23 @@ const GameDetails = {
     writeNewPost() {
       var uid = firebase.auth().currentUser.uid;
       var username = firebase.auth().currentUser.displayName;
-      var picture = firebase.auth().currentUser.photoURL;
+      var profilePicture = firebase.auth().currentUser.photoURL;
+      
       writeNewPost(
         this.gameID,
         uid,
         username,
-        picture,
+        profilePicture,
         this.subject,
-        this.body
+        this.body,
       );
       this.addPost = false;
       this.recentPosts.push({
         author: username,
-        image: picture,
+        image: profilePicture,
         title: this.subject,
-        body: this.body,
-      });
+        body: this.body, 
+            });
     },
   },
 };
@@ -232,7 +231,7 @@ var locationLng = location.geo[1];
 var myLocationLat = coordinates.lat;
 var myLocationlng = coordinates.lng;
   const clubLocation= {lat: locationLat, lng: locationLng};
-  const myLocation = {lag: myLocationLat, lng: myLocationlng};
+  const myLocation = {lat: myLocationLat, lng: myLocationlng};
   // The map, centered at mylocation
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -248,3 +247,4 @@ var myLocationlng = coordinates.lng;
     map: map,
   });
 }
+

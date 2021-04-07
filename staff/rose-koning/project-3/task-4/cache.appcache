@@ -1,3 +1,10 @@
+CACHE MANIFEST
+
+NETWORK:
+*
+
+CACHE:
+
 firebase.js
 games.js
 locations.js

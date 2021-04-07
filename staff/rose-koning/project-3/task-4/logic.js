@@ -57,14 +57,14 @@ function getLocationDetails(locationId) {
   return selectedLocation;
 }
 
-function writeNewPost(gameID, uid, username, picture, subject, body) {
+function writeNewPost(gameID, uid, username, profilePicture, subject, body) {
   // A post entry.
   var postData = {
     author: username,
     uid: uid,
     body: body,
     subject: subject,
-    authorPic: picture,
+    authorPic: profilePicture,
   };
 
   // Get a key for a new Post.
@@ -90,7 +90,8 @@ function fetchPosts(gameID, callback) {
       var body = post.val().body;
       var author = post.val().author;
       var image = post.val().authorPic;
-      var post = { key, title, body, author, image };
+      var photo = post.val().photo;
+      var post = { key, title, body, author, image, photo };
       posts.push(post);
     });
 
