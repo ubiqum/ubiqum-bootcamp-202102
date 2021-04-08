@@ -1,0 +1,90 @@
+.content_wrapper {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 960px;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-style: italic;
+    margin: 0;
+}
+
+#logo_img {
+    position: absolute;
+    top: 41rem;
+    left: 0;    
+    width: 10rem;
+    height: auto;
+}
+
+#header_img {
+    width: 100%;
+    height: auto;
+}
+
+nav {  
+    position: absolute;
+    top: 2rem;
+    right: 0;
+}
+
+nav li {  
+    list-style-type: none;
+    display: inline;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    border: solid;
+    border-color: black;
+    background-color: blue;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    box-shadow: 5px 2.5px 2.5px black;
+}
+
+.active_page {
+    background-color: green;
+}
+
+article h1 {
+    text-align: center;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    margin-top: -0.25em;
+    border: solid;
+    font-weight: 900;
+}
+
+
+.main_text {  
+    width: 80%;
+    float:right;
+}
+
+article li {  
+    list-style-type: none;
+}
+
+article > div > ul > li{
+    font-style: italic;
+}
+
+article > div > ul > ul > li{
+    margin-bottom: 2em;
+}
+
+article p {
+    margin-top: 0;
+    margin-left: 1em;
+}
+
+article h2 {
+    margin-bottom: 0;
+}
