@@ -57,26 +57,6 @@ function getLocationDetails(locationId) {
   return selectedLocation;
 }
 
-function writeNewPost(gameID, uid, username, profilePicture, subject, body) {
-  // A post entry.
-  var postData = {
-    author: username,
-    uid: uid,
-    body: body,
-    subject: subject,
-    authorPic: profilePicture,
-  };
-
-  // Get a key for a new Post.
-  var newPostKey = firebase.database().ref().child("posts").push().key;
-
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-  var updates = {};
-  updates["/posts/" + gameID + "/" + newPostKey] = postData;
-  updates["/user-posts/" + uid + "/" + newPostKey] = postData;
-
-  return firebase.database().ref().update(updates);
-}
 function fetchPosts(gameID, callback) {
   var commentsRef = firebase
     .database()
@@ -99,5 +79,47 @@ function fetchPosts(gameID, callback) {
   });
 }
 
+function signIn(callback) {
+  firebase.auth()
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider().setCustomParameters({ prompt: 'select_account' }))
+      .then(function () {
+          callback(null)
+      })
+}
 
+function isSignedIn() {
+  return !!firebase.auth().currentUser
+}
 
+function signOut(callback) {
+  firebase.auth()
+      .signOut()
+      .then(function () {
+          callback(null)
+      })
+}
+
+function showPostStation() {
+  this.addPost = true;
+}
+
+function writeNewPost(gameID, uid, username, profilePicture, subject, body) {
+  // A post entry.
+  var postData = {
+    author: username,
+    uid: uid,
+    body: body,
+    subject: subject,
+    authorPic: profilePicture,
+  };
+
+  // Get a key for a new Post.
+  var newPostKey = firebase.database().ref().child("posts").push().key;
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  var updates = {};
+  updates["/posts/" + gameID + "/" + newPostKey] = postData;
+  updates["/user-posts/" + uid + "/" + newPostKey] = postData;
+
+  return firebase.database().ref().update(updates);
+}

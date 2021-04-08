@@ -10,6 +10,13 @@ var firebaseConfig = {
     measurementId: "G-Q0SKP2YR4F",
   };
   
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+
+  function initFirebase(callback) {
+    firebase.initializeApp(firebaseConfig)
+
+    firebase.auth()
+
+    setTimeout(function() {
+        callback(null)
+    }, 5000)
+}

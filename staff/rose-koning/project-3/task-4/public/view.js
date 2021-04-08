@@ -1,3 +1,10 @@
+const Home = {
+  template: `<div>
+    <h1 class="text-center">Welcome to NYSL</h1>
+    </div>
+  </div>`,
+};
+
 const ByTeams = {
   template: `<div>
     <a class="button button__goback" href="javascript:history.go(-1)"> Go Back</a>
@@ -98,7 +105,7 @@ const GamesForLocation = {
 const GameDetails = {
   template: `<div>
     <a class="button button__goback" href="javascript:history.go(-1)"> Go Back</a>
-    <h2 class="text-center">Game details</h2>
+    <h2 class="text-center">Game details</h2><button class="text-right" v-if="isSignedIn()" v-on:click="signOut">Sign Out</button><comments/></main>
   
     <section>
     <p class="text-center"><b>Location:</b> <router-link class="button" v-bind:to="'/locationDetails/'+games[0].location">{{games[0].location}}</router-link></td></h2>
@@ -107,11 +114,12 @@ const GameDetails = {
     <p class="text-center"><b>Teams:</b> {{games[0].teams.join(" against ")}}</p>
     </section>
     <section class="text-center">
-    <p v-if="!loggedIn">to see comments an pictures log in</p>
-    <button id="sign-in-button" v-on:click="signIn" v-if="!loggedIn"><i class="bi bi-person-fill"></i>Login with google</button>
+    <p v-if="isSignedIn()">to see comments an pictures log in</p>
+    <button id="sign-in-button" v-on:click="signIn" v-if="!isSignedIn()"><i class="bi bi-person-fill"></i>Login with google</button>
+    
     </section>
-    <section v-if="loggedIn" class="text-center">
-    <button v-on:click="showPostStation">write post</button>
+    <section v-if="isSignedIn()" class="text-center">
+    <button v-on:click="showPostStation()">write post</button>
       <div class="card" v-if="addPost">
         <div class="card-header text-center" >
           New Post
@@ -133,14 +141,13 @@ const GameDetails = {
             </div>
           </div>
         </div>
-      </div>
+      
     </section>
     
     </div>`,
   data() {
     return {
       games: getGameDetails(this.$route.params.id),
-      loggedIn: false,
       subject: "",
       body: "",
       addPost: false,
@@ -148,47 +155,32 @@ const GameDetails = {
       recentPosts: [],
     };
   },
-  created: function () {
-    fetchPosts(this.$route.params.id, (posts) => {
-      this.recentPosts = posts;
-    });
-  },
   methods: {
-    signIn() {
-      newSignIn((user) => {
-        if (user) {
-          this.loggedIn = true;
-        } else {
-          this.loggedIn = false;
-        }
-      });
-    },
-    showPostStation() {
-      this.addPost = true;
-    },
-    writeNewPost() {
+    signIn:signIn,
+    isSignedIn:isSignedIn,
+    signOut:signOut,
+    showPostStation:showPostStation,
+    writeNewPost: function () {
       var uid = firebase.auth().currentUser.uid;
       var username = firebase.auth().currentUser.displayName;
       var profilePicture = firebase.auth().currentUser.photoURL;
-      
-      writeNewPost(
-        this.gameID,
-        uid,
-        username,
-        profilePicture,
-        this.subject,
-        this.body,
-      );
+      writeNewPost(this.gameID,uid,username,profilePicture,this.subject, this.body)
       this.addPost = false;
       this.recentPosts.push({
         author: username,
         image: profilePicture,
         title: this.subject,
-        body: this.body, 
-            });
-    },
+        body: this.body,
+  })
   },
-};
+  
+  created: function () {
+    fetchPosts(this.$route.params.id, (posts) => {
+      this.recentPosts = posts;
+    });
+  },
+}
+}
 
 const LocationDetails = {
   template: `<div>
@@ -202,20 +194,18 @@ const LocationDetails = {
   data() {
     return {
       location: getLocationDetails(this.$route.params.location),
-      coordinates:{
+      coordinates: {
         lat: 0,
-        lng:0
-      }
+        lng: 0,
+      },
     };
   },
-  created(){
-    this.$getLocation({})
-    .then(coordinates =>{
-      this.coordinates = coordinates
-      initMap(this.location, coordinates)
-    })
-    
-  }
+  created() {
+    this.$getLocation({}).then((coordinates) => {
+      this.coordinates = coordinates;
+      initMap(this.location, coordinates);
+    });
+  },
 };
 
 const Contact = {
@@ -226,12 +216,12 @@ const Contact = {
 // Initialize and add the map
 function initMap(location, coordinates) {
   // The location of Uluru
-var locationLat = location.geo[0];
-var locationLng = location.geo[1];
-var myLocationLat = coordinates.lat;
-var myLocationlng = coordinates.lng;
-  const clubLocation= {lat: locationLat, lng: locationLng};
-  const myLocation = {lat: myLocationLat, lng: myLocationlng};
+  var locationLat = location.geo[0];
+  var locationLng = location.geo[1];
+  var myLocationLat = coordinates.lat;
+  var myLocationlng = coordinates.lng;
+  const clubLocation = { lat: locationLat, lng: locationLng };
+  const myLocation = { lat: myLocationLat, lng: myLocationlng };
   // The map, centered at mylocation
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -248,3 +238,18 @@ var myLocationlng = coordinates.lng;
   });
 }
 
+const routes = [
+  { path: "/home", component: Home },
+  { path: "/games", component: Games },
+  { path: "/contact", component: Contact },
+  { path: "/byTeams", component: ByTeams },
+  { path: "/byLocations", component: ByLocations },
+  { path: "/gamesFor/:team", component: GamesForTeam },
+  { path: "/gamesPer/:location", component: GamesForLocation },
+  { path: "/gamesDetails/:id", component: GameDetails },
+  { path: "/locationDetails/:location", component: LocationDetails },
+];
+
+const router = new VueRouter({
+  routes,
+});
