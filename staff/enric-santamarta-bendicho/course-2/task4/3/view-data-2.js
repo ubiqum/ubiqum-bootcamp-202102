@@ -1,6 +1,6 @@
 
 
-function getPublicData() {
+$(function(){ 
     fetch("https://api.propublica.org/congress/v1/113/senate/members.json",
         {
             headers: {
@@ -14,8 +14,8 @@ function getPublicData() {
         .then(function (data) {
             var members = data.results[0].members;
             createList(members);
-        })
-}
+        }) })
+
 
 
 
@@ -89,6 +89,3 @@ function createList(members) {
 
 }
 document.getElementById("clickMe").onclick = getPublicData();
-
-
-
