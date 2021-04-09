@@ -2,17 +2,14 @@ body {
   Background-color:  	#98FB98;
 }
 #content {
-  color: ;
   width: 800px;
   margin-right: auto;
-  padding : -10px;
 }
 #header {
   color: white;
   display: block;
   background-image: url(../images/design1-image1.jpg);
   height: 200px;
-  
 }
 
 img{
@@ -23,7 +20,6 @@ z-index: 100;
 }
 #nav {
   float: left;
-  top: 100px;
   text-decoration: none;
   color: gray;
 }
@@ -32,8 +28,9 @@ z-index: 100;
   color: Red;
 }
 #main{
-  float:right;
-  right: 100px;
+  position: absolute;
+  float: right;
+  left: 200px;
   
 }
 #header2{

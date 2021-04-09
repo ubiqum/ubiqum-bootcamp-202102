@@ -1,0 +1,44 @@
+body {
+  Background-color:  	#98FB98;
+}
+#content {
+  width: 800px;
+  margin-right: auto;
+}
+#header {
+  color: white;
+  display: block;
+  background-image: url(../images/design1-image1.jpg);
+  height: 200px;
+}
+
+img{
+position: absolute;
+margin-left: 65%;
+top: 200px;
+z-index: 100;
+}
+#nav {
+  float: left;
+  top: 100px;
+  text-decoration: none;
+  color: gray;
+}
+#nav a{
+  text-decoration: none;
+  color: Red;
+}
+#main{
+  float:right;
+  right: 100px;
+  
+}
+#header2{
+  background-color: black;
+  color: white;
+  display: block;
+  clear: both;
+  position: relative;
+  top: -20px;
+  height: 30px;
+}
