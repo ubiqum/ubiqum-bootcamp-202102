@@ -37,6 +37,7 @@
 - https://javascript.info/currying-partials
 - https://medium.com/javascript-scene/curry-and-function-composition-2c208d774983 
 
+
 # Prototype Chain
 - One-way delegation relationship between two objects
 - Nearly all objects in JavaScript are instances of Object which sits on the top of a prototype chain
@@ -45,3 +46,17 @@
 **Sources:**
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
 - https://toastui.medium.com/javascripts-prototype-chain-made-easy-adbcd5a76e75
+
+
+#  apply vs call vs bind
+- Call invokes the function and allows you to pass in arguments one by one
+- Apply invokes the function and allows you to pass in arguments as an array
+- Bind returns a new function, allowing you to pass in a "this" array and any number of arguments
+- Call and apply are mostly interchangeable. Decision on what to use should be whether it’s easier to send in an array or a comma separated list of arguments
+- Mnemonic: Call is for comma (separated list) and Apply is for Array
+- Bind returns a new function. Call and Apply execute the current function immediately
+- Bind use cases are for example curry functions or events like onClick where we don’t know when they’ll be fired but we know what context we want them to have
+
+**Sources:**
+- https://www.freecodecamp.org/news/the-difference-between-javascripts-call-apply-and-bind-methods-4e69917f77bd/
+- https://stackoverflow.com/questions/15455009/javascript-call-apply-vs-bind
