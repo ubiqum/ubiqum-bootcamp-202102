@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Vue compiled Javascript library-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- Mustache compiled JavaScript and Jquery Library-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+
+    <!-- Colorbox files -->
+    <link rel="stylesheet" href="../colorbox-master/example1/colorbox.css">
+    <script src="../colorbox-master/jquery.colorbox.js"></script>
+    <script src="../colorbox-master/jquery.colorbox-min.js"></script>
+
+    <style>
+        .scrollable-menu {
+            height: auto;
+            max-height: 200px;
+            overflow-x: hidden;
+        }
+    </style>
+
+    <title>House Data</title>
+</head>
+<body>
+    <div class = "container">
+        <ul class="nav navbar-nav">
+            <li><img src = "../img/tgif_logo.jpg" alt = "Site logo" href="index.html" width ="25%" height = "25%"></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right"><br><br>
+            <li><span class="glyphicon glyphicon-envelope"><a target="_blank" rel="nofollow noreferrer noopener" 
+                href="mailto:info@tgif.net"> info@tgif.net &ensp;</a></span></li>
+    </div>
+            
+    <nav class="navbar navbar-inverse container">  
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown active"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Congress 113 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="senate-data.html">Senate</a></li>
+                            <li class="active"><a href="house-data.html">House</a></li>
+
+                        </ul>
+                    </li>                    
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Attendance <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="senate-attendance.html">Senate</a></li>
+                            <li><a href="house-attendance.html">House</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Party Loyalty <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="senate-party-loyalty.html">Senate</a></li>
+                            <li><a href="house-party-loyalty.html">House</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id = "States-drp"><a class="dropdown-toggle" data-toggle="dropdown" href="#">State Legislators <span class="caret"></span></a>
+                        <ul class="dropdown-menu scrollable-menu">
+                            <!--<li><a href="washington-legislator.html">Washington State Legislators</a></li>-->
+                            <script id = "Legislator-state-template" type = "text/template">
+                                {{#states}}
+                                <li><a href="legislator.html?state={{State Name}}">{{State Name}} Legislators</a></li>
+                                {{/states}}
+                            </script>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>        
+
+    <!--<header>   
+        <div>
+        </div>
+    </header>-->
+
+    <!--Table container-->
+    <div  class="container">
+        <h2>Congressmen</h2>
+        <p>The major power of the House is to pass federal legislation that affects the entire country, 
+            although its bills must also be passed by the Senate and further agreed to by the U.S. President before 
+            becoming law (unless both the House and Senate re-pass the legislation with a two-thirds majority in each 
+            chamber). The House has some exclusive powers: the power to initiate revenue bills, to impeach officials 
+            (impeached officials are subsequently tried in the Senate), and to elect the U.S. President in case there 
+            is no majority in the Electoral College.</p>
+        <p>Each U.S. state is represented in the House in proportion to its population as measured in the census, 
+            but every state is entitled to at least one representative. </p>  <br>  
+            <ul class="nav navbar-nav">
+                
+                <li><p><label>Filter by Party:  &emsp;</label> 
+                    <input type="checkbox" id="Rep" name="party1" value="Republican" checked><label for="party1"> &nbsp;Republican &nbsp;</label>                   
+                    <input type="checkbox" id="Dem" name="party2" value="Democrat" checked><label for="party2"> &nbsp;Democrat &nbsp;</label>
+                    <input type="checkbox" id="Ind" name="party3" value="Independent" checked><label for="party3"> &nbsp;Independent</label>
+                    </p></li>        
+            </ul>
+            <ul class="nav navbar-nav navbar-right " >
+                <li><p><label class = "dropdown">Filter by State: </label></p> </li>
+                <li class="dropdown show btn-group btn-sm" id = "myList"></li>
+               <!-- <select id = "myList">
+                    
+                    <option value = "1">one</option>
+                    <option value = "2">two</option>
+                    <option value = "3">three</option>
+                    <option value = "4">four</option> 
+                </select>-->
+                
+            </ul>
+        
+            <!-- Data representation starts-->
+        <table id = "house_data" width = "100%"> </table>
+                    
+        <script src= "../model/pro-congress-113-house.js">   </script>
+                
+        <script>
+        //document.getElementById("house-data").innerHTML = JSON.stringify(data,null,2);
+            
+            var house_members = [];
+            house_members = data.results[0].members;
+
+            var house_table = document.createElement("table");
+            house_table.setAttribute("id", "houseTable");
+
+            house_table.setAttribute("class", "table table-hover ");
+            //house_table.border = "1";
+            var house_row = house_table.insertRow(-1);
+            
+            var house_head_cell;            
+            var cell_value= ["Name", "Party", "State", "Years in Office", "% Votes w/ Party"];
+
+            cell_value.forEach(headerFunction);            
+            function headerFunction(item, index)
+            {
+                house_head_cell =  document.createElement("th");
+                house_head_cell.innerHTML = cell_value[index];
+                house_row.appendChild(house_head_cell);
+            }
+            var all_states = [];
+            var body = house_table.createTBody();
+            body.setAttribute("id", "housebody");
+            var house_row1 = body.insertRow(-1);
+
+
+            for(var vals of house_members)
+            {   
+                //console.log(vals);
+                var house_keys = Object.keys(vals);
+                var house_values = Object.values(vals);
+                //console.log("The house keys are: " + house_keys);
+                
+                house_row1 = house_table.insertRow(-1);
+                var house_header = ["house_data_fullname", "house_data_party", "house_data_state", "house_data_seniority", "house_data_votes_with_party_pct"];
+               
+                //Task 6 - Hyperlink Name
+                var namelink = "<a class='gallery' href=" + '"' + vals.url + '"' +  "target=" + '"' + "_blank" + '"' + ">" + [vals.first_name, vals.last_name].join(" ") + "</a>" ;
+                var house_cellValues = [namelink , vals.party, vals.state, vals.seniority, [vals.votes_with_party_pct, "%"].join(" ")];
+                house_header.forEach(myFunction);
+                            
+                function myFunction(item, index)
+                {
+                house_row1.insertCell(-1).innerHTML = house_cellValues[index];
+                }
+                all_states.push(house_cellValues[2]);
+
+            }
+            console.log(all_states);
+            var unique_states = [];
+            unique_states = all_states.filter((item, i, ar) => ar.indexOf(item) === i);
+            unique_states.push("-- All States --");
+            unique_states.sort();
+            console.log("unique states are:  " + unique_states);
+           
+            var states = document.createElement("select");
+            states.id = "state_drp";                            //id of dynamically created state drop down
+            for(const drp of unique_states)
+            {
+                var optn = document.createElement("option");
+                optn.value = drp;
+                optn.text = drp;
+                states.appendChild(optn);
+            }
+            //binding the dynamic drop to the dropdown list of html thereby setting default index.
+            document.getElementById("myList").appendChild(states).selectedIndex=unique_states[0];
+
+            var house_data = document.getElementById("house_data");
+            house_data.appendChild(house_table);
+        </script>
+
+        <script>
+            //function for onchange event of checkboxes.
+            function filterparty()
+            {
+                var state_obj = document.getElementById('state_drp');
+                var state_value = state_obj.options[state_obj.selectedIndex].value;
+                console.log(state_obj, state_value);
+                var filtered_housers= [];
+                var s_mem = [];
+                s_mem = data.results[0].members;
+                console.log(s_mem);
+                for(var i =0; i < s_mem.length;i++)
+                {
+                    if(state_value == "-- All States --")
+                    {
+                        if ((document.getElementById("Rep").checked === true) && (s_mem[i].party === "R"))
+                            filtered_housers.push(s_mem[i]);
+                        if ((document.getElementById("Dem").checked === true) && (s_mem[i].party === "D"))
+                            filtered_housers.push(s_mem[i]);
+                        if ((document.getElementById("Ind").checked === true) && (s_mem[i].party === "ID"))
+                            filtered_housers.push(s_mem[i]);                   
+                    }
+                    else
+                    {
+                        if ((document.getElementById("Rep").checked === true) && (s_mem[i].party === "R") && (s_mem[i].state === state_value))
+                            filtered_housers.push(s_mem[i]);
+                        if ((document.getElementById("Dem").checked === true) && (s_mem[i].party === "D") && (s_mem[i].state === state_value))
+                            filtered_housers.push(s_mem[i]);
+                        if ((document.getElementById("Ind").checked === true) && (s_mem[i].party === "ID") && (s_mem[i].state === state_value))
+                            filtered_housers.push(s_mem[i]);
+                    }
+                }
+                console.log(filtered_housers);
+                var table2 = document.getElementById("houseTable");
+                var old_body = document.getElementById("housebody");
+
+                var body2 = table2.createTBody();
+                body2.setAttribute("id", "housebody");
+                var house_row2 = body2.insertRow(-1);
+                
+                for(var vals of filtered_housers)
+                {   
+                    //console.log(vals);
+                    var house_keys = Object.keys(vals);
+                    var house_values = Object.values(vals);
+                    //console.log("The house keys are: " + house_keys);
+
+                    house_row2 = table2.insertRow(-1);
+                    var house_header = ["house_data_fullname", "house_data_party", "house_data_state", "house_data_seniority", "house_data_votes_with_party_pct"];
+                    
+                    //Task 6 - Hyperlink Name
+                    var namelink = "<a href=" + '"' + vals.url + '"' +  "target=" + '"' + "_blank" + '"' + ">" + [vals.first_name, vals.last_name].join(" ") + "</a>" ;
+                    var house_cellValues = [namelink , vals.party, vals.state, vals.seniority, [vals.votes_with_party_pct, "%"].join(" ")];
+                    
+                    house_header.forEach(myFunction);
+                                
+                    function myFunction(item, index)
+                    {
+                        house_row2.insertCell(-1).innerHTML = house_cellValues[index]; 
+                        
+                    } 
+                }
+
+                old_body.parentNode.replaceChild(body2, old_body);
+
+            }
+            var chkb1 = document.getElementById("Rep");
+            chkb1.addEventListener("change", filterparty, false);
+
+            var chkb2 = document.getElementById("Dem");
+            chkb2.addEventListener("change", filterparty, false);
+
+            var chkb3 = document.getElementById("Ind");
+            chkb3.addEventListener("change", filterparty, false);
+
+            var drpdn1 = document.getElementById("state_drp");
+            drpdn1.addEventListener("change", filterparty, false);
+
+
+        </script>
+        <script>
+            jQuery('a.gallery').colorbox();
+          </script>
+        
+        <script src = "../model/all_states.js"></script>
+        <script src = "../JS-AJAX/utilities.js"></script>
+        
+        <div class="footer-basic text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            <footer>  <p><strong>© 2016 TGIF | All Rights Reserved.</strong></p></footer>
+        </div>
+    </div>
+</body>
+</html>

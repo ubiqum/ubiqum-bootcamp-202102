@@ -1,0 +1,674 @@
+{
+  "id": "ocd-jurisdiction/country:us/state:wa/government",
+  "name": "Washington",
+  "classification": "state",
+  "division_id": "ocd-division/country:us/state:wa",
+  "url": "http://www.leg.wa.gov",
+  "organizations": [
+    {
+      "id": "ocd-organization/7417a716-eba8-4437-a6e9-df14694bcb79",
+      "name": "House",
+      "classification": "lower",
+      "districts": [
+        {
+          "label": "1",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:1",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "10",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:10",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "11",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:11",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "12",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:12",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "13",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:13",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "14",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:14",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "15",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:15",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "16",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:16",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "17",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:17",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "18",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:18",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "19",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:19",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "2",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:2",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "20",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:20",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "21",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:21",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "22",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:22",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "23",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:23",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "24",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:24",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "25",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:25",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "26",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:26",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "27",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:27",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "28",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:28",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "29",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:29",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "3",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:3",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "30",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:30",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "31",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:31",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "32",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:32",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "33",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:33",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "34",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:34",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "35",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:35",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "36",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:36",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "37",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:37",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "38",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:38",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "39",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:39",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "4",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:4",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "40",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:40",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "41",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:41",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "42",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:42",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "43",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:43",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "44",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:44",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "45",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:45",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "46",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:46",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "47",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:47",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "48",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:48",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "49",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:49",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "5",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:5",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "6",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:6",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "7",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:7",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "8",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:8",
+          "maximum_memberships": 2
+        },
+        {
+          "label": "9",
+          "role": "Representative",
+          "division_id": "ocd-division/country:us/state:wa/sldl:9",
+          "maximum_memberships": 2
+        }
+      ]
+    },
+    {
+      "id": "ocd-organization/ddae63d3-9f3e-4c46-a00f-703fe21b54d1",
+      "name": "Senate",
+      "classification": "upper",
+      "districts": [
+        {
+          "label": "1",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:1",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "10",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:10",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "11",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:11",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "12",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:12",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "13",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:13",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "14",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:14",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "15",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:15",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "16",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:16",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "17",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:17",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "18",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:18",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "19",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:19",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "2",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:2",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "20",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:20",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "21",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:21",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "22",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:22",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "23",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:23",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "24",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:24",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "25",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:25",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "26",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:26",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "27",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:27",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "28",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:28",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "29",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:29",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "3",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:3",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "30",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:30",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "31",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:31",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "32",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:32",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "33",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:33",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "34",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:34",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "35",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:35",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "36",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:36",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "37",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:37",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "38",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:38",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "39",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:39",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "4",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:4",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "40",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:40",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "41",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:41",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "42",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:42",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "43",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:43",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "44",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:44",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "45",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:45",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "46",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:46",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "47",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:47",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "48",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:48",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "49",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:49",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "5",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:5",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "6",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:6",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "7",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:7",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "8",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:8",
+          "maximum_memberships": 1
+        },
+        {
+          "label": "9",
+          "role": "Senator",
+          "division_id": "ocd-division/country:us/state:wa/sldu:9",
+          "maximum_memberships": 1
+        }
+      ]
+    },
+    {
+      "id": "ocd-organization/a7819d04-7b5e-4d2e-b47f-5dca9f09fc81",
+      "name": "Washington State Legislature",
+      "classification": "legislature",
+      "districts": []
+    },
+    {
+      "id": "ocd-organization/cb29ec2f-1ee0-50b9-8394-f43504579f65",
+      "name": "Office of the Governor",
+      "classification": "executive",
+      "districts": []
+    }
+  ],
+  "legislative_sessions": [
+    {
+      "identifier": "2021-2022",
+      "name": "2021-2022 Regular Session",
+      "classification": "primary",
+      "start_date": "2021-01-11",
+      "end_date": "2021-04-25"
+    },
+    {
+      "identifier": "2009-2010",
+      "name": "2009-2010 Regular Session",
+      "classification": "",
+      "start_date": "2009-01-12",
+      "end_date": "2010-03-11"
+    },
+    {
+      "identifier": "2011-2012",
+      "name": "2011-2012 Regular Session",
+      "classification": "",
+      "start_date": "2011-01-10",
+      "end_date": "2012-03-08"
+    },
+    {
+      "identifier": "2013-2014",
+      "name": "2013-2014 Regular Session",
+      "classification": "",
+      "start_date": "2013-01-14",
+      "end_date": "2014-03-14"
+    },
+    {
+      "identifier": "2015-2016",
+      "name": "2015-2016 Regular Session",
+      "classification": "",
+      "start_date": "2015-01-12",
+      "end_date": "2016-03-10"
+    },
+    {
+      "identifier": "2017-2018",
+      "name": "2017-2018 Regular Session",
+      "classification": "",
+      "start_date": "2017-01-09",
+      "end_date": "2018-03-09"
+    },
+    {
+      "identifier": "2019-2020",
+      "name": "2019-2020 Regular Session",
+      "classification": "",
+      "start_date": "2019-01-04",
+      "end_date": "2020-03-12"
+    }
+  ]
+}
