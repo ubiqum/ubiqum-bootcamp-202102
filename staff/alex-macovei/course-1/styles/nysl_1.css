@@ -20,17 +20,17 @@ margin-left: 65%;
 top: 200px;
 z-index: 100;
 }
-ul {
+nav ul {
   float: left;
   color: gray;
   list-style-type: none;
   padding: 0 0 0 5px;
   
 }
-ul li{
+nav ul li{
   padding: 0 0 20px 0;
 }
-ul a{
+nav ul a{
   text-decoration: none;
   color: red;
   padding: 0 0 0 5px;
@@ -58,3 +58,4 @@ h2{
   text-align: center;
   
 }
+
