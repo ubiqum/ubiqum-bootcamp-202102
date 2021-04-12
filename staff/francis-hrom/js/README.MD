@@ -49,9 +49,10 @@
 
 
 #  apply vs call vs bind
+- All of them are methods inherited in all functions from the Function.prototype
 - Call invokes the function and allows you to pass in arguments one by one
 - Apply invokes the function and allows you to pass in arguments as an array
-- Bind returns a new function, allowing you to pass in a "this" array and any number of arguments
+- Bind returns a new function, allowing you to pass in a "this" in correct context and any number of arguments
 - Call and apply are mostly interchangeable. Decision on what to use should be whether it’s easier to send in an array or a comma separated list of arguments
 - Mnemonic: Call is for comma (separated list) and Apply is for Array
 - Bind returns a new function. Call and Apply execute the current function immediately
