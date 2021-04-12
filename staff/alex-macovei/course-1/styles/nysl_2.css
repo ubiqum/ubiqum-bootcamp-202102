@@ -1,14 +1,15 @@
 body {
   Background-color:  	#98FB98;
 }
-#content {
+.content {
   width: 800px;
   margin-right: auto;
 }
-#header {
+h1 {
   color: white;
   display: block;
   background-image: url(../images/design1-image1.jpg);
+  background-size: auto;
   height: 200px;
 }
 
@@ -18,27 +19,44 @@ margin-left: 65%;
 top: 200px;
 z-index: 100;
 }
-#nav {
-  float: left;
-  top: 100px;
-  text-decoration: none;
+ul {
+  position: absolute;
+  display: block;
+
   color: gray;
-}
-#nav a{
-  text-decoration: none;
-  color: Red;
-}
-#main{
-  float:right;
-  right: 100px;
+  list-style-type: none;
+  padding: 0 0 0 5px;
   
 }
-#header2{
-  background-color: black;
-  color: white;
+ul li{
+  padding: 0 0 0 20px;
+  float: left;
+}
+ul a{
+  text-decoration: none;
+  color: red;
+  padding: 0 0 0 5px;
+  
+}
+main{
+  position: absolute;
+  float: right;
+  left: 200px;
+}
+main a {
+  text-decoration: none;
+  color: black;
+}
+h2{
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  color: black;
   display: block;
   clear: both;
   position: relative;
-  top: -20px;
+  top: -22px;
   height: 30px;
+  text-align: center;
+  
 }

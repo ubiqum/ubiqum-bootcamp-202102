@@ -5,11 +5,13 @@ body {
   width: 800px;
   margin-right: auto;
 }
+header{
+  display: block;
+  height: 200px;
+  background-image: url(../images/design1-image1.jpg);
+}
 h1 {
   color: white;
-  display: block;
-  background-image: url(../images/design1-image1.jpg);
-  height: 200px;
 }
 
 img{
@@ -34,12 +36,12 @@ ul a{
   padding: 0 0 0 5px;
   
 }
-.main{
+main{
   position: absolute;
   float: right;
   left: 200px;
 }
-.main a {
+main a {
   text-decoration: none;
   color: black;
 }
