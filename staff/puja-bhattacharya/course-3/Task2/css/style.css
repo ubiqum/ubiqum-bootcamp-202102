@@ -1,0 +1,382 @@
+  *{
+    margin: 0;
+    padding: 0;
+  }  
+  
+  body {
+    background-image: url();
+    background-repeat:no-repeat;
+    background-color: cadetblue;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10% 5% 5% 30% 40% 10%;
+    grid-template-areas: 
+    "logo logo"
+    "company-name company-name "
+    "navigation-menu navigation-menu"
+    "side-content side-content"
+    "content content"
+    "footer footer";
+    
+  }
+
+  .logo{
+    grid-area: logo;
+    position: relative;
+    height:min-content;
+    width:40%;
+    padding-left: 20%;
+  }
+
+  .company-name{
+    grid-area: company-name;
+    padding-inline: 5%;
+    font-family:Algerian; 
+    letter-spacing: 3px; 
+    color: #001D38; 
+    text-align:left;
+  }
+  .navigation-menu{
+    grid-area: navigation-menu;
+    text-align:left;
+    padding-inline: 25%;
+    font-size: 80%;
+  }
+  .side-content{
+    grid-area: side-content;
+    padding-inline: 16%;
+    padding-top: 11%;
+
+  }
+  .content{
+    grid-area: content;
+    display:grid;
+    margin: 0;
+    padding: 5px;
+    background-color: lightgray;  
+    overflow: auto;
+    direction: ltr;
+  }
+  
+  .content-with-borders {
+    margin: 10px;
+    font-size: 90%;
+    background:aliceblue;
+    padding-left: 10px;
+    padding-right: 5px;
+    overflow: auto;
+    direction: ltr;   
+    }
+
+  .table-content{
+    margin: 10px;
+    font-size: 90%;
+    background:aliceblue;
+    padding-left: 5px;
+    padding-right: 5px;;  
+  }
+  .aligndiv {
+    text-align: center;
+  }
+  .footer{
+    grid-area: footer;
+    padding-top: 0.5%;
+    padding-inline: 30%;
+    font-family: "Bauhaus 93";
+  }
+
+  body {
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  a{
+    font-family:"Palatino Linotype", sans-serif;
+    font-weight:bold;
+    color:#141618;
+  }
+
+  
+  img.resize {
+    max-width:70%;
+    max-height:70%;
+    padding-left: 37%;
+    padding-top: 7%;
+  }
+  
+  
+  p {
+    font-size: 100%;
+    font-weight: 400;
+    line-height: 28px;
+    color: #141618;
+    margin-bottom: 0px;
+    font-family: "Palatino Linotype", sans-serif;
+  }
+
+  h1{
+    font-family: "Algerian", sans-serif;
+    color: #001D38;
+    font-size: 130%; 
+    text-align:center;
+    letter-spacing: 8px;
+    text-decoration-thickness: 2px;
+  
+  }
+  
+  h2, h4, h5 {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #001D38;
+    font-size: 100%;
+    text-align: left;
+  }
+  h3{
+    font-family:"verdana";
+    color:black;
+    font-size: 100%;
+    text-align: left;
+  }
+
+  .heading{
+    font-family:"Palatino Linotype ";
+    color:black;
+    font-size: 100%;
+    text-align: center;
+    letter-spacing: 0.2em;
+  }
+  
+  .tab1{ 
+    padding-left: 2em; 
+  }
+
+  .tab2{ 
+    padding-left: 4em; 
+  }
+
+  .style_my_rules{
+    font-family:'Calibri';
+    color:black;
+    font-size: 100%;
+    text-align: left;
+    font-style:nospace;
+    letter-spacing:normal;
+  }
+
+  .font_no_style{
+    font-weight: normal;
+  }
+
+  img.animated-gif{
+    width: 20%;
+    height: auto;
+    margin:8% 0% 0% 40%;
+  }
+
+  table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(odd){
+  background-color:darkgray;
+  }
+
+
+
+  table.style1{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  table.style1 th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  table.style1 tr:nth-child(odd){
+  background-color:aliceblue;
+  }
+
+  
+
+  /* for desktop */
+  @media screen and (min-width: 768px) {
+    .grid{
+      display:grid;
+      grid-template-columns: 310px 1fr 30px;
+      grid-template-rows: 12% 65px 430px 8%;
+      grid-template-areas: 
+      "logo company-name ."
+      "navigation-menu navigation-menu ."
+      "side-content content ."
+      "footer footer .";
+
+    }
+
+    h1{
+      font-family: "Algerian", sans-serif;
+      color: #001D38;
+      font-size: 227%; 
+      text-align:left;
+      letter-spacing: 8px;
+      text-decoration-thickness: 5px;
+    
+    }
+
+
+    .company-name{
+      grid-area: company-name;
+      padding-top:4%;
+    }
+
+    .navigation-menu{
+      grid-area: navigation-menu;
+      font-size: 90%;
+      padding-left: 32%;
+      padding-top:2%;
+      text-align: center;
+
+    }
+
+    img.resize {
+      max-width:90%;
+      max-height:90%;
+      padding-left: 35%;
+      padding-top: 20%;
+    }
+
+    .side-content{
+      grid-area: side-content;
+      padding-left: 5%;
+      padding-top: 5%;
+    }
+  }
+  
+
+/* for 335px, and below and Galaxy fold  */
+
+
+  @media screen and (max-width: 335px) {
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 10% 5% 5% 30% 40% 10%;
+      grid-template-areas: 
+      "logo logo"
+      "company-name company-name "
+      "navigation-menu navigation-menu"
+      "side-content side-content"
+      "content content"
+      "footer footer";
+      
+    }
+
+    .side-content{
+      grid-area: side-content;
+      padding-right:10%;
+
+    }
+    img.resize {
+      max-width:80%;
+      max-height:80%;
+      padding-left: 35%;
+      padding-top: 10%;
+    }
+
+
+  }
+
+  /* For iphone5/se  */
+
+  @media screen and (max-width: 320px) {
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 8% 8% 4% 30% 40% 10%;
+      grid-template-areas: 
+      "logo logo"
+      "company-name company-name "
+      "navigation-menu navigation-menu"
+      "side-content side-content"
+      "content content"
+      "footer footer";
+      gap: 10px;
+    }
+
+    .navigation-menu{
+      grid-area: navigation-menu;
+      text-align:left;
+      padding-inline: 22%;
+      font-size: 80%;
+    }
+    .side-content{
+      grid-area: side-content;
+      padding-inline: 12%;
+      width: auto;
+      height: 60%;
+  }
+}
+
+  
+@media screen and (max-width: 768px) and (min-width: 670px){
+  .grid{
+    display:grid;
+    grid-template-columns: 310px 1fr 30px;
+    grid-template-rows: 13% 10% auto 8%;
+    grid-template-areas: 
+    "logo company-name ."
+    "navigation-menu navigation-menu ."
+    "side-content content ."
+    "footer footer .";
+
+  }
+
+  h1{
+    font-family: "Algerian", sans-serif;
+    color: #001D38;
+    font-size: 227%; 
+    text-align:left;
+    letter-spacing: 8px;
+    text-decoration-thickness: 5px;
+  
+  }
+
+  .company-name{
+    grid-area: company-name;
+    padding-top:4%;
+  }
+
+  .navigation-menu{
+    grid-area: navigation-menu;
+    font-size: 90%;
+    padding-left: 40%;
+    padding-top:7%;
+    text-align: center;
+
+  }
+
+  img.resize {
+    max-width:90%;
+    max-height:90%;
+    padding-left: 30%;
+    padding-top: 15%;
+  }
+
+  .side-content{
+    grid-area: side-content;
+    padding-inline: 10%;
+    padding-top: 15%;
+  }
+}
