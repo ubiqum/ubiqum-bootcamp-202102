@@ -1,0 +1,96 @@
+body {
+  background-image: url("../images/background.jpg");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: auto;
+}
+.content {
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  width: 800px;
+}
+header{
+  position: relative;
+  text-align: center;
+  display: block;
+}
+img{
+  display: block;
+  top: 20px;
+  z-index: 10;
+  margin-left: auto;
+  margin-right: auto;
+}
+nav ul {
+  margin-left: 32.5%;
+  position: absolute;
+  display: block;
+  top: -82px;
+  list-style-type: none;
+  z-index: 100;
+  width: 100%;
+  
+}
+nav ul li{
+  
+  padding: 0 0 0 20px;
+  float: left;
+  color: black;
+}
+nav ul a{
+  background: #228B22;
+  text-decoration: none;
+  color: black;
+  box-shadow:  1px 0 1px black,
+               2px 0 2px black,
+               3px 0 3px black,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               1px 0 3px rgba(0,0,0,.3),
+               3px 0 5px rgba(0,0,0,.2),
+               5px 0 10px rgba(0,0,0,.25),
+               10px 0 10px rgba(0,0,0,.2),
+               20px 0 20px rgba(0,0,0,.15);
+  
+}
+.selected {
+  background-color: #ADFF2F;
+}
+main{
+  position: absolute;
+}
+main a {
+  
+  text-decoration: none;
+  color: black;
+}
+h2{
+
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  display: block;
+  clear: both;
+  position: relative;
+  text-align: center;
+  
+}
+
+nav ul a:hover{
+  background-color: lime;
+  
+  
+}
+footer {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #cccccc;
+  z-index: -1;
+  top: -110px;
+  height: 455px;
+  width: 810px;
+  opacity: 0.5;
+}
