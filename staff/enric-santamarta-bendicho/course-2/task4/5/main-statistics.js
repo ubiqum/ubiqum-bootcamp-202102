@@ -134,15 +134,15 @@ var app = new Vue({
               leastVotesNames.push(leastVotes[i][1])
   
               if (leastVotes[i][2] == "D") {
-                  percentParty.push(leastVotes[i][0] * 100 / democratsPercentParty)
+                  percentParty.push((leastVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
               }
   
               if (leastVotes[i][2] == "R") {
-                  percentParty.push(leastVotes[i][0] * 100 / republicansPercentParty)
+                  percentParty.push((leastVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
               }                       
   
               if (leastVotes[i][2] == "ID") {
-                  percentParty.push(leastVotes[i][0] * 100 / independentsPercentParty)
+                  percentParty.push((leastVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
               }
           }
   
@@ -156,18 +156,18 @@ var app = new Vue({
               mostVotesNames.push(mostVotes[i][1])
   
               if (mostVotes[i][2] == "D") {
-                  percentParty2.push(mostVotes[i][0] * 100 / democratsPercentParty)
+                  percentParty2.push((mostVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
   
               }
   
               if (mostVotes[i][2] == "R") {
   
-                  percentParty2.push(mostVotes[i][0] * 100 / republicansPercentParty)
+                  percentParty2.push((mostVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
               }
   
               if (mostVotes[i][2] == "ID") {
   
-                  percentParty2.push(mostVotes[i][0] * 100 / independentsPercentParty)
+                  percentParty2.push((mostVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
               }
           }
       }
@@ -180,18 +180,18 @@ var app = new Vue({
               leastMissedVotes2.push(leastMissedVotes[i][0])
   
               if (mostVotes[i][2] == "D") {
-                  percentPartyMissed.push(leastMissedVotes[i][0] * 100 / democratsPercentParty)
+                  percentPartyMissed.push((leastMissedVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
   
               }
   
               if (mostVotes[i][2] == "R") {
   
-                  percentPartyMissed.push(leastMissedVotes[i][0] * 100 / republicansPercentParty)
+                  percentPartyMissed.push((leastMissedVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
               }
   
               if (mostVotes[i][2] == "ID") {
   
-                  percentPartyMissed.push(leastMissedVotes[i][0] * 100 / independentsPercentParty)
+                  percentPartyMissed.push((leastMissedVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
               }
           }
       }
@@ -203,18 +203,18 @@ var app = new Vue({
               mostMissedVotes2.push(mostMissedVotes[i][0])
   
               if (mostVotes[i][2] == "D") {
-                  percentPartyMissed2.push(mostMissedVotes[i][0] * 100 / democratsPercentParty)
+                  percentPartyMissed2.push((mostMissedVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
   
               }
   
               if (mostVotes[i][2] == "R") {
   
-                  percentPartyMissed2.push(mostMissedVotes[i][0] * 100 / republicansPercentParty)
+                  percentPartyMissed2.push((mostMissedVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
               }
   
               if (mostVotes[i][2] == "ID") {
   
-                  percentPartyMissed2.push(mostMissedVotes[i][0] * 100 / independentsPercentParty)
+                  percentPartyMissed2.push((mostMissedVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
               }
           }
       }
