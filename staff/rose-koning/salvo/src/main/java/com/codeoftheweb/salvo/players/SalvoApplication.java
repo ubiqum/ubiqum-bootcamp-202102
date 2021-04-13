@@ -23,4 +23,13 @@ public class SalvoApplication {
 			repository.save(new Player("Michelle"));
 		};
 	}
+	/*@Bean
+	public CommandLineRunner initData(GameRepository repository) {
+		return (args) -> {
+			// save a couple of customers
+			repository.save(new Game());
+			repository.save(new Game());
+			repository.save(new Game());
+		};
+	}*/
 }
