@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+    <meta name="description" content="Game Informations">
+    <link rel="stylesheet" href="styles/nysl_3.css" />
+  </head>
+<body>
+  <a href="index.html"> <img src = "images/nysl-logo.png"
+    alt="NYSL logo"
+    width = "80" height="80">
+  </a>
+  <header>
+    <h1>Northside Youth Soccer League</h1>
+  </header>
+  <h2>Registration Form</h2>
+  <div class = "content">
+    <nav>
+      <ul>
+        <li><a class = "one" href="index.html">Home</a></li>
+        <li><a class = "two" href="about.html">About</a></li>
+        <li><a class = "three" href="contact.html">Contact</a></li>
+        <li><a class = "four" href="rules.html">Rules</a></li>
+        <li><a class = "five" href="game-info.html">Game Info</a></li>
+        <li><a class = "selected">Registration Form</a></li>
+      </ul>
+    </nav>
+    <main>
+      <form action = "show_data.html" method = "GET">
+        <table style="width:100%">
+          <tr>
+            <td>
+              <label>Player's First Name</label>
+              <input type = "text" name = "first_name" required style="width:250px">
+            </td>
+            <td>
+              <label>Last Name</label>
+              <input type= "text" name = "last_name" required style="width:250px">
+            </td>
+          </tr>
+        </table>
+        <div>
+          <label>Street Adress</label>
+          <input type = "text" name = "street_address"  style="width:667px">
+        </div>
+        <table style="width:100%">
+          <tr>
+            <td>
+              <label>City</label>
+              <input type = "text" name = "city"  style="width:351px">
+            </td>
+            <td>
+              <label>Zip Code</label>
+              <input type= "number" name = "zip_code"  style="width:257px">
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td>
+              <label>Birth Date</label>
+              <input type = "date" name = "birth_date" required>
+            </td>
+            <td>Gender: </td>
+            <td>
+              <input type = "radio" name = "gender" value = "female" required >
+              <label>Female</label>
+            </td>
+            <td>
+              
+              <input type = "radio" name = "gender" value = "male" required >
+              <label>Male</label>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td>Grade: </td>
+            <td>
+              <input type = "radio" name = "grade" required >
+              <label>Pre-School</label>
+            </td>
+            <td>
+              <input type = "radio" name = "grade" value = "1st" required >
+              <label>1st</label>
+            </td>
+            <td>
+              <input type = "radio" name = "grade" value = "2nd" required >
+              <label>2nd</label>
+            </td>
+            <td>
+              <input type = "radio" name = "grade" value = "3rd" required >
+              <label>3rd</label>
+            </td>
+            <td>
+              <input type = "radio" name = "grade" value = "4th" required >
+              <label>4th</label>
+            </td>
+            <td>
+              <input type = "radio" name = "grade" value = "5th" required >
+              <label>5th</label>
+            </td>
+          </tr>
+        </table>
+        <div>
+          <label>Parent/Guardian</label>
+          <input type = "text" name = "parent" required style="width:649px">
+        </div>
+        <table style="width:100%">
+          <tr>
+            <td>
+              <label>Contact Phone</label>
+              <input type = "number" name = "phone" required style="width:266px">
+            </td>
+            <td>
+              <label>Contact Email</label>
+              <input type= "email" name = "email" required style="width:250px">
+            </td>
+          </tr>
+        </table>
+        <p><b>Which elementary school do you live near?</b></p>
+        <table style ="width:100%">
+          <thead>
+            <tr>
+              <th>First Closest School:</th>
+              <th>Second Closest School:</th>
+            </tr>
+          </thead>
+        </table>
+        <button type = "submit">Submit</button>
+        <button type = "reset">Reset</button>
+      </form>
+    </main>
+  </div>
+</body>
+</html>
