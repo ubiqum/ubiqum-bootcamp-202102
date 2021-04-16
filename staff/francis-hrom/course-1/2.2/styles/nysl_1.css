@@ -93,18 +93,3 @@ article p {
 article h2 {
     margin-bottom: 0;
 }
-
-
-/*
-
-body > article > div > ul > ul:nth-child(2) > li
-
-article {
-    width: 75%;
-    float:left;   
-}
-
-display:inline-block
-    flex-direction: column;
-    float:left;
-*/
