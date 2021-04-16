@@ -36,6 +36,8 @@ import static java.util.stream.Collectors.toList;
         return userName;
     }
 
+    public Long getUserId(){return id;}
+
     public void setUserName(String userName) {
         this.userName = userName;
     }

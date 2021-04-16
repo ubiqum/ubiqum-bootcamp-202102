@@ -29,6 +29,11 @@ public class Game {
         return id;
     }
 
+    public Date getCreation(){
+        return creationDate;
+    }
+
+
     public Date getCreationDate(){
         return creationDate;
     }

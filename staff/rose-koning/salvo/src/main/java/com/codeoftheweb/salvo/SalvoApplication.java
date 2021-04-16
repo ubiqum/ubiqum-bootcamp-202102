@@ -30,7 +30,7 @@ public class SalvoApplication {
 		//Adding GamePlayers
 		GamePlayer gp1 = new GamePlayer(g1, p1);
 		GamePlayer gp2 = new GamePlayer(g1, p1);
-		GamePlayer gp3 = new GamePlayer(g1, p2);
+		GamePlayer gp3 = new GamePlayer(g2, p2);
 		GamePlayer gp4 = new GamePlayer(g3, p2);
 		GamePlayer gp5 = new GamePlayer(g2, p3);
 		GamePlayer gp6 = new GamePlayer(g3, p3);

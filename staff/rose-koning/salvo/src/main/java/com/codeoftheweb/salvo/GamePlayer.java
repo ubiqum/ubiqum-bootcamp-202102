@@ -32,6 +32,8 @@ public class GamePlayer {
         this.setPlayer(player);
     }
 
+    public Long getGamePlayerId(){return id;}
+
 
     public Game getGame() {
         return game;
