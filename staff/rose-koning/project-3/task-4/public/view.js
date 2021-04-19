@@ -105,7 +105,7 @@ const GamesForLocation = {
 const GameDetails = {
   template: `<div>
     <a class="button button__goback" href="javascript:history.go(-1)"> Go Back</a>
-    <h2 class="text-center">Game details</h2><button class="text-right" v-if="isSignedIn()" v-on:click="signOut">Sign Out</button><comments/></main>
+    <h2 class="text-center">Game details</h2><comments/></main>
   
     <section>
     <p class="text-center"><b>Location:</b> <router-link class="button" v-bind:to="'/locationDetails/'+games[0].location">{{games[0].location}}</router-link></td></h2>
@@ -115,7 +115,7 @@ const GameDetails = {
     </section>
     <section class="text-center">
     <p v-if="isSignedIn()">to see comments an pictures log in</p>
-    <button id="sign-in-button" v-on:click="signIn" v-if="!isSignedIn()"><i class="bi bi-person-fill"></i>Login with google</button>
+    <button id="sign-in-button" v-on:click="signIn()" v-if="!isSignedIn()"><i class="bi bi-person-fill"></i>Login with google</button>
     
     </section>
     <section v-if="isSignedIn()" class="text-center">
@@ -158,7 +158,6 @@ const GameDetails = {
   methods: {
     signIn:signIn,
     isSignedIn:isSignedIn,
-    signOut:signOut,
     showPostStation:showPostStation,
     writeNewPost: function () {
       var uid = firebase.auth().currentUser.uid;

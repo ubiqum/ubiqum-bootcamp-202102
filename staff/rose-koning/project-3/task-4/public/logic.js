@@ -83,7 +83,7 @@ function signIn(callback) {
   firebase.auth()
       .signInWithPopup(new firebase.auth.GoogleAuthProvider().setCustomParameters({ prompt: 'select_account' }))
       .then(function () {
-          callback(null)
+        if(callback) callback(null)
       })
 }
 
@@ -95,7 +95,7 @@ function signOut(callback) {
   firebase.auth()
       .signOut()
       .then(function () {
-          callback(null)
+        if(callback) callback(null)
       })
 }
 
