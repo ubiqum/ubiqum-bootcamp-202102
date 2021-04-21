@@ -1,10 +1,13 @@
 package com.codeoftheweb.salvo;
 
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class GamePlayer {
@@ -25,6 +28,9 @@ public class GamePlayer {
     @JoinColumn(name = "player_id")
     private Player player;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gamePlayer")
+    private Set<Ship> ships = new HashSet<>();
+
     public GamePlayer(){}
 
     public GamePlayer(Game game, Player player){
@@ -32,8 +38,7 @@ public class GamePlayer {
         this.setPlayer(player);
     }
 
-    public Long getGamePlayerId(){return id;}
-
+    public Long getId(){return id;}
 
     public Game getGame() {
         return game;
@@ -49,5 +54,18 @@ public class GamePlayer {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public Set<Ship> getShips() {
+        return ships;
+    }
+
+    public Set<Ship> setShips(Set<Ship> ships) {
+       return this.ships = ships;
+    }
+
+    public void addShip(Ship ship) {
+        ship.setGamePlayer(this);
+        ships.add(ship);
     }
 }

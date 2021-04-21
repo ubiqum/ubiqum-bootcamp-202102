@@ -29,24 +29,24 @@ public class Game {
         return id;
     }
 
+    @JsonIgnore
     public Date getCreation(){
         return creationDate;
     }
 
-
-    public Date getCreationDate(){
-        return creationDate;
-    }
-
-
     @OneToMany(mappedBy = "game", fetch = FetchType.EAGER)
-    Set<GamePlayer>gamePlayers;
+    private Set<GamePlayer>gamePlayers;
+
+    @JsonIgnore
+    public Set<GamePlayer> getGamePlayers(){
+        return gamePlayers;
+    }
 
     public void addGamePlayer(GamePlayer gamePlayer){
         gamePlayer.setGame(this);
         gamePlayers.add(gamePlayer);
     }
-    //@JsonIgnore
+    @JsonIgnore
     public List<Player> getPlayers() {
         return gamePlayers.stream().map(sub -> sub.getPlayer()).collect(toList());
     }
