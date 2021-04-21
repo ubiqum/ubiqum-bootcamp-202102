@@ -1,0 +1,29 @@
+.grid {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "logo" "title" "email";
+}
+.logo{
+    border-radius: 50px;
+}
+.title{
+    padding-top: 25px;
+    padding-left: 25px;
+}
+.email{
+    text-align: right;
+    padding-top: 25px;
+}
+
+.footer{
+    text-align: center;
+    background-color: #f8f9fa;
+    width: 100%;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    padding-top: var(--bs-gutter-x,.35rem);
+    padding-bottom:var(--bs-gutter-x,.35rem) ;
+    margin-right: auto;
+    margin-left: auto;
+}
