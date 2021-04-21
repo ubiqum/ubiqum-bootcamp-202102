@@ -1,11 +1,21 @@
 body {
-    background-color: white;
+    background-image: url("file:///home/max/ubiqum/ubiqum-bootcamp/staff/maxanchidin/course-2/third_design/background.jpg");
     font-size: 20px; 
+    font-family: 'Titillium Web', sans-serif;
+    color: white;
+}
+
+#logo {
+    display:flex;
+    position: relative;
+    transform: translateY(-0.5em);
+    width: 6em;
+    height: 6em;
 }
 
 .container {
     display: flex;
-    /* justify-content: space-between; */
+    background-color: #252b23d7;
 }
 
 nav {
@@ -17,14 +27,15 @@ nav {
     /* margin: 0;
     padding: 0; */
     position: relative;
-    transform: translateY(-22rem) translateX(80vw);
+    transform: translateY(-10rem) translateX(-2vw);
 }
 
 nav a{
     text-decoration: none;
     color: white;
-    background-color: #1d45b3;
-    border: 0.5em solid #1d45b3;
+    background-color: #252b23d7;
+    /* border: 0.5em solid #252b23d7; */
+    padding: 0.5em;
 }
 
 ul {
@@ -36,15 +47,15 @@ li {
 }
 
 li a:hover, li a:focus{
-    background-color: #0099ff;
-    border: 0.6rem solid  #0099ff;
+    background-color: #40532d;
+    /* border: 0.5em solid  #0099ff; */
 
 }
 
 #currentpage {
     color: white;
-    background-color: #208f2f;
-    border: 0.6rem solid #208f2f;
+    background-color: #5b8f20;
+    border: 0.6rem solid #5b8f20;
 
 }
 
@@ -62,26 +73,28 @@ main {
     width: 56%;
     margin-left: -5rem;
     position: relative;
+    color: white;
 } 
 
 h1.logo {
-    background-image: url('file:///home/max/ubiqum/ubiqum-bootcamp/staff/maxanchidin/course-2/second_design/design2_image1.jpg');
+    
     height: 231px;
     font-size: 3em;
     background-size: cover;
     margin: 4rem auto;
-    color: #def0c7;
+    color: #f3fccd;
+    transform: translateY(2rem) translateX(2.3em);
 }
 
 h1.title {
-    background-color: transparent;
-    color: black;
-    border: 0.2rem solid black;
+    background-color: #252b23d7;
+    color: white;
+    border: 0.2rem solid transparent;
     display: flex;
     justify-content: center;
     font-size: 2em;
     margin: 0 auto;
-    transform: translateY(-1.6em);
+    transform: translateY(-1.05em);
 }
 
 
@@ -96,11 +109,19 @@ h4 {
 #logo {
     display:flex;
     position: relative;
-    transform: translateY(-0.5em);
+    transform: translateY(-17em);
     width: 6em;
     height: 6em;
 }
 
 header {
     height: 20rem;
+}
+
+a {
+    color: rgb(131, 190, 82);
+}
+
+table {
+    color: white;
 }
