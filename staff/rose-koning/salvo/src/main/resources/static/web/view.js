@@ -37,17 +37,18 @@ const Game = {
   template: `
 <div>
 <h1> Ship Locations!</h1>
-<div class="grid__container">
-  <div class="cell" v-for="(cell, key) in cells">1{{cell}}</div>
-</div>
+<div class="grid__container" >
+<div v-for="(cell,key) in cells">
+  <div class="cell" v-bind:id="cell">{{cell}}</div>
+  </div>
+  </div>
 </div>
 `,
   data() {
     return {
-      gameView: getGameView(),
-      cells: getCell()
+  cells: getCells()
     };
-  }
+  },
 }
 
 const routes = [

@@ -1,0 +1,11 @@
+.grid__container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 0.2rem;
+    background-color: black;
+    }
+
+.cell{
+  background-color: white;
+}
