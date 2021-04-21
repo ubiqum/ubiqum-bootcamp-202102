@@ -1,5 +1,5 @@
 body {
-    background-image: url("file:///home/max/ubiqum/ubiqum-bootcamp/staff/maxanchidin/course-2/third_design/background.jpg");
+    background-image: url("file:///home/max/ubiqum/ubiqum-bootcamp/staff/maxanchidin/course-3/background.jpg");
     font-size: 20px; 
     font-family: 'Titillium Web', sans-serif;
     color: white;
@@ -38,15 +38,15 @@ nav a{
     padding: 0.5em;
 }
 
-ul {
+nav ul {
     list-style-type: none;
 }
 
-li {
+nav li {
     display:inline;
 }
 
-li a:hover, li a:focus{
+nav li a:hover, li a:focus{
     background-color: #40532d;
     /* border: 0.5em solid  #0099ff; */
 
@@ -124,4 +124,71 @@ a {
 
 table {
     color: white;
+}
+
+
+#allgames {
+    font-size: 1.3em;
+    transform: translateY(-19rem)
+    
+}
+
+#bottompage {
+    background-color: #252b23d7;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 1rem;
+}
+
+.bottominfo {
+    font-weight: 800;
+}
+
+
+}
+
+table {
+    border-collapse:inherit;
+
+    border-spacing: 4px;
+}
+
+table, th, td {
+  border: 1px solid #cecfd5;
+}
+th, td {
+  padding: 10px 15px;
+}
+
+th {
+    width: 500px;
+}
+
+#bottomtable {
+    background-color: #252b23d7;
+    width: 100%;
+}
+
+.phoneemail {
+    font-weight: 800;
+}
+
+.rules {
+    list-style-type: square;
+}
+
+.rulesbold {
+    font-weight: 800;
+}
+
+.abcd {
+    list-style: lower-latin;
+}
+
+.divrules {
+    background-color: #252b23d7;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    text-align: justify;
 }
