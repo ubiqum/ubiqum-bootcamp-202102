@@ -66,8 +66,9 @@
         </div>
     </nav>
 
-    <div class="container">
-        <select id="state" class="filter" onchange="refreshMembersTable();">
+    <div class="container" id="app">
+    <div class="container" >
+        <select id="state" class="filter" @change="refreshMembersTable">
             <option value="Arkansas">Arkansas</option>
             <option value="Arizona">Arizona</option>
             <option value="Alabama">Alabama</option>
@@ -132,7 +133,11 @@
                     </tr>
                 </thead>
                 <tbody id="tableMembers">
-
+                    <tr v-for="results in results">
+                        <td><a v-bind:href="results.openstates_url">{{results.name}}</a></td>
+                        <td>{{results.party}}</td>
+                        <td>{{results.current_role.title}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -143,11 +148,10 @@
         <div class="container-fluid">
             <p class="footer"> &#169 2016 TGIF | All Rights Reserved </p>
     </footer>
-  
-    <script src=jurisdiction.js></script>
+</div> 
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="utils.js"></script>
     <script src="logic.js"></script>
-    <script src="view.js"></script>
     <script src="main.js"></script>
 </body>
 

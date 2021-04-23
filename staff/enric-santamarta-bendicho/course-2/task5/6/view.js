@@ -21,8 +21,8 @@ function renderMembersTable(members) {
 
 function clearMembersTable() {
 
-    $('#tableMembers').empty();
-}
+    $('#tableMembers').empty(); }
+
 
 
 

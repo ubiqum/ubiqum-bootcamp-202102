@@ -1,2 +1,2 @@
-retrieveMembersByJurisdiction(state, renderMembersTable);
+refreshMembersTable();
 

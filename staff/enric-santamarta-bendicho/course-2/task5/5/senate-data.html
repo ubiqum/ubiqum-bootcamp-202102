@@ -24,7 +24,7 @@
 
         <div class="container">
             <div class="panel-group">
-                <div class="panel panel-deafult">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a href="home.html" class="selector">Home</a>
@@ -33,7 +33,7 @@
                             <a data-toggle="collapse" href="#collapse4" class="selector">Party Loyalty</a>
                             <a class="selector" href="jurisdiction.html">Jurisdiction</a>
                         </h4>
-                    </div>
+                  
 
 
                     <div id="collapse1" class="panel-collapse collapse">
@@ -55,6 +55,7 @@
 
                     </div>
                 </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -63,7 +64,7 @@
 
 
     <div class="container" id="app">
-        <div class="container">
+       
             <h2>Senators</h2>
             <p class="maintext">First convened in 1789, the composition and powers of the Senate are established
                 in Article One of the U.S. Constitution. Each state is represented by two senators,
@@ -72,9 +73,9 @@
                 to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal
                 judges, other federal executive officials, military officers, regulatory officials, ambassadors,
                 and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
-        </div>
-        <div class="container">
-            <div class="checkBoxes">
+      
+        
+            <div>
                 Filter by party:
                 <input type="checkbox" value="D" name="party" id="checkbox" v-model="parties" 
                     v-on:change="applyFilters" />
@@ -141,9 +142,8 @@
                 </select>
        
 
-            </div>
-
-            <div class="container">
+        
+            
                 <table class="table">
                     <tr>
                         <th>SENATOR</th>
@@ -162,7 +162,7 @@
 
                     </tr>
                 </table>
-            </div>
+          
 
             <footer>
                 <div class="container-fluid">
