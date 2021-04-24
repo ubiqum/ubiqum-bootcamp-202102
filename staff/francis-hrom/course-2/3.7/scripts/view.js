@@ -1,4 +1,4 @@
-// list of all tables on the website, with tableID as html ID and source of their data
+// list of all tables on the website
 const memberDataTables = [
   {
     tableID: "senateDataTable",
@@ -14,17 +14,17 @@ const memberDataTables = [
 
 const atGlanceTables = [
   {
-  tableID: "senateAtGlanceTable",
-  data: senateData,
-  prepareFx: prepareAtGlanceTable,
-  statistics: senateStatistics
+    tableID: "senateAtGlanceTable",
+    data: senateData,
+    prepareFx: prepareAtGlanceTable,
+    statistics: senateStatistics,
   },
   {
     tableID: "houseAtGlanceTable",
     data: houseData,
     prepareFx: prepareAtGlanceTable,
-    statistics: houseStatistics
-  }
+    statistics: houseStatistics,
+  },
 ];
 
 const leastMostTables = [
@@ -91,7 +91,7 @@ const leastMostTables = [
     sortFx: sortDsc,
     prepareFx: prepareLoyalTable,
     statistics: houseStatistics,
-  }
+  },
 ];
 
 // detects existance of checkboxes and add event listeners to them
@@ -103,7 +103,7 @@ function activateCheckboxes() {
 
     for (const checkbox of checkboxes) {
       if (checkbox.type === "checkbox") {
-        checkbox.onchange = renderAllVisibleTables;
+        checkbox.onchange = renderAllVisibleDataTables;
       }
     }
   }
@@ -128,7 +128,7 @@ function activateDropdown() {
     // add event listener to dropdown
     document.getElementById(
       "stateFilterDropdown"
-    ).onchange = renderAllVisibleTables;
+    ).onchange = renderAllVisibleDataTables;
   }
 }
 
@@ -147,7 +147,7 @@ const getStateDropdownValue = () => {
 };
 
 // detects visible tables on page, filters data by values in checkboxes and dropdown, prepares render data and renders them
-function renderAllVisibleTables() {
+function renderAllVisibleDataTables() {
   memberDataTables.forEach((table) => {
     if (document.getElementById(table.tableID)) {
       let data = filterMembers(
@@ -264,7 +264,7 @@ function prepareEngagedTable(data, render_threshold, sortBy) {
 
   let lastPerson = data[render_threshold - 1];
   for (const person of data.slice(render_threshold)) {
-    if (person[sortBy] === lastPerson[sortBy]) {      
+    if (person[sortBy] === lastPerson[sortBy]) {
       arr.push({
         Name: ahrefName(person),
         "No. Missed Votes": person.missed_votes,
@@ -287,7 +287,7 @@ function prepareLoyalTable(data, render_threshold, sortBy) {
       "No. Party Votes": (
         (person.total_votes * person.votes_with_party_pct) /
         100
-      ).toFixed(2),
+      ).toFixed(0),
       "% Party Votes": person.votes_with_party_pct,
     });
   }
@@ -300,7 +300,7 @@ function prepareLoyalTable(data, render_threshold, sortBy) {
         "No. Party Votes": (
           (person.total_votes * person.votes_with_party_pct) /
           100
-        ).toFixed(2),
+        ).toFixed(0),
         "% Party Votes": person.votes_with_party_pct,
       });
       lastPerson = person;

@@ -7,7 +7,7 @@ memberDataTables.forEach((table) => {
   calculateStatistics(table.data, table.statistics);
 });
 
-renderAllVisibleTables();
+renderAllVisibleDataTables();
 
 atGlanceTables.forEach((table) => {
   if (document.getElementById(table.tableID)) {
