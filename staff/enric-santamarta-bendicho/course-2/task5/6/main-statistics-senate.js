@@ -27,7 +27,7 @@ var app = new Vue({
     },
     created: function () {
         //collect Data 
-        retrieveMembers(function (members) {
+        retrieveMembersSenate(function (members) {
             var averageVotesRepublicans = 0
             var averageVotesDemocrats = 0
             var averageVotesIndependents = 0

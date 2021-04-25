@@ -83,16 +83,16 @@
                 <div>
                     Filter by party:
                     <input type="checkbox" value="D" name="party" id="checkbox" v-model="parties" 
-                        v-on:change="applyFilters" />
+                        v-on:change="applyFiltersHouse" />
                     <label for="democrat">Democrat</label>
                     <input type="checkbox" value="R" name="party" id="checkbox" v-model="parties" 
-                        v-on:change="applyFilters" />
+                        v-on:change="applyFiltersHouse" />
                     <label for="republicans">Republican</label>
                     <input type="checkbox" value="ID" name="party" id="checkbox" v-model="parties" 
-                        v-on:change="applyFilters" />
+                        v-on:change="applyFiltersHouse" />
                     <label for="independents">Independent</label>
 
-                <select id="state" class="filter" v-model="state" @change="applyFilters">
+                <select id="state" class="filter" v-model="state" @change="applyFiltersHouse">
                     <option value="">--Choose a State--</option>
                     <option value="AR">Arkansas</option>
                     <option value="AZ">Arizona</option>
@@ -156,7 +156,7 @@
                             <th>SENIORITY</th>
                             <th>PERCENTAGE VOTES WITH PARTY</th>
                         </tr>
-                        <tr v-for="(member,key) in filteredMembers">
+                        <tr v-for="(member,key) in filteredMembersHouse">
                             <td><a v-bind:href="member.url">{{member.first_name}} {{member.middle_name}}
                                 {{member.last_name}}</a></td>
                                 <td>{{member.party}}</td>
@@ -180,8 +180,8 @@
 
 
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
-        <script src="logic-house.js"></script>
-        <script src="main-data.js"></script>
+        <script src="logic.js"></script>
+        <script src="main-house.js"></script>
 </body>
 
 </html>
