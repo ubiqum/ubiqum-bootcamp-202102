@@ -1,0 +1,61 @@
+body {
+  Background-color:  	#98FB98;
+}
+.content {
+  width: 800px;
+  margin-right: auto;
+}
+header{
+  display: block;
+  height: 200px;
+  background-image: url(../images/design1-image1.jpg);
+}
+h1 {
+  color: white;
+}
+
+img{
+position: absolute;
+margin-left: 65%;
+top: 200px;
+z-index: 100;
+}
+nav ul {
+  float: left;
+  color: gray;
+  list-style-type: none;
+  padding: 0 0 0 5px;
+  
+}
+nav ul li{
+  padding: 0 0 20px 0;
+}
+nav ul a{
+  text-decoration: none;
+  color: red;
+  padding: 0 0 0 5px;
+  
+}
+main{
+  position: absolute;
+  float: right;
+  left: 200px;
+}
+main a {
+  text-decoration: none;
+  color: black;
+}
+h2{
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+  color: white;
+  display: block;
+  clear: both;
+  position: relative;
+  top: -22px;
+  height: 30px;
+  text-align: center;
+  
+}
+

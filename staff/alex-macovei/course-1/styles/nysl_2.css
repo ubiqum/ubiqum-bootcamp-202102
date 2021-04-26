@@ -1,0 +1,88 @@
+body {
+  Background-color:  	#98FB98;
+}
+.content {
+  position: relative;
+  margin-right: auto;
+  top: 50px;
+}
+header{
+  position: relative;
+  top: 40px;
+  display: block;
+  height: 200px;
+  background-image: url(../images/design2-image1.jpg);
+}
+h1 {
+  position: absolute;
+  color: black;
+  top: -60px;
+}
+img{
+position: absolute;
+top: 300px;
+z-index: 10;
+}
+nav ul {
+  left: 70%;
+  position: absolute;
+  display: block;
+  top: -308px;
+  list-style-type: none;
+  z-index: 100;
+  width: 100%;
+  
+}
+nav ul li{
+  
+  padding: 0 0 0 20px;
+  float: left;
+  color: red;
+}
+nav ul a{
+  background: blue;
+  text-decoration: none;
+  color: red;
+  box-shadow:  1px 0 1px black,
+               2px 0 2px black,
+               3px 0 3px black,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               1px 0 3px rgba(0,0,0,.3),
+               3px 0 5px rgba(0,0,0,.2),
+               5px 0 10px rgba(0,0,0,.25),
+               10px 0 10px rgba(0,0,0,.2),
+               20px 0 20px rgba(0,0,0,.15);
+  
+}
+.selected {
+  background-color: yellow;
+}
+main{
+  position: absolute;
+  float: right;
+  left: 120px;
+}
+main a {
+  text-decoration: none;
+  color: black;
+}
+h2{
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  color: black;
+  display: block;
+  clear: both;
+  position: relative;
+  top: -10px;
+  height: 30px;
+  text-align: center;
+  
+}
+
+nav ul a:hover{
+  background-color: lime;
+  
+  
+}

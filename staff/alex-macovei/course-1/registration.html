@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+    <meta name="description" content="Game Informations">
+    <link rel="stylesheet" href="styles/nysl_3.css" />
+  </head>
+<body>
+  <a href="index.html"> <img src = "images/nysl-logo.png"
+    alt="NYSL logo"
+    width = "80" height="80">
+  </a>
+  <header>
+    <h1>Northside Youth Soccer League</h1>
+  </header>
+  <h2>Registration Form</h2>
+  <div class = "content">
+    <nav>
+      <ul>
+        <li><a class = "one" href="index.html">Home</a></li>
+        <li><a class = "two" href="about.html">About</a></li>
+        <li><a class = "three" href="contact.html">Contact</a></li>
+        <li><a class = "four" href="rules.html">Rules</a></li>
+        <li><a class = "five" href="game-info.html">Game Info</a></li>
+        <li><a class = "selected">Registration Form</a></li>
+      </ul>
+    </nav>
+    <main>
+      <form action = "show_data.html" method = "GET">
+        <table style="width:100%">
+          <tr>
+            <td>
+              <label>Player's First Name</label>
+              <input type = "text" name = "first_name" required style="width:250px">
+            </td>
+            <td>
+              <label>Last Name</label>
+              <input type= "text" name = "last_name" required style="width:250px">
+            </td>
+          </tr>
+        </table>
+        <div>
+          <label>Street Adress</label>
+          <input type = "text" name = "street_address"  style="width:667px">
+        </div>
+        <table style="width:100%">
+          <tr>
+            <td>
+              <label>City</label>
+              <input type = "text" name = "city"  style="width:351px">
+            </td>
+            <td>
+              <label>Zip Code</label>
+              <input type= "text" name = "zip_code"  style="width:257px">
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td>
+              <label>Birth Date</label>
+              <input type = "date" name = "birth_date" >
+            </td>
+            <td>Gender: </td>
+            <td>
+              <input type = "radio" name = "gender" value = "female"  >
+              <label>Female</label>
+            </td>
+            <td>
+              
+              <input type = "radio" name = "gender" value = "male"  >
+              <label>Male</label>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td>Grade: </td>
+            <td>
+              <input type = "radio" name = "grade"  >
+              <label>Pre-School</label>
+            </td>
+            <td>
+              <input type = "radio" name = "grade" value = "1st"  >
+              <label>1st</label>
+            </td>
+            <td>
+              <input type = "radio" name = "grade" value = "2nd"  >
+              <label>2nd</label>
+            </td>
+            <td>
+              <input type = "radio" name = "grade" value = "3rd"  >
+              <label>3rd</label>
+            </td>
+            <td>
+              <input type = "radio" name = "grade" value = "4th"  >
+              <label>4th</label>
+            </td>
+            <td>
+              <input type = "radio" name = "grade" value = "5th"  >
+              <label>5th</label>
+            </td>
+          </tr>
+        </table>
+        <div>
+          <label>Parent/Guardian</label>
+          <input type = "text" name = "parent" required style="width:649px">
+        </div>
+        <table style="width:100%">
+          <tr>
+            <td>
+              <label>Contact Phone</label>
+              <input type = "number" name = "phone" required style="width:266px">
+            </td>
+            <td>
+              <label>Contact Email</label>
+              <input type= "email" name = "email"  style="width:250px">
+            </td>
+          </tr>
+        </table>
+        <p><b>Which elementary school do you live near?</b></p>
+        <table class = "schools">
+          <thead>
+            <tr>
+              <th>First Closest School:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type = "radio" name = "schools" value = "AJ Katzenmaier"  >
+                <label>AJ Katzenmaier</label>
+              </td>
+              <td>
+                <input type = "radio" name = "schools" value = "Greenbay"  >
+                <label>Greenbay</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type = "radio" name = "schools" value = "Howard A Yeager"  >
+                <label>Howard A Yeager</label>
+              </td>
+              <td>
+                <input type = "radio" name = "schools" value = "Marjorie P Hart"  >
+                <label>Marjorie P Hart</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type = "radio" name = "schools" value = "North Elementary"  >
+                <label>North Elementary</label>
+              </td>
+              <td>
+                <input type = "radio" name = "schools" value = "South Elementary"  >
+                <label>South Elementary</label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class = "schools2">
+          <thead>
+            <tr>
+              <th>Second Closest School:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type = "radio" name = "schools2" value = "AJ Katzenmaier"  >
+                <label>AJ Katzenmaier</label>
+              </td>
+              <td>
+                <input type = "radio" name = "schools2" value = "Greenbay"  >
+                <label>Greenbay</label>
+              </td>
+              </tr>
+              <tr>
+              <td>
+                <input type = "radio" name = "schools2" value = "Howard A Yeager"  >
+                <label>Howard A Yeager</label>
+              </td>
+              <td>
+                <input type = "radio" name = "schools2" value = "Marjorie P Hart"  >
+                <label>Marjorie P Hart</label>
+              </td>
+              </tr>
+              <tr>
+              <td>
+                <input type = "radio" name = "schools2" value = "North Elementary"  >
+                <label>North Elementary</label>
+              </td>
+              <td>
+                <input type = "radio" name = "schools2" value = "South Elementary"  >
+                <label>South Elementary</label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+          <p><b>What position(s) do you normally play? </b> (check all that apply)</p>
+          <table class = "position" >
+            <tr>
+              <td>
+                <input type = "checkbox" name = "position" value = "Forward"  >
+                <label>Forward</label>
+              </td>
+              <td class = "second-row">
+                <input type = "checkbox" name = "position" value = "Midfield"  >
+                <label>Midfield</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type = "checkbox" name = "position" value = "Defense"  >
+                <label>Defense</label>
+              </td>
+              <td class = "second-row">
+                <input type = "checkbox" name = "position" value = "Goalkeeper" >
+                <label>Goalkeeper</label>
+            </tr>
+          </table>
+                    <p><b>What position(s) do you want to play? </b> (check all that apply)</p>
+          <table class = "position" >
+            <tr>
+              <td>
+                <input type = "checkbox" name = "position" value = "Forward"  >
+                <label>Forward</label>
+              </td>
+              <td class = "second-row">
+                <input type = "checkbox" name = "position" value = "Midfield"  >
+                <label>Midfield</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type = "checkbox" name = "position" value = "Defense"  >
+                <label>Defense</label>
+              </td>
+              <td class = "second-row">
+                <input type = "checkbox" name = "position" value = "Goalkeeper"  >
+                <label>Goalkeeper</label>
+            </tr>
+          </table>
+          <table class = "uniform">
+            <tr>
+              <th>
+                <input type = "checkbox" name = "uniform" value = "Already Have a Uniform"  >
+                <label>Already Have a Uniform</label>
+              </th>
+            </tr>
+          </table>
+          <table class = "uniforms" style = "width:50%">
+            <thead>
+              <tr>
+                <th>Jersey Size:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <input type = "radio" name = "uniforms-jersey" value = "Youth Small"  >
+                  <label>Youth Small</label>
+                </td>
+                <td>
+                  <input type = "radio" name = "uniforms-jersey" value = "Youth Medium"  >
+                  <label>Youth Medium</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type = "radio" name = "uniforms-jersey" value = "Youth Large"  >
+                  <label>Youth Large</label>
+                </td>
+                <td>
+                  <input type = "radio" name = "uniforms-jersey" value = "Small"  >
+                  <label>Small</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type = "radio" name = "uniforms-jersey" value = "Medium"  >
+                  <label>Medium</label>
+                </td>
+                <td>
+                  <input type = "radio" name = "uniforms-jersey" value = "Large"  >
+                  <label>Large</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type = "radio" name = "uniforms-jersey" value = "Extra-Large"  >
+                  <label>Extra-Large</label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class = "uniforms" style = "width:50%">
+            <thead>
+              <tr>
+                <th>Shorts Size:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <input type = "radio" name = "uniforms-shorts" value = "Youth Small"  >
+                  <label>Youth Small</label>
+                </td>
+                <td>
+                  <input type = "radio" name = "uniforms-shorts" value = "Youth Medium"  >
+                  <label>Youth Medium</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type = "radio" name = "uniforms-shorts" value = "Youth Large"  >
+                  <label>Youth Large</label>
+                </td>
+                <td>
+                  <input type = "radio" name = "uniforms-shorts" value = "Small"  >
+                  <label>Small</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type = "radio" name = "uniforms-shorts" value = "Medium"  >
+                  <label>Medium</label>
+                </td>
+                <td>
+                  <input type = "radio" name = "uniforms-shorts" value = "Large"  >
+                  <label>Large</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type = "radio" name = "uniforms-shorts" value = "Extra-Large"  >
+                  <label>Extra-Large</label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class = "permissions" >
+            <p><b>Permission to Play</b></p>
+            <p>I, the parent or guardian of the minor registrant, agree that the registrant and I will abide by all the rules of the Northside Youth Soccer League (NYSL). 
+            In recognizing the possibility of physical injury associated with soccer and in consideration for the “League” accepting the registrant for its soccer programs and activities, 
+            I hereby release, discharge, and/or otherwise indemnify NYSL, their employees and associated personnel and volunteers,including the facilities used for practices and games, 
+            against any claim by or on behalf of the registrant as a result of the registrant’s participation in the programand/orbeing transported to or from NYSL sponsored activities, which transportation.</p>
+            <p>By signing below, I hereby agree andauthorizethe above.In addition, By entering my name below, I also acknowledge that I have read the cancellation policy and agree to its terms</p>
+            <table style="width:100%">
+              <tr>
+                <td>
+                  <label>Parent/Guardian Signature</label>
+                  <input type = "text" name = "signature"  style="width:321px" required>
+                </td>
+                <td>
+                  <label>Date</label>
+                  <input type= "date" name = "signature-date"  style="width:227px" required>
+                </td>
+              </tr>
+            </table>
+          </div>
+        <button type = "submit">Submit</button>
+        <button type = "reset">Reset</button>
+      </form>
+    </main>
+  </div>
+</body>
+</html>
