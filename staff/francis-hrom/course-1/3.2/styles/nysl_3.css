@@ -1,0 +1,127 @@
+.content_wrapper {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 960px;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+}
+
+#logo_header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+#logo_img {
+    height: 5rem;
+    width: auto;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+#header_img {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+nav  li {
+    float: left;
+  }
+  
+nav  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+nav li a:hover {
+    background-color: #111;
+  }
+
+  .active {
+    background-color: #4CAF50;
+  }
+
+.upcoming_events ul > li {  
+    list-style-type: none;
+}  
+
+.upcoming_events div > ul > ul {
+    margin-bottom: 2em;
+}
+
+.upcoming_events div > ul > li {
+    font-weight: bold;
+}
+
+article p {
+    text-align: justify;
+}
+
+.rules h2,ul,ol{
+    margin-bottom: 0;
+}
+
+.rules ul > li {  
+    list-style-type: square;
+}  
+
+.rules ol > li {  
+    margin-bottom: 1rem;
+}
+.rules h3, .rules p {
+    font-size: inherit;
+    margin: 0;
+    display: inline;
+}
+
+.rules ol > li > ol > li {  
+    list-style-type: lower-latin;
+    margin-bottom: 0;
+}
+
+.rules ul > li> ol > li {  
+    margin-bottom: 0;
+}
+
+.rules ul > li > ul > li  {  
+    list-style-type: circle;
+}  
+
+.italic {
+    font-style: italic;
+}
+
+.underline, table th {
+    text-decoration: underline;
+}
+
+table {
+    width: 80%;
+    text-align: left;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
