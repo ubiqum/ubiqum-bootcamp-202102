@@ -3,49 +3,54 @@
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
+      
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     </head>
     
     <body>
-        
-         <nav nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#">TGIF Logo</a>
-            </div>
-              <ul class="nav navbar-nav mr-auto">
-                <li class="active"><a href="home.html">Home</a></li>
-                <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" >Congress 113
-                  <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Senate</a></li>
-                    <li><a href="house.html">house</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Page 2</a></li>
-              </ul>
+    <footer class="bg-light text-lg-start">
+      <div class="container">
+        <nav nav class="navbar navbar-default">
+          <div class="row">
+            <div class="col-sm-11"><a class="navbar-brand" href="#">TGIF Logo</a></div>
+            <div class="col-sm-1"><a class="text-right" href="#">info@tgif.net</a></div>
           </div>
-        </nav>        
-  
-
+          <ul class="nav navbar-nav mr-auto">
+            <li class="active"><a href="home.html">Home</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" >Congress 113
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Senate</a></li>
+                <li><a href="house.html">house</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>         
         <header>            
-            <div>
-            </div>
+          <div>
+          </div>
         </header>
         <!--Table container-->
         <div>
-            <h2>Senators</h2>
-            <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two 
-                senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting 
-                to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive 
-                officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.
-            </p>
-            <table id = "senate-data" >
-            </table>
-    	</div>  
+          <div class="row">
+            <div class="col-sm-7">
+              <h2>Senators</h2>
+              <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two 
+                  senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting 
+                  to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive 
+                  officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.
+              </p>
+            </div>
+          </div>
+          <table class="table table-borderless text-center" id = "senate-data" ></table>
+        </div>
+      </div>
+      <div class="text-center p-3" style="background-color: rgba (0, 0, 0, 0.2);"><p class="text-dark" href="#">@ 2016 TGIF | All Rights Reserved</p></div>
+    </footer>  
+
+
     <script src="pro-congress-113-senate.js"></script> 
     <script>
       function renderCongressMembers(members) {
@@ -75,6 +80,12 @@
 
         trh.appendChild(thVotes);
         thVotes.textContent = "Votes";
+
+        thName.setAttribute("class","text-center");
+        thParty.setAttribute("class","text-center");
+        thState.setAttribute("class","text-center");
+        thSeniority.setAttribute("class","text-center");
+        thVotes.setAttribute("class","text-center");
 
 
           for (var i=0;i<members.length;i++){
@@ -111,6 +122,9 @@
       renderCongressMembers(data.results[0].members);
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 </body>
 </html>
