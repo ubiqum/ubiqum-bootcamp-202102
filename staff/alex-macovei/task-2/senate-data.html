@@ -3,7 +3,6 @@
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     </head>
@@ -12,9 +11,11 @@
     <footer class="bg-light text-lg-start">
       <div class="container">
         <nav nav class="navbar navbar-default">
+          
           <div class="row">
-            <div class="col-sm-11"><a class="navbar-brand" href="#">TGIF Logo</a></div>
-            <div class="col-sm-1"><a class="text-right" href="#">info@tgif.net</a></div>
+            <div class="col-sm-1"><img class="d-block img-responsive" width="55" height="55" src="img/logo.jpg" alt="logo"></div>
+            <div class="col-sm-10"><a class="navbar-brand" href="#">TGIF Logo</a></div>
+            <div class="col-sm-1"><a href="#">info@tgif.net</a></div>
           </div>
           <ul class="nav navbar-nav mr-auto">
             <li class="active"><a href="home.html">Home</a></li>
@@ -46,10 +47,10 @@
           </div>
           <table class="table table-borderless text-center" id = "senate-data" ></table>
         </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);"><p class="text-dark" href="#">@ 2016 TGIF | All Rights Reserved</p></div>
       </div>
-      <div class="text-center p-3" style="background-color: rgba (0, 0, 0, 0.2);"><p class="text-dark" href="#">@ 2016 TGIF | All Rights Reserved</p></div>
+      
     </footer>  
-
 
     <script src="pro-congress-113-senate.js"></script> 
     <script>
@@ -86,7 +87,6 @@
         thState.setAttribute("class","text-center");
         thSeniority.setAttribute("class","text-center");
         thVotes.setAttribute("class","text-center");
-
 
           for (var i=0;i<members.length;i++){
             var name = members[i].last_name+" "+(members[i].middle_name || "")+" "+members[i].first_name;
