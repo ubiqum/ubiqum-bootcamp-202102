@@ -1,117 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    </head>
-    
-    <body>
-      <footer class="bg-light text-lg-start">
-        <div class="container">
-          <nav nav class="navbar navbar-default">
-            <div class="row">
-              <div class="col-sm-1"><img class="d-block img-responsive" width="55" height="55" src="img/logo.jpg" alt="logo"></div>
-              <div class="col-sm-10"><a class="navbar-brand" href="#">TGIF Logo</a></div>
-              <div class="col-sm-1"><a class="text-right" href="#">info@tgif.net</a></div>
-            </div>
-            <ul class="nav navbar-nav mr-auto">
-              <li class="active"><a href="home.html">Home</a></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" >Congress 113
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="senate-data.html">Senate</a></li>
-                  <li><a href="#">house</a></li>
-                </ul>
-              </li>
-            </ul>
-          </nav>                 
-            <!--Table container-->
-          <div class="row">
-            <div class="col-sm-7">    
-              <h2>Congressmen</h2>
-              <p>The major power of the House is to pass federal legislation that affects the entire country, although its bills must also be passed by the Senate and further agreed to by the U.S. President before becoming law (unless both the House and Senate re-pass the legislation with a two-thirds majority in each chamber). The House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached officials are subsequently tried in the Senate), and to elect the U.S. President in case there is no majority in the Electoral College.</p>
-              <p>Each U.S. state is represented in the House in proportion to its population as measured in the census, but every state is entitled to at least one representative. </p>
-       	    </div>
-             <table class="table table-borderless text-center"  id = "house-data" ></table>
-	        </div> 
-          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);"><p class="text-dark" href="#">@ 2016 TGIF | All Rights Reserved</p></div>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+  <footer class="bg-light text-lg-start">
+    <div class="container">
+      <nav nav class="navbar navbar-default">
+        <div class="row">
+          <div class="col-sm-1"><img class="d-block img-responsive" width="55" height="55" src="img/logo.jpg"
+              alt="logo"></div>
+          <div class="col-sm-9"><a class="navbar-brand" href="#">TGIF Logo</a></div>
+          <div class="col-sm-2 text-right"><a style="word-wrap:break-word" href="#">info@tgif.net</a></div>
         </div>
-      </footer>
-      <script src="pro-congress-113-house.js"></script> 
-    <script>
-      function renderHouseMembers(members) {
-        var houseData = document.getElementById("house-data");
-        var trh = document.createElement("tr");
-        var thName = document.createElement("th");
-        var thParty = document.createElement("th");
-        var thState = document.createElement("th");
-        var thSeniority = document.createElement("th");
-        var thVotes = document.createElement("th");
-        var thead = document.createElement("thead");
-        var tbody = document.createElement("tbody");
-        houseData.appendChild(thead);
-        thead.appendChild(trh)
+        <ul class="nav navbar-nav mr-auto">
+          <li class="active"><a href="home.html">Home</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Congress 113
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="senate-data.html">Senate</a></li>
+              <li><a href="#">house</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!--Table container-->
+      <div class="row">
+        <div class="col-sm-7">
+          <h2>Congressmen</h2>
+          <p>The major power of the House is to pass federal legislation that affects the entire country, although its
+            bills must also be passed by the Senate and further agreed to by the U.S. President before becoming law
+            (unless both the House and Senate re-pass the legislation with a two-thirds majority in each chamber). The
+            House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached
+            officials are subsequently tried in the Senate), and to elect the U.S. President in case there is no
+            majority in the Electoral College.</p>
+          <p>Each U.S. state is represented in the House in proportion to its population as measured in the census, but
+            every state is entitled to at least one representative. </p>
+        </div>
+        <table class="table table-borderless text-center" id="house-data"></table>
+      </div>
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        <p class="text-dark" href="#">@ 2016 TGIF | All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
 
-        trh.appendChild(thName);
-        thName.textContent = "Full Name";
-        
-        trh.appendChild(thParty);
-        thParty.textContent = "Party Affilication";
-        
-        trh.appendChild(thState);
-        thState.textContent = "State";
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+</body>
 
-        trh.appendChild(thSeniority);
-        thSeniority.textContent = "Seniority";
+<script src="scripts/pro-congress-113-house.js"></script>
+<script src="scripts/view.js"></script>
+<script src="scripts/house-main.js"></script>
 
-        trh.appendChild(thVotes);
-        thVotes.textContent = "Votes";
-
-        thName.setAttribute("class","text-center");
-        thParty.setAttribute("class","text-center");
-        thState.setAttribute("class","text-center");
-        thSeniority.setAttribute("class","text-center");
-        thVotes.setAttribute("class","text-center");
-
-          for (var i=0;i<members.length;i++){
-            var name = members[i].last_name+" "+(members[i].middle_name || "")+" "+members[i].first_name;
-            var tr = document.createElement("tr");
-            houseData.appendChild(tbody);
-            tbody.appendChild(tr)
-            var a = document.createElement('a');
-            a.setAttribute("href",members[i].url);
-
-            var td1 = document.createElement("td");
-            tr.appendChild(td1);
-            td1.appendChild(a);
-            a.innerHTML = name;
-            
-            var td2 = document.createElement("td");
-            tr.appendChild(td2);
-            td2.textContent = members[i].party;
-
-            var td3 = document.createElement("td");
-            tr.appendChild(td3);
-            td3.textContent = members[i].state;
-
-            var td4 = document.createElement("td");
-            tr.appendChild(td4);
-            td4.textContent = members[i].seniority;
-
-            var td5 = document.createElement("td");
-            tr.appendChild(td5);
-            td5.textContent = members[i].votes_with_party_pct + "%";
-          }
-      }
-
-      renderHouseMembers(data.results[0].members);
-    </script>
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-      </body>
 </html>
