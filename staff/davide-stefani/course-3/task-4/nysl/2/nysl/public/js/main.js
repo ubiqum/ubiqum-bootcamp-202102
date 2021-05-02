@@ -2,10 +2,6 @@ initFirebase(function() {
     new Vue(App).$mount('#sign-in-button')
 })
 
-initFirebase(function() {
-    new Vue(App).$mount('#sign-out-button')
-})
-
 function displayData() {
     var x = document.getElementById('registrationData');
     if (x.style.display === 'none') {
@@ -14,10 +10,6 @@ function displayData() {
       x.style.display = 'none';
     }
   }
-
-
-
-
 
 
 /*function retrieveSeptGameSchedules(callback)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="nysl.appcache">
 
 <head>
     <meta charset="utf-8">
@@ -21,7 +21,7 @@
     <!-- Tile icon for Win8 -->
     <meta name="msapplication-TileColor" content="#3372DF">
     <meta name="msapplication-navbutton-color" content="#303F9F">
-
+    <!-- Maps -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <!-- jQuery library -->
@@ -49,7 +49,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
+    <script src="js/geolocation.js"></script>
+
 
 </head>
 
@@ -92,8 +93,7 @@
                     </section>
                     <li id="sign-out-button" class="nav-item mx-0 mx-lg-1"><a
                             class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Sign Out</a></li>
-
-
+                    </li>
                 </ul>
             </div>
 
@@ -386,7 +386,9 @@
                                         <th>Teams</th>
                                         <th>Location</th>
                                         <th>Times</th>
-                                        <th>Info & Messages</th>
+                                        <th>Info</th>
+                                        <th>Message Board</th>
+
                                     </tr>
                                 </thead>
                                 <tbody id="gameTableBody1">
@@ -398,6 +400,8 @@
                                         <td data-col-title='Time'> {{ games.Times }} </td>
                                         <td><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#"
                                                 data-toggle="modal" data-target="#match1">&#9432;</a></td>
+                                        <td><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#"
+                                                data-toggle="modal" data-target="#messages">&#x270e;</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -412,7 +416,8 @@
                                         <th>Teams</th>
                                         <th>Location</th>
                                         <th>Times</th>
-                                        <th>Info & Messages</th>
+                                        <th>Info</th>
+                                        <th>Message Board</th>
                                     </tr>
                                 </thead>
                                 <tbody id="gameTableBody2">
@@ -424,6 +429,8 @@
                                         <td data-col-title='Time'> {{ games.Times }} </td>
                                         <td><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#"
                                                 data-toggle="modal" data-target="#matchA">&#9432;</a></td>
+                                        <td><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#"
+                                                data-toggle="modal" data-target="#messages">&#x270e;</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -865,6 +872,122 @@
         <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i
                 class="fa fa-chevron-up"></i></a>
     </div>
+
+    <!-- Message Board Modal-->
+    <section class="location-modal modal fade" id="messages" tabindex="-1" role="dialog"
+        aria-labelledby="locationModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                </button>
+                <div class="modal-body text-center">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <!-- info Modal - Title-->
+                                <h4 class="location-modal-title text-secondary mb-0">Message Board:</h4>
+                                <br>
+                                <!-- Messages Section -->
+                                <section class="messageBoard">
+                                    <div>
+                                        <!-- Navigation Bar -->
+                                        <div class="tab mdl-layout__header-row">
+                                            <div class="mdl-tab">
+                                                <div id="menu-recent"
+                                                    class="is-active mdl-button mdl-js-button mdl-js-ripple-effect">
+                                                    <i class="material-icons">new_releases</i>
+                                                    Recent
+                                                </div>
+                                                <div id="menu-my-posts"
+                                                    class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                                                    <i class="material-icons">home</i> My posts
+                                                </div>
+                                                <div id="menu-my-top-posts"
+                                                    class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                                                    <i class="material-icons">trending_up</i> My
+                                                    top posts
+                                                </div>
+                                                <button
+                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--green-400 mdl-shadow--4dp mdl-js-ripple-effect"
+                                                    id="add">
+                                                    <i class="material-icons">mode_edit</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <main>
+                                            <!-- Show the add post form -->
+                                            <section class="mdl-grid content" id="add-post" style="display:none">
+                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
+                                                    <!-- Card containing the inputs to add a new messages -->
+                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
+                              mdl-cell--6-col-desktop">
+                                                        <div
+                                                            class="mdl-card__title mdl-color-text--white">
+                                                            <h3 class="mdl-card__title-text">New
+                                                                Post</h3>
+                                                        </div>
+                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                                                            <form id="message-form" action="#">
+                                                                <div
+                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                                    <input class="mdl-textfield__input" type="text"
+                                                                        id="new-post-title">
+                                                                    <label class="mdl-textfield__label"
+                                                                        for="new-post-title">Post
+                                                                        title...</label>
+                                                                </div>
+                                                                <div
+                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                                    <textarea class="mdl-textfield__input" rows="3"
+                                                                        id="new-post-message"></textarea>
+                                                                    <label class="mdl-textfield__label"
+                                                                        for="new-post-message">Post
+                                                                        message...</label>
+                                                                </div>
+                                                                <button type="submit"
+                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                                                    Add post
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <!-- Show a list of recent posts -->
+                                            <section class="mdl-grid content" id="recent-posts-list"
+                                                style="display:none">
+                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                                                </div>
+                                            </section>
+                                            <!-- Show the list of user's posts -->
+                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
+                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                                                </div>
+                                            </section>
+                                            <!-- Show the list of top user's posts -->
+                                            <section class="mdl-grid content" id="top-user-posts-list"
+                                                style="display:none">
+                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                                                </div>
+                                            </section>
+                                        </main>
+                                    </div>
+                                </section><br>
+                                <button class="btn btn-primary" data-dismiss="modal">
+                                    <i class="fas fa-times fa-fw"></i>
+                                    Close Window
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
     <!-- Locations Modals-->
     <!-- Location Modal 1-->
     <div class="location-modal modal fade" id="locationModal1" tabindex="-1" role="dialog"
@@ -888,12 +1011,12 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- location Modal - map-->
-                                
-                                <iframe id="map" class="img-fluid rounded mb-5"
+                                <div id="maps">
+                                    <iframe class="img-fluid rounded mb-5"
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.654060426177!2d-87.6312390848914!3d41.90029637200441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f6bac3%3A0x68a82e5d59952c86!2s24%20W%20Walton%20St%2C%20Chicago%2C%20IL%2060610%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612949750367!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                
+                                </div>
                                 <!-- location Modal - Text-->
                                 <p class="mb-5">
                                     <tr>
@@ -934,10 +1057,12 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- location Modal - map-->
+                                <div id="maps">
                                 <iframe class="img-fluid rounded mb-5"
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d845.1319545268863!2d-87.6385169564805!3d41.91373861895231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34073f306a3%3A0x9e1726bbf8f23f0e!2s1734%20N%20Orleans%20St%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950326125!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
+                                </div>firebase feeddr
                                 <!-- location Modal - Text-->
                                 <p class="mb-5">
                                     <td>Greenbay Elementary</td>
@@ -1122,7 +1247,19 @@
             </div>
         </div>
     </div>
+
     <!-- INFO U1&U4 MODAL-->
+
+
+
+
+
+
+
+
+
+
+
     <section class="location-modal modal fade" id="match1" tabindex="-1" role="dialog"
         aria-labelledby="locationModal1Label" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
@@ -1152,93 +1289,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.654060426177!2d-87.6312390848914!3d41.90029637200441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f6bac3%3A0x68a82e5d59952c86!2s24%20W%20Walton%20St%2C%20Chicago%2C%20IL%2060610%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612949750367!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--green-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <main>
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-green-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
+
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -1280,93 +1331,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d845.1319545268863!2d-87.6385169564805!3d41.91373861895231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34073f306a3%3A0x9e1726bbf8f23f0e!2s1734%20N%20Orleans%20St%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950326125!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-green-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-green-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
+
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -1408,93 +1373,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.590722234604!2d-87.66531398489063!3d41.92315627057299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd2e37f9b8d2d%3A0x62ad8b907dd755d6!2s2245%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950434048!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
+
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -1536,93 +1415,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d441.78947241047285!2d-87.64620936071391!3d41.929529888900944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd30f2630e551%3A0x3e719e44a5cef714!2s2625%20N%20Orchard%20St%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950497057!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
+
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -1665,93 +1458,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.3562837030117!2d-87.64765898489117!3d41.90669907160356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd33a674ca85d%3A0x9940c7163c4950c5!2s1409%20N%20Ogden%20Ave%2C%20Chicago%2C%20IL%2060610%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950542941!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
+
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -1793,100 +1500,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.654060426177!2d-87.6312390848914!3d41.90029637200441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f6bac3%3A0x68a82e5d59952c86!2s24%20W%20Walton%20St%2C%20Chicago%2C%20IL%2060610%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612949750367!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -1928,100 +1542,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.747764826586!2d-87.65355538489074!3d41.91978077078429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd3196fb41dc7%3A0x970be7f7d6336df5!2s2101%20N%20Fremont%20St%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950587807!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                       mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -2063,100 +1584,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.590722234604!2d-87.66531398489063!3d41.92315627057299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd2e37f9b8d2d%3A0x62ad8b907dd755d6!2s2245%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950434048!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                         mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -2198,93 +1626,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d845.1319545268863!2d-87.6385169564805!3d41.91373861895231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34073f306a3%3A0x9e1726bbf8f23f0e!2s1734%20N%20Orleans%20St%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950326125!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
+
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -2327,93 +1669,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.590722234604!2d-87.66531398489063!3d41.92315627057299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd2e37f9b8d2d%3A0x62ad8b907dd755d6!2s2245%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950434048!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
+
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -2455,100 +1711,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.747764826586!2d-87.65355538489074!3d41.91978077078429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd3196fb41dc7%3A0x970be7f7d6336df5!2s2101%20N%20Fremont%20St%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950587807!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                       mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -2590,100 +1753,6 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.590722234604!2d-87.66531398489063!3d41.92315627057299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd2e37f9b8d2d%3A0x62ad8b907dd755d6!2s2245%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950434048!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                           mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -2725,93 +1794,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d845.1319545268863!2d-87.6385169564805!3d41.91373861895231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34073f306a3%3A0x9e1726bbf8f23f0e!2s1734%20N%20Orleans%20St%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950326125!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
+
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -2853,100 +1836,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.3562837030117!2d-87.64765898489117!3d41.90669907160356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd33a674ca85d%3A0x9940c7163c4950c5!2s1409%20N%20Ogden%20Ave%2C%20Chicago%2C%20IL%2060610%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950542941!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -2988,93 +1878,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d441.78947241047285!2d-87.64620936071391!3d41.929529888900944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd30f2630e551%3A0x3e719e44a5cef714!2s2625%20N%20Orchard%20St%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950497057!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
+
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -3116,93 +1920,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.654060426177!2d-87.6312390848914!3d41.90029637200441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f6bac3%3A0x68a82e5d59952c86!2s24%20W%20Walton%20St%2C%20Chicago%2C%20IL%2060610%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612949750367!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
+
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -3244,100 +1962,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.590722234604!2d-87.66531398489063!3d41.92315627057299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd2e37f9b8d2d%3A0x62ad8b907dd755d6!2s2245%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950434048!5m2!1sit!2ses"
                                     width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
                                     aria-hidden="false" tabindex="0"></iframe>
-                                <!-- Messages Section -->
-                                <section>
-                                    <h5> Message Board:</h5>
-                                    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <main class="mdl-layout__content mdl-color--grey-100">
-
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                          mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
-                                </section><br>
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -3364,7 +1989,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
     <!-- <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
-    
+
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <!-- Bootstrap core JS-->
@@ -3372,6 +1997,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACpcAehhmcgmanbExBlQSoSeSSLsnqs84&callback=initMap&libraries=&v=weekly"
+        async></script>
+
     <!-- Core theme JS-->
     <script src="js/logic.js"> </script>
     <script src="js/view.js"></script>
@@ -3379,7 +2009,6 @@
     <script src="js/config.js"></script>
     <script src="js/message.js"></script>
     <script src="js/logic.js"></script>
-    <script src="js/geolocation.js"></script>
 </body>
 
 </html>

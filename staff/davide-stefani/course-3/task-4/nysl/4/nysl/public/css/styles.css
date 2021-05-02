@@ -135,6 +135,13 @@ strong {
 small {
   font-size: 80%;
 }
+.mdl-color--light-blue-600 {
+  background-color: #0f967b !important;
+}
+
+.mdl-card__title {
+  background-color: #0f967b !important;
+}
 
 sub,
 sup {
@@ -542,7 +549,7 @@ pre code {
 }
 
 #map {
-  height: 50%;
+  height: 100%;
 }
 @media (orientation: landscape) {
   body {
@@ -9739,7 +9746,10 @@ a.text-dark:hover, a.text-dark:focus {
 .location .location-item .location-item-caption .location-item-caption-content {
   font-size: 1.5rem;
 }
-
+.message-modal {
+max-height: calc(100% - 120px);
+overflow-y: scroll;
+}
 .location-modal .location-modal-title {
   font-size: 2.25rem;
   line-height: 2rem;

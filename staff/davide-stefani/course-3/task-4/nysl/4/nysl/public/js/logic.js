@@ -41,3 +41,20 @@ function retrieveOctSchedules(callback) {
         callback(gameDataOct);
     }
 }
+
+function retrieveGameInfo(callback) {
+    var gameDataInfo = [];
+    if (!localStorage.getItem('Game_Info_data')) {
+        fetch('js/dataInfo.json')
+            .then(response => response.json())
+            .then(function (data) {
+                gameDataInfo = data.results;
+                localStorage.setItem('Game_Info_data', JSON.stringify(gameDataInfo));
+            });
+        callback(gameDataInfo);
+    }
+    else {
+        gameDataInfo = JSON.parse(localStorage.getItem('Game_Info_data'));
+        callback(gameDataInfo);
+    }
+}

@@ -1,0 +1,219 @@
+.grid {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas: "logo header" "nav nav" "pageheader pageheader" "bodycontent bodycontent";
+}
+
+body {
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+  background-color: rgb(48, 121, 72);
+}
+
+.logo {
+  grid-area: logo;
+  width: 85px;
+  height: 85px;
+  justify-self: center;
+  margin-top: 20px;
+  margin-left:20px;
+}
+
+.header {
+  grid-area: header;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+  text-align: center;
+  margin-top: 20px;
+  color: rgb(255, 255, 255);
+}
+
+#container {
+  max-width: 900px;
+  min-width: 500px;
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.nav {
+  grid-area: nav;
+  top: 30%;
+  line-height: 150%;
+  background: rgb(175, 238, 216);
+  text-align: center;
+  margin: 5px;
+  padding: 0;
+  justify-self: center;
+}
+
+.pageheader {
+  grid-area: pageheader;
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+  text-align: center;
+  justify-self: center;
+  margin-top: 15px;
+  color: rgb(8, 68, 8);
+}
+
+.bodycontent {
+  grid-area: bodycontent;
+  position: relative;
+  left: 5%;
+  margin-top: 50px;
+  background: rgb(223, 253, 226);
+  border-style: dashed;
+  border-color: black;
+  border-width: 3px;
+  padding: 1em;
+  width: 90%;
+  text-align:left;
+}
+
+#bodycontent h1 {
+  font-size: 1.5em;
+}
+
+#bodycontent h2 {
+  font-size: 1.1em;
+  text-transform: uppercase;
+}
+
+#bodyconent h2 {
+  padding: 0px;
+  margin: 0px;
+}
+
+#bodycontent ul {
+  list-style-type: square;
+}
+
+#infotable th {
+  text-decoration: underline;
+  padding: 0 1.0em;
+  padding-top: 1em;
+}
+
+#infotable td {
+  text-align: left;
+  padding: 0 1.0em;
+}
+
+#bodycontent address {
+  font-style: normal;
+}
+
+#titlecenter {
+  text-align: center;
+}
+
+#upcoming h2 {
+  font-size: 1.0em;
+  font-weight: normal;
+  font-style: italic;
+  text-transform: none;
+}
+
+iframe {
+  border: 0;
+  overflow: hidden;
+  margin: 0;
+}
+
+#infotable h3, #rules h3 {
+  text-align:left;
+  margin-top: 1em;
+  margin-bottom: 0;
+  font-size: 1em;
+}
+
+#gamelocations td {
+  padding: 2em;
+}
+
+
+
+fieldset {
+  margin: 2em 0;
+}
+
+fieldset label {
+  padding-left: 2em;
+}
+
+.impinfo {
+  font-size: .95em;
+  padding: 0em;
+}
+
+.note {
+  font-weight: normal;
+  font-size: 1.0em;
+}
+
+.indent {
+  margin-top: -1em;
+  margin-left: 1em;
+}
+
+.uniformchoice, .contract {
+  font-size: .8em;
+}
+
+.announcement {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+#first_name, #last_name, #street_address, #city, #zip, #birth_date, #parent_guardian, #contact_phone, #contact_email, #signature, #sig_date {
+  display: block;
+  margin-bottom: .5em;
+}
+
+#street_address {
+  width: 20em;
+}
+
+#city {
+  width: 15em;
+}
+
+#zip {
+  width: 4em;
+}
+
+#birth_date {
+  width: 6em;
+}
+
+#contact_phone {
+  width: 7em;
+}
+
+#contact_email {
+  width: 15em;
+}
+
+#sig_date {
+  width: 5em;
+}
+
+fieldset {
+  border: solid 1px green;
+}
+
+form h3 {
+  font-size: 1em;
+  text-decoration: underline;
+}
+
+.stylized label {
+  width: 12em;
+  padding-right: 1em;
+  text-align: right;
+  float: left;
+}
+
+input {
+  padding: 4px 2px;
+  border: solid 1px green;
+}

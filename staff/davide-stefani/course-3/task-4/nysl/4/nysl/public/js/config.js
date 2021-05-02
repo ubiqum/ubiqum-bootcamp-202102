@@ -9,6 +9,4 @@ var firebaseConfig = {
     measurementId: "G-08ERX3X9JH"
   };
 
-  if(!firebaseConfig.apps.length){
-    firebase.initializeApp(firebaseConfig);
-  }
+  

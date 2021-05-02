@@ -1,3 +1,4 @@
+<!doctype html>
 
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="Demonstrates the use of Google Cloud Database with a Firebase DB">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firebase Database Quickstart</title>
+  <title>Message Board for NYSL Games</title>
 
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
@@ -29,8 +30,25 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-orange.min.css">
   <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.3.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-functions.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-performance.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-  <link href="css/styles.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/main.css">
 
 </head>
 <body>
@@ -39,7 +57,6 @@
 
   <!-- Splash screen -->
   <section id="page-splash">
-    <h3 class="logo">Database Web Quickstart</h3>
     <div>
       <button id="sign-in-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign in with Google</button>
     </div>
@@ -49,7 +66,7 @@
   <header class="header mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
 
     <div class="mdl-layout__header-row titlebar">
-      <h3 class="logo">Database Web Quickstart</h3>
+      <h3 class="logo">Chat Board for NYSL</h3>
       <button id="sign-out-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign out</button>
     </div>
 
@@ -82,12 +99,12 @@
           <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
                   mdl-cell--6-col-desktop">
             <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-              <h2 class="mdl-card__title-text">New Post</h2>
+              <h2 id= "header" class="mdl-card__title-text">New Post</h2>
             </div>
             <div class="mdl-card__supporting-text mdl-color-text--grey-600">
               <form id="message-form" action="#">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="new-post-title">
+                  <input class="mdl-textfield__input" type="text" id="new-post-title" readonly = "readonly">
                   <label class="mdl-textfield__label" for="new-post-title">Post title...</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -126,12 +143,11 @@
 <!-- Import and configure the Firebase SDK -->
 <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
 <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
-<script src="/__/firebase/8.4.1/firebase-app.js"></script>
-<script src="/__/firebase/8.4.1/firebase-auth.js"></script>
-<script src="/__/firebase/8.4.1/firebase-database.js"></script>
+<script src="/__/firebase/8.3.1/firebase-app.js"></script>
+<script src="/__/firebase/8.3.1/firebase-auth.js"></script>
+<script src="/__/firebase/8.3.1/firebase-database.js"></script>
 <script src="/__/firebase/init.js"></script>
 
-<script src="js/main.js"></script>
-<script src="js/message.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>
