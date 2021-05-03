@@ -11,7 +11,6 @@ var tbody = document.createElement("tbody");
 var houseData = document.getElementById("house-data");
 var rFilter = false;
 var dFilter = false;
-var iFilter = false;
 
 function setTableSenate() {
     senateData.appendChild(thead);
@@ -93,23 +92,28 @@ function renderCongressRepublicans(members) {
             var td1 = document.createElement("td");
             tr.appendChild(td1);
             td1.appendChild(a);
+            td1.setAttribute("id","tdR");
             a.innerHTML = name;
 
             var td2 = document.createElement("td");
             tr.appendChild(td2);
             td2.textContent = members[i].party;
+            td2.setAttribute("id","tdR");
 
             var td3 = document.createElement("td");
             tr.appendChild(td3);
             td3.textContent = members[i].state;
+            td3.setAttribute("id","tdR");
 
             var td4 = document.createElement("td");
             tr.appendChild(td4);
             td4.textContent = members[i].seniority;
+            td4.setAttribute("id","tdR");
 
             var td5 = document.createElement("td");
             tr.appendChild(td5);
             td5.textContent = members[i].votes_with_party_pct + "%";
+            td5.setAttribute("id","tdR");
         }
     }
 }
@@ -130,23 +134,28 @@ function renderCongressDemocrat(members) {
 
             var td1 = document.createElement("td");
             tr.appendChild(td1);
+            td1.setAttribute("id","tdD");
             td1.appendChild(a);
             a.innerHTML = name;
 
             var td2 = document.createElement("td");
             tr.appendChild(td2);
+            td2.setAttribute("id","tdD");
             td2.textContent = members[i].party;
 
             var td3 = document.createElement("td");
             tr.appendChild(td3);
+            td3.setAttribute("id","tdD");
             td3.textContent = members[i].state;
 
             var td4 = document.createElement("td");
             tr.appendChild(td4);
+            td4.setAttribute("id","tdD");
             td4.textContent = members[i].seniority;
 
             var td5 = document.createElement("td");
             tr.appendChild(td5);
+            td5.setAttribute("id","tdD");
             td5.textContent = members[i].votes_with_party_pct + "%";
         }
     }
@@ -160,6 +169,7 @@ function renderCongressIndipendent(members) {
         if (members[i].party === "ID") {
             var name = members[i].last_name + " " + (members[i].middle_name || "") + " " + members[i].first_name;
             var tr = document.createElement("tr");
+            tr.setAttribute("class","indip")
             senateData.appendChild(tbody);
             tbody.appendChild(tr)
             var a = document.createElement('a');
@@ -168,22 +178,27 @@ function renderCongressIndipendent(members) {
             var td1 = document.createElement("td");
             tr.appendChild(td1);
             td1.appendChild(a);
+            td1.setAttribute("id","tdI");
             a.innerHTML = name;
 
             var td2 = document.createElement("td");
             tr.appendChild(td2);
+            td2.setAttribute("id","tdI");
             td2.textContent = members[i].party;
 
             var td3 = document.createElement("td");
             tr.appendChild(td3);
+            td3.setAttribute("id","tdI");
             td3.textContent = members[i].state;
 
             var td4 = document.createElement("td");
             tr.appendChild(td4);
+            td4.setAttribute("id","tdI");
             td4.textContent = members[i].seniority;
 
             var td5 = document.createElement("td");
             tr.appendChild(td5);
+            td5.setAttribute("id","tdI");
             td5.textContent = members[i].votes_with_party_pct + "%";
         }
     }
@@ -248,35 +263,38 @@ function renderHouseMembers(members) {
 }
 
 function checkboxR() {
-    if (!rFilter) {
         if (republican.checked) {
             renderCongressRepublicans(data.results[0].members);
-        }
-        if(!republican.checked){
-            for (var i=0;i<senateData.length;i++){
+            for (var i=0;i<data.results[0].members.length*5;i++){
                 if(senateData.members[i].party==="R"){
                 }
             }
         }
-        rFilter = true;
-    }
-    
+        if(!republican.checked){
+            for (var i=0;i<data.results[0].members.length*5;i++){
+                    document.getElementById("tdR").remove();
+            }
+        }
 }
 function checkboxD() {
-    if (!dFilter) {
         if (democrat.checked) {
             renderCongressDemocrat(data.results[0].members);
         }
-        dFilter = true;
-    }
+        if(!democrat.checked){
+            for (var i=0;i<data.results[0].members.length*5;i++){
+                    document.getElementById("tdD").remove();
+            }
+        }
     
 }
 function checkboxI() {
-    if (!iFilter) {
         if (indipendent.checked) {
             renderCongressIndipendent(data.results[0].members);
         }
-        iFilter = true;
-    }
+        if(!indipendent.checked){
+            for (var i=0;i<data.results[0].members.length;i++){
+                    document.getElementById("tdI").remove();
+            }
+        }
     
 }
