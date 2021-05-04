@@ -63,9 +63,8 @@
     max-width: 1024px;
     width: 100%;
     height: auto;
-    padding: 10px 20px;
     margin: auto;
-    position: relative;
+    position: left;
 }
 @media screen and (max-width: 840px) {
     .header .mdl-layout__header-row.titlebar {
@@ -199,7 +198,7 @@
 
 #page-add {
     display: block;
-    text-align: center;
+    text-align: left;
 }
 #page-add .mdl-cell {
     width: auto;

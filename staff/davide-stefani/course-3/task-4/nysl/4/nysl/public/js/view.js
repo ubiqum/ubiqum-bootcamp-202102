@@ -16,12 +16,3 @@ this.retrieveOctSchedules(function (gameDataOct) {
         }
     });
 })
-
-this.retrieveGameInfo(function (gameDataInfo) {
-    var gameApp3 = new Vue({
-        el: '#gameTableBody3',
-        data: {
-            schedule_Info: gameDataInfo
-        }
-    });
-})

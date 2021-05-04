@@ -42,19 +42,49 @@ function retrieveOctSchedules(callback) {
     }
 }
 
-function retrieveGameInfo(callback) {
-    var gameDataInfo = [];
-    if (!localStorage.getItem('Game_Info_data')) {
-        fetch('js/dataInfo.json')
-            .then(response => response.json())
-            .then(function (data) {
-                gameDataInfo = data.results;
-                localStorage.setItem('Game_Info_data', JSON.stringify(gameDataInfo));
-            });
-        callback(gameDataInfo);
-    }
-    else {
-        gameDataInfo = JSON.parse(localStorage.getItem('Game_Info_data'));
-        callback(gameDataInfo);
-    }
+var games = matches.results;
+fillTable(games);
+
+function fillTable(games) {
+  var table = document.getElementById("table-data");
+  var tbody = table.querySelector("tbody");
+
+
+  games.forEach(function (game) {
+    var row = document.createElement("tr");
+
+    var date = document.createElement("td");
+    date.innerText = game.date;
+
+    var team = document.createElement("td");
+    team.innerText = game.teams;
+
+    var location = document.createElement("td");
+    location.innerText = game.location;
+
+    var time = document.createElement("td");
+    time.innerText = game.time;
+
+    row.append(date, team, location, time)
+
+    table.append(row)
+
+    tbody.append(row);
+  });
+}
+
+function filterTable(event) {
+
+  var selectedTeams = document.getElementById("teams").value;
+  var filteredTeams
+  
+
+  if (selectedTeams === "") {
+    filteredTeams = games
+  } else {
+    filteredTeams = games.filter(function (game) {
+      return selectedTeams.includes(game.teams);
+    })
+  }
+  fillTable(filteredTeams);
 }

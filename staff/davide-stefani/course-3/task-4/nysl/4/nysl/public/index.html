@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" manifest="nysl.appcache">
+<html lang="en">
+<html manifest="nysl.appcache">
 
 <head>
     <meta charset="utf-8">
@@ -407,7 +408,7 @@
                             </table>
                         </div>
                         <br>
-                        <div id="infotable" style="text-align: left;  height:250px;overflow:auto;">
+                        <div id="gameApp2" style="text-align: left;  height:250px;overflow:auto;">
                             <table id="gameTable2" class="table smart-table table-sm"
                                 style="background-color:rgb(181, 247, 215); ">
                                 <thead class="thead-dark">
@@ -891,88 +892,129 @@
                                 <!-- Messages Section -->
                                 <section class="messageBoard">
                                     <div>
-                                        <!-- Navigation Bar -->
-                                        <div class="tab mdl-layout__header-row">
-                                            <div class="mdl-tab">
-                                                <div id="menu-recent"
-                                                    class="is-active mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">new_releases</i>
-                                                    Recent
-                                                </div>
-                                                <div id="menu-my-posts"
-                                                    class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">home</i> My posts
-                                                </div>
-                                                <div id="menu-my-top-posts"
-                                                    class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                                                    <i class="material-icons">trending_up</i> My
-                                                    top posts
-                                                </div>
-                                                <button
-                                                    class="mdl-button mdl-js-button mdl-button--fab mdl-color--green-400 mdl-shadow--4dp mdl-js-ripple-effect"
-                                                    id="add">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </button>
+                                        <!-- Filter Section -->
+                                        <section class="container-fluid">
+                                            <div class="grid-filters">
+
+                                                <form class="teamsSelector">
+                                                    <label for="teams">Game:</label>
+                                                    <select name="teams" id="teams" class="teamSelector"
+                                                        onchange="filterTable()">
+                                                        <option value="">All</option>
+                                                        <option value="Match1">U1 vs U4</option>
+                                                        <option value="Match2">U3 vs U2</option>
+                                                        <option value="Match3">U5 vs U6</option>
+                                                        <option value="Match4">U6 vs U1</option>
+                                                        <option value="Match5">U2 vs U4</option>
+                                                        <option value="Match6">U3 vs U5</option>
+                                                        <option value="Match7">U1 vs U3</option>
+                                                        <option value="Match8">U2 vs U6</option>
+                                                        <option value="Match9">U4 vs U5</option>
+                                                        <option value="Match10">U2 vs U5</option>
+                                                        <option value="Match11">U1 vs U6</option>
+                                                        <option value="Match12">U3 vs U4</option>
+                                                        <option value="Match13">U5 vs U1</option>
+                                                        <option value="Match14">U6 vs U3</option>
+                                                        <option value="Match15">U2 vs U4</option>
+                                                        <option value="Match16">U3 vs U1</option>
+                                                        <option value="Match17">U5 vs U6</option>
+                                                    </select>
+                                                </form>
                                             </div>
+                                        </section><br>
+                                    </div>
+
+                                    <div class="table-info" style="text-align: left;  height:250px;overflow:auto;">
+                                        <table id="table-data" class="table smart-table table-sm"
+                                            style="background-color:rgb(181, 247, 215); ">
+                                            <thead>
+                                                <th> Date</th>
+                                                <th> Teams</th>
+                                                <th> Location</th>
+                                                <th> Times</th>
+                                            </thead>
+                                            <tbody class="table table-striped">
+                                            </tbody>
+                                        </table>
+                                    </div><br>
+                                    <!-- Navigation Bar -->
+                                    <div>
+                                        <div class="mdl-tab">
+                                            <div id="menu-recent"
+                                                class="is-active mdl-button mdl-js-button mdl-js-ripple-effect">
+                                                <i class="material-icons">new_releases</i>
+                                                Recent
+                                            </div>
+                                            <div id="menu-my-posts"
+                                                class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                                                <i class="material-icons">home</i> My posts
+                                            </div>
+                                            <div id="menu-my-top-posts"
+                                                class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                                                <i class="material-icons">trending_up</i> My
+                                                top posts
+                                            </div>
+                                            <button
+                                                class="mdl-button mdl-js-button mdl-button--fab mdl-color--green-400 mdl-shadow--4dp mdl-js-ripple-effect"
+                                                id="add">
+                                                <i class="material-icons">mode_edit</i>
+                                            </button>
                                         </div>
-                                        <main>
-                                            <!-- Show the add post form -->
-                                            <section class="mdl-grid content" id="add-post" style="display:none">
-                                                <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                                                    <!-- Card containing the inputs to add a new messages -->
-                                                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
+                                    </div>
+                                    <main>
+                                        <!-- Show the add post form -->
+                                        <section class="mdl-grid content" id="add-post" style="display:none">
+                                            <div class="mdl-cell mdl-cell--12-col mdl-grid">
+                                                <!-- Card containing the inputs to add a new messages -->
+                                                <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
                               mdl-cell--6-col-desktop">
-                                                        <div
-                                                            class="mdl-card__title mdl-color-text--white">
-                                                            <h3 class="mdl-card__title-text">New
-                                                                Post</h3>
-                                                        </div>
-                                                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                                            <form id="message-form" action="#">
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <input class="mdl-textfield__input" type="text"
-                                                                        id="new-post-title">
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-title">Post
-                                                                        title...</label>
-                                                                </div>
-                                                                <div
-                                                                    class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                                    <textarea class="mdl-textfield__input" rows="3"
-                                                                        id="new-post-message"></textarea>
-                                                                    <label class="mdl-textfield__label"
-                                                                        for="new-post-message">Post
-                                                                        message...</label>
-                                                                </div>
-                                                                <button type="submit"
-                                                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                                    Add post
-                                                                </button>
-                                                            </form>
-                                                        </div>
+                                                    <div class="mdl-card__title mdl-color-text--white">
+                                                        <h3 class="mdl-card__title-text">New
+                                                            Post</h3>
+                                                    </div>
+                                                    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                                                        <form id="message-form" action="#">
+                                                            <div
+                                                                class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                                <input class="mdl-textfield__input" type="text"
+                                                                    id="new-post-title">
+                                                                <label class="mdl-textfield__label"
+                                                                    for="new-post-title">Post
+                                                                    title...</label>
+                                                            </div>
+                                                            <div
+                                                                class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                                <textarea class="mdl-textfield__input" rows="3"
+                                                                    id="new-post-message"></textarea>
+                                                                <label class="mdl-textfield__label"
+                                                                    for="new-post-message">Post
+                                                                    message...</label>
+                                                            </div>
+                                                            <button type="submit"
+                                                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                                                Add post
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                            </section>
-                                            <!-- Show a list of recent posts -->
-                                            <section class="mdl-grid content" id="recent-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of user's posts -->
-                                            <section class="mdl-grid content" id="user-posts-list" style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                            <!-- Show the list of top user's posts -->
-                                            <section class="mdl-grid content" id="top-user-posts-list"
-                                                style="display:none">
-                                                <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
-                                                </div>
-                                            </section>
-                                        </main>
-                                    </div>
+                                            </div>
+                                        </section>
+                                        <!-- Show a list of recent posts -->
+                                        <section class="mdl-grid content" id="recent-posts-list" style="display:none">
+                                            <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                                            </div>
+                                        </section>
+                                        <!-- Show the list of user's posts -->
+                                        <section class="mdl-grid content" id="user-posts-list" style="display:none">
+                                            <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                                            </div>
+                                        </section>
+                                        <!-- Show the list of top user's posts -->
+                                        <section class="mdl-grid content" id="top-user-posts-list" style="display:none">
+                                            <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                                            </div>
+                                        </section>
+                                    </main>
                                 </section><br>
                                 <button class="btn btn-primary" data-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
@@ -1013,9 +1055,9 @@
                                 <!-- location Modal - map-->
                                 <div id="maps">
                                     <iframe class="img-fluid rounded mb-5"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.654060426177!2d-87.6312390848914!3d41.90029637200441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f6bac3%3A0x68a82e5d59952c86!2s24%20W%20Walton%20St%2C%20Chicago%2C%20IL%2060610%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612949750367!5m2!1sit!2ses"
-                                    width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
-                                    aria-hidden="false" tabindex="0"></iframe>
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.654060426177!2d-87.6312390848914!3d41.90029637200441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f6bac3%3A0x68a82e5d59952c86!2s24%20W%20Walton%20St%2C%20Chicago%2C%20IL%2060610%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612949750367!5m2!1sit!2ses"
+                                        width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
+                                        aria-hidden="false" tabindex="0"></iframe>
                                 </div>
                                 <!-- location Modal - Text-->
                                 <p class="mb-5">
@@ -1058,10 +1100,10 @@
                                 </div>
                                 <!-- location Modal - map-->
                                 <div id="maps">
-                                <iframe class="img-fluid rounded mb-5"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d845.1319545268863!2d-87.6385169564805!3d41.91373861895231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34073f306a3%3A0x9e1726bbf8f23f0e!2s1734%20N%20Orleans%20St%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950326125!5m2!1sit!2ses"
-                                    width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
-                                    aria-hidden="false" tabindex="0"></iframe>
+                                    <iframe class="img-fluid rounded mb-5"
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d845.1319545268863!2d-87.6385169564805!3d41.91373861895231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34073f306a3%3A0x9e1726bbf8f23f0e!2s1734%20N%20Orleans%20St%2C%20Chicago%2C%20IL%2060614%2C%20Stati%20Uniti!5e0!3m2!1sit!2ses!4v1612950326125!5m2!1sit!2ses"
+                                        width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""
+                                        aria-hidden="false" tabindex="0"></iframe>
                                 </div>firebase feeddr
                                 <!-- location Modal - Text-->
                                 <p class="mb-5">
@@ -2003,12 +2045,13 @@
         async></script>
 
     <!-- Core theme JS-->
-    <script src="js/logic.js"> </script>
+    <script src="js/dataInfo.js"> </script>
+    <script src="js/logic.js"></script>
     <script src="js/view.js"></script>
     <script src="js/scripts.js"></script>
     <script src="js/config.js"></script>
     <script src="js/message.js"></script>
-    <script src="js/logic.js"></script>
+
 </body>
 
 </html>
