@@ -31,6 +31,7 @@ offline data:
  https://api.propublica.org/congress/v1/113/senate/members.json?apikey=PeoQrPJONEB0oy2bwTSlMvnliYvyCSCTOlEH5HPP
 */
 
+// TODO  get rid of global variables from data.js
 // list of all data on the website
 let senateData = ["error in JS"];
 let houseData = ["error in JS"];

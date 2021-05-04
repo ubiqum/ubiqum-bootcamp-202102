@@ -1,6 +1,29 @@
-/* TODO
+/* TODO list:
+*check the tree icon for full TODO list
 refactor page by page
 refactor file by file 
+
+change "openStatesListOfAllStates"
+- name retrieveStates
+- check if the data is in cache
+- if not, call API, get data, adjust them, save to cache
+
+ var statesObject = {
+ al:Alabama,
+ ak:Alaska,
+ az:Arizona
+ }
+
+research vue router
+https://github.com/pluscoders/vue-router-simple-demo
+https://github.com/pluscoders/vue-router-demo
+in end there should be one "SPA" (single page application) 
+index.html
+view.js (vue components live here)
+logic.js 
+main.js (vue instance lives here)
+
+
 */
 
 async function startPage() {
@@ -8,9 +31,6 @@ async function startPage() {
   senateData = await retrieveMembers("senate");
   houseData = await retrieveMembers("house");
 
-  // get save data from local JS file without use of remote API
-/*   senateData = senateDataSourceInput.results[0].members;
-  houseData = houseDataSourceInput.results[0].members; */
   return renderPage();
 }
 
