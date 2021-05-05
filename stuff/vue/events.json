@@ -1,0 +1,34 @@
+[
+    {
+        "id": "123abc",
+        "title": "Festival Jazz",
+        "tags": [
+            "jazz",
+            "music",
+            "festival"
+        ],
+        "location": "Plaça Catalunya",
+        "datetime": "2021-05-10 19:30",
+        "participants": [
+            "234bcd",
+            "345cde",
+            "456def"
+        ]
+    },
+    {
+        "id": "234bcd",
+        "title": "Festival Rock",
+        "tags": [
+            "rock",
+            "music",
+            "festival"
+        ],
+        "location": "Plaça Catalunya",
+        "datetime": "2021-05-11 19:30",
+        "participants": [
+            "234bcd",
+            "567efg",
+            "678fgh"
+        ]
+    }
+]
