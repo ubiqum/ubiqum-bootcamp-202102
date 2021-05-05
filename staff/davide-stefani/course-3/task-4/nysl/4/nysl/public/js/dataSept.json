@@ -1,7 +1,7 @@
 {
   "results":[
       {
-        "GAMEID" : "GAME01",
+        "gameId": "Match1",
         "SEPTEMBER": "Sep-01",
         "Teams": "U1 and U4",
         "Location": "AJ Katzenmaier",
@@ -9,7 +9,7 @@
         "Times": "9:30 a.m."
       },
       {
-        "GAMEID" : "GAME02",
+        "gameId": "Match2",
         "SEPTEMBER": "Sep-01",
         "Teams": "U3 and U2",
         "Location": "Greenbay",
@@ -17,7 +17,7 @@
         "Times": "1:00 p.m."
       },
       {
-        "GAMEID" : "GAME03",
+        "gameId": "Match3",
         "SEPTEMBER": "Sep-08",
         "Teams": "U5 and U6",
         "Location": "Howard A Yeager",
@@ -25,7 +25,7 @@
         "Times": "9:30 a.m"
       },
       {
-        "GAMEID" : "GAME04",
+        "gameId": "Match4",
         "SEPTEMBER": "Sep-08",
         "Teams": "U6 and U1",
         "Location": "Marjorie P Hart",
@@ -33,7 +33,7 @@
         "Times": "1:00 p.m"
       },
       {
-        "GAMEID" : "GAME05",
+        "gameId": "Match5",
         "SEPTEMBER": "Sep-15",
         "Teams": "U2 and U4",
         "Location": "North",
@@ -41,7 +41,7 @@
         "Times": "9:30 a.m."
       },
       {
-        "GAMEID" : "GAME06",
+        "gameId": "Match6",
         "SEPTEMBER": "Sep-15",
         "Teams": "U3 and U5",
         "Location": "AJ Katzenmaier",
@@ -49,7 +49,7 @@
         "Times": "1:00 p.m"
       },
       {
-        "GAMEID" : "GAME07",
+        "gameId": "Match7",
         "SEPTEMBER": "Sep-22",
         "Teams": "U1 and U3",
         "Location": "South",
@@ -57,7 +57,7 @@
         "Times": "9:30 a.m."
       },
       {
-        "GAMEID" : "GAME08",
+        "gameId": "Match8",
         "SEPTEMBER": "Sep-22",
         "Teams": "U2 and U6",
         "Location": "Howard A Yeager",
@@ -65,7 +65,7 @@
         "Times": "1:00 p.m"
       },
       {
-        "GAMEID" : "GAME09",
+        "gameId": "Match9",
         "SEPTEMBER": "Sep-29",
         "Teams": "U4 and U5",
         "Location": "Greenbay",

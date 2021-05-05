@@ -46,45 +46,45 @@ var games = matches.results;
 fillTable(games);
 
 function fillTable(games) {
-  var table = document.getElementById("table-data");
-  var tbody = table.querySelector("tbody");
+    var table = document.getElementById("table-data");
+    var tbody = table.querySelector("tbody");
+    tbody.innerHTML = ""
 
+    games.forEach(function (game) {
+        var row = document.createElement("tr");
 
-  games.forEach(function (game) {
-    var row = document.createElement("tr");
+        var date = document.createElement("td");
+        date.innerText = game.date;
 
-    var date = document.createElement("td");
-    date.innerText = game.date;
+        var team = document.createElement("td");
+        team.innerText = game.teams;
 
-    var team = document.createElement("td");
-    team.innerText = game.teams;
+        var location = document.createElement("td");
+        location.innerText = game.location;
 
-    var location = document.createElement("td");
-    location.innerText = game.location;
+        var time = document.createElement("td");
+        time.innerText = game.time;
 
-    var time = document.createElement("td");
-    time.innerText = game.time;
+        row.append(date, team, location, time)
 
-    row.append(date, team, location, time)
+        table.append(row)
 
-    table.append(row)
-
-    tbody.append(row);
-  });
+        tbody.append(row);
+    });
 }
 
 function filterTable(event) {
 
-  var selectedTeams = document.getElementById("teams").value;
-  var filteredTeams
-  
+    var selectedTeams = document.getElementById("teams").value;
+    var filteredTeams
 
-  if (selectedTeams === "") {
-    filteredTeams = games
-  } else {
-    filteredTeams = games.filter(function (game) {
-      return selectedTeams.includes(game.teams);
-    })
-  }
-  fillTable(filteredTeams);
+
+    if (selectedTeams === "") {
+        filteredTeams = games
+    } else {
+        filteredTeams = games.filter(function (game) {
+            return selectedTeams.includes(game.gameId);
+        })
+    }
+    fillTable(filteredTeams);
 }
