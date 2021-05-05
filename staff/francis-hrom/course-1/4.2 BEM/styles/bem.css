@@ -61,20 +61,14 @@
 .article {
   text-align: justify;
 }
-.article__h1 {
-}
-.article__h2 {
-}
-.article__h2--italic {
-}
 
 .article__section-title {
-    font-style: italic;
+  font-style: italic;
 }
 
 .article__important-text {
-    font-style: italic;
-    text-decoration: underline;
+  font-style: italic;
+  text-decoration: underline;
 }
 
 .article__subtitle {
@@ -88,14 +82,6 @@
 .article__inline-text {
   margin: 0;
   display: inline;
-}
-.article__main-text {
-}
-.article__main-text--bold {
-}
-.article__main-text--italic {
-}
-.article__main-text--underline {
 }
 
 .article__list-date {
@@ -115,36 +101,30 @@
 }
 
 .table {
-    width: 80%;
-    text-align: left;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  width: 80%;
+  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .table__head {
-    text-decoration: underline;
-}
-.table__head-item {
-}
-.table__body {
-}
-.table__body-item {
+  text-decoration: underline;
 }
 
 .form__question {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .form__important-text {
-    font-weight: bold;
-    text-decoration: underline;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
