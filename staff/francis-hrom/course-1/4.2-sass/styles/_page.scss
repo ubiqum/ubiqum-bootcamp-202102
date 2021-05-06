@@ -1,0 +1,12 @@
+.page {
+    position: relative;
+    @include marginAutoLeftRight();
+    max-width: 960px;
+    font-family: "Nunito", Arial, Helvetica, sans-serif;
+  
+    &__header-image {
+      display: flex;
+      width: 100%;
+      height: auto;
+    }
+  }

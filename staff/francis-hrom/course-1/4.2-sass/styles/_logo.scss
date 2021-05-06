@@ -1,0 +1,19 @@
+
+.logo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+  
+    &__icon {
+      height: 5rem;
+      width: auto;
+    }
+  
+    &__title {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 0;
+      width: auto;
+    }
+  }

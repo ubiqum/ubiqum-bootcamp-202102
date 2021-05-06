@@ -1,0 +1,10 @@
+.form {
+    &__question {
+      font-weight: bold;
+    }
+  
+    &__important-text {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
