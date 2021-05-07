@@ -59,68 +59,20 @@ const Home = {
 `
 }
 
-const Jurisdiction = {
-    template: ` 
-    <main>
-    <div class="container">
 
-    <select id="state" class="filter" @change="refreshMembersTable">
-        <option value="Arkansas">Arkansas</option>
-        <option value="Arizona">Arizona</option>
-        <option value="Alabama">Alabama</option>
-        <option value="California">California</option>
-        <option value="Colorado">Colorado</option>
-        <option value="Connecticut">Connecticut</option>
-        <option value="Delaware">Delaware</option>
-        <option value="Florida">Florida</option>
-        <option value="Georgia">Georgia</option>
-        <option value="Idaho">Idaho</option>
-        <option value="Hawaii">Hawaii</option>
-        <option value="Illinois">Illinois</option>
-        <option value="Indiana">Indiana</option>
-        <option value="Iowa">Iowa</option>
-        <option value="Kansas">Kansas</option>
-        <option value="Kentucky">Kentucky</option>
-        <option value="Louisiana">Louisiana</option>
-        <option value="Maine">Maine</option>
-        <option value="Maryland">Maryland</option>
-        <option value="Massachusetts">Massachusetts</option>
-        <option value="Michigan">Michigan</option>
-        <option value="Minnesota">Minnesota</option>
-        <option value="Mississippi">Mississippi</option>
-        <option value="Missouri">Missouri</option>
-        <option value="Montana">Montana</option>
-        <option value="Nebraska">Nebraska</option>
-        <option value="Nevada">Nevada</option>
-        <option value="New Hampshire">New Hampshire</option>
-        <option value="New Jersey">New Jersey</option>
-        <option value="New Mexico">New Mexico</option>
-        <option value="New York">New York</option>
-        <option value="North Carolina">North Carolina</option>
-        <option value="North Dakota">North Dakota</option>
-        <option value="Ohio">Ohio</option>
-        <option value="Oklahoma">Oklahoma</option>
-        <option value="Oregon">Oregon</option>
-        <option value="Pennsylvania">Pennsylvania</option>
-        <option value="Rhode Island">Rhode Island</option>
-        <option value="South Carolina">South Carolina</option>
-        <option value="South Dakota">South Dakota</option>
-        <option value="Tennessee">Tennessee</option>
-        <option value="Texas">Texas</option>
-        <option value="Utah">Utah</option>
-        <option value="Vermont">Vermont</option>
-        <option value="Virginia">Virginia</option>
-        <option value="Washington">Washington</option>
-        <option value="West Virginia">West Virginia</option>
-        <option value="Wisconsin">Wisconsin</option>
-        <option value="Wyoming">Wyoming</option>
+Vue.component('jurisdictionMembers', {
+    template:
+        `
+    <main>
+    <select v-model="state"  @change="select" class="filter">
+    <option v-for="option in options" v-bind:value="option.value"> 
+       {{option.text}}
+    </option>
     </select>
 
-
-    <div>
-
+    <div v-if="results">
         <h2>Jurisdiction</h2>
-        <table class="table table-striped">
+        <table class="table table-striped" v-if="results.length">
             <thead>
                 <tr>
                     <th>NAME</th>
@@ -129,21 +81,113 @@ const Jurisdiction = {
                 </tr>
             </thead>
             <tbody id="tableMembers">
-                <tr v-for="results in results">
-                    <td><a v-bind:href="results.openstates_url">{{results.name}}</a></td>
-                    <td>{{results.party}}</td>
-                    <td>{{results.current_role.title}}</td>
+                <tr v-for="result in results">
+                    <td><a v-bind:href="result.openstates_url">{{result.name}}</a></td>
+                    <td>{{result.party}}</td>
+                    <td>{{result.current_role.title}}</td>
                 </tr>
             </tbody>
         </table>
 
     </div>
-    </main>
-`
-}
+    </div>
+    </main>`,
+    data:
+        function () {
+            return {
+                results: [],
+                state: 'Arkansas',
+                options: [
+                    { text: 'Arkansas', value: 'Arkansas' },
+                    { text: 'Arizona', value: 'Arizona' },
+                    { text: 'Alabama', value: 'Alabama' },
+                    { text: 'California', value: 'California' },
+                    { text: 'Colorado', value: 'Colorado' },
+                    { text: 'Connecticut', value: 'Connecticut' },
+                    { text: 'Delaware', value: 'Delaware' },
+                    { text: 'Florida', value: 'Florida' },
+                    { text: 'Georgia', value: 'Georgia' },
+                    { text: 'Idaho', value: 'Idaho' },
+                    { text: 'Hawaii', value: 'Hawaii' },
+                    { text: 'Illinois', value: 'Illinois' },
+                    { text: 'Indiana', value: 'Indiana' },
+                    { text: 'Iowa', value: 'Iowa' },
+                    { text: 'Kansas', value: 'Kansas' },
+                    { text: 'Kentucky', value: 'Kentucky' },
+                    { text: 'Louisiana', value: 'Louisiana' },
+                    { text: 'Maine', value: 'Maine' },
+                    { text: 'Maryland', value: 'Maryland' },
+                    { text: 'Massachusetts', value: 'Massachusetts' },
+                    { text: 'Michigan', value: 'Michigan' },
+                    { text: 'Minnesota', value: 'Minnesota' },
+                    { text: 'Mississippi', value: 'Mississippi' },
+                    { text: 'Missouri', value: 'Missouri' },
+                    { text: 'Montana', value: 'Montana' },
+                    { text: 'Nebraska', value: 'Nebraska' },
+                    { text: 'Nevada', value: 'Nevada' },
+                    { text: 'New Hampshire', value: 'New Hampshire' },
+                    { text: 'New Jersey', value: 'New Jersey' },
+                    { text: 'New Mexico', value: 'New Mexico' },
+                    { text: 'New York', value: 'New York' },
+                    { text: 'North Carolina', value: 'North Carolina' },
+                    { text: 'North Dakota', value: 'North Dakota' },
+                    { text: 'Ohio', value: 'Ohio' },
+                    { text: 'Oklahoma', value: 'Oklahoma' },
+                    { text: 'Oregon', value: 'Oregon' },
+                    { text: 'Pennsylvania', value: 'Pennsylvania' },
+                    { text: 'Rhode Island', value: 'Rhode Island' },
+                    { text: 'South Carolina', value: 'South Carolina' },
+                    { text: 'South Dakota', value: 'South Dakota' },
+                    { text: 'Tennessee', value: 'Tennessee' },
+                    { text: 'Texas', value: 'Texas' },
+                    { text: 'Utah', value: 'Utah' },
+                    { text: 'Vermont', value: 'Vermont' },
+                    { text: 'Virginia', value: 'Virginia' },
+                    { text: 'Washington', value: 'Washington' },
+                    { text: 'West Virginia', value: 'West Virginia' },
+                    { text: 'Wisconsin', value: 'Wisconsin' },
+                    { text: 'Wyoming', value: 'Wyoming' }
+                ]
+            }
+        },
+    methods: {
+        refreshMembersTable: function () {
 
-Vue.component('FilterMenus', {
-    template: ` <main>         Filter by party:
+            retrieveMembersByJurisdiction(this.state, function (results) {
+                this.results = results
+            }.bind(this))
+        },
+        select(event) {
+            event.preventDefault()
+
+            this.state = event.target.value
+
+            this.refreshMembersTable()
+        }
+    },
+    created: function () {
+
+        this.refreshMembersTable()
+    }
+})
+
+
+const Jurisdiction = {
+
+    template: ` 
+    <main>
+    <div class="container">
+    <jurisdictionMembers />
+    </div>
+    </main>` }
+
+
+
+
+Vue.component('DataTableSenate', {
+    template: `
+    <main>        
+     Filter by party:
     <input type="checkbox" value="D" name="party" id="checkbox" v-model="parties" 
         v-on:change="applyFiltersSenate" />
     <label for="democrat">Democrat</label>
@@ -207,13 +251,9 @@ Vue.component('FilterMenus', {
         <option value="WI">Wisconsin</option>
         <option value="WY">Wyoming</option>
     </select>
-    </main>
-    `
-})
-
-Vue.component('DataTable', {
-    template: `
+    
     <table class="table">
+    <thead>
     <tr>
         <th>SENATOR</th>
         <th>PARTY AFFILIATION</th>
@@ -221,16 +261,154 @@ Vue.component('DataTable', {
         <th>SENIORITY</th>
         <th>PERCENTAGE VOTES WITH PARTY</th>
     </tr>
-    <tr v-for="(member,key) in filteredMembers">
+    </thead>
+    <tbody>
+    <tr v-for="(member,key) in filteredMembersSenate">
         <td><a v-bind:href="member.url">{{member.first_name}} {{member.middle_name}}
         {{member.last_name}}</a></td>
         <td>{{member.party}}</td>
         <td>{{member.state}}</td>
         <td>{{member.seniority}}</td>
         <td>{{member.votes_with_party_pct}} %</td>
-
     </tr>
-</table>`,
+    </tbody>
+</table>
+</main>`,
+    data: function () {
+        return {
+            members: [],
+            filteredMembersSenate: [],
+            parties: [],
+            state: null,
+        }
+    },
+    methods: {
+        applyFiltersSenate: function () {
+            filterMembersSenate(this.parties, this.state, function (filteredMembersSenate) {
+                this.filteredMembersSenate = filteredMembersSenate
+            }.bind(this));
+        }
+    },
+    created: function () {
+        retrieveMembersSenate(function (members) {
+            this.members = members
+            this.filteredMembersSenate = members
+        }.bind(this));
+    }
+
+})
+
+Vue.component('DataTableHouse', {
+    template: `
+    <main>        
+     Filter by party:
+    <input type="checkbox" value="D" name="party" id="checkbox" v-model="parties" 
+        v-on:change="applyFiltersHouse" />
+    <label for="democrat">Democrat</label>
+    <input type="checkbox" value="R" name="party" id="checkbox" v-model="parties" 
+        v-on:change="applyFiltersHouse" />
+    <label for="republicans">Republican</label>
+    <input type="checkbox" value="ID" name="party" id="checkbox" v-model="parties" 
+        v-on:change="applyFiltersHouse" />
+    <label for="independents">Independent</label>
+
+   
+    <select id="state" class="filter" v-model="state"  @change="applyFiltersHouse">
+        <option value="">--Choose a State--</option>
+        <option value="AR">Arkansas</option>
+        <option value="AZ">Arizona</option>
+        <option value="AL">Alabama</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+        <option value="DE">Delaware</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="ID">Idaho</option>
+        <option value="HI">Hawaii</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option>
+        <option value="MS">Missouri</option>
+        <option value="MO">Montana</option>
+        <option value="NE">Nebraska</option>
+        <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option>
+        <option value="NJ">New Jersey</option>
+        <option value="NM">New Mexico</option>
+        <option value="NY">New York</option>
+        <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option>
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="RI">Rhode Island</option>
+        <option value="SC">South Carolina</option>
+        <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option>
+        <option value="TX">Texas</option>
+        <option value="UT">Utah</option>
+        <option value="VT">Vermont</option>
+        <option value="VA">Virginia</option>
+        <option value="WA">Washington</option>
+        <option value="WV">West Virginia</option>
+        <option value="WI">Wisconsin</option>
+        <option value="WY">Wyoming</option>
+    </select>
+    
+    <table class="table">
+    <thead>
+    <tr>
+        <th>SENATOR</th>
+        <th>PARTY AFFILIATION</th>
+        <th>STATE</th>
+        <th>SENIORITY</th>
+        <th>PERCENTAGE VOTES WITH PARTY</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="(member,key) in filteredMembersHouse">
+        <td><a v-bind:href="member.url">{{member.first_name}} {{member.middle_name}}
+        {{member.last_name}}</a></td>
+        <td>{{member.party}}</td>
+        <td>{{member.state}}</td>
+        <td>{{member.seniority}}</td>
+        <td>{{member.votes_with_party_pct}} %</td>
+    </tr>
+    </tbody>
+</table>
+</main>`,
+    data: function () {
+        return {
+            members: [],
+            filteredMembersHouse: [],
+            parties: [],
+            state: null,
+        }
+    },
+    methods: {
+        applyFiltersHouse: function () {
+            filterMembersHouse(this.parties, this.state, function (filteredMembersHouse) {
+                this.filteredMembersHouse = filteredMembersHouse
+            }.bind(this));
+        }
+    },
+    created: function () {
+        retrieveMembersHouse(function (members) {
+            this.members = members
+            this.filteredMembersHouse = members
+        }.bind(this));
+    }
 
 })
 
@@ -246,8 +424,7 @@ const SenateData = {
             to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal
             judges, other federal executive officials, military officers, regulatory officials, ambassadors,
             and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
-            <FilterMenus></FilterMenus>
-            <DataTable></DataTable>
+            <DataTableSenate />
             </div>
             </main>`
 
@@ -280,13 +457,594 @@ Vue.component('attendanceText', {
     </main>`
 })
 
+Vue.component('loyaltyTableSenate', {
+    template: ` 
+    <main>
+    <table class="table">
+    <tbody>
+        <tr>
+            <th>PARTY</th>
+            <th>Number of Representants</th>
+            <th>Percentage of votes with Party</th>
+        </tr>
+        <tr>
+            <td>Republicans</td>
+            <td>{{partyInfo.republicans}}</td>
+            <td>{{partyInfo.averageVotesRepublicans}}%</td>
+        </tr>
+        <tr>
+            <td>Democrats</td>
+            <td>{{partyInfo.democrats}}</td>
+            <td>{{partyInfo.averageVotesDemocrats}} %</td>
+        </tr>
+        <tr>
+            <td>Independents</td>
+            <td>{{partyInfo.independents}}</td>
+            <td>{{partyInfo.averageVotesIndependents}} %</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Least Loyal (Bottom 10% of Party)</h2>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>NAME</th>
+            <th>Number of Party Votes</th>
+            <th>% Party Votes</th>
+        </tr>
+        <tr v-for="(index,item) in leastVotesNames">
+            <td>{{leastVotesNames[item]}}</td>
+            <td>{{leastVotesNumbers[item]}}</td>
+            <td>{{percentParty[item]}} %</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Most Loyal (Top 10% of Party)</h2>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>NAME</th>
+            <th>Number of Party Votes</th>
+            <th>% Party Votes</th>
+        </tr>
+        <tr v-for="(index,item) in mostVotesNames">
+            <td>{{mostVotesNames[item]}}</td>
+            <td>{{mostVotesNumbers[item]}}</td>
+            <td>{{percentParty2[item]}} %</td>
+        </tr>
+    </tbody>
+</table>
+</main>`,
+    data: function () {
+        return {
+            partyInfo: {
+                republicans: 0,
+                democrats: 0,
+                independents: 0,
+                averageVotesRepublicans: 0,
+                averageVotesDemocrats: 0,
+                averageVotesIndependents: 0
+            },
+            leastVotesNames: [],
+            leastVotesNumbers: [],
+            percentParty: [],
+            mostVotesNames: [],
+            mostVotesNumbers: [],
+            percentParty2: [],
+            mostMissedVotes2: [],
+            mostMissedVotesNames: [],
+            percentPartyMissed2: [],
+            leastMissedVotes2: [],
+            leastMissedVotesNames: [],
+            percentPartyMissed: [],
+           
+        
+        }
+    },
+    created: function () {
+        //collect Data 
+        retrieveMembersSenate(function (members) {
+      
+
+            this.members = members
+
+            //Execute Functions
+            groupStatisticsByMembers(members)
+
+
+            //average of percentage of Votes of every Party
+            averageVotesDemocrats = (average(percentPartyDemocrats)).toFixed(2)
+            averageVotesRepublicans = (average(percentPartyRepublicans)).toFixed(2)
+            averageVotesIndependents = (average(percentPartyIndependents)).toFixed(2)
+            //create a 3d array
+            var percentageNamesNumberVotes = percentageNames(numberVotes, names, party)
+            var percentageNamesMissedVotes = percentageNames(missedVotes, names, party)
+            var tenPercent2 = tenPercent(names)
+            //order the array display it
+            sortLeastVotes(percentageNamesNumberVotes)
+            leastVotes = percentageNamesNumberVotes
+            prepareLeastVotesPercentages(tenPercent2)
+
+
+            sortMostVotes(percentageNamesNumberVotes)
+            mostVotes = percentageNamesNumberVotes
+            prepareMostVotesPercentage(tenPercent2)
+
+            sortLeastVotes(percentageNamesMissedVotes)
+            leastMissedVotes = percentageNamesMissedVotes
+            prepareMostEngagedPercentage(tenPercent2)
+
+            sortMostVotes(percentageNamesMissedVotes)
+            mostMissedVotes = percentageNamesMissedVotes
+            prepareLeastEngagedPercentage(tenPercent2)
+
+            this.partyInfo.democrats = democrats
+            this.partyInfo.republicans = republicans
+            this.partyInfo.independents = independents
+            this.partyInfo.averageVotesDemocrats = averageVotesDemocrats
+            this.partyInfo.averageVotesRepublicans = averageVotesRepublicans
+            this.partyInfo.averageVotesIndependents = averageVotesIndependents
+            this.leastVotesNames = leastVotesNames
+            this.leastVotesNumbers = leastVotesNumbers
+            this.percentParty = percentParty
+            this.mostVotesNames = mostVotesNames
+            this.mostVotesNumbers = mostVotesNumbers
+            this.percentParty2 = percentParty2
+            this.mostMissedVotes2 = mostMissedVotes2
+            this.mostMissedVotesNames = mostMissedVotesNames
+            this.percentPartyMissed2 = percentParty2
+            this.leastMissedVotes2 = leastMissedVotes2
+            this.leastMissedVotesNames = leastMissedVotesNames
+            this.percentPartyMissed = percentPartyMissed
+          
+
+        }.bind(this));
+    }
+})
+
+Vue.component('loyaltyTableHouse', {
+    template: `        
+    <main>
+    <table class="table">
+    <tbody>
+        <tr>
+            <th>PARTY</th>
+            <th>Number of Representants</th>
+            <th>Percentage of votes with Party</th>
+        </tr>
+        <tr>
+            <td>Republicans</td>
+            <td>{{partyInfo.republicans}}</td>
+            <td>{{partyInfo.averageVotesRepublicans}}%</td>
+        </tr>
+        <tr>
+            <td>Democrats</td>
+            <td>{{partyInfo.democrats}}</td>
+            <td>{{partyInfo.averageVotesDemocrats}} %</td>
+        </tr>
+        <tr>
+            <td>Independents</td>
+            <td>{{partyInfo.independents}}</td>
+            <td>{{partyInfo.averageVotesIndependents}} %</td>
+        </tr>
+    </tbody>
+
+</table>
+
+<h2>Least Loyal (Bottom 10% of Party)</h2>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>NAME</th>
+            <th>Number of Party Votes</th>
+            <th>% Party Votes</th>
+        </tr>
+        <tr v-for="(index,item) in leastVotesNames">
+            <td>{{leastVotesNames[item]}}</td>
+            <td>{{leastVotesNumbers[item]}}</td>
+            <td>{{percentParty[item]}} %</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Most Loyal (Top 10% of Party)</h2>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>NAME</th>
+            <th>Number of Party Votes</th>
+            <th>% Party Votes</th>
+        </tr>
+        <tr v-for="(index,item) in mostVotesNames">
+            <td>{{mostVotesNames[item]}}</td>
+            <td>{{mostVotesNumbers[item]}}</td>
+            <td>{{percentParty2[item]}} %</td>
+        </tr>
+    </tbody>
+</table>
+</main>`,
+    data: function () {
+        return {
+            partyInfo: {
+                republicans: 0,
+                democrats: 0,
+                independents: 0,
+                averageVotesRepublicans: 0,
+                averageVotesDemocrats: 0,
+                averageVotesIndependents: 0
+            },
+            leastVotesNames: [],
+            leastVotesNumbers: [],
+            percentParty: [],
+            mostVotesNames: [],
+            mostVotesNumbers: [],
+            percentParty2: [],
+            mostMissedVotes2: [],
+            mostMissedVotesNames: [],
+            percentPartyMissed2: [],
+            leastMissedVotes2: [],
+            leastMissedVotesNames: [],
+            percentPartyMissed: []
+        }
+    },
+    created: function () {
+        //collect Data 
+        retrieveMembersHouse(function (members) {
+            
+            this.members = members
+
+            //Execute Functions
+            groupStatisticsByMembers(members)
+
+
+            //average of percentage of Votes of every Party
+            averageVotesDemocrats = (average(percentPartyDemocrats)).toFixed(2)
+            averageVotesRepublicans = (average(percentPartyRepublicans)).toFixed(2)
+            averageVotesIndependents = (average(percentPartyIndependents)).toFixed(2)
+            //create a 3d array
+            var percentageNamesNumberVotes = percentageNames(numberVotes, names, party)
+            var percentageNamesMissedVotes = percentageNames(missedVotes, names, party)
+            var tenPercent2 = tenPercent(names)
+            //order the array display it
+            sortLeastVotes(percentageNamesNumberVotes)
+            leastVotes = percentageNamesNumberVotes
+            prepareLeastVotesPercentages(tenPercent2)
+
+
+            sortMostVotes(percentageNamesNumberVotes)
+            mostVotes = percentageNamesNumberVotes
+            prepareMostVotesPercentage(tenPercent2)
+
+            sortLeastVotes(percentageNamesMissedVotes)
+            leastMissedVotes = percentageNamesMissedVotes
+            prepareMostEngagedPercentage(tenPercent2)
+
+            sortMostVotes(percentageNamesMissedVotes)
+            mostMissedVotes = percentageNamesMissedVotes
+            prepareLeastEngagedPercentage(tenPercent2)
+
+            this.partyInfo.democrats = democrats
+            this.partyInfo.republicans = republicans
+            this.partyInfo.independents = independents
+            this.partyInfo.averageVotesDemocrats = averageVotesDemocrats
+            this.partyInfo.averageVotesRepublicans = averageVotesRepublicans
+            this.partyInfo.averageVotesIndependents = averageVotesIndependents
+            this.leastVotesNames = leastVotesNames
+            this.leastVotesNumbers = leastVotesNumbers
+            this.percentParty = percentParty
+            this.mostVotesNames = mostVotesNames
+            this.mostVotesNumbers = mostVotesNumbers
+            this.percentParty2 = percentParty2
+            this.mostMissedVotes2 = mostMissedVotes2
+            this.mostMissedVotesNames = mostMissedVotesNames
+            this.percentPartyMissed2 = percentParty2
+            this.leastMissedVotes2 = leastMissedVotes2
+            this.leastMissedVotesNames = leastMissedVotesNames
+            this.percentPartyMissed = percentPartyMissed
+
+        }.bind(this));
+    }
+})
+
+Vue.component('senateAttendanceTable', {
+    template: ` 
+    <main>
+    <table class="table">
+    <tbody>
+        <tr>
+            <th>PARTY</th>
+            <th>Number of Representants</th>
+            <th>Percentage of votes with Party</th>
+        </tr>
+        <tr>
+            <td>Republicans</td>
+            <td>{{partyInfo.republicans}}</td>
+            <td>{{partyInfo.averageVotesRepublicans}}%</td>
+        </tr>
+        <tr>
+            <td>Democrats</td>
+            <td>{{partyInfo.democrats}}</td>
+            <td>{{partyInfo.averageVotesDemocrats}} %</td>
+        </tr>
+        <tr>
+            <td>Independents</td>
+            <td>{{partyInfo.independents}}</td>
+            <td>{{partyInfo.averageVotesIndependents}} %</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Least Engaged (Bottom 10% Attendance)</h2>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>NAME</th>
+            <th>Number of Missed Votes</th>
+            <th>% Party Missed Votes</th>
+        </tr>
+        <tr v-for="(index,item) in  mostMissedVotesNames">
+            <td>{{mostMissedVotesNames[item]}}</td>
+            <td>{{mostMissedVotes2[item]}}</td>
+            <td>{{percentPartyMissed2[item]}} %</td>
+        </tr>
+    </tbody>
+
+</table>
+
+<h2>Most Engaged (Top 10% Attendance)</h2>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>NAME</th>
+            <th>Number of Missed Votes</th>
+            <th>% Party Missed Votes</th>
+        </tr>
+        <tr v-for="(index,item) in leastMissedVotesNames">
+            <td>{{leastMissedVotesNames[item]}}</td>
+            <td>{{leastMissedVotes2[item]}}</td>
+            <td>{{percentPartyMissed[item]}} %</td>
+        </tr>
+    </tbody>
+</table>
+</main>`,
+    data: function () {
+        return {
+            partyInfo: {
+                republicans: 0,
+                democrats: 0,
+                independents: 0,
+                averageVotesRepublicans: 0,
+                averageVotesDemocrats: 0,
+                averageVotesIndependents: 0
+            },
+            leastVotesNames: [],
+            leastVotesNumbers: [],
+            percentParty: [],
+            mostVotesNames: [],
+            mostVotesNumbers: [],
+            percentParty2: [],
+            mostMissedVotes2: [],
+            mostMissedVotesNames: [],
+            percentPartyMissed2: [],
+            leastMissedVotes2: [],
+            leastMissedVotesNames: [],
+            percentPartyMissed: []
+        }
+    },
+    created: function () {
+        //collect Data 
+        retrieveMembersSenate(function (members) {
+            
+            this.members = members
+
+            //Execute Functions
+            groupStatisticsByMembers(members)
+
+
+            //average of percentage of Votes of every Party
+            averageVotesDemocrats = (average(percentPartyDemocrats)).toFixed(2)
+            averageVotesRepublicans = (average(percentPartyRepublicans)).toFixed(2)
+            averageVotesIndependents = (average(percentPartyIndependents)).toFixed(2)
+            //create a 3d array
+            var percentageNamesNumberVotes = percentageNames(numberVotes, names, party)
+            var percentageNamesMissedVotes = percentageNames(missedVotes, names, party)
+            var tenPercent2 = tenPercent(names)
+            //order the array display it
+            sortLeastVotes(percentageNamesNumberVotes)
+            leastVotes = percentageNamesNumberVotes
+            prepareLeastVotesPercentages(tenPercent2)
+
+
+            sortMostVotes(percentageNamesNumberVotes)
+            mostVotes = percentageNamesNumberVotes
+            prepareMostVotesPercentage(tenPercent2)
+
+            sortLeastVotes(percentageNamesMissedVotes)
+            leastMissedVotes = percentageNamesMissedVotes
+            prepareMostEngagedPercentage(tenPercent2)
+
+            sortMostVotes(percentageNamesMissedVotes)
+            mostMissedVotes = percentageNamesMissedVotes
+            prepareLeastEngagedPercentage(tenPercent2)
+
+            this.partyInfo.democrats = democrats
+            this.partyInfo.republicans = republicans
+            this.partyInfo.independents = independents
+            this.partyInfo.averageVotesDemocrats = averageVotesDemocrats
+            this.partyInfo.averageVotesRepublicans = averageVotesRepublicans
+            this.partyInfo.averageVotesIndependents = averageVotesIndependents
+            this.leastVotesNames = leastVotesNames
+            this.leastVotesNumbers = leastVotesNumbers
+            this.percentParty = percentParty
+            this.mostVotesNames = mostVotesNames
+            this.mostVotesNumbers = mostVotesNumbers
+            this.percentParty2 = percentParty2
+            this.mostMissedVotes2 = mostMissedVotes2
+            this.mostMissedVotesNames = mostMissedVotesNames
+            this.percentPartyMissed2 = percentParty2
+            this.leastMissedVotes2 = leastMissedVotes2
+            this.leastMissedVotesNames = leastMissedVotesNames
+            this.percentPartyMissed = percentPartyMissed
+
+        }.bind(this));
+    }
+})
+
+Vue.component('houseAttendanceTable', {
+    template: ` 
+    <main>
+    <table class="table">
+    <tbody>
+        <tr>
+            <th>PARTY</th>
+            <th>Number of Representants</th>
+            <th>Percentage of votes with Party</th>
+        </tr>
+        <tr>
+            <td>Republicans</td>
+            <td>{{partyInfo.republicans}}</td>
+            <td>{{partyInfo.averageVotesRepublicans}}%</td>
+        </tr>
+        <tr>
+            <td>Democrats</td>
+            <td>{{partyInfo.democrats}}</td>
+            <td>{{partyInfo.averageVotesDemocrats}} %</td>
+        </tr>
+        <tr>
+            <td>Independents</td>
+            <td>{{partyInfo.independents}}</td>
+            <td>{{partyInfo.averageVotesIndependents}} %</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Least Engaged (Bottom 10% Attendance)</h2>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>NAME</th>
+            <th>Number of Missed Votes</th>
+            <th>% Party Missed Votes</th>
+        </tr>
+        <tr v-for="(index,item) in  mostMissedVotesNames">
+            <td>{{mostMissedVotesNames[item]}}</td>
+            <td>{{mostMissedVotes2[item]}}</td>
+            <td>{{percentPartyMissed2[item]}} %</td>
+        </tr>
+    </tbody>
+
+</table>
+
+<h2>Most Engaged (Top 10% Attendance)</h2>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>NAME</th>
+            <th>Number of Missed Votes</th>
+            <th>% Party Missed Votes</th>
+        </tr>
+        <tr v-for="(index,item) in leastMissedVotesNames">
+            <td>{{leastMissedVotesNames[item]}}</td>
+            <td>{{leastMissedVotes2[item]}}</td>
+            <td>{{percentPartyMissed[item]}} %</td>
+        </tr>
+    </tbody>
+</table>
+</main>`,
+    data: function () {
+        return {
+            partyInfo: {
+                republicans: 0,
+                democrats: 0,
+                independents: 0,
+                averageVotesRepublicans: 0,
+                averageVotesDemocrats: 0,
+                averageVotesIndependents: 0
+            },
+            leastVotesNames: [],
+            leastVotesNumbers: [],
+            percentParty: [],
+            mostVotesNames: [],
+            mostVotesNumbers: [],
+            percentParty2: [],
+            mostMissedVotes2: [],
+            mostMissedVotesNames: [],
+            percentPartyMissed2: [],
+            leastMissedVotes2: [],
+            leastMissedVotesNames: [],
+            percentPartyMissed: []
+        }
+    },
+    created: function () {
+        //collect Data 
+        retrieveMembersHouse(function (members) {
+            
+            this.members = members
+
+            //Execute Functions
+            groupStatisticsByMembers(members)
+
+
+            //average of percentage of Votes of every Party
+            averageVotesDemocrats = (average(percentPartyDemocrats)).toFixed(2)
+            averageVotesRepublicans = (average(percentPartyRepublicans)).toFixed(2)
+            averageVotesIndependents = (average(percentPartyIndependents)).toFixed(2)
+            //create a 3d array
+            var percentageNamesNumberVotes = percentageNames(numberVotes, names, party)
+            var percentageNamesMissedVotes = percentageNames(missedVotes, names, party)
+            var tenPercent2 = tenPercent(names)
+            //order the array display it
+            sortLeastVotes(percentageNamesNumberVotes)
+            leastVotes = percentageNamesNumberVotes
+            prepareLeastVotesPercentages(tenPercent2)
+
+
+            sortMostVotes(percentageNamesNumberVotes)
+            mostVotes = percentageNamesNumberVotes
+            prepareMostVotesPercentage(tenPercent2)
+
+            sortLeastVotes(percentageNamesMissedVotes)
+            leastMissedVotes = percentageNamesMissedVotes
+            prepareMostEngagedPercentage(tenPercent2)
+
+            sortMostVotes(percentageNamesMissedVotes)
+            mostMissedVotes = percentageNamesMissedVotes
+            prepareLeastEngagedPercentage(tenPercent2)
+
+            this.partyInfo.democrats = democrats
+            this.partyInfo.republicans = republicans
+            this.partyInfo.independents = independents
+            this.partyInfo.averageVotesDemocrats = averageVotesDemocrats
+            this.partyInfo.averageVotesRepublicans = averageVotesRepublicans
+            this.partyInfo.averageVotesIndependents = averageVotesIndependents
+            this.leastVotesNames = leastVotesNames
+            this.leastVotesNumbers = leastVotesNumbers
+            this.percentParty = percentParty
+            this.mostVotesNames = mostVotesNames
+            this.mostVotesNumbers = mostVotesNumbers
+            this.percentParty2 = percentParty2
+            this.mostMissedVotes2 = mostMissedVotes2
+            this.mostMissedVotesNames = mostMissedVotesNames
+            this.percentPartyMissed2 = percentParty2
+            this.leastMissedVotes2 = leastMissedVotes2
+            this.leastMissedVotesNames = leastMissedVotesNames
+            this.percentPartyMissed = percentPartyMissed
+
+        }.bind(this));
+    }
+})
+
 
 
 const SenateLoyalty = {
     template: `   
     <main>
     <div class="container">
-    <loyaltyText></loylatyText>
+    <loyaltyText />
+    <loyaltyTableSenate />
+    </div>
     </main>`
 }
 
@@ -296,7 +1054,8 @@ const SenateAttendance = {
     template: ` 
     <main>
     <div class="container">
-    <attendanceText></attendanceText>
+    <attendanceText />
+    <senateAttendanceTable />
     </div>
     </main>
 `
@@ -320,8 +1079,7 @@ const HouseData = {
         Each U.S. state is represented in the House in proportion to its population as measured in the census,
         but
         every state is entitled to at least one representative. </p>
-        <FilterMenus></FilterMenus>
-        <DataTable></DataTable>
+        <DataTableHouse />
         </div>
         </main>`
 }
@@ -329,14 +1087,16 @@ const HouseData = {
 const HouseLoyalty = {
     template: ` 
     <div class="container">
-    <loyaltyText></loylatyText>
+    <loyaltyText />
+    <loyaltyTableHouse />
     </div>`
 }
 
 const HouseAttendance = {
     template: ` <main>
     <div class="container">
-    <attendanceText></attendanceText>
+    <attendanceText />
+    <houseAttendanceTable />
         </div>
         </main>`
 
@@ -358,7 +1118,6 @@ const router = new VueRouter({
 })
 
 var App = {
-    el: '#app',
     router,
     template: `
     <main>
@@ -461,5 +1220,5 @@ var App = {
 
             router.push('/senate-loyalty')
         }
-        }
     }
+}

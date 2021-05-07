@@ -1,1 +1,1 @@
-new Vue(App)
+new Vue(App).$mount('#app')
