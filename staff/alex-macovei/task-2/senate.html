@@ -53,20 +53,31 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-5">
+          <div class="col-sm-8" style="z-index: 1;">
             <p>Filter by Party:
-              <input class="republican" type="checkbox" onclick="checkboxR();" id="republican" name="republican" value="republican">
+              <input class="republican" type="checkbox" onclick="onCheckboxClicked();" id="republican" name="republican"
+                value="republican">
               <label for="republican">Republican</label>
-              <input class="democrat" type="checkbox" onclick="checkboxD();" id="democrat" name="democrat" value="democrat">
+              <input class="democrat" type="checkbox" onclick="onCheckboxClicked();" id="democrat" name="democrat"
+                value="democrat">
               <label for="democrat">Democrat</label>
-              <input class="indipendent" type="checkbox" onclick="checkboxI();" id="indipendent" name="indipendent" value="indipendent">
+              <input class="indipendent" type="checkbox" onclick="onCheckboxClicked();" id="indipendent"
+                name="indipendent" value="indipendent">
               <label for="indipendent">Indipendent</label>
             </p>
           </div>
-          <div class="col-sm-7 text-right"></div>
+          <label class="col-sm-3 text-right">Filter By State: </label>
+          <div class="col-sn-1 dropdown">
+            <form>
+              <select id="states">
+              </select>
+            </form>
+          </div>
         </div>
-        <table class="table table-borderless text-center" id="senate-data"></table>
+
+        <table class="table table-borderless text-center" id="table"></table>
       </div>
+
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         <p class="text-dark" href="#">@ 2016 TGIF | All Rights Reserved</p>
       </div>
@@ -81,8 +92,15 @@
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
 
+  <!-- data -->
   <script src="scripts/pro-congress-113-senate.js"></script>
+
+  <!-- business logic -->
+  <script src="scripts/logic.js"></script>
+
+  <!-- presentation -->
   <script src="scripts/view.js"></script>
+
   <script src="scripts/senate-main.js"></script>
 </body>
 

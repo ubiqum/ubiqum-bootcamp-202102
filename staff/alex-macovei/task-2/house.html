@@ -24,7 +24,7 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Congress 113
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="senate-data.html">Senate</a></li>
+              <li><a href="senate.html">Senate</a></li>
               <li><a href="#">house</a></li>
             </ul>
           </li>
@@ -43,7 +43,29 @@
           <p>Each U.S. state is represented in the House in proportion to its population as measured in the census, but
             every state is entitled to at least one representative. </p>
         </div>
-        <table class="table table-borderless text-center" id="house-data"></table>
+      </div>
+      <div class="row">
+        <div class="col-sm-8" style="z-index: 1;">
+          <p>Filter by Party:
+            <input class="republican" type="checkbox" onclick="onCheckboxClicked();" id="republican"
+              name="republican" value="republican">
+            <label for="republican">Republican</label>
+            <input class="democrat" type="checkbox" onclick="onCheckboxClicked();" id="democrat" name="democrat"
+              value="democrat">
+            <label for="democrat">Democrat</label>
+            <input class="indipendent" type="checkbox" onclick="onCheckboxClicked();" id="indipendent"
+              name="indipendent" value="indipendent">
+            <label for="indipendent">Indipendent</label>
+          </p>
+        </div>
+        <label class="col-sm-3 text-right">Filter By State: </label>
+        <div class="col-sn-1 dropdown">
+          <form>
+            <select id="states">
+            </select>
+          </form>
+        </div>
+        <table class="table table-borderless text-center" id="table"></table>
       </div>
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         <p class="text-dark" href="#">@ 2016 TGIF | All Rights Reserved</p>
@@ -60,7 +82,15 @@
 </body>
 
 <script src="scripts/pro-congress-113-house.js"></script>
+
+<!-- business logic -->
+<script src="scripts/logic.js"></script>
+
+<!-- presentation -->
 <script src="scripts/view.js"></script>
+
+<!-- data -->
 <script src="scripts/house-main.js"></script>
+
 
 </html>

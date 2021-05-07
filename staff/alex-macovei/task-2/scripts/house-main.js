@@ -1,1 +1,5 @@
-renderHouseMembers(data.results[0].members);
+var statesR = retrieveStates()
+
+renderStatesSelector(statesR)
+
+states.onchange=renderStates;
