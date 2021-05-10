@@ -17,4 +17,8 @@
 .cell__active {
   background-color: red;
 }
+
+.cell__hit {
+  background-color: blue;
+}
 /*# sourceMappingURL=style.css.map */

@@ -55,14 +55,21 @@ public class SalvoController {
         Set<Ship> ships = gamePlayer.get().getShips();
         List<Map<String, Object>> shipList = ships.stream().map(ship -> {
             Map<String, Object> shipInfo = new TreeMap<>();
-            shipInfo.put("Type", ship.getType());
-            shipInfo.put("Location", ship.getLocation());
+            shipInfo.put("player", ship.getGamePlayer().getId());
+            shipInfo.put("type", ship.getType());
+            shipInfo.put("location", ship.getLocation());
             return shipInfo;
         }).collect(toList());
         gameView.put("ships", shipList);
 
         List<Salvo> salvoes = gamePlayer.get().getSalvoes();
-        List<Map<String,Object>> salvoList = salvoes.stream().map(salvo -> {
+        List<Salvo> salvoes2 = new ArrayList<>();
+        salvoes.forEach(salvo -> {
+            if(!salvoes2.contains(salvo)){
+                salvoes2.add(salvo);
+            }
+        });
+        List<Map<String,Object>> salvoList = salvoes2.stream().map(salvo -> {
             Map<String,Object> salvoInfo = new TreeMap<>();
             salvoInfo.put("turn", salvo.getTurnTracker());
             salvoInfo.put("player", salvo.getGamePlayer().getId());

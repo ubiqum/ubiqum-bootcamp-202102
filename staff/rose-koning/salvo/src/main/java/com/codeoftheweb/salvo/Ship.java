@@ -46,7 +46,7 @@ public class Ship {
     @JoinColumn(name = "gamePlayer_id")
     private GamePlayer gamePlayer;
 
-    @JsonIgnore
+
     public void setGamePlayer(GamePlayer gamePlayer) {
         this.gamePlayer=gamePlayer;
     }

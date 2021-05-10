@@ -41,7 +41,11 @@ const Game = {
 <div v-for="(gamePlayer, key) in gameData.gamePlayers">
 <p>{{gamePlayer.player.userName}}</p>
 </div>
-<div class="grid__container">
+<div class="grid__container" id="cellMyShips">
+<div v-for="(cell,key) in cells">
+  <div class="cell" v-bind:id="cell">{{cell}}</div>
+  </div>
+  <div class="grid__container" id="cellMySalvoes">
 <div v-for="(cell,key) in cells">
   <div class="cell" v-bind:id="cell">{{cell}}</div>
   </div>
@@ -66,7 +70,9 @@ const Game = {
         getGameView(gameId, function(game){
           this.gameData =game;
           this.ships = game.ships;
+          this.salvoes = game.salvoes
           setShips(this.ships)
+          setSalvoes(this.salvoes)
         }.bind(this))
       }
     }

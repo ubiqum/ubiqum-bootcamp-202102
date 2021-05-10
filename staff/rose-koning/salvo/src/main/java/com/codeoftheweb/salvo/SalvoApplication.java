@@ -58,6 +58,7 @@ public class SalvoApplication {
 		Ship sh8 = new Ship("landingShip",new ArrayList<>(Arrays.asList("A1","A2","A3" )));
 		Ship sh9 = new Ship("lifeRaft", new ArrayList<>(Arrays.asList("K3","K2","K1")));
 
+		/*
 		shipRepository.save(sh1);
 		shipRepository.save(sh2);
 		shipRepository.save(sh3);
@@ -67,7 +68,7 @@ public class SalvoApplication {
 		shipRepository.save(sh7);
 		shipRepository.save(sh8);
 		shipRepository.save(sh9);
-
+*/
         gp1.addShip(sh1);
         gp1.addShip(sh2);
         gp1.addShip(sh3);
@@ -126,11 +127,9 @@ public class SalvoApplication {
 
 
 		gamePlayerRepository.save(gp1);
-		gamePlayerRepository.save(gp2);
-		gamePlayerRepository.save(gp3);
-		gamePlayerRepository.save(gp4);
-		gamePlayerRepository.save(gp5);
-		gamePlayerRepository.save(gp6);
+		/*gamePlayerRepository.save(gp2);
+		gamePlayerRepository.save(gp3);*/
+
 
 
 	};

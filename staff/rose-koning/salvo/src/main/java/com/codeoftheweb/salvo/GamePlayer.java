@@ -28,7 +28,7 @@ public class GamePlayer {
     @JoinColumn(name = "player_id")
     private Player player;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gamePlayer")
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private Set<Ship> ships = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})

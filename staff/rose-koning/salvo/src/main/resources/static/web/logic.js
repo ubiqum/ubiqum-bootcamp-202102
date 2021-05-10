@@ -36,11 +36,22 @@ function getGameView(gameId, callback){
 
   function setShips(ships){
       for(var i = 0; i< ships.length; i++){
-        var ship = ships[i].Location;
+        var ship = ships[i].location;
         for(var j = 0; j< ship.length; j++){
             var cell = (ship[j]).toUpperCase();
-            document.getElementById(cell).className ="cell cell__active";
+            document.getElementsById("cellMyShips").className ="cell cell__active";
         }
       }
   
   }
+
+  function setSalvoes(salvoes){
+    for(var i = 0; i< salvoes.length; i++){
+      var salvo = salvoes[i].location;
+      for(var j = 0; j< salvo.length; j++){
+          var cell = (salvo[j]).toUpperCase();
+          document.getElementsById("cellMySalvoes").className ="cell cell__hit";
+      }
+    }
+
+}
