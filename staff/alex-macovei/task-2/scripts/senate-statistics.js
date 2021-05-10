@@ -1,0 +1,2 @@
+countPartyMembers();
+includeAverageVotes()
