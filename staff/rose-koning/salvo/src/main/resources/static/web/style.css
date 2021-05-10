@@ -7,9 +7,14 @@
       grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 0.2rem;
   background-color: black;
+  border: black;
 }
 
 .cell {
   background-color: white;
+}
+
+.cell__active {
+  background-color: red;
 }
 /*# sourceMappingURL=style.css.map */

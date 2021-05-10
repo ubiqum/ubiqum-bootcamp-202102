@@ -1,5 +1,6 @@
 package com.codeoftheweb.salvo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -45,6 +46,7 @@ public class Ship {
     @JoinColumn(name = "gamePlayer_id")
     private GamePlayer gamePlayer;
 
+    @JsonIgnore
     public void setGamePlayer(GamePlayer gamePlayer) {
         this.gamePlayer=gamePlayer;
     }

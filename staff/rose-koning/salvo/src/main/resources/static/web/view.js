@@ -37,18 +37,39 @@ const Game = {
   template: `
 <div>
 <h1> Ship Locations!</h1>
-<div class="grid__container" >
+{{gameData.created}}
+<div v-for="(gamePlayer, key) in gameData.gamePlayers">
+<p>{{gamePlayer.player.userName}}</p>
+</div>
+<div class="grid__container">
 <div v-for="(cell,key) in cells">
   <div class="cell" v-bind:id="cell">{{cell}}</div>
   </div>
-  </div>
+</div>
+
+
 </div>
 `,
   data() {
     return {
-  cells: getCells()
-    };
-  },
+  cells: getCells(),
+  gameData: {},
+  ships: {}
+}
+    },
+    created(){
+      this.fetchData()
+    },
+    methods:{
+      fetchData(){
+        var gameId =this.$route.params.id;
+        getGameView(gameId, function(game){
+          this.gameData =game;
+          this.ships = game.ships;
+          setShips(this.ships)
+        }.bind(this))
+      }
+    }
 }
 
 const routes = [

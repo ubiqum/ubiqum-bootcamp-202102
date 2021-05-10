@@ -24,12 +24,23 @@ function getGames(callback) {
         })
 }
 
-function getGameView(){
-    fetch("/api/game_view/{{game.id}}")
+function getGameView(gameId, callback){
+    fetch("/api/game_view/"+gameId)
     .then(function(response){
       return response.json();
     })
-    .then(function(gameview){
-      return gameview;
+    .then(function(game){
+      callback(game)
     })
+  }
+
+  function setShips(ships){
+      for(var i = 0; i< ships.length; i++){
+        var ship = ships[i].Location;
+        for(var j = 0; j< ship.length; j++){
+            var cell = (ship[j]).toUpperCase();
+            document.getElementById(cell).className ="cell cell__active";
+        }
+      }
+  
   }

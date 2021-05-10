@@ -1,13 +1,13 @@
 package com.codeoftheweb.salvo;
 
-import net.minidev.json.annotate.JsonIgnore;
+
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
+
 
 @Entity
 public class GamePlayer {
@@ -30,6 +30,9 @@ public class GamePlayer {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "gamePlayer")
     private Set<Ship> ships = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
+    private List<Salvo> salvoes = new ArrayList<>();
 
     public GamePlayer(){}
 
@@ -64,8 +67,24 @@ public class GamePlayer {
        return this.ships = ships;
     }
 
+
+
     public void addShip(Ship ship) {
         ship.setGamePlayer(this);
         ships.add(ship);
+    }
+
+    public void addSalvo(Salvo salvo){
+        salvo.setGamePlayer(this);
+        salvoes.add(salvo);
+    }
+
+
+    public List<Salvo> setSalvoes(List<Salvo> salvoes) {
+        return this.salvoes = salvoes;
+    }
+
+    public List<Salvo> getSalvoes(){
+        return salvoes;
     }
 }

@@ -35,31 +35,41 @@ public class SalvoController {
     }
 
     @RequestMapping("/api/game_view/{gamePlayerId}")
-    public Map<String, Object> getGameView(@PathVariable Long gamePlayerId){
+    public Map<String, Object> getGameView(@PathVariable Long gamePlayerId) {
         Map<String, Object> gameView = new TreeMap<>();
         Optional<GamePlayer> gamePlayer = gamePlayerRepository.findById(gamePlayerId);
 
-        gameView.put("id",gamePlayer.get().getGame().getId());
+        gameView.put("id", gamePlayer.get().getGame().getId());
 
         gameView.put("created", gamePlayer.get().getGame().getCreation());
 
-        Set<GamePlayer> gamePlayers= gamePlayer.get().getGame().getGamePlayers();
+        Set<GamePlayer> gamePlayers = gamePlayer.get().getGame().getGamePlayers();
         List<Map<String, Object>> gamePlayerList = gamePlayers.stream().map(gamePlayer1 -> {
-            Map<String,Object> gamePlayerInfo = new TreeMap<>();
+            Map<String, Object> gamePlayerInfo = new TreeMap<>();
             gamePlayerInfo.put("id", gamePlayer1.getId());
             gamePlayerInfo.put("player", gamePlayer1.getPlayer());
-           return gamePlayerInfo;
+            return gamePlayerInfo;
         }).collect(toList());
         gameView.put("gamePlayers", gamePlayerList);
 
         Set<Ship> ships = gamePlayer.get().getShips();
-        List<Map<String,Object>> shipList = ships.stream().map(ship ->{
-            Map<String,Object> shipInfo = new TreeMap<>();
+        List<Map<String, Object>> shipList = ships.stream().map(ship -> {
+            Map<String, Object> shipInfo = new TreeMap<>();
             shipInfo.put("Type", ship.getType());
             shipInfo.put("Location", ship.getLocation());
             return shipInfo;
         }).collect(toList());
         gameView.put("ships", shipList);
+
+        List<Salvo> salvoes = gamePlayer.get().getSalvoes();
+        List<Map<String,Object>> salvoList = salvoes.stream().map(salvo -> {
+            Map<String,Object> salvoInfo = new TreeMap<>();
+            salvoInfo.put("turn", salvo.getTurnTracker());
+            salvoInfo.put("player", salvo.getGamePlayer().getId());
+            salvoInfo.put("location", salvo.getLocation());
+            return salvoInfo;
+        }).collect(toList());
+        gameView.put("salvoes", salvoList);
 
 
         return gameView;
