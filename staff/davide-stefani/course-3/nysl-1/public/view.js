@@ -1209,10 +1209,7 @@ const Messages = {
                                     </section>
                                 
                             </section><br>
-                            <button class="btn btn-primary">
-                                <i class="fas fa-times fa-fw" href="#/gameInfo"></i>
-                                Go Back
-                            </button>
+                            <a href="#/gameInfo"></i>Go Back to Game Table</a>
                         </div>
                     </div>
                 </div>
