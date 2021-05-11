@@ -1133,52 +1133,6 @@ const Messages = {
                             <br>
                             <!-- Messages Section -->
                             <section class="messageBoard">
-                                <div>
-                                    <!-- Filter Section -->
-                                    <section class="container-fluid">
-                                        <div class="grid-filters">
-
-                                            <form class="teamsSelector">
-                                                <label for="teams">Game:</label>
-                                                <select name="teams" id="teams" class="teamSelector"
-                                                    onchange="filterTable()">
-                                                    <option value="">All</option>
-                                                    <option value="Match1">U1 vs U4</option>
-                                                    <option value="Match2">U3 vs U2</option>
-                                                    <option value="Match3">U5 vs U6</option>
-                                                    <option value="Match4">U6 vs U1</option>
-                                                    <option value="Match5">U2 vs U4</option>
-                                                    <option value="Match6">U3 vs U5</option>
-                                                    <option value="Match7">U1 vs U3</option>
-                                                    <option value="Match8">U2 vs U6</option>
-                                                    <option value="Match9">U4 vs U5</option>
-                                                    <option value="MatchA">U2 vs U5</option>
-                                                    <option value="MatchB">U1 vs U6</option>
-                                                    <option value="MatchC">U3 vs U4</option>
-                                                    <option value="MatchD">U5 vs U1</option>
-                                                    <option value="MatchE">U6 vs U3</option>
-                                                    <option value="MatchF">U2 vs U4</option>
-                                                    <option value="MatchG">U3 vs U1</option>
-                                                    <option value="MatchH">U5 vs U6</option>
-                                                </select>
-                                            </form>
-                                        </div>
-                                    </section><br>
-                                </div>
-
-                                <div class="table-info" style="text-align: left;  height:250px;overflow:auto;">
-                                    <table id="table-data" class="table smart-table table-sm"
-                                        style="background-color:rgb(181, 247, 215); ">
-                                        <thead>
-                                            <th> Date</th>
-                                            <th> Teams</th>
-                                            <th> Location</th>
-                                            <th> Times</th>
-                                        </thead>
-                                        <tbody class="table table-striped">
-                                        </tbody>
-                                    </table>
-                                </div><br>
                                 <!-- Navigation Bar -->
                                 <div>
                                     <div class="mdl-tab">
@@ -1232,10 +1186,7 @@ const Messages = {
                                                                 for="new-post-message">Post
                                                                 message...</label>
                                                         </div>
-                                                        <button type="submit"
-                                                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                                            Add post
-                                                        </button>
+                                                        <a href="#/gameInfo"></i>Go Back to Game Table</a>
                                                     </form>
                                                 </div>
                                             </div>
