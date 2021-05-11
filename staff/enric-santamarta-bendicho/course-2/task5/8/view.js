@@ -65,8 +65,8 @@ Vue.component('jurisdictionMembers', {
         `
     <main>
     <select v-model="state"  @change="select" class="filter">
-    <option v-for="option in options" v-bind:value="option.value"> 
-       {{option.text}}
+    <option v-for="option in options" v-bind:value="option.name"> 
+       {{option.name}}
     </option>
     </select>
 
@@ -97,57 +97,7 @@ Vue.component('jurisdictionMembers', {
             return {
                 results: [],
                 state: 'Arkansas',
-                options: [
-                    { text: 'Arkansas', value: 'Arkansas' },
-                    { text: 'Arizona', value: 'Arizona' },
-                    { text: 'Alabama', value: 'Alabama' },
-                    { text: 'California', value: 'California' },
-                    { text: 'Colorado', value: 'Colorado' },
-                    { text: 'Connecticut', value: 'Connecticut' },
-                    { text: 'Delaware', value: 'Delaware' },
-                    { text: 'Florida', value: 'Florida' },
-                    { text: 'Georgia', value: 'Georgia' },
-                    { text: 'Idaho', value: 'Idaho' },
-                    { text: 'Hawaii', value: 'Hawaii' },
-                    { text: 'Illinois', value: 'Illinois' },
-                    { text: 'Indiana', value: 'Indiana' },
-                    { text: 'Iowa', value: 'Iowa' },
-                    { text: 'Kansas', value: 'Kansas' },
-                    { text: 'Kentucky', value: 'Kentucky' },
-                    { text: 'Louisiana', value: 'Louisiana' },
-                    { text: 'Maine', value: 'Maine' },
-                    { text: 'Maryland', value: 'Maryland' },
-                    { text: 'Massachusetts', value: 'Massachusetts' },
-                    { text: 'Michigan', value: 'Michigan' },
-                    { text: 'Minnesota', value: 'Minnesota' },
-                    { text: 'Mississippi', value: 'Mississippi' },
-                    { text: 'Missouri', value: 'Missouri' },
-                    { text: 'Montana', value: 'Montana' },
-                    { text: 'Nebraska', value: 'Nebraska' },
-                    { text: 'Nevada', value: 'Nevada' },
-                    { text: 'New Hampshire', value: 'New Hampshire' },
-                    { text: 'New Jersey', value: 'New Jersey' },
-                    { text: 'New Mexico', value: 'New Mexico' },
-                    { text: 'New York', value: 'New York' },
-                    { text: 'North Carolina', value: 'North Carolina' },
-                    { text: 'North Dakota', value: 'North Dakota' },
-                    { text: 'Ohio', value: 'Ohio' },
-                    { text: 'Oklahoma', value: 'Oklahoma' },
-                    { text: 'Oregon', value: 'Oregon' },
-                    { text: 'Pennsylvania', value: 'Pennsylvania' },
-                    { text: 'Rhode Island', value: 'Rhode Island' },
-                    { text: 'South Carolina', value: 'South Carolina' },
-                    { text: 'South Dakota', value: 'South Dakota' },
-                    { text: 'Tennessee', value: 'Tennessee' },
-                    { text: 'Texas', value: 'Texas' },
-                    { text: 'Utah', value: 'Utah' },
-                    { text: 'Vermont', value: 'Vermont' },
-                    { text: 'Virginia', value: 'Virginia' },
-                    { text: 'Washington', value: 'Washington' },
-                    { text: 'West Virginia', value: 'West Virginia' },
-                    { text: 'Wisconsin', value: 'Wisconsin' },
-                    { text: 'Wyoming', value: 'Wyoming' }
-                ]
+                options: []
             }
         },
     methods: {
@@ -166,6 +116,9 @@ Vue.component('jurisdictionMembers', {
         }
     },
     created: function () {
+        retrieveStatesJurisdiction(function (options) {
+            this.options = options
+        }.bind(this))
 
         this.refreshMembersTable()
     }
@@ -563,54 +516,26 @@ Vue.component('loyaltyTableSenate', {
 
             this.members = members
 
-            //Execute Functions
-            groupStatisticsByMembers(members)
+            var statistics = calculateStatistics(members)
 
-
-            //average of percentage of Votes of every Party
-            averageVotesDemocrats = (average(percentPartyDemocrats)).toFixed(2)
-            averageVotesRepublicans = (average(percentPartyRepublicans)).toFixed(2)
-            averageVotesIndependents = (average(percentPartyIndependents)).toFixed(2)
-            //create a 3d array
-            var percentageNamesNumberVotes = percentageNames(numberVotes, names, party)
-            var percentageNamesMissedVotes = percentageNames(missedVotes, names, party)
-            var tenPercent2 = tenPercent(names)
-            //order the array display it
-            sortLeastVotes(percentageNamesNumberVotes)
-            leastVotes = percentageNamesNumberVotes
-            prepareLeastVotesPercentages(tenPercent2)
-
-
-            sortMostVotes(percentageNamesNumberVotes)
-            mostVotes = percentageNamesNumberVotes
-            prepareMostVotesPercentage(tenPercent2)
-
-            sortLeastVotes(percentageNamesMissedVotes)
-            leastMissedVotes = percentageNamesMissedVotes
-            prepareMostEngagedPercentage(tenPercent2)
-
-            sortMostVotes(percentageNamesMissedVotes)
-            mostMissedVotes = percentageNamesMissedVotes
-            prepareLeastEngagedPercentage(tenPercent2)
-
-            this.partyInfo.democrats = democrats
-            this.partyInfo.republicans = republicans
-            this.partyInfo.independents = independents
-            this.partyInfo.averageVotesDemocrats = averageVotesDemocrats
-            this.partyInfo.averageVotesRepublicans = averageVotesRepublicans
-            this.partyInfo.averageVotesIndependents = averageVotesIndependents
-            this.leastVotesNames = leastVotesNames
-            this.leastVotesNumbers = leastVotesNumbers
-            this.percentParty = percentParty
-            this.mostVotesNames = mostVotesNames
-            this.mostVotesNumbers = mostVotesNumbers
-            this.percentParty2 = percentParty2
-            this.mostMissedVotes2 = mostMissedVotes2
-            this.mostMissedVotesNames = mostMissedVotesNames
-            this.percentPartyMissed2 = percentParty2
-            this.leastMissedVotes2 = leastMissedVotes2
-            this.leastMissedVotesNames = leastMissedVotesNames
-            this.percentPartyMissed = percentPartyMissed
+            this.partyInfo.democrats = statistics.democrats
+            this.partyInfo.republicans = statistics.republicans
+            this.partyInfo.independents = statistics.independents
+            this.partyInfo.averageVotesDemocrats = statistics.averageVotesDemocrats
+            this.partyInfo.averageVotesRepublicans = statistics.averageVotesRepublicans
+            this.partyInfo.averageVotesIndependents = statistics.averageVotesIndependents
+            this.leastVotesNames = statistics.leastVotesNames
+            this.leastVotesNumbers = statistics.leastVotesNumbers
+            this.percentParty = statistics.percentParty
+            this.mostVotesNames = statistics.mostVotesNames
+            this.mostVotesNumbers = statistics.mostVotesNumbers
+            this.percentParty2 = statistics.percentParty2
+            this.mostMissedVotes2 = statistics.mostMissedVotes2
+            this.mostMissedVotesNames = statistics.mostMissedVotesNames
+            this.percentPartyMissed2 = statistics.percentParty2
+            this.leastMissedVotes2 = statistics.leastMissedVotes2
+            this.leastMissedVotesNames = statistics.leastMissedVotesNames
+            this.percentPartyMissed = statistics.percentPartyMissed
 
 
         }.bind(this));

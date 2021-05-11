@@ -1,3 +1,6 @@
+//retrieveStates cachedFetch
+//function to compile variables
+
 //Jurisdiction Data
 function retrieveMembersByJurisdiction(state, callback) {
 
@@ -142,7 +145,7 @@ var mostMissedVotesNames = []
 var percentPartyMissed = []
 var percentPartyMissed2 = []
 
-
+//use variables inside functions
 
 function groupStatisticsByMembers(members) {
 
@@ -182,117 +185,117 @@ function groupStatisticsByMembers(members) {
     }
 }
 
-        //order Data from more to less
-        function sortLeastVotes(array) {
-        array.sort(function (a, b) {
-       return a[0] - b[0];
-        });
-        }
-        //order Data from less to more
-        function sortMostVotes(array) {
-            array.sort(function (a, b) {
-                return b[0] - a[0];
-            });
-        }
+//order Data from more to less
+function sortLeastVotes(array) {
+    array.sort(function (a, b) {
+        return a[0] - b[0];
+    });
+}
+//order Data from less to more
+function sortMostVotes(array) {
+    array.sort(function (a, b) {
+        return b[0] - a[0];
+    });
+}
 
-        //create 3d Array with Votes,Names and Party//
-        function percentageNames(votes, names, party) {
-            var newArray = []
-            for (var i = 0; i < votes.length; i++)
-                newArray.push([votes[i], names[i], party[i]])
+//create 3d Array with Votes,Names and Party//
+function percentageNames(votes, names, party) {
+    var newArray = []
+    for (var i = 0; i < votes.length; i++)
+        newArray.push([votes[i], names[i], party[i]])
 
 
-            return newArray
-        }
+    return newArray
+}
 
-        //prepare Data to be displayed
-        function prepareLeastVotesPercentages(tenPercent2) {
-            for (var i = 0; i < tenPercent2; i++) {
-                leastVotesNumbers.push(leastVotes[i][0])
-                leastVotesNames.push(leastVotes[i][1])
+//prepare Data to be displayed
+function prepareLeastVotesPercentages(tenPercent2) {
+    for (var i = 0; i < tenPercent2; i++) {
+        leastVotesNumbers.push(leastVotes[i][0])
+        leastVotesNames.push(leastVotes[i][1])
 
-                if (leastVotes[i][2] == "D") {
-                    percentParty.push((leastVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
-                }
-
-                if (leastVotes[i][2] == "R") {
-                    percentParty.push((leastVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
-                }
-
-                if (leastVotes[i][2] == "ID") {
-                    percentParty.push((leastVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
-                }
-            }
-
+        if (leastVotes[i][2] == "D") {
+            percentParty.push((leastVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
         }
 
-
-        //prepare Data to be displayed
-        function prepareMostVotesPercentage(tenPercent2) {
-            for (var i = 0; i < tenPercent2; i++) {
-                mostVotesNumbers.push(mostVotes[i][0])
-                mostVotesNames.push(mostVotes[i][1])
-
-                if (mostVotes[i][2] == "D") {
-                    percentParty2.push((mostVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
-
-                }
-
-                if (mostVotes[i][2] == "R") {
-
-                    percentParty2.push((mostVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
-                }
-
-                if (mostVotes[i][2] == "ID") {
-
-                    percentParty2.push((mostVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
-                }
-            }
+        if (leastVotes[i][2] == "R") {
+            percentParty.push((leastVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
         }
 
+        if (leastVotes[i][2] == "ID") {
+            percentParty.push((leastVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
+        }
+    }
 
-        //prepare Data to be displayed
-        function prepareMostEngagedPercentage(tenPercent2) {
-            for (var i = 0; i < tenPercent2; i++) {
-                leastMissedVotesNames.push(leastMissedVotes[i][1])
-                leastMissedVotes2.push(leastMissedVotes[i][0])
+}
 
-                if (mostVotes[i][2] == "D") {
-                    percentPartyMissed.push((leastMissedVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
 
-                }
+//prepare Data to be displayed
+function prepareMostVotesPercentage(tenPercent2) {
+    for (var i = 0; i < tenPercent2; i++) {
+        mostVotesNumbers.push(mostVotes[i][0])
+        mostVotesNames.push(mostVotes[i][1])
 
-                if (mostVotes[i][2] == "R") {
+        if (mostVotes[i][2] == "D") {
+            percentParty2.push((mostVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
 
-                    percentPartyMissed.push((leastMissedVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
-                }
-
-                if (mostVotes[i][2] == "ID") {
-
-                    percentPartyMissed.push((leastMissedVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
-                }
-            }
         }
 
-        //prepare Data to be displayed
-        function prepareLeastEngagedPercentage(tenPercent2) {
-            for (var i = 0; i < tenPercent2; i++) {
-                mostMissedVotesNames.push(mostMissedVotes[i][1])
-                mostMissedVotes2.push(mostMissedVotes[i][0])
+        if (mostVotes[i][2] == "R") {
 
-                if (mostVotes[i][2] == "D") {
-                    percentPartyMissed2.push((mostMissedVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
-
-                }
-
-                if (mostVotes[i][2] == "R") {
-
-                    percentPartyMissed2.push((mostMissedVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
-                }
-
-                if (mostVotes[i][2] == "ID") {
-
-                    percentPartyMissed2.push((mostMissedVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
-                }
-            }
+            percentParty2.push((mostVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
         }
+
+        if (mostVotes[i][2] == "ID") {
+
+            percentParty2.push((mostVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
+        }
+    }
+}
+
+
+//prepare Data to be displayed
+function prepareMostEngagedPercentage(tenPercent2) {
+    for (var i = 0; i < tenPercent2; i++) {
+        leastMissedVotesNames.push(leastMissedVotes[i][1])
+        leastMissedVotes2.push(leastMissedVotes[i][0])
+
+        if (mostVotes[i][2] == "D") {
+            percentPartyMissed.push((leastMissedVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
+
+        }
+
+        if (mostVotes[i][2] == "R") {
+
+            percentPartyMissed.push((leastMissedVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
+        }
+
+        if (mostVotes[i][2] == "ID") {
+
+            percentPartyMissed.push((leastMissedVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
+        }
+    }
+}
+
+//prepare Data to be displayed
+function prepareLeastEngagedPercentage(tenPercent2) {
+    for (var i = 0; i < tenPercent2; i++) {
+        mostMissedVotesNames.push(mostMissedVotes[i][1])
+        mostMissedVotes2.push(mostMissedVotes[i][0])
+
+        if (mostVotes[i][2] == "D") {
+            percentPartyMissed2.push((mostMissedVotes[i][0] * 100 / democratsPercentParty).toFixed(4))
+
+        }
+
+        if (mostVotes[i][2] == "R") {
+
+            percentPartyMissed2.push((mostMissedVotes[i][0] * 100 / republicansPercentParty).toFixed(4))
+        }
+
+        if (mostVotes[i][2] == "ID") {
+
+            percentPartyMissed2.push((mostMissedVotes[i][0] * 100 / independentsPercentParty).toFixed(4))
+        }
+    }
+}
