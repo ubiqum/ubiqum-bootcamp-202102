@@ -1157,7 +1157,6 @@ const Messages = {
                                         </button>
                                     </div>
                                 </div>
-                                
                                     <!-- Show the add post form -->
                                     <section class="mdl-grid content" id="add-post" style="display:none">
                                         <div class="mdl-cell mdl-cell--12-col mdl-grid">
@@ -1186,7 +1185,10 @@ const Messages = {
                                                                 for="new-post-message">Post
                                                                 message...</label>
                                                         </div>
-                                                        <a href="#/gameInfo"></i>Go Back to Game Table</a>
+                                                        <button type="submit"
+                                                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                                            Add post
+                                                        </button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -1207,9 +1209,7 @@ const Messages = {
                                         <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
                                         </div>
                                     </section>
-                                
-                            </section><br>
-                            <a href="#/gameInfo"></i>Go Back to Game Table</a>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -1217,10 +1217,7 @@ const Messages = {
         </div>
     </div>
 </section>
-
-
-
-    </main>`
+</main>`
 }
 
 
