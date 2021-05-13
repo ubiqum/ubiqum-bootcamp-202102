@@ -20,14 +20,14 @@ const Games = {
     </div>
 </ol>
 </div>`,
-  data(){
-    return{
+  data() {
+    return {
       games: null,
       gamePlayers: null
     }
   },
-  created(){
-    getGames(function (games){
+  created() {
+    getGames(function (games) {
       this.games = games;
     }.bind(this))
   }
@@ -36,36 +36,41 @@ const Games = {
 const Game = {
   template: `
   <div>
+
   <h1> Ship Locations!</h1>
   {{gameData.created}}
-  <div v-for="(gamePlayer, key) in gameData.gamePlayers">
-  <p>{{gamePlayer.player.userName}}</p>
+  <h2>{{currentPlayer.player.userName}}, you are playing against: {{opponent.player.userName}}</h2>
+  
+  
+
+  <div class="flex-container">
+
+  <div class="flex-container__item">
+    <h2>Your ships</h2>
+    <div class="grid-container" id="ships">
+      <template v-for="(cell, key) in cells">
+      <template v-if="isShip(cell)">
+        <div class="grid-container__cell--ship">{{cell}}</div>
+      </template>
+      <template v-else>
+        <div class="grid-container__cell">{{cell}}</div>
+      </template>
+      </template>
+    </div>
   </div>
 
-  <div class="grid">
-  <h2>Your ships</h2>
-  <div class="grid__container" id="ships">
-  <template v-for="(cell, key) in cells">
-  <template v-if="isShip(cell)">
-    <div class="cell--active">{{cell}}</div>
-  </template>
-  <template v-else>
-    <div class="cell">{{cell}}</div>
-  </template>
-  </template>
-  </div>
-
-  <h2>Your salvoes</h2>
-  <div class="grid__container" id="salvoes">
-    <template v-for="(cell, key) in cells">
-    <template v-if="isSalvo(cell)">
-      <div class="salvo--shot">{{cell}}</div>
-    </template>
-    <template v-else>
-      <div class="salvo">{{cell}}</div>
-    </template>
-    </template>
- 
+  <div class="flex-container__item">
+    <h2>Your salvoes</h2>
+    <div class="grid-container" id="salvoes">
+      <template v-for="(cell, key) in cells">
+      <template v-if="isSalvo(cell)">
+        <div class="grid-container__cell--salvo">{{cell}}</div>
+      </template>
+      <template v-else>
+        <div class="grid-container__cell">{{cell}}</div>
+      </template>
+      </template>
+    </div>
   </div>
 
   </div>
@@ -73,31 +78,45 @@ const Game = {
 `,
   data() {
     return {
-  cells: getCells(),
-  gameData: {},
-  ships: {},
-  salvoes:{}
-}
-    },
-    created(){
-      this.fetchData()
-    },
-    methods:{
-      fetchData(){
-        var gameId =this.$route.params.id;
-        getGameView(gameId, function(game){
-          this.gameData =game;
-          this.ships = game.ships;
-          this.salvoes = game.salvoes;
-        }.bind(this))
-      },
-      isSalvo(location) {
-        return isSalvoInLocation(this.salvoes, location)
-    },
-      isShip(location){
-        return isShipInLocation(this.ships, location)
-      }
+      cells: getCells(),
+      gameData: {},
+      ships: {},
+      salvoes: {},
+      currentPlayer: {},
+      opponent: {}
     }
+  },
+  created() {
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      var gamePlayerId = this.$route.params.id;
+      getGameView(gamePlayerId, function (game) {
+        this.gameData = game;
+        this.ships = game.ships;
+        this.salvoes = game.salvoes;
+        this.gamePlayerId = gamePlayerId;
+        var gamePlayers = game.gamePlayers;
+        for (var i = 0; i < gamePlayers.length; i++) {
+          if (gamePlayers[i].id == this.gamePlayerId) {
+            var currentPlayer = gamePlayers[i];
+          }
+          else {
+            var opponent = gamePlayers[i];
+          }
+        }
+        this.currentPlayer = currentPlayer;
+        this.opponent = opponent;
+      }.bind(this))
+    },
+    isSalvo(location) {
+      return isSalvoInLocation(this.salvoes, location)
+    },
+    isShip(location) {
+      return isShipInLocation(this.ships, location)
+    }
+  }
 }
 
 const routes = [
@@ -113,8 +132,8 @@ const router = new VueRouter({
 
 function isSalvoInLocation(salvoes, location) {
   return salvoes.some(salvo => salvo.location.includes(location))
-} 
+}
 
-function isShipInLocation(ships, location){
+function isShipInLocation(ships, location) {
   return ships.some(ship => ship.location.includes(location))
 }

@@ -2,32 +2,49 @@ body {
   background-color: #c9d4ec;
 }
 
-.grid__container {
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.grid-container {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
       grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
-  -ms-grid-rows: 1,5rem 1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem;
-      grid-template-rows: 1,5rem 1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem;
+  -ms-grid-rows: 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem;
+      grid-template-rows: 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem;
   grid-gap: 0.2rem;
   border: black;
   border-style: double;
   width: 35rem;
 }
 
-.cell {
+.grid-container__cell {
   background-color: white;
 }
 
-.cell--active {
+.grid-container__cell--ship {
   background-color: #0dafa2;
 }
 
-.salvo {
-  background-color: white;
+.grid-container__cell--salvo {
+  background-color: #c9600b;
 }
 
-.salvo--shot {
-  background-color: #c9600b;
+@media only screen and (min-width: 650px) {
+  .flex-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
 }
 /*# sourceMappingURL=style.css.map */
