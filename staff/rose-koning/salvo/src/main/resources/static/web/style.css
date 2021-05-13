@@ -1,24 +1,33 @@
+body {
+  background-color: #c9d4ec;
+}
+
 .grid__container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
+      grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
+  -ms-grid-rows: 1,5rem 1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem;
+      grid-template-rows: 1,5rem 1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem  1,5rem;
   grid-gap: 0.2rem;
-  background-color: black;
   border: black;
+  border-style: double;
+  width: 35rem;
 }
 
 .cell {
   background-color: white;
 }
 
-.cell__active {
-  background-color: red;
+.cell--active {
+  background-color: #0dafa2;
 }
 
-.cell__hit {
-  background-color: blue;
+.salvo {
+  background-color: white;
+}
+
+.salvo--shot {
+  background-color: #c9600b;
 }
 /*# sourceMappingURL=style.css.map */

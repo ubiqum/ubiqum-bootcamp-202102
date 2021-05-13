@@ -45,8 +45,7 @@ public class SalvoApplication {
 		GamePlayer gp2 = new GamePlayer(g1, p2);
 		GamePlayer gp3 = new GamePlayer(g2, p2);
 		GamePlayer gp4 = new GamePlayer(g2, p3);
-		GamePlayer gp5 = new GamePlayer(g3, p1);
-		GamePlayer gp6 = new GamePlayer(g3, p3);
+
 
 		Ship sh1 = new Ship("battleShip",  new ArrayList<>(Arrays.asList("H2","H3","H4")));
 		Ship sh2 = new Ship("landingShip",new ArrayList<>(Arrays.asList("J3","J4","J5" )));
@@ -127,8 +126,8 @@ public class SalvoApplication {
 
 
 		gamePlayerRepository.save(gp1);
-		/*gamePlayerRepository.save(gp2);
-		gamePlayerRepository.save(gp3);*/
+		gamePlayerRepository.save(gp2);
+		gamePlayerRepository.save(gp3);
 
 
 

@@ -35,30 +35,48 @@ const Games = {
 
 const Game = {
   template: `
-<div>
-<h1> Ship Locations!</h1>
-{{gameData.created}}
-<div v-for="(gamePlayer, key) in gameData.gamePlayers">
-<p>{{gamePlayer.player.userName}}</p>
-</div>
-<div class="grid__container" id="cellMyShips">
-<div v-for="(cell,key) in cells">
-  <div class="cell" v-bind:id="cell">{{cell}}</div>
+  <div>
+  <h1> Ship Locations!</h1>
+  {{gameData.created}}
+  <div v-for="(gamePlayer, key) in gameData.gamePlayers">
+  <p>{{gamePlayer.player.userName}}</p>
   </div>
-  <div class="grid__container" id="cellMySalvoes">
-<div v-for="(cell,key) in cells">
-  <div class="cell" v-bind:id="cell">{{cell}}</div>
+
+  <div class="grid">
+  <h2>Your ships</h2>
+  <div class="grid__container" id="ships">
+  <template v-for="(cell, key) in cells">
+  <template v-if="isShip(cell)">
+    <div class="cell--active">{{cell}}</div>
+  </template>
+  <template v-else>
+    <div class="cell">{{cell}}</div>
+  </template>
+  </template>
   </div>
-</div>
 
+  <h2>Your salvoes</h2>
+  <div class="grid__container" id="salvoes">
+    <template v-for="(cell, key) in cells">
+    <template v-if="isSalvo(cell)">
+      <div class="salvo--shot">{{cell}}</div>
+    </template>
+    <template v-else>
+      <div class="salvo">{{cell}}</div>
+    </template>
+    </template>
+ 
+  </div>
 
-</div>
+  </div>
+  </div>
 `,
   data() {
     return {
   cells: getCells(),
   gameData: {},
-  ships: {}
+  ships: {},
+  salvoes:{}
 }
     },
     created(){
@@ -70,10 +88,14 @@ const Game = {
         getGameView(gameId, function(game){
           this.gameData =game;
           this.ships = game.ships;
-          this.salvoes = game.salvoes
-          setShips(this.ships)
-          setSalvoes(this.salvoes)
+          this.salvoes = game.salvoes;
         }.bind(this))
+      },
+      isSalvo(location) {
+        return isSalvoInLocation(this.salvoes, location)
+    },
+      isShip(location){
+        return isShipInLocation(this.ships, location)
       }
     }
 }
@@ -88,3 +110,11 @@ const routes = [
 const router = new VueRouter({
   routes,
 });
+
+function isSalvoInLocation(salvoes, location) {
+  return salvoes.some(salvo => salvo.location.includes(location))
+} 
+
+function isShipInLocation(ships, location){
+  return ships.some(ship => ship.location.includes(location))
+}
