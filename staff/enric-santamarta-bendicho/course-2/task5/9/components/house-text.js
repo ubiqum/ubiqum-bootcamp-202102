@@ -1,7 +1,6 @@
-const HouseData = {
-    template: `  <main>
-    <div class="container">
-
+Vue.component('houseText',{
+    template:`  
+    <main>
     <h2>Congressmen</h2>
     <p class="maintext">The major power of the House is to pass federal legislation that affects the entire
         country,
@@ -16,7 +15,5 @@ const HouseData = {
         Each U.S. state is represented in the House in proportion to its population as measured in the census,
         but
         every state is entitled to at least one representative. </p>
-        <DataTableHouse />
-        </div>
         </main>`
-}
+})

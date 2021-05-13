@@ -1,5 +1,5 @@
 //RetrieveStates Jurisdiction
-function retrieveStatesJurisdiction(callback) {
+function retrieveStates(callback) {
 
     cachedFetch('https://v3.openstates.org/jurisdictions?classification=state&page=1&per_page=52', {
         headers: {

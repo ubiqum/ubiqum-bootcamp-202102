@@ -12,9 +12,9 @@ Vue.component('DataTableSenate', {
         v-on:change="applyFiltersSenate" />
     <label for="independents">Independent</label>
 
-    <select v-model="state"  @change="select" class="filter">
-    <option v-for="option in options" v:bind:value = initials.value>
-        {{option.value}}
+    <select v-model="menu"  @change="select" class="filter">
+    <option v-for="option in options" v:bind:value = option.value>
+        {{option.name}}
     </option>
     </select>
     
@@ -45,62 +45,11 @@ Vue.component('DataTableSenate', {
         return {
             members: [],
             filteredMembersSenate: [],
-            parties: [],
+            parties: ['D','R','ID',''],
             state: '',
-            options: [
-                { text: '--Choose a State--', value: '' },
-                { text: 'Arkansas', value: 'AR' },
-                { text: 'Arizona', value: 'AZ' },
-                { text: 'Alabama', value: 'AL' },
-                { text: 'California', value: 'CA' },
-                { text: 'Colorado', value: 'CO' },
-                { text: 'Connecticut', value: 'CT' },
-                { text: 'Delaware', value: 'DE' },
-                { text: 'Florida', value: 'FL' },
-                { text: 'Georgia', value: 'GA' },
-                { text: 'Idaho', value: 'ID' },
-                { text: 'Hawaii', value: 'HI' },
-                { text: 'Illinois', value: 'IL' },
-                { text: 'Indiana', value: 'IN' },
-                { text: 'Iowa', value: 'IA' },
-                { text: 'Kansas', value: 'KS' },
-                { text: 'Kentucky', value: 'KY' },
-                { text: 'Louisiana', value: 'LA' },
-                { text: 'Maine', value: 'ME' },
-                { text: 'Maryland', value: 'MD' },
-                { text: 'Massachusetts', value: 'MA' },
-                { text: 'Michigan', value: 'MI' },
-                { text: 'Minnesota', value: 'MN' },
-                { text: 'Mississippi', value: 'MS' },
-                { text: 'Missouri', value: 'MS' },
-                { text: 'Montana', value: 'MO' },
-                { text: 'Nebraska', value: 'NE' },
-                { text: 'Nevada', value: 'NV' },
-                { text: 'New Hampshire', value: 'NH' },
-                { text: 'New Jersey', value: 'NJ' },
-                { text: 'New Mexico', value: 'NM' },
-                { text: 'New York', value: 'NY' },
-                { text: 'North Carolina', value: 'NC' },
-                { text: 'North Dakota', value: 'ND' },
-                { text: 'Ohio', value: 'OH' },
-                { text: 'Oklahoma', value: 'OK' },
-                { text: 'Oregon', value: 'OR' },
-                { text: 'Pennsylvania', value: 'PA' },
-                { text: 'Rhode Island', value: 'RI' },
-                { text: 'South Carolina', value: 'SC' },
-                { text: 'South Dakota', value: 'SD' },
-                { text: 'Tennessee', value: 'TN' },
-                { text: 'Texas', value: 'TX' },
-                { text: 'Utah', value: 'UT' },
-                { text: 'Vermont', value: 'VT' },
-                { text: 'Virginia', value: 'VA' },
-                { text: 'Washington', value: 'WA' },
-                { text: 'West Virginia', value: 'WV' },
-                { text: 'Wisconsin', value: 'WI' },
-                { text: 'Wyoming', value: 'WY' }
-            ],
-            initials:[{},
-            {value: 'AR'}]
+            options: [],
+            menu:'--Select a State--' 
+
         }
     },
     methods: {
@@ -114,7 +63,20 @@ Vue.component('DataTableSenate', {
         select(event) {
             event.preventDefault()
 
-            this.state = event.target.value
+
+            var option = event.target.value
+
+            if (option != '--Select a State--') {
+                for (var i = 0; i < this.options.length; i++) {
+                    if (this.options[i].name == option) {
+                        this.state = this.options[i].division_id.slice(-2).toUpperCase()
+                    }
+                }
+            }
+            if (option == '--Select a State--') {
+                this.state = ''
+            }
+
 
             this.applyFiltersSenate()
         },
@@ -124,6 +86,12 @@ Vue.component('DataTableSenate', {
             this.members = members
             this.filteredMembersSenate = members
         }.bind(this));
+
+        retrieveStates(function (options) {
+            this.options = options
+            this.options.unshift({ name: '--Select a State--' })
+        }.bind(this))
+
     }
 
 })

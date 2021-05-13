@@ -74,20 +74,11 @@ Vue.component('loyaltyTableSenate', {
             mostVotesNames: [],
             mostVotesNumbers: [],
             percentParty2: [],
-            mostMissedVotes2: [],
-            mostMissedVotesNames: [],
-            percentPartyMissed2: [],
-            leastMissedVotes2: [],
-            leastMissedVotesNames: [],
-            percentPartyMissed: [],
-
-
         }
     },
     created: function () {
         //collect Data 
         retrieveMembersSenate(function (members) {
-
 
             this.members = members
 
@@ -105,13 +96,6 @@ Vue.component('loyaltyTableSenate', {
             this.mostVotesNames = statistics.mostVotesNames
             this.mostVotesNumbers = statistics.mostVotesNumbers
             this.percentParty2 = statistics.percentParty2
-            this.mostMissedVotes2 = statistics.mostMissedVotes2
-            this.mostMissedVotesNames = statistics.mostMissedVotesNames
-            this.percentPartyMissed2 = statistics.percentParty2
-            this.leastMissedVotes2 = statistics.leastMissedVotes2
-            this.leastMissedVotesNames = statistics.leastMissedVotesNames
-            this.percentPartyMissed = statistics.percentPartyMissed
-
 
         }.bind(this));
     }

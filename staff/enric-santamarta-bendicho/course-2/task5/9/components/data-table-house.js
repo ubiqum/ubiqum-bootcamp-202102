@@ -2,7 +2,7 @@ Vue.component('DataTableHouse', {
     template: `
     <main>        
      Filter by party:
-    <input type="checkbox" value="D" name="party" id="checkbox" v-model="parties" 
+    <input type="checkbox" value="D" name="party" id="checkbox" v-model="parties"  
         v-on:change="applyFiltersHouse" />
     <label for="democrat">Democrat</label>
     <input type="checkbox" value="R" name="party" id="checkbox" v-model="parties" 
@@ -12,58 +12,10 @@ Vue.component('DataTableHouse', {
         v-on:change="applyFiltersHouse" />
     <label for="independents">Independent</label>
 
-   
-    <select id="state" class="filter" v-model="state"  @change="applyFiltersHouse">
-        <option value="">--Choose a State--</option>
-        <option value="AR">Arkansas</option>
-        <option value="AZ">Arizona</option>
-        <option value="AL">Alabama</option>
-        <option value="CA">California</option>
-        <option value="CO">Colorado</option>
-        <option value="CT">Connecticut</option>
-        <option value="DE">Delaware</option>
-        <option value="FL">Florida</option>
-        <option value="GA">Georgia</option>
-        <option value="ID">Idaho</option>
-        <option value="HI">Hawaii</option>
-        <option value="IL">Illinois</option>
-        <option value="IN">Indiana</option>
-        <option value="IA">Iowa</option>
-        <option value="KS">Kansas</option>
-        <option value="KY">Kentucky</option>
-        <option value="LA">Louisiana</option>
-        <option value="ME">Maine</option>
-        <option value="MD">Maryland</option>
-        <option value="MA">Massachusetts</option>
-        <option value="MI">Michigan</option>
-        <option value="MN">Minnesota</option>
-        <option value="MS">Mississippi</option>
-        <option value="MS">Missouri</option>
-        <option value="MO">Montana</option>
-        <option value="NE">Nebraska</option>
-        <option value="NV">Nevada</option>
-        <option value="NH">New Hampshire</option>
-        <option value="NJ">New Jersey</option>
-        <option value="NM">New Mexico</option>
-        <option value="NY">New York</option>
-        <option value="NC">North Carolina</option>
-        <option value="ND">North Dakota</option>
-        <option value="OH">Ohio</option>
-        <option value="OK">Oklahoma</option>
-        <option value="OR">Oregon</option>
-        <option value="PA">Pennsylvania</option>
-        <option value="RI">Rhode Island</option>
-        <option value="SC">South Carolina</option>
-        <option value="SD">South Dakota</option>
-        <option value="TN">Tennessee</option>
-        <option value="TX">Texas</option>
-        <option value="UT">Utah</option>
-        <option value="VT">Vermont</option>
-        <option value="VA">Virginia</option>
-        <option value="WA">Washington</option>
-        <option value="WV">West Virginia</option>
-        <option value="WI">Wisconsin</option>
-        <option value="WY">Wyoming</option>
+    <select v-model="menu"  @change="select" class="filter">
+    <option v-for="option in options" v:bind:value = option.value>
+        {{option.name}}
+    </option>
     </select>
     
     <table class="table">
@@ -92,22 +44,55 @@ Vue.component('DataTableHouse', {
         return {
             members: [],
             filteredMembersHouse: [],
-            parties: [],
-            state: null,
+            parties: ['D','R','ID',''],
+            state: '',
+            menu:'--Select a State--', 
+            options: [],
         }
     },
     methods: {
         applyFiltersHouse: function () {
+
             filterMembersHouse(this.parties, this.state, function (filteredMembersHouse) {
                 this.filteredMembersHouse = filteredMembersHouse
             }.bind(this));
-        }
+        },
+
+
+        select(event) {
+            event.preventDefault()
+
+
+            var option = event.target.value
+
+            if (option != '--Select a State--') {
+                for (var i = 0; i < this.options.length; i++) {
+                    if (this.options[i].name == option) {
+                        this.state = this.options[i].division_id.slice(-2).toUpperCase()
+                    }
+                }
+            }
+            if (option == '--Select a State--') {
+                this.state = ''
+            }
+
+
+            this.applyFiltersHouse()
+        },
     },
+
+
+
     created: function () {
         retrieveMembersHouse(function (members) {
             this.members = members
             this.filteredMembersHouse = members
         }.bind(this));
+
+        retrieveStates(function (options) {
+            this.options = options
+            this.options.unshift({ name: '--Select a State--' })
+        }.bind(this))
     }
 
 })

@@ -69,12 +69,6 @@ Vue.component('houseAttendanceTable', {
                 averageVotesDemocrats: 0,
                 averageVotesIndependents: 0
             },
-            leastVotesNames: [],
-            leastVotesNumbers: [],
-            percentParty: [],
-            mostVotesNames: [],
-            mostVotesNumbers: [],
-            percentParty2: [],
             mostMissedVotes2: [],
             mostMissedVotesNames: [],
             percentPartyMissed2: [],
@@ -98,12 +92,6 @@ Vue.component('houseAttendanceTable', {
             this.partyInfo.averageVotesDemocrats = statistics.averageVotesDemocrats
             this.partyInfo.averageVotesRepublicans = statistics.averageVotesRepublicans
             this.partyInfo.averageVotesIndependents = statistics.averageVotesIndependents
-            this.leastVotesNames = statistics.leastVotesNames
-            this.leastVotesNumbers = statistics.leastVotesNumbers
-            this.percentParty = statistics.percentParty
-            this.mostVotesNames = statistics.mostVotesNames
-            this.mostVotesNumbers = statistics.mostVotesNumbers
-            this.percentParty2 = statistics.percentParty2
             this.mostMissedVotes2 = statistics.mostMissedVotes2
             this.mostMissedVotesNames = statistics.mostMissedVotesNames
             this.percentPartyMissed2 = statistics.percentParty2

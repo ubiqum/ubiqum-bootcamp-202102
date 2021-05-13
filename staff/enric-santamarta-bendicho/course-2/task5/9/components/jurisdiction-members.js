@@ -54,7 +54,7 @@ Vue.component('jurisdictionMembers', {
         }
     },
     created: function () {
-        retrieveStatesJurisdiction(function (options) {
+        retrieveStates(function (options) {
             this.options = options
         }.bind(this))
 

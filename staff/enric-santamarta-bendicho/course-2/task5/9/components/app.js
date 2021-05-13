@@ -24,9 +24,9 @@ var App = {
                  
     
                     <div id="collapse1" class="panel-collapse collapse">
-                        <div class="panel-body"><a v-on:click="houseData" method="post" >House</a></div>
+                        <div class="panel-body"><a v-on:click="house" method="post" >House</a></div>
     
-                        <div class="panel-body"><a v-on:click="senateData" method="post" >Senate</a></div>
+                        <div class="panel-body"><a v-on:click="senate" method="post" >Senate</a></div>
                     </div>
                     <div id="collapse3" class="panel-collapse collapse">
                         <div class="panel-body"><a v-on:click="houseAttendance" method="post" >House</a></div>
@@ -46,9 +46,7 @@ var App = {
             </div>
         </div>
         </nav>
-
-
-
+      
         <router-view></router-view>
    
         <footer>
@@ -71,15 +69,15 @@ var App = {
 
             router.push('/jurisdiction')
         },
-        senateData(event) {
+        senate(event) {
             event.preventDefault()
 
-            router.push('/senate-data')
+            router.push('/senate')
         },
-        houseData(event) {
+        house(event) {
             event.preventDefault()
 
-            router.push('/house-data')
+            router.push('/house')
         },
         houseAttendance(event) {
             event.preventDefault()
