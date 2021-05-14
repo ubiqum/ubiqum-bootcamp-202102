@@ -7,8 +7,8 @@ const Legislators = {
   },
   methods: {
     onFilterChanged(selectedState) {
-        this.selectedState = selectedState;
-        retrieveLegislators(this.selectedState)
+      this.selectedState = selectedState;
+      retrieveLegislators(this.selectedState)
         .then((members) => (this.members = members))
         .catch((error) =>
           alert(
@@ -45,4 +45,3 @@ const Legislators = {
     </article>
     </div>`,
 };
-

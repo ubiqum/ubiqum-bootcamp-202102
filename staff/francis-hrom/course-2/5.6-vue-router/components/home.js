@@ -97,6 +97,3 @@ const Home = {
 </article>
 </div>`,
 };
-
-//   <div v-bind:checkedParties="checkedParties">{{checkedParties}}</div>
-// this.checkedParties;

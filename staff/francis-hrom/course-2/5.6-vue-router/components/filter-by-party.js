@@ -1,14 +1,14 @@
 Vue.component("filter-by-party", {
-    data() {
-        return {
-            checkedParties: ["R","D","ID"],
-        }
+  data() {
+    return {
+      checkedParties: ["R", "D", "ID"],
+    };
+  },
+  methods: {
+    changeCheckedParties() {
+      this.$emit("checkedParties", this.checkedParties);
     },
-    methods: {
-        changeCheckedParties() {
-            this.$emit('checkedParties',this.checkedParties);
-        }
-    },
+  },
   template: `
     <div>
     <label for="filter-by-party">Filter by Party:</label>

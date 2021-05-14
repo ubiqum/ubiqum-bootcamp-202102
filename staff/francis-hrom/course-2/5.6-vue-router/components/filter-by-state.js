@@ -2,11 +2,18 @@ Vue.component("filter-by-state", {
   data() {
     return {
       states: {},
-      selectedState: [],
+      selectedState: "ALL",
     };
   },
   mounted() {
-    getStatesList().then((states) => (this.states = states));
+    getStatesList().then((states) =>
+      (this.states = states).catch((error) =>
+        alert(
+          "There was an error. Remain calm and contact customer support ;) " +
+            error.message
+        )
+      )
+    );
   },
   methods: {
     changeSelectedState() {
@@ -18,15 +25,12 @@ Vue.component("filter-by-state", {
         <label for="filter-by-state">Filter by State:</label>
 
         <select name="filter-by-state" v-model="selectedState" @change="changeSelectedState()">
-            <option value="ALL">**SELECT STATE**</option>
+            <option value="ALL">ALL</option>
             <option v-for="(value, key) in states" v-bind:value="key">{{value}}</option>
         </select>
     </div>
     `,
 });
-
-// why the first <option disabled value="">**SELECT STATE**</option> is not visible
-//
 
 // helper function
 async function getStatesList() {

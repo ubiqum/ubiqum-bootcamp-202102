@@ -1,6 +1,6 @@
-Vue.component('legislator-table', {
-    props: ['members'],
-    template: `
+Vue.component("legislator-table", {
+  props: ["members"],
+  template: `
     <table class="table table-responsive table-hover">
         <thead>
             <th>Name</th>
@@ -20,5 +20,5 @@ Vue.component('legislator-table', {
             </tr>
         </tbody>
     </table>
-    `
+    `,
 });

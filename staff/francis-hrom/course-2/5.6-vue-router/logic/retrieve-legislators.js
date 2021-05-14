@@ -14,7 +14,9 @@ async function retrieveLegislators(state) {
 
   // fetch data from API until max_page is reached and concat array of values with people from every fetch call to data
   for (let i = 2; i <= maxPage; i++) {
-    legislators.push(...(await retrieveLegislatorsByStatePage(state, i)).results);
+    legislators.push(
+      ...(await retrieveLegislatorsByStatePage(state, i)).results
+    );
   }
 
   // save all fetched and combined data to local storage

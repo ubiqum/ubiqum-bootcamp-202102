@@ -13,9 +13,9 @@ Vue.component('member-table', {
         <tbody>
             <tr v-for="member in members">
                 <td>
-                <a v-bind:href="member.url">
-                {{member.first_name}} {{member.middle_name}} {{member.last_name}}
-                </a>
+                    <a v-bind:href="member.url">
+                        {{member.first_name}} {{member.middle_name}} {{member.last_name}}
+                    </a>
                 </td>
                 <td>{{member.party}}</td>
                 <td>{{member.state}}</td>

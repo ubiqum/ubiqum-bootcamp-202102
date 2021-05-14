@@ -1,13 +1,7 @@
-async function getLeastMostMembers(memberType, tableOrder, sortElement) {
+async function getLeastMostMembers(memberType, sortFx, sortElement) {
   const filtredMembers = [];
-
   let members = await retrieveMembers(memberType, null, null);
-  if (tableOrder === "sortDescending") {
-    members = sortDescending(members, sortElement);
-  }
-  if (tableOrder === "sortAscending") {
-    members = sortAscending(members, sortElement);
-  }
+  members = sortFx(members, sortElement);
 
   // amount of members which should be returned; 0.1 = 10%
   const membersAmount = Math.round(

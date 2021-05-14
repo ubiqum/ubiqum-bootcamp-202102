@@ -10,19 +10,15 @@ async function retrieveMembers(type, parties, state) {
     const filtered = filterMembers(members, parties, state);
     return filtered;
   } else {
-    try {
-      const options = {
-        headers: { "X-API-Key": "PeoQrPJONEB0oy2bwTSlMvnliYvyCSCTOlEH5HPP" },
-      };
-      const response = await fetch(url, options);
-      const data = await response.json();
-      const members = data.results[0].members;
-      localStorage.setItem(url, JSON.stringify(members));
-      const filtered = filterMembers(members, parties, state);
-      return filtered;
-    } catch (error) {
-      alert("Error! -> " + error);
-    }
+    const options = {
+      headers: { "X-API-Key": "PeoQrPJONEB0oy2bwTSlMvnliYvyCSCTOlEH5HPP" },
+    };
+    const response = await fetch(url, options);
+    const data = await response.json();
+    const members = data.results[0].members;
+    localStorage.setItem(url, JSON.stringify(members));
+    const filtered = filterMembers(members, parties, state);
+    return filtered;
   }
 }
 
@@ -35,7 +31,7 @@ function filterMembers(members, parties, state) {
     if (parties && !parties.includes(member.party)) {
       return false;
     }
-    if (state && (member.state).toLowerCase() != state) {
+    if (state && member.state.toLowerCase() != state) {
       return false;
     }
     return true;
