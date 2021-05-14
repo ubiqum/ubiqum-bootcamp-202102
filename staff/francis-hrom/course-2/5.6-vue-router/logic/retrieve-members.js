@@ -1,4 +1,10 @@
-// get data from cache or fetch them from propublica.org API, show fetch errors or return the correct data
+/**
+ * Retrieve array of members from propublica.org API, cache the response and filter it according to the input party and state filters
+ * @param {string} type 
+ * @param {string[]} parties Abbreviations for USA political parties ("D" for Democract, "R" for Republican, "ID" for Independent)
+ * @param {string} state Abbreviation for one of the USA states (e.g. "al" for Alabama) 
+ * @returns {array} Array with filtres members.
+ */
 async function retrieveMembers(type, parties, state) {
   const url =
     "https://api.propublica.org/congress/v1/113/" + type + "/members.json";
@@ -26,6 +32,13 @@ async function retrieveMembers(type, parties, state) {
 
 // helper function
 // filter data based on the input filters
+/**
+ * Filter members according to the input party and state filters
+ * @param {string} type 
+ * @param {string[]} parties Abbreviations for USA political parties ("D" for Democract, "R" for Republican, "ID" for Independent)
+ * @param {string} state Abbreviation for one of the USA states (e.g. "al" for Alabama) 
+ * @returns {array} Array with filtres members.
+ */
 function filterMembers(members, parties, state) {
   return members.filter((member) => {
     if (parties && !parties.includes(member.party)) {

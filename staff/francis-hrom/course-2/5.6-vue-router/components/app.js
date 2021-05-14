@@ -1,3 +1,4 @@
+// individual page components
 const House = createCongress(
   "house",
   "Congressmen",
@@ -41,6 +42,7 @@ const SenateAttendance = createAttendance("senate");
 const HouseLoyalty = createLoyalty("house");
 const SenateLoyalty = createLoyalty("senate");
 
+// Vue router routers to the page components
 const routes = [
   { path: "/", component: Home },
   { path: "/house", component: House },
@@ -52,10 +54,12 @@ const routes = [
   { path: "/legislators", component: Legislators },
 ];
 
+// Vue router inicialization
 const router = new VueRouter({
   routes,
 });
 
+// Vue App definition
 const App = {
   el: "#app",
   template: `<div>

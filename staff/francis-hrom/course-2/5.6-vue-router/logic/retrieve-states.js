@@ -1,4 +1,7 @@
-// get sates list from cach or openstates.org API and return it in correct format
+/**
+ * Retrieve list of states from the openstates.org API and adjust them to suitable format
+ * @returns {object} List of states in format "abbriviation:state name" e.g. al:Alabama
+ */
 async function retrieveStates() {
   const url =
     "https://v3.openstates.org/jurisdictions?classification=state&page=1&per_page=52&apikey=8d56acbc-063a-4e0f-8f76-a4c2036a0390";

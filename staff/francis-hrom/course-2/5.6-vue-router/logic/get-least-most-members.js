@@ -1,3 +1,10 @@
+/**
+ * Get array of filtred members for least/most tables
+ * @param {string} memberType The type of member (House or Senate)
+ * @param {function} sortFx Function for sorting members list (asceding or descending order)
+ * @param {string} sortElement Element according to which the sorting will be done
+ * @returns {array} Array with filtres members.
+ */
 async function getLeastMostMembers(memberType, sortFx, sortElement) {
   const filtredMembers = [];
   let members = await retrieveMembers(memberType, null, null);
@@ -27,7 +34,12 @@ async function getLeastMostMembers(memberType, sortFx, sortElement) {
 }
 
 // helper functions
-// sort in asceding order, lowest to highest
+/**
+ * Sort members in asceding order (lowest to highest) based on the sortElement value
+ * @param {array} members 
+ * @param {string} sortElement Element according to which the sorting will be done
+ * @returns {array} Array with sorted members.
+ */
 function sortAscending(members, sortElement) {
   members.sort(function (x, y) {
     return x[sortElement] - y[sortElement];
@@ -35,6 +47,12 @@ function sortAscending(members, sortElement) {
   return members;
 }
 
+/**
+ * Sort members in descending order (lowest to highest) based on the sortElement value
+ * @param {array} members 
+ * @param {string} sortElement Element according to which the sorting will be done
+ * @returns {array} Array with sorted members.
+ */
 // sort in descending order, from highest to lowest
 function sortDescending(members, sortElement) {
   members.sort(function (x, y) {

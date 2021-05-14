@@ -1,3 +1,9 @@
+/**
+ * Get data, calculate and return at glance statistics
+ * @param {string} type The type of member (House or Senate)
+ * @returns {object} At glance statistic object
+ */
+
 async function getAtGlanceStats(type) {
   const stats = {};
   const parties = ["ID", "D", "R"];

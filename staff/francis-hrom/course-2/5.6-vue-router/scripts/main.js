@@ -1,1 +1,2 @@
-new Vue(App)
+// Vue app inicialization
+new Vue(App);

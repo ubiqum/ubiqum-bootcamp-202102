@@ -1,5 +1,5 @@
 /**
- * Creates a Conress screeen component
+ * Creates a Conress screen component
  *
  * @param {string} type - The type of congress (senate or house)
  * @param {string} title - The title for the screen

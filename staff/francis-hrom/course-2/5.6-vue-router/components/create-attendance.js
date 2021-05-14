@@ -1,3 +1,9 @@
+/**
+ * Create attendance screen component
+ * @param {string} memberType The type of member (House or Senate)
+ * @returns {Object} Atendance screen component
+ */
+
 function createAttendance(memberType) {
   return {
     data() {

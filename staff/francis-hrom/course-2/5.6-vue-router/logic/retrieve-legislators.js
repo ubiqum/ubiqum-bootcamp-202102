@@ -1,3 +1,8 @@
+/**
+ * Retrieve legislators by input state from openstates.org API
+ * @param {string} state Abbreviation for one of the USA states (e.g. "al" for Alabama) 
+ * @returns {array} Array with legislators from the input state
+ */
 async function retrieveLegislators(state) {
   const json = localStorage.getItem(state);
 
@@ -26,7 +31,12 @@ async function retrieveLegislators(state) {
 }
 
 // helper function
-// get data from https://v3.openstates.org/, show fetch errors or return the correct data
+/**
+ * Retrieve legislators by input state and API page from openstates.org API
+ * @param {string} state Abbreviation one for the states from USA (e.g. "al" for Alabama) 
+ * @param {number} pageNumber Number of the page in the API pagination
+ * @returns {object} JSON object with legislators
+ */
 async function retrieveLegislatorsByStatePage(state, pageNumber) {
   const response = await fetch(
     "https://v3.openstates.org/people?jurisdiction=" +

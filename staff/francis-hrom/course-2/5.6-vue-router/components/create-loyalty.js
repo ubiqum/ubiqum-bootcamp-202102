@@ -1,3 +1,9 @@
+/**
+ * Create party loyalty screen component
+ * @param {string} memberType The type of member (House or Senate)
+ * @returns {Object} Party loyalty screen component
+ */
+
 function createLoyalty(memberType) {
   return {
     data() {
