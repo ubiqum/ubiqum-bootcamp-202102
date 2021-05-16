@@ -45,10 +45,10 @@ Vue.component('DataTableSenate', {
         return {
             members: [],
             filteredMembersSenate: [],
-            parties: ['D','R','ID',''],
+            parties: ['D', 'R', 'ID', ''],
             state: '',
             options: [],
-            menu:'--Select a State--' 
+            menu: '--Select a State--'
 
         }
     },
@@ -68,15 +68,15 @@ Vue.component('DataTableSenate', {
 
             if (option != '--Select a State--') {
                 for (var i = 0; i < this.options.length; i++) {
-                    if (this.options[i].name == option) {
-                        this.state = this.options[i].division_id.slice(-2).toUpperCase()
-                    }
+                  if (this.options[i].name == option) {
+                    this.state = extractStateAcronymFromID(this.options[i].division_id)
+                  }
                 }
-            }
-            if (option == '--Select a State--') {
+              }
+            
+              if (option == '--Select a State--') {
                 this.state = ''
-            }
-
+              }
 
             this.applyFiltersSenate()
         },

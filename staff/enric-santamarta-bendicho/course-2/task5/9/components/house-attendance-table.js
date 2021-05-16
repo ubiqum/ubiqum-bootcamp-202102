@@ -84,7 +84,7 @@ Vue.component('houseAttendanceTable', {
             this.members = members
 
             //Execute Functions
-            var statistics = claculateStatistics(members)
+            var statistics = calculateStatistics(members)
 
             this.partyInfo.democrats = statistics.democrats
             this.partyInfo.republicans = statistics.republicans

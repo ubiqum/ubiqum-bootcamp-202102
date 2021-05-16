@@ -25,7 +25,7 @@ Vue.component('homeText', {
             instruments to this end can also be traced to this time with Sweden, for example, (which then included
             Finland as a Swedish-governed territory) enacting free press legislation as part of its constitution
             (Freedom of the Press Act, 1766). This approach, and that of the philosophes more broadly, is strongly
-            related to recent historiography on the eighteenth-century public sphere.
+            related to recent historiography on the eighteenth-century public sphere. </p>
 
         <p class="maintext">Influenced by Enlightenment thought, the revolutions in America (1776) and France
             (1789), freedom of the
@@ -46,8 +46,8 @@ Vue.component('homeText', {
             on
             Publicity of Official Documents in 1951 (superseded by new legislation in 1999).</p>
 
-        <p>The United States passed its Freedom of Information Act (FOIA) in 1966, FOIAs, Access to Information Acts
+        <p class="maintext">The United States passed its Freedom of Information Act (FOIA) in 1966, FOIAs, Access to Information Acts
             (AIAs) or equivalent laws were passed in Denmark and Norway in 1970.</p>
-        </p>
+        
     </div>
 </div>`})

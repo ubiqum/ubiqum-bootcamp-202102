@@ -68,14 +68,13 @@ Vue.component('DataTableHouse', {
             if (option != '--Select a State--') {
                 for (var i = 0; i < this.options.length; i++) {
                     if (this.options[i].name == option) {
-                        this.state = this.options[i].division_id.slice(-2).toUpperCase()
+                        this.state = extractStateAcronymFromID(this.options[i].division_id)
                     }
                 }
             }
             if (option == '--Select a State--') {
                 this.state = ''
             }
-
 
             this.applyFiltersHouse()
         },
