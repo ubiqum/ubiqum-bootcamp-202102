@@ -21,16 +21,6 @@ public class SalvoApplication {
 									  GameRepository gameRepository,
 									  GamePlayerRepository gamePlayerRepository, ShipRepository shipRepository, SalvoRepository salvoRepository){return (args) -> {
 
-		//Adding PLayers
-		Player p1 = new Player("Peter");
-		Player p2 = new Player("Wendy");
-		Player p3 = new Player("Captain");
-
-
-		playerRepository.save(p1);
-		playerRepository.save(p2);
-		playerRepository.save(p3);
-
 		//Adding Games
 		Game g1 = new Game();
 		Game g2 = new Game();
@@ -39,6 +29,27 @@ public class SalvoApplication {
 		gameRepository.save(g1);
 		gameRepository.save(g2);
 		gameRepository.save(g3);
+
+		//Adding PLayers
+		Player p1 = new Player("Peter");
+		Player p2 = new Player("Wendy");
+		Player p3 = new Player("Captain");
+
+		Score score1 = new Score(g1, p1, 0.5);
+		Score score2 = new Score(g1, p2, 0.5);
+		Score score3 = new Score(g2, p2, 1);
+		Score score4 = new Score(g2, p3, 0);
+
+		p1.addScore(score1);
+		p2.addScore(score2);
+		p2.addScore(score3);
+		p3.addScore(score4);
+
+
+
+		playerRepository.save(p1);
+		playerRepository.save(p2);
+		playerRepository.save(p3);
 
 		//Adding GamePlayers
 		GamePlayer gp1 = new GamePlayer(g1, p1);

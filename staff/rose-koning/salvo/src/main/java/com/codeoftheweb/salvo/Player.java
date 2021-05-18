@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,10 +21,8 @@ import static java.util.stream.Collectors.toList;
     @OneToMany(mappedBy = "player", fetch = FetchType.EAGER)
     Set<GamePlayer>gamePlayers;
 
-    public void addPlayer(GamePlayer gameplayer){
-     gameplayer.setPlayer(this);
-     gamePlayers.add(gameplayer);
-    }
+    @OneToMany(mappedBy = "player", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    Set<Score> scores = new HashSet<>();
 
     public Player() {
     }
@@ -32,11 +31,13 @@ import static java.util.stream.Collectors.toList;
         this.userName = userName;
     }
 
+
+
     public String getUserName() {
         return userName;
     }
 
-    public Long getUserId(){return id;}
+    public Long getId(){return id;}
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -46,7 +47,20 @@ import static java.util.stream.Collectors.toList;
     public List<Game> getGames() {
         return gamePlayers.stream().map(sub -> sub.getGame()).collect(toList());
     }
+    public void addPlayer(GamePlayer gameplayer){
+        gameplayer.setPlayer(this);
+        gamePlayers.add(gameplayer);
+    }
 
+    public void setScores(Set<Score> scores){
+        this.scores = scores;
+    }
+    public Set<Score> getScores(){
+        return scores;
+    }
 
-
+    public void addScore(Score score){
+        score.setPlayer(this);
+        scores.add(score);
+    }
 }

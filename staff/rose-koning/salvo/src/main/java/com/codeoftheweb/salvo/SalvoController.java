@@ -21,6 +21,15 @@ public class SalvoController {
     @Autowired
     private PlayerRepository playerRepository;
 
+    @Autowired
+    private ShipRepository shipRepository;
+
+    @Autowired
+    private SalvoRepository salvoRepository;
+
+    @Autowired
+    private ScoreRepository scoreRepository;
+
     @RequestMapping("/api/games")
     public List<Map<String, Object>> getGames() {
         return gameRepository.findAll().stream().map(game -> {
@@ -39,7 +48,8 @@ public class SalvoController {
         Map<String, Object> gameView = new TreeMap<>();
         Optional<GamePlayer> gamePlayer = gamePlayerRepository.findById(gamePlayerId);
 
-        gameView.put("id", gamePlayer.get().getGame().getId());
+        long gameId = gamePlayer.get().getGame().getId();
+        gameView.put("id", gameId);
 
         gameView.put("created", gamePlayer.get().getGame().getCreation());
 
@@ -47,7 +57,10 @@ public class SalvoController {
         List<Map<String, Object>> gamePlayerList = gamePlayers.stream().map(gamePlayer1 -> {
             Map<String, Object> gamePlayerInfo = new TreeMap<>();
             gamePlayerInfo.put("id", gamePlayer1.getId());
-            gamePlayerInfo.put("player", gamePlayer1.getPlayer());
+            Map<String, Object> playerInfo = new TreeMap<>();
+            playerInfo.put("id", gamePlayer1.getPlayer().getId());
+            playerInfo.put("userName", gamePlayer1.getPlayer().getUserName());
+            gamePlayerInfo.put("player", playerInfo);
             return gamePlayerInfo;
         }).collect(toList());
         gameView.put("gamePlayers", gamePlayerList);
@@ -78,6 +91,11 @@ public class SalvoController {
         }).collect(toList());
         gameView.put("salvoes", salvoList);
 
+        Set<Score> scores = gamePlayer.get().getPlayer().scores;
+        Score playerScore = scores.stream().filter(score -> score.getGame().getId()==gameId).findAny().orElse(null);
+
+
+        gameView.put("score", playerScore.getPoints());
 
         return gameView;
     }

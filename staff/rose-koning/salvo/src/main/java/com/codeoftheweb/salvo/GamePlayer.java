@@ -31,17 +31,20 @@ public class GamePlayer {
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private Set<Ship> ships = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Salvo> salvoes = new ArrayList<>();
 
-    public GamePlayer(){}
+    public GamePlayer() {
+    }
 
-    public GamePlayer(Game game, Player player){
+    public GamePlayer(Game game, Player player) {
         this.setGame(game);
         this.setPlayer(player);
     }
 
-    public Long getId(){return id;}
+    public Long getId() {
+        return id;
+    }
 
     public Game getGame() {
         return game;
@@ -64,9 +67,8 @@ public class GamePlayer {
     }
 
     public Set<Ship> setShips(Set<Ship> ships) {
-       return this.ships = ships;
+        return this.ships = ships;
     }
-
 
 
     public void addShip(Ship ship) {
@@ -74,7 +76,7 @@ public class GamePlayer {
         ships.add(ship);
     }
 
-    public void addSalvo(Salvo salvo){
+    public void addSalvo(Salvo salvo) {
         salvo.setGamePlayer(this);
         salvoes.add(salvo);
     }
@@ -84,7 +86,10 @@ public class GamePlayer {
         return this.salvoes = salvoes;
     }
 
-    public List<Salvo> getSalvoes(){
+    public List<Salvo> getSalvoes() {
         return salvoes;
     }
+
 }
+
+
