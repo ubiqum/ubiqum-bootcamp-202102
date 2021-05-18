@@ -31,7 +31,7 @@ var App = {
 
                         <div class="dropdown">
                         <button data-toggle="dropdown" id="dropDownMenu2" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                        Attendance<span class="caret"></span></button>
+                        Attendance <span class="caret"></span></button>
                         <div aria-labelledby="dropDownMenu2" class="dropdown-menu">
                         <div class="panel-body"><a v-on:click="houseAttendance" method="post" >House</a></div>
         
@@ -41,7 +41,7 @@ var App = {
                             
                         <div class="dropdown">
                         <a data-toggle="dropdown" id="dropDownMenu3" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                        Party Loyalty<span class="caret"></span></a>
+                        Party Loyalty <span class="caret"></span></a>
                         <div aria-labelledby="dropDownMenu3" class="dropdown-menu">
                         <div class="panel-body"><a v-on:click="houseLoyalty" method="post" >House</a></div>
                             
