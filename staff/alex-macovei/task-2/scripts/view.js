@@ -1,33 +1,34 @@
+/**
+ * Sets the table for member rendering
+ */
+function setTable() {       
+    var table = document.getElementById("table");
 
-var table = document.getElementById("table");
-var trh = document.createElement("tr");
-var thName = document.createElement("th");
-var thParty = document.createElement("th");
-var thState = document.createElement("th");
-var thSeniority = document.createElement("th");
-var thVotes = document.createElement("th");
-var thead = document.createElement("thead");
-var tbody = document.createElement("tbody");
-var selectedState = document.getElementById("states");
+    table.innerHTML = ""
 
-function setTable() {           //Sets the table for members rendering
-    table.innerHTML = ''
-
+    var thead = document.createElement("thead");
     table.appendChild(thead);
+
+    var trh = document.createElement("tr");
     thead.appendChild(trh)
 
+    var thName = document.createElement("th");
     trh.appendChild(thName);
     thName.textContent = "Full Name";
 
+    var thParty = document.createElement("th");
     trh.appendChild(thParty);
     thParty.textContent = "Party Affilication";
 
+    var thState = document.createElement("th");
     trh.appendChild(thState);
     thState.textContent = "State";
 
+    var thSeniority = document.createElement("th");
     trh.appendChild(thSeniority);
     thSeniority.textContent = "Seniority";
 
+    var thVotes = document.createElement("th");
     trh.appendChild(thVotes);
     thVotes.textContent = "Votes";
 
@@ -36,19 +37,24 @@ function setTable() {           //Sets the table for members rendering
     thState.setAttribute("class", "text-center");
     thSeniority.setAttribute("class", "text-center");
     thVotes.setAttribute("class", "text-center");
-
-    tbody.innerHTML = "";
 }
 
-
-function renderCongressMembers(members) {       //Renders specified members in the table
-
+/**
+ * Renders specified members in the table
+ * 
+ * @param {Array} members members to render
+ */
+function renderCongressMembers(members) {     
     setTable();
+
+    var table = document.querySelector("table");
+
+    var tbody = document.createElement("tbody");
+    table.appendChild(tbody);
 
     for (var i = 0; i < members.length; i++) {
         var name = members[i].last_name + " " + (members[i].middle_name || "") + " " + members[i].first_name;
         var tr = document.createElement("tr");
-        table.appendChild(tbody);
         tbody.appendChild(tr)
         var a = document.createElement('a');
         a.setAttribute("href", members[i].url);
@@ -76,8 +82,10 @@ function renderCongressMembers(members) {       //Renders specified members in t
     }
 }
 
-function onCheckboxClicked() {      //Checks filter checkboxes and executes the filter for the specific checkbox
-
+/**
+ * Checks filter checkboxes and executes the filter for the specific checkbox
+ */
+function onCheckboxClicked() { 
     var parties = []
 
     if (republican.checked) parties.push('R')
@@ -89,33 +97,47 @@ function onCheckboxClicked() {      //Checks filter checkboxes and executes the 
     renderCongressMembers(Members);
 }
 
-function renderStates() {       //Renders states inside the dropdown box
+/**
+ * Renders members filtered by states selected inside the dropdown box
+ */
+function renderStates() {
     var as = document.forms[0].states.value;
     var members = retrieveMembersByStates(as);
+
     renderCongressMembers(members);
-    console.log("retrieving members");
 }
 
+/**
+ * Renders states inside the dropdown box
+ * 
+ * @param {Array} states states to render
+ */
 function renderStatesSelector(states) {
     var selector = document.getElementById("states");
 
-    for (var i = 0; i < uniqueStates; i++) {
+    var option = document.createElement("option");
+    option.innerText = "";
+    option.disabled = true;
+    option.selected = true;
+
+    selector.appendChild(option);
+
+    for (var i = 0; i < states.length; i++) {
         var option = document.createElement("option");
 
         var state = states[i]
 
-        selector.setAttribute("value", state);
+        option.value = state;
         option.textContent = state;
 
         selector.appendChild(option);
     }
 }
 
-function setTableAtGlance() {
-
-}
-
-function renderAtGlanceTable() {            //Renders table from top page of each attendance/loyalty hmlts
+/**
+ * Renders table from top page of each attendance/loyalty hmlts
+ */
+function renderAtGlanceTable() {
     var trD = document.getElementById("trDemocrat");
     var trR = document.getElementById("trRepublican");
     var trI = document.getElementById("trIndependent");
@@ -147,9 +169,16 @@ function renderAtGlanceTable() {            //Renders table from top page of eac
 
 }
 
-function renderEngaged(members, tbody) {        //Renders tables from attendance htmls
+/**
+ * Renders table from attendance htmls
+ * 
+ * @param {Array} members members to include in the table
+ * 
+ * @param {String} tbody string to specify the table body in which to render the members
+ */
+function renderEngaged(members, tbody) {
     var tbody = document.getElementById(tbody);
-
+    
     for (var i = 0; i < members.length; i++) {
         var tr = document.createElement("tr");
         var tdn = document.createElement("td");
@@ -167,9 +196,30 @@ function renderEngaged(members, tbody) {        //Renders tables from attendance
     }
 }
 
-function renderLoyal(members, tbody) {          //Renders tables from loyalty htmls
+/**
+ * Renders table in attendance from most to least
+ */
+function renderMostEngaged(members){
+    renderEngaged(members, "tbodyMostEngaged");
+}
+
+/**
+ * Renders table in attendance from least to most
+ */
+function renderLeastEngaged(members){
+    renderEngaged(members, "tbodyLeastEngaged");
+}
+
+/**
+ * Renders tables from loyalty htmls
+ * 
+ * @param {Array} members members to include in the table
+ * 
+ * @param {String} tbody string to specify the table body in which to render the members
+ */
+function renderLoyal(members, tbody) {
     var tbody = document.getElementById(tbody);
-    lowestPartyVotes(members);
+    retrieveLowestPartyVotes(members);
 
     for (var i = 0; i < members.length; i++) {
         var tr = document.createElement("tr");
@@ -183,10 +233,21 @@ function renderLoyal(members, tbody) {          //Renders tables from loyalty ht
         tr.appendChild(tdp);
 
         tdn.textContent = (members[i].last_name + " " + (members[i].middle_name || "") + " " + members[i].first_name);
-        tdv.textContent = MemberVotesWithParty(members[i]);
+        tdv.textContent = retrieveMemberVotesWithParty(members[i]);
         tdp.textContent = members[i].votes_with_party_pct;
     }
-
 }
 
+/**
+ * Renders table in loyalty from most to least
+ */
+function renderMostLoyal(members) {
+    renderLoyal(members, "tbodyMostLoyal");
+}
 
+/**
+ * Renders table in loyalty from least to most
+ */
+function renderLeastLoyal(members) {
+    renderLoyal(members, "tbodyLeastLoyal");
+}
