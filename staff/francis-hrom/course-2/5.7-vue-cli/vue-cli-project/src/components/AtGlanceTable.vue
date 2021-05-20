@@ -1,6 +1,8 @@
 <template>
   <div class="AtGlanceTable">
-    <table class="table table-responsive table-hover">
+    <b-table striped hover :items="stats"> </b-table>
+
+    <!--     <table class="table table-responsive table-hover">
       <thead>
         <tr>
           <th>Party</th>
@@ -19,7 +21,7 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
   </div>
 </template>
 
@@ -32,18 +34,20 @@ export default {
   },
   data() {
     return {
-      stats: {},
-      parties: {
+      stats: [],
+      /*       parties: {
         D: "Democracts",
         R: "Republicans",
         ID: "Independent",
         Total: "Total",
-      },
+      }, */
     };
   },
   mounted() {
     getAtGlanceStats(this.memberType)
-      .then((stats) => (this.stats = stats))
+      .then((stats) => {
+        this.stats = stats;
+      })
       .catch((error) =>
         alert(
           "There was an error. Remain calm and contact customer support ;) " +
@@ -53,5 +57,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

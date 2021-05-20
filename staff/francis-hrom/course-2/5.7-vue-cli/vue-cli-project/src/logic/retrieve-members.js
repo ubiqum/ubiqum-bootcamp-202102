@@ -31,6 +31,7 @@ export default function retrieveMembers(type, parties, state) {
       const members = data.results[0].members;
       localStorage.setItem(url, JSON.stringify(members));
       const filtered = filterMembers(members, parties, state);
+
       return filtered;
     }
   })();

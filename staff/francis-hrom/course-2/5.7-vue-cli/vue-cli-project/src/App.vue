@@ -1,75 +1,66 @@
 <template>
-  <div id="app">
-    <header class="container">
-      <div class="row">
-        <div class="col-sm-6">
-          <router-link to="/"
-            ><a href="#"
-              ><img
-                class="img-responsive"
-                src="./assets/logo.jpg"
-                alt="TGIF logo" /></a
-          ></router-link>
-        </div>
-        <div class="col-sm-6">
-          <a class="navbar-right" href="mailto:info@tgif.net"
-            ><i class="bi bi-envelope"> </i>info@tgif.net</a
+  <b-container>
+    <header>
+      <b-row>
+        <b-col col sm="8">
+          <a href="/"
+            ><img
+              class="img-responsive"
+              src="./assets/logo.jpg"
+              alt="TGIF logo"
+          /></a>
+        </b-col>
+        <b-col col sm="4">
+          <a class="navbar-right" href="mailto:info@tgif.net">
+            <b-icon icon="envelope"></b-icon>
+            info@tgif.net</a
           >
-        </div>
-      </div>
+        </b-col>
+      </b-row>
     </header>
 
-    <div class="row">
-      <nav class="nav navbar-default">
-        <ul class="nav navbar-nav">
-          <li><router-link to="/">Home</router-link></li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
-              >Congress 113 <span class="caret"></span
-            ></a>
-            <ul class="dropdown-menu">
-              <li><router-link to="/house">House</router-link></li>
-              <li><router-link to="/senate">Senate</router-link></li>
-            </ul>
-          </li>
+    <b-row>
+      <b-nav pills>
+        <b-nav-item to="/">Home</b-nav-item>
 
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
-              >Attendance<span class="caret"></span
-            ></a>
-            <ul class="dropdown-menu">
-              <li><router-link to="/house-attendance">House</router-link></li>
-              <li>
-                <router-link to="/senate-attendance">Senate</router-link>
-              </li>
-            </ul>
-          </li>
+        <b-nav-item-dropdown
+          id="my-nav-dropdown"
+          text="Congress 113"
+          toggle-class="nav-link-custom"
+          right
+        >
+          <b-dropdown-item to="/house">House</b-dropdown-item>
+          <b-dropdown-item to="/senate">Senate</b-dropdown-item>
+        </b-nav-item-dropdown>
 
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
-              >Party Loyalty<span class="caret"></span
-            ></a>
-            <ul class="dropdown-menu">
-              <li>
-                <router-link to="/house-loyalty">House</router-link>
-              </li>
-              <li>
-                <router-link to="/senate-loyalty">Senate</router-link>
-              </li>
-            </ul>
-          </li>
+        <b-nav-item-dropdown
+          id="my-nav-dropdown"
+          text="Attendance"
+          toggle-class="nav-link-custom"
+          right
+        >
+          <b-dropdown-item to="/house-attendance">House</b-dropdown-item>
+          <b-dropdown-item to="/senate-attendance">Senate</b-dropdown-item>
+        </b-nav-item-dropdown>
 
-          <li>
-            <router-link to="/legislators">State Legislators</router-link>
-          </li>
-        </ul>
-      </nav>
-    </div>
+        <b-nav-item-dropdown
+          id="my-nav-dropdown"
+          text="Party Loyalty"
+          toggle-class="nav-link-custom"
+          right
+        >
+          <b-dropdown-item to="/house-loyalty">House</b-dropdown-item>
+          <b-dropdown-item to="/senate-loyalty">Senate</b-dropdown-item>
+        </b-nav-item-dropdown>
+
+        <b-nav-item to="/legislators">State Legislators</b-nav-item>
+      </b-nav>
+    </b-row>
 
     <router-view />
 
-    <footer class="container panel-footer text-center">
-      <p>&copy; 2016 TGIF | All Rights Reserved</p>
-    </footer>
-  </div>
+    <b-card-footer class="text-center"
+      >&copy; 2016 TGIF | All Rights Reserved</b-card-footer
+    >
+  </b-container>
 </template>

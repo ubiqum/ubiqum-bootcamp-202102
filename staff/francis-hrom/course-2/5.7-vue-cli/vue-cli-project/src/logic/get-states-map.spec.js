@@ -6,12 +6,12 @@ import fetch from "node-fetch";
 global.localStorage = new LocalStorage("./local-storage");
 global.fetch = fetch;
 
-import getStatesList from "./get-states-list";
+import getStatesMap from "./get-states-map";
 
-describe("getStatesList", () => {
+describe("getStatesMap", () => {
   describe("when called without any parameter", function () {
     it("should succeed with results", function (done) {
-      getStatesList()
+      getStatesMap()
         .then(function (result) {
           expect(result).to.exist;
           expect(result).not.to.be.empty;

@@ -5,7 +5,7 @@ import retrieveStates from "./retrieve-states";
  *
  * @returns {object} List of states in format "abbriviation:state name" e.g. al:Alabama
  */
-export default async function getStatesList() {
+export default async function getStatesMap() {
   const statesList = {};
   const states = await retrieveStates();
 

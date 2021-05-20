@@ -1,6 +1,25 @@
 <template>
   <div class="FilterByParty">
-    <label for="FilterByParty">Filter by Party:</label>
+    <b-form-group label="Filter by Party:" v-slot="{ ariaDescribedby }">
+      <b-form-checkbox-group
+        id="FilterByParty"
+        v-model="checkedParties"
+        :aria-describedby="ariaDescribedby"
+        name="FilterByParty"
+      >
+        <b-form-checkbox value="R" @change="changeCheckedParties()"
+          >Republican</b-form-checkbox
+        >
+        <b-form-checkbox value="D" @change="changeCheckedParties()"
+          >Democrat</b-form-checkbox
+        >
+        <b-form-checkbox value="ID" @change="changeCheckedParties()"
+          >Independent</b-form-checkbox
+        >
+      </b-form-checkbox-group>
+    </b-form-group>
+
+    <!--     <label for="FilterByParty">Filter by Party:</label>
     <input
       type="checkbox"
       id="R"
@@ -24,7 +43,7 @@
       v-model="checkedParties"
       @change="changeCheckedParties()"
     />
-    <label for="ID">Independent</label>
+    <label for="ID">Independent</label> -->
   </div>
 </template>
 

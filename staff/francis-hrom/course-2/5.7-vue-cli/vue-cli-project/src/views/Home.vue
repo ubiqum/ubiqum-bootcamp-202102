@@ -1,9 +1,10 @@
 <template>
   <div class="Home">
-    <article class="container">
-      <div class="row">
-        <div class="col-sm-8">
+    <article>
+      <b-row>
+        <b-col col sm="8">
           <h1>About Us</h1>
+
           <p>
             Openness, accountability, and honesty define government
             transparency. In a free society, transparency is government's
@@ -33,67 +34,62 @@
             information of greatest use to the public.
           </p>
 
-          <div id="accordion">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"
-              >Read More</a
-            >
+          <a v-b-toggle="'collapse-1'" class="m-1">Read More</a>
+          <b-collapse id="collapse-1">
+            <h3>Background History of Government Transparency</h3>
+            <p>
+              In the West, the idea that government should be open to public
+              scrutiny and susceptible to public opinion dates back at least to
+              the time of the Enlightenment, when many philosophes made an
+              attack on absolutist doctrine of state secrecy, a core part of
+              their intellectual project. The passage of formal legislative
+              instruments to this end can also be traced to this time with
+              Sweden, for example, (which then included Finland as a
+              Swedish-governed territory) enacting free press legislation as
+              part of its constitution (Freedom of the Press Act, 1766). This
+              approach, and that of the philosophes more broadly, is strongly
+              related to recent historiography on the eighteenth-century public
+              sphere.
+            </p>
 
-            <div id="collapse1" class="collapse">
-              <h3>Background History of Government Transparency</h3>
-              <p>
-                In the West, the idea that government should be open to public
-                scrutiny and susceptible to public opinion dates back at least
-                to the time of the Enlightenment, when many philosophes made an
-                attack on absolutist doctrine of state secrecy, a core part of
-                their intellectual project. The passage of formal legislative
-                instruments to this end can also be traced to this time with
-                Sweden, for example, (which then included Finland as a
-                Swedish-governed territory) enacting free press legislation as
-                part of its constitution (Freedom of the Press Act, 1766). This
-                approach, and that of the philosophes more broadly, is strongly
-                related to recent historiography on the eighteenth-century
-                public sphere.
-              </p>
+            <p>
+              Influenced by Enlightenment thought, the revolutions in America
+              (1776) and France (1789), freedom of the press enshrined
+              provisions and requirements for public budgetary accounting and
+              freedom of the press in constitutional articles. In the nineteenth
+              century, attempts by Metternichean statesmen to row back on these
+              measures were vigorously opposed by a number of eminent liberal
+              politicians and writers, Bentham, Mill and Acton prominent among
+              the latter.
+            </p>
 
-              <p>
-                Influenced by Enlightenment thought, the revolutions in America
-                (1776) and France (1789), freedom of the press enshrined
-                provisions and requirements for public budgetary accounting and
-                freedom of the press in constitutional articles. In the
-                nineteenth century, attempts by Metternichean statesmen to row
-                back on these measures were vigorously opposed by a number of
-                eminent liberal politicians and writers, Bentham, Mill and Acton
-                prominent among the latter.
-              </p>
+            <p>
+              Open government is widely seen to be a key hallmark of
+              contemporary democratic practice and is often linked to the
+              passing of freedom of information legislation. Scandinavian
+              countries claim to have adopted the first freedom of information
+              legislation, dating the origins of its modern provisions to the
+              eighteenth century and Finland continuing the presumption of
+              openness after gaining independence in 1917, passing its Act on
+              Publicity of Official Documents in 1951 (superseded by new
+              legislation in 1999).
+            </p>
 
-              <p>
-                Open government is widely seen to be a key hallmark of
-                contemporary democratic practice and is often linked to the
-                passing of freedom of information legislation. Scandinavian
-                countries claim to have adopted the first freedom of information
-                legislation, dating the origins of its modern provisions to the
-                eighteenth century and Finland continuing the presumption of
-                openness after gaining independence in 1917, passing its Act on
-                Publicity of Official Documents in 1951 (superseded by new
-                legislation in 1999).
-              </p>
-
-              <p>
-                The United States passed its Freedom of Information Act (FOIA)
-                in 1966, FOIAs, Access to Information Acts (AIAs) or equivalent
-                laws were passed in Denmark and Norway in 1970.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
+            <p>
+              The United States passed its Freedom of Information Act (FOIA) in
+              1966, FOIAs, Access to Information Acts (AIAs) or equivalent laws
+              were passed in Denmark and Norway in 1970.
+            </p>
+          </b-collapse>
+        </b-col>
+        <b-col col sm="4">
           <img
             class="img-responsive col-centered"
             src="../assets/graph_with_magnifier_glass.png"
             alt="illustration - graph with magnifier glass"
           />
-        </div>
-      </div>
+        </b-col>
+      </b-row>
     </article>
   </div>
 </template>

@@ -5,7 +5,7 @@ import retrieveMembers from "./retrieve-members";
  *
  * @param {string} type The type of member (House or Senate)
  *
- * @returns {object} At glance statistic object
+ * @returns {object[]} At glance statistic array of objects
  *
  * @throws {TypeError} When `type` is not a string
  */
@@ -14,32 +14,44 @@ export default function getAtGlanceStats(type) {
 
   return (async () => {
     // IIFE
-    const stats = {};
-    const parties = ["ID", "D", "R"];
+    const statsArr = [];
+
+    const parties = [
+      { name: "Democracts", ID: "D" },
+      { name: "Republicans", ID: "R" },
+      { name: "Independents", ID: "ID" },
+    ];
 
     let total = 0;
     let totalAverage = 0;
 
     await Promise.all(
       parties.map(async (party) => {
-        const members = await retrieveMembers(type, [party], null);
-        const membersCount = members.length;
+        const members = await retrieveMembers(type, [party.ID], null);
+        const stats = {};
+        stats.party = party.name;
 
-        stats["numberOf" + party] = membersCount;
+        const membersCount = members.length;
+        stats.numberOfReps = membersCount;
         total += membersCount;
 
-        const sum =
+        const average =
           members.reduce(function (acc, val) {
             return acc + val.votes_with_party_pct;
           }, 0) / membersCount || 0;
-        stats["votedWithPartyAveragePercentage" + party] = sum;
-        totalAverage += sum;
+
+        stats.votedWithParty = average.toFixed(2);
+        totalAverage += average;
+        statsArr.push(stats);
       })
     );
 
-    stats.numberOfTotal = total;
-    stats.votedWithPartyAveragePercentageTotal = totalAverage / parties.length;
+    const stats = {};
+    stats.party = "Total";
+    stats.numberOfReps = total;
+    stats.votedWithParty = (totalAverage / parties.length).toFixed(2);
+    statsArr.push(stats);
 
-    return stats;
+    return statsArr;
   })();
 }

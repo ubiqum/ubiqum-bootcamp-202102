@@ -1,8 +1,8 @@
 <template>
   <div class="Attendance">
-    <article class="container">
-      <div class="row">
-        <div class="col-sm-6">
+    <article>
+      <b-row>
+        <b-col col sm="6">
           <h1>Attendance</h1>
           <p>
             The Constitution specifies that a majority of members constitutes a
@@ -11,7 +11,6 @@
             thus, in most cases, debates continue even if a majority is not
             present.
           </p>
-
           <p>
             The Senate uses roll-call votes; a clerk calls out the names of all
             the senators, each senator stating "aye" or "no" when his or her
@@ -21,28 +20,28 @@
             case of a tie, the motion in question fails. In the Senate, the Vice
             President may (if present) cast the tiebreaking vote.
           </p>
-        </div>
+        </b-col>
 
-        <div class="col-sm-6">
+        <b-col col sm="6">
           <h2>
             {{ memberType.charAt(0).toUpperCase() + memberType.slice(1) }} at a
             glance
           </h2>
           <AtGlanceTable v-bind:memberType="memberType" />
-        </div>
-      </div>
+        </b-col>
+      </b-row>
 
-      <div class="row">
-        <div class="col-sm-6">
+      <b-row>
+        <b-col col sm="6">
           <h2>Least Engaged (Bottom 10% Attendance)</h2>
           <AttendanceTable v-bind:tableProps="leastTableProps" />
-        </div>
+        </b-col>
 
-        <div class="col-sm-6">
+        <b-col col sm="6">
           <h2>Most Engaged (Top 10% Attendance)</h2>
           <AttendanceTable v-bind:tableProps="mostTableProps" />
-        </div>
-      </div>
+        </b-col>
+      </b-row>
     </article>
   </div>
 </template>

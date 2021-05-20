@@ -1,11 +1,9 @@
 <template>
-  <div class="house">
-    <Congress
-      v-bind:type="type"
-      v-bind:title="title"
-      v-bind:description="description"
-    />
-  </div>
+  <Congress
+    v-bind:type="type"
+    v-bind:title="title"
+    v-bind:description="description"
+  />
 </template>
 
 <script>
@@ -36,5 +34,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

@@ -31,9 +31,8 @@ export default function getLeastMostMembers(type, property, order) {
         : sortDescending(members, property);
 
     // amount of members which should be returned; 0.1 = 10%
-    const amount = Math.round(
-      (await getAtGlanceStats(type)).numberOfTotal * 0.1
-    );
+    let amount = await getAtGlanceStats(type);
+    amount = Math.round(amount[amount.length - 1].numberOfReps * 0.1);
 
     for (const member of members.slice(0, amount)) {
       filtredMembers.push(member);
