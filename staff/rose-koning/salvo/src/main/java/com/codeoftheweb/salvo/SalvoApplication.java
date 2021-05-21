@@ -1,25 +1,35 @@
 package com.codeoftheweb.salvo;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @SpringBootApplication
-public class SalvoApplication {
+public class SalvoApplication { //extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
 		SpringApplication.run(SalvoApplication.class, args);
 	}
 
 	@Bean
+	public PasswordEncoder passwordEncoder(){
+	return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
+
+	@Bean
 	public CommandLineRunner initData(PlayerRepository playerRepository,
 									  GameRepository gameRepository,
-									  GamePlayerRepository gamePlayerRepository, ShipRepository shipRepository, SalvoRepository salvoRepository){return (args) -> {
+									  GamePlayerRepository gamePlayerRepository,
+									  ShipRepository shipRepository,
+									  SalvoRepository salvoRepository){
+		return (args) -> {
 
 		//Adding Games
 		Game g1 = new Game();
@@ -31,9 +41,9 @@ public class SalvoApplication {
 		gameRepository.save(g3);
 
 		//Adding PLayers
-		Player p1 = new Player("Peter");
-		Player p2 = new Player("Wendy");
-		Player p3 = new Player("Captain");
+		Player p1 = new Player("Peter", "panpeter");
+		Player p2 = new Player("Wendy","panwendy" );
+		Player p3 = new Player("Captain", "hookcaptain");
 
 		Score score1 = new Score(g1, p1, 0.5);
 		Score score2 = new Score(g1, p2, 0.5);
@@ -145,3 +155,6 @@ public class SalvoApplication {
 	};
 	}
 }
+
+
+

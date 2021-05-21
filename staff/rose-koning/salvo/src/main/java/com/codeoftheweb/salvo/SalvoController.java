@@ -1,9 +1,10 @@
 package com.codeoftheweb.salvo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -29,6 +30,24 @@ public class SalvoController {
 
     @Autowired
     private ScoreRepository scoreRepository;
+
+    @Autowired private PasswordEncoder passwordEncoder;
+
+    @RequestMapping(path = "/persons", method = RequestMethod.POST)
+    public ResponseEntity<Object> register(
+            @RequestParam String username, @RequestParam String password) {
+
+        if (username.isEmpty() || password.isEmpty()) {
+            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        }
+
+        if (playerRepository.findByUsername(username) !=  null) {
+            return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
+        }
+
+        playerRepository.save(new Player(username, passwordEncoder.encode(password)));
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
     @RequestMapping("/api/games")
     public List<Map<String, Object>> getGames() {
@@ -59,7 +78,7 @@ public class SalvoController {
             gamePlayerInfo.put("id", gamePlayer1.getId());
             Map<String, Object> playerInfo = new TreeMap<>();
             playerInfo.put("id", gamePlayer1.getPlayer().getId());
-            playerInfo.put("userName", gamePlayer1.getPlayer().getUserName());
+            playerInfo.put("userName", gamePlayer1.getPlayer().getUsername());
             gamePlayerInfo.put("player", playerInfo);
             return gamePlayerInfo;
         }).collect(toList());
