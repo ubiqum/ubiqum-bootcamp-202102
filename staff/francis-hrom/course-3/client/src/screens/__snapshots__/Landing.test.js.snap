@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`landing component snapshot with Enzyme 1`] = `
+<div>
+  <h1>
+    Landing.js
+  </h1>
+</div>
+`;
