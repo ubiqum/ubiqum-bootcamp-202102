@@ -1,3 +1,12 @@
+function retrieveJsonData(callback) {
+    fetch("https://api.propublica.org/congress/v1/116/senate/members.json", {
+        headers: {
+            "X-API-Key": "8bBfJYRI5ZDmwRP7uDnJwXbWUmxFbZZ4n6pdepkY"
+        }
+    })
+        .then(response => response.json())
+        .then(data => callback(data))
+}
 /**
  * Retrieves members filtered by parties
  * 
@@ -5,7 +14,7 @@
  * 
  * @returns {Array} The filtered members
  */
-function retrieveMembersByParties(parties) {       
+function retrieveMembersByParties(parties) {
     var members = data.results[0].members
 
     var filteredMembers = members.filter(function (member) {
@@ -22,7 +31,7 @@ function retrieveMembersByParties(parties) {
  * 
  * @returns {Array} The filtered members
  */
-function retrieveMembersByStates(states) {      
+function retrieveMembersByStates(states) {
     var members = data.results[0].members
 
     var filteredMembersStates = members.filter(function (member) {
@@ -37,7 +46,7 @@ function retrieveMembersByStates(states) {
  * 
  * @returns {Array} The filtered states
  */
-function retrieveStates() {     
+function retrieveStates() {
     var members = data.results[0].members;
     var states = [];
 
@@ -53,7 +62,7 @@ function retrieveStates() {
 /**
  * Counts the party members and includes them into statistics
  */
-function countPartyMembers() {   
+function countPartyMembers() {
     statistics.numDemocrats = retrieveMembersByParties(["D"]).length;
     statistics.numRepublicans = retrieveMembersByParties(["R"]).length;
     statistics.numIndependents = retrieveMembersByParties(["ID"]).length;
@@ -66,7 +75,7 @@ function countPartyMembers() {
  * 
  * @returns {Int} Returns the average of votes
  */
-function calculateAverageVotes(members) {      
+function calculateAverageVotes(members) {
     var averageVotes = 0;
 
     for (var i = 0; i < members.length; i++) {
@@ -81,7 +90,7 @@ function calculateAverageVotes(members) {
 /**
  * Includes votes percentage from all members in statistics
  */
-function includeAverageVotes() {       
+function includeAverageVotes() {
     statistics.democratsVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(["D"]))) + "%";
     statistics.republicansVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(["R"]))) + "%";
 }
@@ -93,7 +102,7 @@ function includeAverageVotes() {
  * 
  * @returns {Array} Returns the sorted members
  */
-function sortMemberPercentage(members) {        
+function sortMemberPercentage(members) {
     var member = {};
 
     for (var a = 0; a < members.length; a++) {
@@ -116,7 +125,7 @@ function sortMemberPercentage(members) {
  * 
  * @returns {Array} Returns the sorted members
  */
-function sortMemberPercentageOposite(members) {   
+function sortMemberPercentageOposite(members) {
     var member = {};
 
     for (var a = 0; a < members.length; a++) {
@@ -139,7 +148,7 @@ function sortMemberPercentageOposite(members) {
  * 
  * @returns {Array} Returns the sorted members
  */
-function sortMemberByVotes(members) {       
+function sortMemberByVotes(members) {
     var member = {};
 
     for (var a = 0; a < members.length; a++) {
@@ -162,7 +171,7 @@ function sortMemberByVotes(members) {
  * 
  * @returns {Array} Returns the sorted members
  */
-function sortMemberByMissedVotes(members) {     
+function sortMemberByMissedVotes(members) {
     var member = {};
 
     for (var a = 0; a < members.length; a++) {
@@ -185,7 +194,7 @@ function sortMemberByMissedVotes(members) {
  * 
  * @returns {Array} Returns the sorted members
  */
-function sortMemberByMissedVotesOposite(members) {   
+function sortMemberByMissedVotesOposite(members) {
     var member = {};
 
     for (var a = 0; a < members.length; a++) {
@@ -208,7 +217,7 @@ function sortMemberByMissedVotesOposite(members) {
  * 
  * @returns {Array} Returns the first 10% of the members
  */
-function getTenPercent(members) {   
+function getTenPercent(members) {
     var tenPercent = members.length / 10;
     var returnMembers = [];
 
@@ -226,7 +235,7 @@ function getTenPercent(members) {
  * 
  * @returns {Array} Returns the first 10% of the members and more if they have the same percentage
  */
-function retrieveLowestPartyVotes(members) {    
+function retrieveLowestPartyVotes(members) {
     var tenPercent = members.length / 10;
     var lowestPartyVotes = [];
     var a = 0;
@@ -248,7 +257,7 @@ function retrieveLowestPartyVotes(members) {
  * 
  * @returns {int} returns the rounded calculated votes
  */
-function retrieveMemberVotesWithParty(member) {    
+function retrieveMemberVotesWithParty(member) {
     var votesWithParty = member.total_votes / (100 / member.votes_with_party_pct);
 
     return Math.round(votesWithParty);
@@ -260,3 +269,4 @@ function retrieveMemberVotesWithParty(member) {
 function retrieveAllMembers() {
     return data.results[0].members;
 }
+
