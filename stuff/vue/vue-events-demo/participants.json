@@ -1,0 +1,39 @@
+[
+    {
+        "id": "234bcd",
+        "name": "Davide",
+        "tags": [
+            "singer",
+            "guitar"
+        ]
+    },
+    {
+        "id": "345cde",
+        "name": "Rose",
+        "tags": [
+            "singer"
+        ]
+    },
+    {
+        "id": "456def",
+        "name": "Manu",
+        "tags": [
+            "drums"
+        ]
+    },
+    {
+        "id": "567efg",
+        "name": "Pepito",
+        "tags": [
+            "flute"
+        ]
+    },
+    {
+        "id": "678fgh",
+        "name": "Anita",
+        "tags": [
+            "singer",
+            "bass"
+        ]
+    }
+]

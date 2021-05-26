@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>playing with checkboxes</title>
+</head>
+
+<body>
+    <label for="apple">apple<input type="checkbox" name="fruit" id="apple" value="apple"
+            onchange="filterBoxes(event)"></label>
+    <label for="orange">orange<input type="checkbox" name="fruit" id="orange" value="orange"
+            onchange="filterBoxes(event)"></label>
+    <label for="banana">banana<input type="checkbox" name="fruit" id="banana" value="banana"
+            onchange="filterBoxes(event)"></label>
+
+    <script>
+        var boxes = [
+            { fruit: 'banana', quantity: '10kg', price: 20.50 },
+            { fruit: 'orange', quantity: '5kg', price: 40.75 },
+            { fruit: 'banana', quantity: '15kg', price: 25.45 },
+            { fruit: 'orange', quantity: '15kg', price: 10.75 },
+            { fruit: 'orange', quantity: '15kg', price: 10.45 },
+            { fruit: 'apple', quantity: '15kg', price: 10.20 },
+            { fruit: 'apple', quantity: '15kg', price: 10.10 },
+            { fruit: 'banana', quantity: '15kg', price: 25.90 }
+        ]
+
+        var fruits = []
+
+        function filterBoxes(event) {
+            var value = event.target.value
+
+            if (event.target.checked)
+                fruits.push(value)
+            else {
+                var index = fruits.indexOf(value)
+
+                if (index > -1)
+                    fruits.splice(index, 1)
+            }
+
+            var filteredBoxes = boxes.filter(function (box) {
+                return fruits.includes(box.fruit)
+            })
+
+            console.log(filteredBoxes)
+        }
+    </script>
+</body>
+
+</html>

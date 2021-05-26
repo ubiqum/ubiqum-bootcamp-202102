@@ -1,0 +1,100 @@
+{
+    "created": "2021-05-11T07:28:58.557+00:00",
+    "gamePlayers": [
+        {
+            "id": 1,
+            "player": {
+                "userName": "Peter",
+                "userId": 1
+            }
+        }
+    ],
+    "id": 1,
+    "salvoes": [
+        {
+            "location": [
+                "H1",
+                "B6"
+            ],
+            "player": 1,
+            "turn": 1
+        },
+        {
+            "location": [
+                "A4",
+                "B9"
+            ],
+            "player": 1,
+            "turn": 2
+        },
+        {
+            "location": [
+                "D8",
+                "D2"
+            ],
+            "player": 1,
+            "turn": 3
+        },
+        {
+            "location": [
+                "A8",
+                "B5"
+            ],
+            "player": 1,
+            "turn": 4
+        },
+        {
+            "location": [
+                "F3",
+                "H9"
+            ],
+            "player": 1,
+            "turn": 5
+        },
+        {
+            "location": [
+                "D6",
+                "B5"
+            ],
+            "player": 1,
+            "turn": 6
+        },
+        {
+            "location": [
+                "C7",
+                "J9"
+            ],
+            "player": 1,
+            "turn": 7
+        }
+    ],
+    "ships": [
+        {
+            "location": [
+                "J3",
+                "J4",
+                "J5"
+            ],
+            "player": 1,
+            "type": "landingShip"
+        },
+        {
+            "location": [
+                "H2",
+                "H3",
+                "H4"
+            ],
+            "player": 1,
+            "type": "battleShip"
+        },
+        {
+            "location": [
+                "A1",
+                "A2",
+                "A3"
+            ],
+            "player": 1,
+            "type": "lifeRaft"
+        }
+    ]
+}

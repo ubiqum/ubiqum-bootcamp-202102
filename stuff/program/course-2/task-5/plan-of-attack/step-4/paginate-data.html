@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li><a href="?state=AL&page=2">Alabama</a></li>
+        <li><a href="?state=CA&page=3">California</a></li>
+        <li><a href="?state=AZ&page=1">Arizona</a></li>
+    </ul>
+
+    <pre id="data">
+
+    </pre>
+    <script>
+        var params = new URLSearchParams(window.location.search)
+
+        var state = params.get('state')
+        var page = params.get('page')
+
+        //var url = 'https://v3.openstates.org/people?jurisdiction=ocd-jurisdiction/country:us/state:' + state.toLowerCase() + '/government&page=' + page +'&per_page=10&apikey=b06603c6-f23e-4cfc-b9bd-7d67466101a4'
+        var url = `https://v3.openstates.org/people?jurisdiction=ocd-jurisdiction/country:us/state:${state.toLowerCase()}/government&page=${page}&per_page=10&apikey=b06603c6-f23e-4cfc-b9bd-7d67466101a4`
+
+        fetch(url)
+            .then(res => res.json())
+            .then(data => document.getElementById('data').innerHTML = JSON.stringify(data, null, 4))
+    </script>
+</body>
+</html>

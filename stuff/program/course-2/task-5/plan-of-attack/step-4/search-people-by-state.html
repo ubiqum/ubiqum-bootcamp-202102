@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li><a href="?state=Alabama">Alabama</a></li>
+        <li><a href="?state=California">California</a></li>
+        <li><a href="?state=Arizona">Arizona</a></li>
+    </ul>
+    
+    <script>
+        var params = new URLSearchParams(window.location.search)
+
+        var stateName = params.get('state')
+
+        console.log(stateName)
+
+        fetch('https://v3.openstates.org/jurisdictions?classification=state&page=1&per_page=52&apikey=b06603c6-f23e-4cfc-b9bd-7d67466101a4')
+            .then(function(response) {
+                return response.json()
+            })
+            .then(function(data) {
+                var states = data.results
+
+                var state = states.find(function(state) {
+                    return state.name === stateName
+                })
+
+                if (state) {
+                    console.log('state found', stateName, state.id)
+
+                    // TODO call following endpoint to retrieve the people from the chosen state 'https://v3.openstates.org/people?jurisdiction=' + state.id + '&page=1&per_page=10&apikey=b06603c6-f23e-4cfc-b9bd-7d67466101a4'
+
+                } else alert('sorry, no states found with the name ' + stateName)
+            })
+    </script>
+</body>
+
+</html>

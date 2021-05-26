@@ -1,0 +1,8 @@
+.table {
+    --bs-table-hover-color: red;
+    --bs-table-hover-bg: blue;
+}
+
+header {
+    background-color: aqua;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello, Guys!</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-areas:
+                "a a"
+                "b b"
+                "c i";
+        }
+
+        .a {
+            grid-area: a;
+            background-color: plum;
+        }
+
+        .b {
+            grid-area: b;
+            background-color: skyblue;
+        }
+
+        .c {
+            grid-area: c;
+            background-color: khaki;
+        }
+
+        .i {
+            grid-area: i;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="a">.</div>
+    <div class="b">.</div>
+    <div class="c">.</div>
+    <img class="i" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png">
+</body>
+
+</html>
