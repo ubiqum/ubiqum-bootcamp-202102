@@ -47,6 +47,16 @@ function authenticateUser(username, password, callback) {
         })
 }
 
+function logoutUser(username) {
+    $.post("/api/logout", { username })
+    .done(function(){
+        callback(null)
+    })
+    .fail(function(error){
+        callback(error)
+    })
+}
+
 function registerUser(username, password, callback) {
     $.post("/api/players", {
         username,
@@ -56,6 +66,16 @@ function registerUser(username, password, callback) {
             callback(null)
         })
         .fail(function (error) {
+            callback(error)
+        })
+}
+
+function getCurrentUser(callback) {
+    $.get("/api/username")
+        .done(function (username) {
+            callback(null, username ? username : null)
+        })
+        .fail(function () {
             callback(error)
         })
 }

@@ -1,65 +1,60 @@
 const Home = {
   template: `<div>
 
-<header class="header">
-  <button v-on:click="signOut()" v-if="signingIn">Sign out</button>
-</header>
-
 <h1> Welcome to Salvo</h1>
+<div v-if="!user">
+<h2>sign in to start</h2>
 
-<form>
-<label>Name:<input v-model="userName"></label>
+<h3>Are you registered?</h3>
+<button v-on:click="showLogin = !showLogin; showRegistration = showRegistration;">Yes, sign in</button><button v-on:click="showRegistration = !showRegistration; showLogin = showLogin;">No, let´s register</button>
+</div>
+
+<div class="login-box" v-if="showLogin">
+<h2>login here</h2>
+<form id="login" >
+<label>Name:<input v-model="username"></label>
 <label>Password:<input v-model="password"></label>
-<button v-on:click="signIn(userName,password)">login</button>
+<button v-on:click="authenticate(username,password)">login</button>
 </form>
+</div>
 
-<router-link to="/games">Overview of games</router-link>
+<div class="login-box" v-if="showRegistration">
+<h2>register here</h2>
+<form id="registration">
+<label>Name:<input v-model="username"></label>
+<label>Password:<input v-model="password"></label>
+<button v-on:click="register(username,password)">register</button>
+</form>
+</div>
+
+<router-link to="/games" v-if="user">Overview of games</router-link>
 </div>`,
 data(){
   return{
-    userName: "",
-    password: ""
+    user: "",
+    password: "",
+    showLogin: false,
+    showRegistration: false,
   }
 },
 methods:{
-  signingIn:signIn,
+  authenticate:authenticateUser,
+  register:registerUser,
+  getuser: getCurrentUser,
+  logout: logoutUser
 }
 }
-
-const Error = {
-  template: `<div>
-
-  <h2>Login attempt failed. Try again</h2>
-<header class="header">
-  <button v-on:click="signOut()" v-if="signingIn">Sign out</button>
-</header>
-
-<h1> Welcome to Salvo</h1>
-
-<form  v-if="!signingIn">
-<label>Name:<input v-model="userName"></label>
-<label>Password:<input v-model="password"></label>
-<button v-on:click="signIn(userName,password)">login</button>
-</form>
-
-<router-link to="/games">Overview of games</router-link>
-</div>`}
-
-
 
 const Games = {
   template: `
 <div>
-<header>
-  <button v-on:click="signOut()">Sign out</button>
-</header>
 <h1>Salvo!</h1>
     <ol id="games">
     <div v-for="(game, key) in games">
       <router-link v-bind:to="'/game/'+game.id"><li>{{game.created}}</li></router-link>
         <ol>
         <div v-for="(gamePlayer, key) in game.gamePlayers">
-        <li>{{gamePlayer.userName}}</li>
+        <li>{{gamePlayer.username}}</li>
         </div>
         </ol>
     </div>
@@ -81,12 +76,9 @@ const Games = {
 const Game = {
   template: `
   <div>
-    <header class="header">
-      <button v-on:click="signOut()" v-if="signingIn">Sign out</button>
-    </header>
     <h1> Ship Locations!</h1>
     {{gameData.created}}
-    <h2>{{currentPlayer.player.userName}}, you are playing against: {{opponent.player.userName}}</h2>
+    <h2>{{currentPlayer.player.username}}, you are playing against: {{opponent.player.username}}</h2>
 
   <div class="flex-container">
 
@@ -169,7 +161,6 @@ const routes = [
   { path: "/home", component: Home },
   { path: "/games", component: Games },
   { path: "/game/:id", component: Game },
-  { path: "/error", component: Error}
 ];
 
 const router = new VueRouter({

@@ -37,6 +37,12 @@ body {
   background-color: #c9600b;
 }
 
+.login-box {
+  border: #4e6696;
+  background-color: #a8b7d6;
+  border-style: solid;
+}
+
 @media only screen and (min-width: 650px) {
   .flex-container {
     -webkit-box-orient: horizontal;
