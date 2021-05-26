@@ -3,6 +3,8 @@ package com.codeoftheweb.salvo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +14,6 @@ import static java.util.stream.Collectors.toList;
 
 @RestController
 public class SalvoController {
-
     @Autowired
     private GameRepository gameRepository;
 
@@ -31,9 +32,20 @@ public class SalvoController {
     @Autowired
     private ScoreRepository scoreRepository;
 
-    @Autowired private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    @RequestMapping(path = "/persons", method = RequestMethod.POST)
+    private boolean isAuthenticated(Authentication authentication) {
+        return authentication != null && !(authentication instanceof AnonymousAuthenticationToken);
+    }
+
+    @RequestMapping(value = "/api/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Authentication authentication) {
+        return isAuthenticated(authentication)? authentication.getName() : null;
+    }
+
+    @RequestMapping(path = "/api/players", method = RequestMethod.POST)
     public ResponseEntity<Object> register(
             @RequestParam String username, @RequestParam String password) {
 
@@ -41,7 +53,7 @@ public class SalvoController {
             return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
         }
 
-        if (playerRepository.findByUsername(username) !=  null) {
+        if (playerRepository.findByUsername(username) != null) {
             return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
         }
 
@@ -50,13 +62,21 @@ public class SalvoController {
     }
 
     @RequestMapping("/api/games")
-    public List<Map<String, Object>> getGames() {
+    public List<Map<String, Object>> getGames(Authentication authentication) {
         return gameRepository.findAll().stream().map(game -> {
             Map<String, Object> gameMap = new TreeMap<>();
 
             gameMap.put("id", game.getId());
             gameMap.put("created", game.getCreation());
-            gameMap.put("gamePlayers", game.getPlayers());
+            Map<String, Object> playerMap = new TreeMap<>();
+            Set<GamePlayer> gamePlayers = game.getGamePlayers();
+            //if (isAuthenticated(authentication)) {
+            // from playerRepository.findByUsername(currentUsername(authentication))
+            // specify this is the user that is authenticated and playing
+            gamePlayers.forEach(gamePlayer -> {
+                playerMap.put("player", gamePlayer.getPlayer().getUsername());
+            });
+            gameMap.put("players", playerMap);
 
             return gameMap;
         }).collect(toList());
@@ -97,12 +117,12 @@ public class SalvoController {
         List<Salvo> salvoes = gamePlayer.get().getSalvoes();
         List<Salvo> salvoes2 = new ArrayList<>();
         salvoes.forEach(salvo -> {
-            if(!salvoes2.contains(salvo)){
+            if (!salvoes2.contains(salvo)) {
                 salvoes2.add(salvo);
             }
         });
-        List<Map<String,Object>> salvoList = salvoes2.stream().map(salvo -> {
-            Map<String,Object> salvoInfo = new TreeMap<>();
+        List<Map<String, Object>> salvoList = salvoes2.stream().map(salvo -> {
+            Map<String, Object> salvoInfo = new TreeMap<>();
             salvoInfo.put("turn", salvo.getTurnTracker());
             salvoInfo.put("player", salvo.getGamePlayer().getId());
             salvoInfo.put("location", salvo.getLocation());
@@ -111,7 +131,7 @@ public class SalvoController {
         gameView.put("salvoes", salvoList);
 
         Set<Score> scores = gamePlayer.get().getPlayer().scores;
-        Score playerScore = scores.stream().filter(score -> score.getGame().getId()==gameId).findAny().orElse(null);
+        Score playerScore = scores.stream().filter(score -> score.getGame().getId() == gameId).findAny().orElse(null);
 
 
         gameView.put("score", playerScore.getPoints());

@@ -2,12 +2,12 @@ const Home = {
   template: `<div>
 
 <header class="header">
-  <button v-on:click="signOut()" v-if="signedIn">Sign out</button>
+  <button v-on:click="signOut()" v-if="signingIn">Sign out</button>
 </header>
 
 <h1> Welcome to Salvo</h1>
 
-<form  v-if="!signedIn">
+<form>
 <label>Name:<input v-model="userName"></label>
 <label>Password:<input v-model="password"></label>
 <button v-on:click="signIn(userName,password)">login</button>
@@ -17,16 +17,12 @@ const Home = {
 </div>`,
 data(){
   return{
-    signedIn: false,
     userName: "",
     password: ""
   }
 },
 methods:{
   signingIn:signIn,
-  signedIn:function(){
-    this.signedIn = true;
-  }.bind(this)
 }
 }
 
@@ -35,12 +31,12 @@ const Error = {
 
   <h2>Login attempt failed. Try again</h2>
 <header class="header">
-  <button v-on:click="signOut()" v-if="signedIn">Sign out</button>
+  <button v-on:click="signOut()" v-if="signingIn">Sign out</button>
 </header>
 
 <h1> Welcome to Salvo</h1>
 
-<form  v-if="!signedIn">
+<form  v-if="!signingIn">
 <label>Name:<input v-model="userName"></label>
 <label>Password:<input v-model="password"></label>
 <button v-on:click="signIn(userName,password)">login</button>
@@ -55,7 +51,7 @@ const Games = {
   template: `
 <div>
 <header>
-  <button v-on:click="signOut()" v-if="signedIn">Sign out</button>
+  <button v-on:click="signOut()">Sign out</button>
 </header>
 <h1>Salvo!</h1>
     <ol id="games">
@@ -86,7 +82,7 @@ const Game = {
   template: `
   <div>
     <header class="header">
-      <button v-on:click="signOut()" v-if="signedIn">Sign out</button>
+      <button v-on:click="signOut()" v-if="signingIn">Sign out</button>
     </header>
     <h1> Ship Locations!</h1>
     {{gameData.created}}
