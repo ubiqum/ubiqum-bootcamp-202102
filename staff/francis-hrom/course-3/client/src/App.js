@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 
 import Landing from "./screens/Landing";
 import Cities from "./screens/Cities";
+import Itinerary from "./screens/Itinerary";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Container>
           <Switch>
             <Route exact path="/" component={Landing} />
+            <Route path="/cities/:city" component={Itinerary} />
             <Route path="/cities" component={Cities} />
           </Switch>
         </Container>

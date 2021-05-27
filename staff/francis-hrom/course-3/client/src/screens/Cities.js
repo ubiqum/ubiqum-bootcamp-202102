@@ -1,40 +1,15 @@
 import React, { useState, useEffect } from "react";
-//import { useSelector, connect } from "react-redux";
 import { connect, useDispatch } from "react-redux";
-
-//import { addCity, deleteCity } from "../store/actions/cityActions";
-import { loadCities } from "../store/reducers/cityReducer";
+import { Link } from "react-router-dom";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import { loadCities } from "../store/reducers/cityReducer";
+
 import HomeButton from "../components/HomeButton";
 
 const Cities = (props) => {
-  /*   const [cities, setCities] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const citiesCounter = useSelector((state) => state.cities);
-
-  useEffect(() => {
-    const getCities = async () => {
-      const citiesFromServer = await fetchCities();
-      setCities(citiesFromServer);
-    };
-    getCities();
-  }, []);
-
-  const fetchCities = async () => {
-    const res = await fetch("http://localhost:5000/cities/all");
-    const data = await res.json();
-    return data;
-  }; */
-
-  //this is not working
-  //console.log("this.props");
-  //console.log(this.props);
-  //console.log(props.cities.cities);
-
-  //  {props.cities}
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadCities());
@@ -47,7 +22,6 @@ const Cities = (props) => {
   return (
     <div>
       <h1>Cities.js</h1>
-
       <input
         type="text"
         placeholder="Search ..."
@@ -66,7 +40,9 @@ const Cities = (props) => {
           }
         })
         .map((city) => (
-          <li key={city._id}>{city.name}</li>
+          <li key={city._id}>
+            <Link to={`/cities/${city.name}`}>{city.name}</Link>
+          </li>
         ))}
 
       <Row>

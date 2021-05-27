@@ -12,6 +12,16 @@ router.get("/all", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.get("/:name", (req, res) => {
+  let cityRequested = req.params.name;
+  itineraryModel
+    .find({ city: cityRequested })
+    .then((city) => {
+      res.send(city);
+    })
+    .catch((err) => console.log(err));
+});
+
 router.post("/", (req, res) => {
   const newItinerary = new itineraryModel({
     title: req.body.title,
