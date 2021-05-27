@@ -9,11 +9,11 @@ class Clock extends React.Component {
   }
 
   componentDidMount() { //invoked inmediatly after a component is mounted
-    this.timerID = setInterval(() => this.tick(), 
-    3000) //here you can modify the updating of the rendering in ms
+    this.timerID = setInterval(() => this.tick(),
+      3000) //here you can modify the updating of the rendering in ms
   }
 
-  componentWillUnmount() {
+  componentWillUnmount() { 
     clearInterval(this.timerID)
   }
 

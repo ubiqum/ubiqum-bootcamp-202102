@@ -15,3 +15,5 @@ import ReactDOM from 'react-dom';
   ReactDOM.render(element, document.getElementById('root'));
   
   // setInterval(tick, 3000); //here you can modify the updating of the rendering in ms
+
+  
