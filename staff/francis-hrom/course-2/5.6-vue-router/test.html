@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <title>Mocha/Chai Basic Tests</title>
+
+    <style>
+      body {
+        font: 18px/1.5 "Helvetica Neue", Helvetica, sans-serif;
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="mocha"></div>
+
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/chai/1.10.0/chai.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.min.js"></script>
+    <script src="//cdn.rawgit.com/rstacruz/mocha-clean/v0.3.0/index.js"></script>
+
+    <script>
+      mocha.setup("bdd");
+      mocha.traceIgnores = ["mocha.min.js", "chai.min.js"];
+      expect = chai.expect;
+    </script>
+
+    <script src="./logic/retrieve-members.js"></script>
+
+    <script src="./logic/get-at-glance-stats.js"></script>
+    <script src="./logic/get-at-glance-stats.spec.js"></script>
+    <script src="./logic/get-least-most-members.js"></script>
+    <script src="./logic/get-least-most-members.spec.js"></script>
+    <script src="./logic/retrieve-legislators.js"></script>
+    <script src="./logic/retrieve-legislators.spec.js"></script>
+    <script src="./logic/retrieve-members.js"></script>
+    <script src="./logic/retrieve-members.spec.js"></script>
+    <script src="./logic/retrieve-states.js"></script>
+    <script src="./logic/retrieve-states.spec.js"></script>
+
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>
