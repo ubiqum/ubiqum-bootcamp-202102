@@ -1,0 +1,42 @@
+.article {
+  text-align: justify;
+
+  &__section-title {
+    font-style: italic;
+  }
+
+  &__important-text {
+    font-style: italic;
+    text-decoration: underline;
+  }
+
+  &__subtitle {
+    font-size: inherit;
+    margin: 0;
+
+    &inline {
+      display: inline;
+    }
+  }
+
+  &__inline-text {
+    margin: 0;
+    display: inline;
+  }
+
+  &__list-date {
+    list-style-type: none;
+    margin-top: 2em;
+    font-weight: bold;
+  }
+  &__list-date-item {
+    list-style-type: none;
+  }
+  &__text-item {
+    list-style-type: square;
+  }
+
+  &__enum-text-item {
+    list-style-type: lower-latin;
+  }
+}

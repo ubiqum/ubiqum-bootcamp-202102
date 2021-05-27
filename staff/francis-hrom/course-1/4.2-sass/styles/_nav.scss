@@ -1,0 +1,27 @@
+.nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+
+  &__item {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #111;
+    }
+  }
+
+  &__item--active {
+    background-color: #4caf50;
+    &:hover {
+      background-color: #4caf50;
+    }
+  }
+}
