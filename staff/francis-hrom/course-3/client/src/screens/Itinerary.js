@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import HomeButton from "../components/HomeButton";
+import Activity from "../components/Activity";
 import { loadActivities } from "../store/reducers/itineraryReducer";
 
 const Itinerary = (props) => {
@@ -24,8 +25,8 @@ const Itinerary = (props) => {
       <h2>{city}</h2>
       <Row>
         {activities.map((activity) => (
-          <li key={city._id}>{activity.title}</li>
-        ))}
+          <Activity activity={activity} />
+        ))}{" "}
       </Row>
 
       <Row>
