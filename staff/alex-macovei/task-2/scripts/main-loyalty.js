@@ -1,5 +1,7 @@
-countPartyMembers();
-includeAverageVotes();
+retrieveMembers(function (members) {
+countPartyMembers(members);
+includeAverageVotes(members);
 renderAtGlanceTable();
-renderMostLoyal(getTenPercent(sortMemberPercentage(retrieveAllMembers())));
-renderLeastLoyal(getTenPercent(sortMemberPercentageOposite(retrieveAllMembers())));
+renderMostLoyal(getTenPercent(sortMemberPercentage(members)));
+renderLeastLoyal(getTenPercent(sortMemberPercentageOposite(members)));
+})

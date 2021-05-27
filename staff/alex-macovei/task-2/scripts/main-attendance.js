@@ -1,5 +1,7 @@
-countPartyMembers();
-includeAverageVotes();
+retrieveMembers(function (members) {
+countPartyMembers(members);
+includeAverageVotes(members);
 renderAtGlanceTable();
-renderMostEngaged(getTenPercent(sortMemberByMissedVotes(retrieveAllMembers())));
-renderLeastEngaged(getTenPercent(sortMemberByMissedVotesOposite(retrieveAllMembers())));
+renderMostEngaged(getTenPercent(sortMemberByMissedVotes(members)));
+renderLeastEngaged(getTenPercent(sortMemberByMissedVotesOposite(members)));
+})

@@ -1,12 +1,21 @@
-retrieveJsonData(function(data) {
-    console.log(data)
-    var data = data;
-    renderStatesSelector(retrieveStates());
+retrieveMembers(function (members) {
+    renderStatesSelector(retrieveStates(members));
 
-renderCongressMembers(retrieveAllMembers());
+    renderCongressMembers(members);
 
-var states = document.getElementById("states");
+    var states = document.getElementById("states");
 
-states.onchange = renderStates;
+    states.onchange = function () {
+        renderStates(members)
+    }
+
+    var inputR = document.getElementById("republican")
+    var inputD = document.getElementById("democrat")
+    var inputID = document.getElementById("indipendent")
+
+    inputR.onclick = function () { onCheckboxClicked(members) }
+    inputD.onclick = function () { onCheckboxClicked(members) }
+    inputID.onclick = function () { onCheckboxClicked(members) }
 })
+
 

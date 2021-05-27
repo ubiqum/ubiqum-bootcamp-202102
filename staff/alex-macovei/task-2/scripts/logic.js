@@ -1,11 +1,21 @@
-function retrieveJsonData(callback) {
+/**
+ * Retrieves members from the api
+ * 
+ * @param {Function} callback The function to use when using this function
+ * 
+ * @returns {Function} The function that was called with it containing members
+ */
+function retrieveMembers(callback) {
     fetch("https://api.propublica.org/congress/v1/116/senate/members.json", {
         headers: {
             "X-API-Key": "8bBfJYRI5ZDmwRP7uDnJwXbWUmxFbZZ4n6pdepkY"
         }
     })
         .then(response => response.json())
-        .then(data => callback(data))
+        .then(function (data) {
+            var members = data.results[0].members;
+            callback(members);
+        })
 }
 /**
  * Retrieves members filtered by parties
@@ -14,8 +24,7 @@ function retrieveJsonData(callback) {
  * 
  * @returns {Array} The filtered members
  */
-function retrieveMembersByParties(parties) {
-    var members = data.results[0].members
+function retrieveMembersByParties(members, parties) {
 
     var filteredMembers = members.filter(function (member) {
         return parties.includes(member.party)
@@ -31,8 +40,7 @@ function retrieveMembersByParties(parties) {
  * 
  * @returns {Array} The filtered members
  */
-function retrieveMembersByStates(states) {
-    var members = data.results[0].members
+function retrieveMembersByStates(members, states) {
 
     var filteredMembersStates = members.filter(function (member) {
         return states.includes(member.state)
@@ -46,8 +54,7 @@ function retrieveMembersByStates(states) {
  * 
  * @returns {Array} The filtered states
  */
-function retrieveStates() {
-    var members = data.results[0].members;
+function retrieveStates(members) {
     var states = [];
 
     for (var i = 0; i < members.length; i++) {
@@ -62,10 +69,10 @@ function retrieveStates() {
 /**
  * Counts the party members and includes them into statistics
  */
-function countPartyMembers() {
-    statistics.numDemocrats = retrieveMembersByParties(["D"]).length;
-    statistics.numRepublicans = retrieveMembersByParties(["R"]).length;
-    statistics.numIndependents = retrieveMembersByParties(["ID"]).length;
+function countPartyMembers(members) {
+    statistics.numDemocrats = retrieveMembersByParties(members, ["D"]).length;
+    statistics.numRepublicans = retrieveMembersByParties(members, ["R"]).length;
+    statistics.numIndependents = retrieveMembersByParties(members, ["ID"]).length;
 }
 
 /**
@@ -90,9 +97,9 @@ function calculateAverageVotes(members) {
 /**
  * Includes votes percentage from all members in statistics
  */
-function includeAverageVotes() {
-    statistics.democratsVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(["D"]))) + "%";
-    statistics.republicansVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(["R"]))) + "%";
+function includeAverageVotes(members) {
+    statistics.democratsVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(members, ["D"]))) + "%";
+    statistics.republicansVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(members, ["R"]))) + "%";
 }
 
 /**
@@ -263,10 +270,6 @@ function retrieveMemberVotesWithParty(member) {
     return Math.round(votesWithParty);
 }
 
-/**
- * retrieves all members from the json file
- */
-function retrieveAllMembers() {
-    return data.results[0].members;
-}
+
+
 

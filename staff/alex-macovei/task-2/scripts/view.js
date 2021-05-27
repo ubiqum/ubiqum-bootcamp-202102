@@ -85,24 +85,24 @@ function renderCongressMembers(members) {
 /**
  * Checks filter checkboxes and executes the filter for the specific checkbox
  */
-function onCheckboxClicked() { 
+function onCheckboxClicked(members) { 
     var parties = []
 
     if (republican.checked) parties.push('R')
     if (democrat.checked) parties.push('D')
     if (indipendent.checked) parties.push('ID')
 
-    var Members = retrieveMembersByParties(parties);
+    var filteredMembers = retrieveMembersByParties(members, parties);
 
-    renderCongressMembers(Members);
+    renderCongressMembers(filteredMembers);
 }
 
 /**
  * Renders members filtered by states selected inside the dropdown box
  */
-function renderStates() {
+function renderStates(members) {
     var as = document.forms[0].states.value;
-    var members = retrieveMembersByStates(as);
+    var members = retrieveMembersByStates(members, as);
 
     renderCongressMembers(members);
 }
