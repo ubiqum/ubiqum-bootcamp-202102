@@ -2,13 +2,33 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
 // Importing the Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
+//Redux, move to store.js
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+// ? should be: import thunkMiddleware from 'redux-thunk'
+import rootReducer from "./store/reducers/rootReducer";
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
+
+/*
+store.subscribe(()=> {
+  console.log('state updated');
+  console.log(store.getState());
+})
+*/
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
