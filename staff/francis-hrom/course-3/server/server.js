@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
 
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const passport = require("passport");
+
 // Database connection
 const db = require("./keys").mongoURI;
 const mongoose = require("mongoose");
@@ -12,8 +16,6 @@ mongoose
   .catch((err) => console.log(err));
 
 // Middleware
-const bodyParser = require("body-parser");
-const cors = require("cors");
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -21,6 +23,11 @@ app.use(
   })
 );
 app.use(cors());
+
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./passport")(passport);
 
 app.use("/cities", require("./routes/cities"));
 app.use("/itineraries", require("./routes/itineraries"));

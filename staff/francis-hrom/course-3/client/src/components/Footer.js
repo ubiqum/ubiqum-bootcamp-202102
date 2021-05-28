@@ -1,7 +1,7 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import Login from "../components/Login";
+import Account from "../components/Account";
 import HomeButton from "../components/HomeButton";
 
 const Footer = () => {
@@ -10,7 +10,7 @@ const Footer = () => {
       <Row>
         <Col> </Col>
         <Col xs={10}>
-          <Login />
+          <Account />
         </Col>
         <Col> </Col>
       </Row>

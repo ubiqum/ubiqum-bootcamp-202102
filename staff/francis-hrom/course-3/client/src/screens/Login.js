@@ -10,7 +10,7 @@ import HomeButton from "../components/HomeButton";
 
 // Login
 
-const CreateAccount = (props) => {
+const Login = (props) => {
   const users = props.users;
 
   const {
@@ -21,7 +21,7 @@ const CreateAccount = (props) => {
   } = useForm();
 
   const onSubmit = (user) => {
-    fetch("http://localhost:5000/users/registration", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(user),
@@ -52,39 +52,20 @@ const CreateAccount = (props) => {
 
   return (
     <div>
-      <h1>CreateAccount.js</h1>
+      <h1>Login.js</h1>
       <Row>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <Form.Group controlId="name">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              required
-              type="name"
-              placeholder="Jane Doe"
-              {...register("name")}
-            />
-          </Form.Group>
           <Form.Group controlId="email">
             <Form.Label>Email address</Form.Label>
-            <Form.Control
-              required
-              type="email"
-              placeholder="jane@doe.com"
-              {...register("email")}
-            />
+            <Form.Control required type="email" {...register("email")} />
           </Form.Group>
 
           <Form.Group controlId="password">
             <Form.Label>Password</Form.Label>
-            <Form.Control
-              required
-              type="password"
-              placeholder="Password"
-              {...register("password")}
-            />
+            <Form.Control required type="password" {...register("password")} />
           </Form.Group>
           <Button variant="primary" type="submit">
-            Create Account
+            Login
           </Button>
         </Form>
       </Row>
@@ -105,4 +86,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(CreateAccount);
+export default connect(mapStateToProps)(Login);

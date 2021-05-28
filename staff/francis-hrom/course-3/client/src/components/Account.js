@@ -2,7 +2,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Account = () => {
   return (
     <div>
       <Row>
@@ -10,7 +10,7 @@ const Login = () => {
       </Row>
       <Row>
         <Col>
-          <p>Login</p>
+          <Link to="/login">Login</Link>
         </Col>
         <Col>
           <Link to="/create-account">Create Account</Link>
@@ -20,4 +20,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Account;
