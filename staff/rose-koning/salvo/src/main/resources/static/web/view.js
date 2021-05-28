@@ -1,53 +1,111 @@
 const Home = {
   template: `<div>
+  <h1> Welcome to Salvo</h1>
 
-<h1> Welcome to Salvo</h1>
-<div v-if="!user">
-<h2>sign in to start</h2>
+  <h2>To start playing, login or register</h2>
+  <router-link to="/login" class="button">Login</router-link> <router-link to="/register" class="button">Register</router-link>
 
-<h3>Are you registered?</h3>
-<button v-on:click="showLogin = !showLogin; showRegistration = showRegistration;">Yes, sign in</button><button v-on:click="showRegistration = !showRegistration; showLogin = showLogin;">No, let´s register</button>
+  </div>
+`
+}
+
+const Register = {
+  template: `<div>
+
+
+
+<div v-if="!username">
+<h2>Register to start playing</h2>
 </div>
 
-<div class="login-box" v-if="showLogin">
-<h2>login here</h2>
+<div class="login-box">
+<h3>Enter name and password</h3>
 <form id="login" >
 <label>Name:<input v-model="username"></label>
 <label>Password:<input v-model="password"></label>
-<button v-on:click="authenticate(username,password)">login</button>
+<button v-on:click="register(username, password)">Register</button>
 </form>
 </div>
 
-<div class="login-box" v-if="showRegistration">
-<h2>register here</h2>
-<form id="registration">
+<div>
+<h4>Already have an account?</h4>
+<router-link to="/login" class="button">login</router-link>
+</div>
+
+</div>`,
+  data(){
+    return{
+      username:null,
+      password:null
+    }
+  },
+  methods: {
+    register: function (username,password) {
+      registerUser(username,password, function (error) {
+        if (error) return alert("Username already taken")
+
+        this.$router.push("games");
+      }.bind(this))
+    },
+    getuser: function () {
+      getCurrentUser(function (error) {
+        if (error) return alert(error)
+      }.bind(this))
+    },
+    logout: logoutUser
+  }
+}
+
+const Login = {
+  template: `<div>
+
+<h1> Welcome to Salvo</h1>
+
+<div class="login-box">
+<h2>login</h2>
+<form id="login" >
 <label>Name:<input v-model="username"></label>
 <label>Password:<input v-model="password"></label>
-<button v-on:click="register(username,password)">register</button>
+<button v-on:click="authenticate(username, password)">login</button>
 </form>
+
+<h4>Don´t have an account yet? register to start playing</h4>
+
+<router-link to="/registration" class="button">Register here</router-link>
 </div>
 
-<router-link to="/games" v-if="user">Overview of games</router-link>
 </div>`,
-data(){
-  return{
-    user: "",
-    password: "",
-    showLogin: false,
-    showRegistration: false,
+  data() {
+    return {
+      username: null,
+      password: "",
+      showLogin: false,
+      showRegistration: false,
+    }
+  },
+  methods: {
+    authenticate: function (username, password) {
+      authenticateUser(username, password, function (error) {
+        if (error) return alert("wrong credentials")
+
+        this.$router.push("games");
+      }.bind(this))
+    },
+    getuser: function () {
+      getCurrentUser(function (error, username) {
+        if (error) return alert(error)
+
+        this.username = username
+      }.bind(this))
+    },
   }
-},
-methods:{
-  authenticate:authenticateUser,
-  register:registerUser,
-  getuser: getCurrentUser,
-  logout: logoutUser
 }
-}
+
 
 const Games = {
   template: `
 <div>
+<button v-on:click="logout(username)" class="button">Logout</button>
 <h1>Salvo!</h1>
     <ol id="games">
     <div v-for="(game, key) in games">
@@ -62,6 +120,7 @@ const Games = {
 </div>`,
   data() {
     return {
+      username: null,
       games: null,
       gamePlayers: null
     }
@@ -69,7 +128,22 @@ const Games = {
   created() {
     getGames(function (games) {
       this.games = games;
-    }.bind(this))
+    }.bind(this)),
+
+      getCurrentUser(function (error, username) {
+        if (error) return alert(error)
+
+        this.username = username
+      }.bind(this))
+  },
+  methods: {
+    logout: function (username) {
+      logoutUser(username, function (error) {
+        if (error) return alert(error)
+
+        this.$router.push("home");
+      }.bind(this))
+    }
   }
 };
 
@@ -159,6 +233,8 @@ const Game = {
 const routes = [
   { path: '/', redirect: '/home', component: Home },
   { path: "/home", component: Home },
+  { path: "/register", component: Register },
+  { path: "/login", component: Login },
   { path: "/games", component: Games },
   { path: "/game/:id", component: Game },
 ];

@@ -47,7 +47,7 @@ function authenticateUser(username, password, callback) {
         })
 }
 
-function logoutUser(username) {
+function logoutUser(username, callback) {
     $.post("/api/logout", { username })
     .done(function(){
         callback(null)

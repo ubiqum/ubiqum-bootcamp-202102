@@ -1,5 +1,6 @@
 package com.codeoftheweb.salvo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,10 +19,8 @@ public class SalvoApplication { //extends SpringBootServletInitializer{
 		SpringApplication.run(SalvoApplication.class, args);
 	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder(){
-	return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-	}
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Bean
 	public CommandLineRunner initData(PlayerRepository playerRepository,
@@ -41,9 +40,9 @@ public class SalvoApplication { //extends SpringBootServletInitializer{
 		gameRepository.save(g3);
 
 		//Adding PLayers
-		Player p1 = new Player("Peter", "panpeter");
-		Player p2 = new Player("Wendy","panwendy" );
-		Player p3 = new Player("Captain", "hookcaptain");
+		Player p1 = new Player("Peter", passwordEncoder.encode("123123123"));
+		Player p2 = new Player("Wendy",passwordEncoder.encode("123123123"));
+		Player p3 = new Player("Captain", passwordEncoder.encode("123123123"));
 
 		Score score1 = new Score(g1, p1, 0.5);
 		Score score2 = new Score(g1, p2, 0.5);

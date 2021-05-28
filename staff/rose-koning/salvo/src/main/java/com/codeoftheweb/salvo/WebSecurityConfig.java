@@ -19,7 +19,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/rest/**").hasAuthority("ADMIN")
+                .antMatchers("/rest/**").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/game_view/**").hasAnyAuthority("ADMIN", "USER")
                 .antMatchers("/web/**").permitAll()
@@ -37,12 +37,12 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         // if user is not authenticated, just send an authentication failure response
-        http.exceptionHandling().authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
+        http.exceptionHandling().authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Wrong credentials 1"));
 
         http.formLogin().successHandler((req, res, auth) -> clearAuthenticationAttributes(req));
 
         // if login fails, just send an authentication failure response
-        http.formLogin().failureHandler((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
+        http.formLogin().failureHandler((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Wrong credentials 2"  ));
 
         // if logout is successful, just send a success response
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
