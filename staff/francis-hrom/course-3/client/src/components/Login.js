@@ -1,5 +1,6 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -12,7 +13,7 @@ const Login = () => {
           <p>Login</p>
         </Col>
         <Col>
-          <p>Create Account</p>
+          <Link to="/create-account">Create Account</Link>
         </Col>
       </Row>
     </div>

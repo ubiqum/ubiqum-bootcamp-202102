@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
     price: req.body.price,
     rating: req.body.rating,
   });
-  newItinerary
+  newUser
     .save()
     .then((itinerary) => {
       res.send(itinerary);
