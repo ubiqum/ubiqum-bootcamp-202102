@@ -1,0 +1,89 @@
+body {
+  font-size: 1,5rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+th {
+  font-size: 1.1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #8f999c;
+}
+
+.header {
+  display: -ms-grid;
+  display: grid;
+  background-color: #033d4e;
+  color: #bdccd1;
+  text-align: center;
+  margin: 0;
+  -ms-grid-columns: 3fr 1fr;
+      grid-template-columns: 3fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "header__title logo";
+}
+
+.header__title {
+  margin: 0;
+}
+
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #1e5a6d;
+}
+
+.navbar__navitem {
+  display: inline;
+}
+
+.main {
+  text-align: center;
+}
+
+.button {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 1px 1px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.button__goback {
+  background-color: #58bddb;
+}
+
+.button__big {
+  font-size: 2rem;
+}
+
+.logo {
+  width: 4rem;
+  height: 4rem;
+}
+
+.map-container {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.map-container iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+/*# sourceMappingURL=style.css.map */
