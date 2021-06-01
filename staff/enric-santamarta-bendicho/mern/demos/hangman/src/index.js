@@ -1,15 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Game from './components/Game'
 
-const hangMan =<div>
-    
-       <hr className="floor"></hr>
-       
-       <hr className="stick"></hr>
-
-       <hr className="secondStick"></hr>
-        </div>
-
-
-ReactDOM.render(hangMan,document.getElementById('root'))
+ReactDOM.render(<Game />, document.getElementById('root'))
