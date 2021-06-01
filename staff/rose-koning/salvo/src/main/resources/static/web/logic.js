@@ -79,3 +79,10 @@ function getCurrentUser(callback) {
             callback(error)
         })
 }
+
+function gamePlayerIsEnrolled(gamePlayerUsername, username, callback){
+    if (username == gamePlayerUsername){
+        return true;
+      }
+      else return false;
+}

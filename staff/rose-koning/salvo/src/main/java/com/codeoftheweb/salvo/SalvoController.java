@@ -68,26 +68,46 @@ public class SalvoController {
 
             gameMap.put("id", game.getId());
             gameMap.put("created", game.getCreation());
-            Map<String, Object> playerMap = new TreeMap<>();
+
+            List<Map<String, Object>> gamePlayersList = new ArrayList<>();
+
             Set<GamePlayer> gamePlayers = game.getGamePlayers();
-            //if (isAuthenticated(authentication)) {
-            // from playerRepository.findByUsername(currentUsername(authentication))
-            // specify this is the user that is authenticated and playing
+
             gamePlayers.forEach(gamePlayer -> {
-                playerMap.put("player", gamePlayer.getPlayer().getUsername());
+                Map<String, Object> gamePlayerMap = new TreeMap<>();
+
+                gamePlayerMap.put("id", gamePlayer.getId());
+
+                Map<String, Object> playerMap = new TreeMap<>();
+
+                playerMap.put("id", gamePlayer.getPlayer().getId());
+                playerMap.put("username", gamePlayer.getPlayer().getUsername());
+
+                gamePlayerMap.put("player", playerMap);
+
+                gamePlayersList.add(gamePlayerMap);
             });
-            gameMap.put("players", playerMap);
+
+            gameMap.put("gamePlayers", gamePlayersList);
 
             return gameMap;
         }).collect(toList());
     }
 
     @RequestMapping("/api/game_view/{gamePlayerId}")
-    public Map<String, Object> getGameView(@PathVariable Long gamePlayerId) {
+    public Map<String, Object> getGameView(@PathVariable Long gamePlayerId, Authentication authentication) {
         Map<String, Object> gameView = new TreeMap<>();
         Optional<GamePlayer> gamePlayer = gamePlayerRepository.findById(gamePlayerId);
 
+        String username = gamePlayer.get().getPlayer().getUsername();
+
+        // TODO check i am the player of this gamePlayer (getGame().getUsername() == currentUser...)
+
+        if(currentUserName(authentication) != username)
+            return new ResponseEntity<>("Not authorized to see page", HttpStatus.UNAUTHORIZED);
+
         long gameId = gamePlayer.get().getGame().getId();
+
         gameView.put("id", gameId);
 
         gameView.put("created", gamePlayer.get().getGame().getCreation());
@@ -102,6 +122,9 @@ public class SalvoController {
             gamePlayerInfo.put("player", playerInfo);
             return gamePlayerInfo;
         }).collect(toList());
+
+
+
         gameView.put("gamePlayers", gamePlayerList);
 
         Set<Ship> ships = gamePlayer.get().getShips();
@@ -136,6 +159,6 @@ public class SalvoController {
 
         gameView.put("score", playerScore.getPoints());
 
-        return gameView;
+        return gameView; // TODO return new ResponseEntity(...)
     }
 }

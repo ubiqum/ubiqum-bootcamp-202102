@@ -33,15 +33,15 @@ const Register = {
 </div>
 
 </div>`,
-  data(){
-    return{
-      username:null,
-      password:null
+  data() {
+    return {
+      username: null,
+      password: null
     }
   },
   methods: {
-    register: function (username,password) {
-      registerUser(username,password, function (error) {
+    register: function (username, password) {
+      registerUser(username, password, function (error) {
         if (error) return alert("Username already taken")
 
         this.$router.push("games");
@@ -105,16 +105,19 @@ const Login = {
 const Games = {
   template: `
 <div>
-<button v-on:click="logout(username)" class="button">Logout</button>
+<button v-on:click="logout()" class="button">Logout</button>
 <h1>Salvo!</h1>
     <ol id="games">
     <div v-for="(game, key) in games">
-      <router-link v-bind:to="'/game/'+game.id"><li>{{game.created}}</li></router-link>
-        <ol>
-        <div v-for="(gamePlayer, key) in game.gamePlayers">
-        <li>{{gamePlayer.username}}</li>
-        </div>
-        </ol>
+    <li>
+      {{game.created}}
+      <div v-for="(gamePlayer, key) in game.gamePlayers">
+      {{gamePlayer.player.username}}
+      <router-link to="game/'gamePlayer.id'" v-if="gamePlayer.isMine">return to game</router-link>
+      </div>
+     
+    </li>
+
     </div>
 </ol>
 </div>`,
@@ -122,27 +125,38 @@ const Games = {
     return {
       username: null,
       games: null,
-      gamePlayers: null
+      access: false
     }
   },
   created() {
-    getGames(function (games) {
-      this.games = games;
-    }.bind(this)),
+    getCurrentUser((error, username) => {
+      if (error) return alert(error)
 
-      getCurrentUser(function (error, username) {
-        if (error) return alert(error)
+      this.username = username
 
-        this.username = username
-      }.bind(this))
+      getGames(games => {
+        games.forEach(game => {
+           const { gamePlayers } = game
+
+           gamePlayers.forEach(gamePlayer => {
+             gamePlayer.isMine = gamePlayer.player.username === username
+           })
+        })
+        
+        this.games = games;
+      })
+    })
   },
   methods: {
-    logout: function (username) {
-      logoutUser(username, function (error) {
+    logout() {
+      logoutUser(this.username, error => {
         if (error) return alert(error)
 
         this.$router.push("home");
-      }.bind(this))
+      })
+    },
+    isEnrolledInGame: function (gamePlayerUsername) {
+      gamePlayerIsEnrolled(gamePlayerUsername, this.username)
     }
   }
 };
