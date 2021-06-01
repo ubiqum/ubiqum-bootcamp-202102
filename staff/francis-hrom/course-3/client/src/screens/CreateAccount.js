@@ -42,6 +42,7 @@ const CreateAccount = (props) => {
         //console.log(responseJson);
         // add redirect after login
         alert("New user created.");
+        props.history.push("/login");
       })
       .catch((error) => {
         console.log(error);

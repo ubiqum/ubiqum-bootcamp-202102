@@ -7,6 +7,8 @@ import Itinerary from "./screens/Itinerary";
 import CreateAccount from "./screens/CreateAccount";
 import Login from "./screens/Login";
 
+// Check for token to keep user logged in
+
 function App() {
   return (
     <BrowserRouter>

@@ -8,11 +8,30 @@ import Col from "react-bootstrap/Col";
 import { loadCities } from "../store/reducers/cityReducer";
 
 import HomeButton from "../components/HomeButton";
+import LogOut from "../components/LogOut";
+
+//import PropTypes from 'prop-types'
+import { retrieveCities } from "../store/actions/cityActions";
+
+/*
+onSubmit(e) {
+  e.preventDefault();
+
+  const city = {
+      name: state.name,
+      country: state.country,
+      img: state.img
+  }
+
+  props.createCity(city);
+}
+ */
 
 const Cities = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(loadCities());
+    //dispatch(loadCities());
+    dispatch(retrieveCities());
   }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,6 +41,8 @@ const Cities = (props) => {
   return (
     <div>
       <h1>Cities.js</h1>
+      <LogOut />
+
       <input
         type="text"
         placeholder="Search ..."
@@ -44,7 +65,6 @@ const Cities = (props) => {
             <Link to={`/cities/${city.name}`}>{city.name}</Link>
           </li>
         ))}
-
       <Row>
         <Col> </Col>
         <Col xs={2}>
@@ -62,7 +82,20 @@ const mapStateToProps = (state) => {
   };
 };
 
-/* const mapDispatchToProps = (dispatch) => {
+/*
+Cities.propTypes {
+  retrieveCities: PropTypes.func.isRequired,
+  cities: PropTypes.array.isRequired,
+   // createCity: PropTypes.func.isRequired
+}
+
+
+const mapStateToProps = (state) => {
+    cities: state.cities.cities,
+    newCity: state.cities.city
+};
+
+const mapDispatchToProps = (dispatch) => {
   return {
     addCity: (city) => {
       dispatch(addCity(city));
@@ -75,6 +108,8 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cities);
 
+
+export default connect(mapStateToProps, {createCity})(Cities);
 */
 
-export default connect(mapStateToProps)(Cities);
+export default connect(mapStateToProps, { retrieveCities })(Cities);

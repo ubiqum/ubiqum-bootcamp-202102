@@ -4,8 +4,12 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../keys");
+const passport = require("passport");
 
 const userModel = require("../model/userModel");
+/* const {
+  default: setAuthToken,
+} = require("../../client/src/utils/setAuthToken"); */
 
 router.get("/all", (req, res) => {
   userModel
@@ -15,6 +19,57 @@ router.get("/all", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+
+/* 
+router.get(
+  "auth/google/redirect",
+  passport.authenticate("google"),
+  (req, res) => {
+    res.send(req.user);
+    res.send("you reached the redirect URI");
+    console.log("REDIRECT");
+  }
+); */
+// after successful auth from Google just send it to router.post("/login", and get the local JWT ?
+
+router.get(
+  "/login/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+router.get(
+  "/login/google/redirect",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  (req, res) => {
+    console.log("SERVER GET /login/google/redirect");
+    console.log(req.user);
+    // res.send("you reached the redirect URI");
+    //res.redirect("/");
+
+    // User auth by google
+    // Create JWT Payload
+    const payload = {
+      id: req.user.id,
+      name: req.user.name,
+    };
+    // Sign token
+    jwt.sign(
+      payload,
+      keys.secretOrKey,
+      {
+        expiresIn: 31556926, // 1 year in seconds
+      },
+      (err, token) => {
+        /*         res.json({
+          success: true,
+          token: "Bearer " + token,
+        }); */
+        console.log(token);
+        res.redirect(`http://localhost:3000/login/?token=Bearer${token}`);
+      }
+    );
+  }
+);
 
 router.post("/login", (req, res) => {
   const email = req.body.email;

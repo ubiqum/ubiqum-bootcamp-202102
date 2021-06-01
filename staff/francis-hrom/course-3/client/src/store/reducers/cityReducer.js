@@ -1,4 +1,4 @@
-import { setCities } from "../actions/cityActions";
+// import { setCities } from "../actions/cityActions";
 
 const initialState = {
   cities: [
@@ -10,17 +10,33 @@ const initialState = {
       __v: 0,
     },
   ],
+  // city: ["empty city initial state"]
 };
 
 export default function cityReducer(state = initialState, action) {
   switch (action.type) {
-    case "SET_CITIES": {
+    /*     case "SET_CITIES": {
+      return {
+        ...state,
+        cities: action.payload,
+      };
+    } */
+
+    case "RETRIEVE_CITIES": {
       return {
         ...state,
         cities: action.payload,
       };
     }
-    /*     case "ADD_CITY": {
+    /* 
+            case "NEW_CITY": {
+      return {
+        ...state,
+        city: action.payload,
+      };
+    }
+    
+    case "ADD_CITY": {
       return {
         ...state,
         cities: [...state.cities, action.payload],
@@ -54,9 +70,9 @@ console.log(citiesFromServer);
 retrieveCities().then((results) => (citiesFromServer = results));
 console.log(citiesFromServer);
  */
-
+/* 
 export const loadCities = () => async (dispatch, getState) => {
   const res = await fetch("http://localhost:5000/cities/all");
   const cities = await res.json();
   dispatch(setCities(cities));
-};
+}; */
