@@ -112,6 +112,64 @@ router.post("/login", (req, res) => {
   });
 });
 
+router.get("/:id/get-favorite", (req, res) => {
+  userModel
+    .findOne({ _id: req.params.id })
+    .then((user) => {
+      res.send(user.favoriteActivities);
+    })
+    .catch((err) => {
+      res.status(500).send("Server error");
+    });
+});
+
+/* router.get("/get-favorite", (req, res) => {
+  userModel
+    .findOne({ _id: req.body.userId })
+    .then((user) => {
+      res.send(user.favoriteActivities);
+    })
+    .catch((err) => {
+      res.status(500).send("Server error");
+    });
+}); */
+
+router.post("/add-favorite", (req, res) => {
+  userModel
+    .findOneAndUpdate(
+      { _id: req.body.userId },
+      {
+        $addToSet: {
+          favoriteActivities: req.body.activityId,
+        },
+      }
+    )
+    .then(() => {
+      res.send(req.body.activityId);
+    })
+    .catch((err) => {
+      res.status(500).send("Server error");
+    });
+});
+
+router.delete("/remove-favorite", (req, res) => {
+  userModel
+    .findOneAndUpdate(
+      { _id: req.body.userId },
+      {
+        $pull: {
+          favoriteActivities: req.body.activityId,
+        },
+      }
+    )
+    .then(() => {
+      res.send(req.body.activityId);
+    })
+    .catch((err) => {
+      res.status(500).send("Server error");
+    });
+});
+
 router.post("/registration", (req, res) => {
   userModel.findOne({ email: req.body.email }).then((user) => {
     if (user) {
