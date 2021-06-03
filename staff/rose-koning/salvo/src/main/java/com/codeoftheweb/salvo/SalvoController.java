@@ -61,7 +61,7 @@ public class SalvoController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/api/games",method = RequestMethod.GET)
+    @RequestMapping(value = "/api/games", method = RequestMethod.GET)
     public List<Map<String, Object>> getGames(Authentication authentication) {
         return gameRepository.findAll().stream().map(game -> {
             Map<String, Object> gameMap = new TreeMap<>();
@@ -93,6 +93,25 @@ public class SalvoController {
             return gameMap;
         }).collect(toList());
     }
+
+    @RequestMapping(value = "/api/games", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> createGame(Authentication authentication) {
+        if (!isAuthenticated(authentication)) {
+            return new ResponseEntity<>(makeMap("error", "Player is not logged in"), HttpStatus.UNAUTHORIZED);
+        }
+
+        String username = authentication.getName();
+        Player player = playerRepository.findByUsername(username);
+
+        Game game = new Game();
+        gameRepository.save(game);
+
+        GamePlayer gamePlayer = new GamePlayer(game, player);
+        gamePlayerRepository.save(gamePlayer); //  gamePlayer.setId(...)
+
+        return new ResponseEntity<>(makeMap("gamePlayerId", gamePlayer.getId()), HttpStatus.CREATED);
+    }
+
 
     @RequestMapping("/api/game_view/{gamePlayerId}")
     public ResponseEntity<Map<String, Object>> getGameView(@PathVariable Long gamePlayerId, Authentication authentication) {

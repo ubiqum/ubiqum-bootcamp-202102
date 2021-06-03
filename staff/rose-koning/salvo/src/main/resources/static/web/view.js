@@ -18,7 +18,7 @@ const Register = {
 <h2>Register to start playing</h2>
 </div>
 
-<div class="login-box">
+<div class="main-box">
 <h3>Enter name and password</h3>
 <form id="login" >
 <label>Name:<input v-model="username"></label>
@@ -61,7 +61,7 @@ const Login = {
 
 <h1> Welcome to Salvo</h1>
 
-<div class="login-box">
+<div class="main-box">
 <h2>login</h2>
 <form id="login" >
 <label>Name:<input v-model="username"></label>
@@ -105,21 +105,25 @@ const Login = {
 const Games = {
   template: `
 <div>
-<button v-on:click="logout()" class="button">Logout</button>
-<h1>Salvo!</h1>
+  <button v-on:click="logout()" class="button">Logout</button>
+  <h1>Salvo!</h1>
+  <div class="main-box">
     <ol id="games">
-    <div v-for="(game, key) in games">
-    <li>
-      {{game.created}}
-      <div v-for="(gamePlayer, key) in game.gamePlayers">
-      {{gamePlayer.player.username}}
-      <router-link v-bind:to="'/game/'+ gamePlayer.id" v-if="gamePlayer.isMine">return to game</router-link>
+      <div v-for="(game, key) in games">
+        <li>
+          {{game.created}}
+          <div v-for="(gamePlayer, key) in game.gamePlayers">
+          {{gamePlayer.player.username}}
+          <router-link v-bind:to="'/game/'+ gamePlayer.id" v-if="gamePlayer.isMine">return to game</router-link>
+          </div>
+        </li>
       </div>
-     
-    </li>
+    </ol>
+  </div>
 
-    </div>
-</ol>
+  <button v-on:click="createGame()" v-bind:to="'/game/'+ gamePlayer.id">Create a new game</button>
+
+
 </div>`,
   data() {
     return {
@@ -154,6 +158,11 @@ const Games = {
         this.$router.push("home");
       })
     },
+    createNewGame(){
+      createGame(error =>{
+        if(error) return alert(error)
+      })
+    }
   }
 };
 
