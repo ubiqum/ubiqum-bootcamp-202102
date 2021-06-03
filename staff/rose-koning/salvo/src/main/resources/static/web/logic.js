@@ -24,8 +24,8 @@ function getGames(callback) {
         })
 }
 
-function getGameView(gameId, callback) {
-    fetch("/api/game_view/" + gameId)
+function getGameView(gamePlayerId, callback) {
+    fetch("/api/game_view/" + gamePlayerId)
         .then(function (response) {
             return response.json();
         })
@@ -78,11 +78,4 @@ function getCurrentUser(callback) {
         .fail(function () {
             callback(error)
         })
-}
-
-function gamePlayerIsEnrolled(gamePlayerUsername, username, callback){
-    if (username == gamePlayerUsername){
-        return true;
-      }
-      else return false;
 }

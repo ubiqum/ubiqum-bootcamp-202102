@@ -113,7 +113,7 @@ const Games = {
       {{game.created}}
       <div v-for="(gamePlayer, key) in game.gamePlayers">
       {{gamePlayer.player.username}}
-      <router-link to="game/'gamePlayer.id'" v-if="gamePlayer.isMine">return to game</router-link>
+      <router-link v-bind:to="'/game/'+ gamePlayer.id" v-if="gamePlayer.isMine">return to game</router-link>
       </div>
      
     </li>
@@ -125,7 +125,7 @@ const Games = {
     return {
       username: null,
       games: null,
-      access: false
+      access: false,
     }
   },
   created() {
@@ -142,7 +142,6 @@ const Games = {
              gamePlayer.isMine = gamePlayer.player.username === username
            })
         })
-        
         this.games = games;
       })
     })
@@ -155,9 +154,6 @@ const Games = {
         this.$router.push("home");
       })
     },
-    isEnrolledInGame: function (gamePlayerUsername) {
-      gamePlayerIsEnrolled(gamePlayerUsername, this.username)
-    }
   }
 };
 
@@ -166,7 +162,7 @@ const Game = {
   <div>
     <h1> Ship Locations!</h1>
     {{gameData.created}}
-    <h2>{{currentPlayer.player.username}}, you are playing against: {{opponent.player.username}}</h2>
+    <h2>{{currentPlayer}}, you are playing against: {{opponent}}</h2>
 
   <div class="flex-container">
 
@@ -205,8 +201,8 @@ const Game = {
     return {
       cells: getCells(),
       gameData: {},
-      ships: {},
-      salvoes: {},
+      ships: [],
+      salvoes: [],
       currentPlayer: {},
       opponent: {}
     }
@@ -216,19 +212,19 @@ const Game = {
   },
   methods: {
     fetchData() {
-      var gamePlayerId = this.$route.params.id;
+      var gamePlayerId = this.$route.params.gamePlayerId;
       getGameView(gamePlayerId, function (game) {
         this.gameData = game;
         this.ships = game.ships;
         this.salvoes = game.salvoes;
         this.gamePlayerId = gamePlayerId;
-        var gamePlayers = game.gamePlayers;
+        const { gamePlayers } = game;
         for (var i = 0; i < gamePlayers.length; i++) {
           if (gamePlayers[i].id == this.gamePlayerId) {
-            var currentPlayer = gamePlayers[i];
+            var currentPlayer = gamePlayers[i].player.userName;
           }
           else {
-            var opponent = gamePlayers[i];
+            var opponent = gamePlayers[i].player.userName;
           }
         }
         this.currentPlayer = currentPlayer;
@@ -250,7 +246,7 @@ const routes = [
   { path: "/register", component: Register },
   { path: "/login", component: Login },
   { path: "/games", component: Games },
-  { path: "/game/:id", component: Game },
+  { path: "/game/:gamePlayerId", component: Game },
 ];
 
 const router = new VueRouter({

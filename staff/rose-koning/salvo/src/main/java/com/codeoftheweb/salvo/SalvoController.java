@@ -42,7 +42,7 @@ public class SalvoController {
     @RequestMapping(value = "/api/username", method = RequestMethod.GET)
     @ResponseBody
     public String currentUserName(Authentication authentication) {
-        return isAuthenticated(authentication)? authentication.getName() : null;
+        return isAuthenticated(authentication) ? authentication.getName() : null;
     }
 
     @RequestMapping(path = "/api/players", method = RequestMethod.POST)
@@ -61,7 +61,7 @@ public class SalvoController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @RequestMapping("/api/games")
+    @RequestMapping(value = "/api/games",method = RequestMethod.GET)
     public List<Map<String, Object>> getGames(Authentication authentication) {
         return gameRepository.findAll().stream().map(game -> {
             Map<String, Object> gameMap = new TreeMap<>();
@@ -95,70 +95,76 @@ public class SalvoController {
     }
 
     @RequestMapping("/api/game_view/{gamePlayerId}")
-    public Map<String, Object> getGameView(@PathVariable Long gamePlayerId, Authentication authentication) {
+    public ResponseEntity<Map<String, Object>> getGameView(@PathVariable Long gamePlayerId, Authentication authentication) {
         Map<String, Object> gameView = new TreeMap<>();
         Optional<GamePlayer> gamePlayer = gamePlayerRepository.findById(gamePlayerId);
 
         String username = gamePlayer.get().getPlayer().getUsername();
 
-        // TODO check i am the player of this gamePlayer (getGame().getUsername() == currentUser...)
 
-        if(currentUserName(authentication) != username)
-            return new ResponseEntity<>("Not authorized to see page", HttpStatus.UNAUTHORIZED);
+        if (username == currentUserName(authentication)) {
 
-        long gameId = gamePlayer.get().getGame().getId();
+            long gameId = gamePlayer.get().getGame().getId();
 
-        gameView.put("id", gameId);
+            gameView.put("id", gameId);
 
-        gameView.put("created", gamePlayer.get().getGame().getCreation());
+            gameView.put("created", gamePlayer.get().getGame().getCreation());
 
-        Set<GamePlayer> gamePlayers = gamePlayer.get().getGame().getGamePlayers();
-        List<Map<String, Object>> gamePlayerList = gamePlayers.stream().map(gamePlayer1 -> {
-            Map<String, Object> gamePlayerInfo = new TreeMap<>();
-            gamePlayerInfo.put("id", gamePlayer1.getId());
-            Map<String, Object> playerInfo = new TreeMap<>();
-            playerInfo.put("id", gamePlayer1.getPlayer().getId());
-            playerInfo.put("userName", gamePlayer1.getPlayer().getUsername());
-            gamePlayerInfo.put("player", playerInfo);
-            return gamePlayerInfo;
-        }).collect(toList());
+            Set<GamePlayer> gamePlayers = gamePlayer.get().getGame().getGamePlayers();
+            List<Map<String, Object>> gamePlayerList = gamePlayers.stream().map(gamePlayer1 -> {
+                Map<String, Object> gamePlayerInfo = new TreeMap<>();
+                gamePlayerInfo.put("id", gamePlayer1.getId());
+                Map<String, Object> playerInfo = new TreeMap<>();
+                playerInfo.put("id", gamePlayer1.getPlayer().getId());
+                playerInfo.put("userName", gamePlayer1.getPlayer().getUsername());
+                gamePlayerInfo.put("player", playerInfo);
+                return gamePlayerInfo;
+            }).collect(toList());
 
 
+            gameView.put("gamePlayers", gamePlayerList);
 
-        gameView.put("gamePlayers", gamePlayerList);
+            Set<Ship> ships = gamePlayer.get().getShips();
+            List<Map<String, Object>> shipList = ships.stream().map(ship -> {
+                Map<String, Object> shipInfo = new TreeMap<>();
+                shipInfo.put("player", ship.getGamePlayer().getId());
+                shipInfo.put("type", ship.getType());
+                shipInfo.put("location", ship.getLocation());
+                return shipInfo;
+            }).collect(toList());
+            gameView.put("ships", shipList);
 
-        Set<Ship> ships = gamePlayer.get().getShips();
-        List<Map<String, Object>> shipList = ships.stream().map(ship -> {
-            Map<String, Object> shipInfo = new TreeMap<>();
-            shipInfo.put("player", ship.getGamePlayer().getId());
-            shipInfo.put("type", ship.getType());
-            shipInfo.put("location", ship.getLocation());
-            return shipInfo;
-        }).collect(toList());
-        gameView.put("ships", shipList);
+            List<Salvo> salvoes = gamePlayer.get().getSalvoes();
+            List<Salvo> salvoes2 = new ArrayList<>();
+            salvoes.forEach(salvo -> {
+                if (!salvoes2.contains(salvo)) {
+                    salvoes2.add(salvo);
+                }
+            });
+            List<Map<String, Object>> salvoList = salvoes2.stream().map(salvo -> {
+                Map<String, Object> salvoInfo = new TreeMap<>();
+                salvoInfo.put("turn", salvo.getTurnTracker());
+                salvoInfo.put("player", salvo.getGamePlayer().getId());
+                salvoInfo.put("location", salvo.getLocation());
+                return salvoInfo;
+            }).collect(toList());
+            gameView.put("salvoes", salvoList);
 
-        List<Salvo> salvoes = gamePlayer.get().getSalvoes();
-        List<Salvo> salvoes2 = new ArrayList<>();
-        salvoes.forEach(salvo -> {
-            if (!salvoes2.contains(salvo)) {
-                salvoes2.add(salvo);
-            }
-        });
-        List<Map<String, Object>> salvoList = salvoes2.stream().map(salvo -> {
-            Map<String, Object> salvoInfo = new TreeMap<>();
-            salvoInfo.put("turn", salvo.getTurnTracker());
-            salvoInfo.put("player", salvo.getGamePlayer().getId());
-            salvoInfo.put("location", salvo.getLocation());
-            return salvoInfo;
-        }).collect(toList());
-        gameView.put("salvoes", salvoList);
-
-        Set<Score> scores = gamePlayer.get().getPlayer().scores;
-        Score playerScore = scores.stream().filter(score -> score.getGame().getId() == gameId).findAny().orElse(null);
+            Set<Score> scores = gamePlayer.get().getPlayer().scores;
+            Score playerScore = scores.stream().filter(score -> score.getGame().getId() == gameId).findAny().orElse(null);
 
 
-        gameView.put("score", playerScore.getPoints());
+            gameView.put("score", playerScore.getPoints());
 
-        return gameView; // TODO return new ResponseEntity(...)
+            return new ResponseEntity<>(gameView, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(makeMap("error", "user is not authorized for access"), HttpStatus.UNAUTHORIZED);
+    }
+
+    private Map<String, Object> makeMap(String key, Object value) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(key, value);
+        return map;
     }
 }
