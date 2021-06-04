@@ -15,7 +15,6 @@ import LogOut from "../components/LogOut";
 // Login
 
 const Login = (props) => {
-  const users = props.users;
   const auth = props.auth;
   const errors = props.errors;
 

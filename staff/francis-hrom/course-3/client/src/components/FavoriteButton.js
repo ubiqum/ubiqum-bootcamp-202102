@@ -10,39 +10,43 @@ const FavoriteButton = (props) => {
   }, [props.favorite]);
 
   const handleClick = () => {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-    const urlencoded = new URLSearchParams();
-    urlencoded.append("userId", props.userId);
-    urlencoded.append("activityId", props.activityId);
-
-    if (favorite) {
-      const requestOptions = {
-        method: "DELETE",
-        headers: myHeaders,
-        body: urlencoded,
-        redirect: "follow",
-      };
-
-      fetch("http://localhost:5000/users/remove-favorite", requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log("Deleted: " + result))
-        .catch((error) => console.log("error", error));
+    if (!props.userId) {
+      alert("Please login in order to save the favorite activities.");
     } else {
-      const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: urlencoded,
-        redirect: "follow",
-      };
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-      fetch("http://localhost:5000/users/add-favorite", requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log("Added: " + result))
-        .catch((error) => console.log("error", error));
+      const urlencoded = new URLSearchParams();
+      urlencoded.append("userId", props.userId);
+      urlencoded.append("activityId", props.activityId);
+
+      if (favorite) {
+        const requestOptions = {
+          method: "DELETE",
+          headers: myHeaders,
+          body: urlencoded,
+          redirect: "follow",
+        };
+
+        fetch("http://localhost:5000/users/remove-favorite", requestOptions)
+          .then((response) => response.text())
+          .then((result) => console.log("Deleted: " + result))
+          .catch((error) => console.log("error", error));
+      } else {
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: urlencoded,
+          redirect: "follow",
+        };
+
+        fetch("http://localhost:5000/users/add-favorite", requestOptions)
+          .then((response) => response.text())
+          .then((result) => console.log("Added: " + result))
+          .catch((error) => console.log("error", error));
+      }
+      setFavorite(!favorite);
     }
-    setFavorite(!favorite);
   };
 
   return (

@@ -39,8 +39,9 @@ const Itinerary = (props) => {
       <Row>
         {activities.map((activity) => (
           <Activity
+            key={activity._id}
             activity={activity}
-            userId={props.userId}
+            user={props.user}
             favorite={favoriteActivities.includes(activity._id)}
           />
         ))}
@@ -60,7 +61,7 @@ const Itinerary = (props) => {
 const mapStateToProps = (state) => {
   return {
     activities: state.activities.activities,
-    userId: state.auth.user.id,
+    user: state.auth.user,
   };
 };
 

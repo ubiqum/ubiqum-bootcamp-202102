@@ -11,14 +11,14 @@ import HomeButton from "../components/HomeButton";
 // Login
 
 const CreateAccount = (props) => {
-  const users = props.users;
-
-  const {
+  /*   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+ */
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = (user) => {
     fetch("http://localhost:5000/users/registration", {

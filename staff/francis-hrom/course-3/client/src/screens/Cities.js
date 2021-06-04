@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { loadCities } from "../store/reducers/cityReducer";
+//import { loadCities } from "../store/reducers/cityReducer";
 
 import HomeButton from "../components/HomeButton";
 import LogOut from "../components/LogOut";

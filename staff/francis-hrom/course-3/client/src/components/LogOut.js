@@ -16,6 +16,7 @@ const LogOut = (props) => {
   const dispatch = useDispatch();
   const handleClickLogOut = () => {
     dispatch(logoutUser());
+    window.location.href = "/";
   };
 
   useEffect(() => {
