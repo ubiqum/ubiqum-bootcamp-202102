@@ -31,45 +31,38 @@ class Game extends Component {
         const { state: { attemps } } = this // TODO learn js destructuring
         const { state: { correctAttemps } } = this
 
-            if (charOrWord.length === 1) {
-                this.handleGuessedCharacter(charOrWord, attemps, correctAttemps)
-
-            }
-            else {
-                this.handleGuessedWord(charOrWord, attemps)
-            }
+        if (charOrWord.length === 1) {
+            this.handleGuessedCharacter(charOrWord, attemps, correctAttemps)
 
         }
-    
+        else {
+            this.handleGuessedWord(charOrWord, attemps)
+        }
+
+    }
+
 
     handleGuessedCharacter(charOrWord, attemps, correctAttemps) {
-        if (correctAttemps === this.state.word.length) {
-            this.setState({ won: true })
-        } else
-            for (var i = 0; i <= this.state.word.length; i++) {
-                if (charOrWord === this.state.word[i]) {
 
-                    this.handleSubmitShowedLetters(i, charOrWord)
+        for (var i = 0; i <= this.state.word.length; i++) {
+            if (charOrWord === this.state.word[i]) {
 
-                    this.setState({ correctAttemps: correctAttemps + 1 })
+                this.handleSubmitShowedLetters(i, charOrWord)
 
-                    this.setState({ attemps: attemps + 1 })
+                this.setState({ correctAttemps: correctAttemps + 1 }, () => { this.handleCorrectAttemps() })
 
-                    this.handleMaxAttemps()
+                this.setState({ attemps: attemps + 1 }, () => { this.handleMaxAttemps() })
 
-                }
-                if (this.state.correctAttemps === this.state.word.length) {
-                    this.setState({ won: true })
-                }
             }
+        }
     }
 
     handleSubmitShowedLetters(i, charOrWord) {
-       const { state: { guessed } } = this
+        const { state: { guessed } } = this
 
-       guessed[i] = charOrWord
+        guessed[i] = charOrWord
 
-        this.setState({guessed: guessed})
+        this.setState({ guessed: guessed })
 
 
     }
@@ -78,33 +71,35 @@ class Game extends Component {
 
         if (charOrWord !== this.state.word) {
 
-            this.setState({ attemps: attemps + 1 })
-
-            this.handleMaxAttemps()
-
+            this.setState({ attemps: attemps + 1 }, () => { this.handleMaxAttemps() })
 
         }
         if (charOrWord === this.state.word) {
 
-            this.setState({ attemps: attemps + 1 })
+            this.setState({ attemps: attemps + 1 }, () => { this.handleMaxAttemps() })
 
             this.setState({ guessed: charOrWord })
 
             this.setState({ won: true })
 
-            this.handleMaxAttemps()
-        }
 
+        }
     }
 
-    handleMaxAttemps(){
+    handleMaxAttemps() {
         if (this.state.attemps === MAX_ATTEMPS) {
             this.setState({ lose: true })
         }
     }
 
-    handleSubmitRefresh() {
+    handleCorrectAttemps() {
+        if (this.state.correctAttemps === this.state.word.length) {
+            this.setState({ won: true })
+        }
+    }
 
+    handleSubmitRefresh() {
+        window.location.reload()
     }
 
 
@@ -120,7 +115,7 @@ class Game extends Component {
                 <p>You guessed {correctAttemps} Letters from the secret Word.</p>
             </div>}
             {won && <div><p>you win!</p><form onSubmit={this.handleSubmitRefresh}><button>Restart the Game</button></form></div>}
-            {lose && <div><p>you lose!</p><button>Restart the Game</button></div>}
+            {lose && <div><p>you lose!</p><form onSubmit={this.handleSubmitRefresh}><button>Restart the Game</button></form></div>}
         </div>
     }
 }
