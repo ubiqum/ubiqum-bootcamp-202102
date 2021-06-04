@@ -114,14 +114,19 @@ const Games = {
           {{game.created}}
           <div v-for="(gamePlayer, key) in game.gamePlayers">
           {{gamePlayer.player.username}}
-          <router-link v-bind:to="'/game/'+ gamePlayer.id" v-if="gamePlayer.isMine">return to game</router-link>
+          <router-link v-bind:to="'/game/'+ gamePlayer.id" v-if="gamePlayer.isMine" class="button">return to game</router-link>
+            <div v-if="game.gamePlayers.length!=2 && !gamePlayer.isMine">
+            <button v-on:click="joinGame()" class="button">Join game</button>
+            </div>
           </div>
+       
         </li>
       </div>
     </ol>
   </div>
 
-  <button v-on:click="createGame()" v-bind:to="'/game/'+ gamePlayer.id">Create a new game</button>
+  <button v-on:click="createNewGame()">Start a new game</button>
+ 
 
 
 </div>`,
@@ -159,10 +164,20 @@ const Games = {
       })
     },
     createNewGame(){
-      createGame(error =>{
+      createGame((gamePlayerId, error) =>{
         if(error) return alert(error)
+
+        this.$router.push({ path: `/game/${gamePlayerId}` })
       })
-    }
+    },
+    joinGame(){
+      joinInGame((gamePlayerId,error) =>{
+        if(error) return alert(error)
+
+        this.$router.push({ path: `/game/${gamePlayerId}` })
+      })
+    },
+
   }
 };
 

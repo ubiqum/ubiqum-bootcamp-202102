@@ -61,6 +61,7 @@ public class SalvoController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+
     @RequestMapping(value = "/api/games", method = RequestMethod.GET)
     public List<Map<String, Object>> getGames(Authentication authentication) {
         return gameRepository.findAll().stream().map(game -> {
@@ -112,6 +113,32 @@ public class SalvoController {
         return new ResponseEntity<>(makeMap("gamePlayerId", gamePlayer.getId()), HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/api/game/{gameId}/players", method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> joinGame(@PathVariable Long gameId, Authentication authentication){
+        if (!isAuthenticated(authentication)) {
+            return new ResponseEntity<>(makeMap("error", "Player is not logged in"), HttpStatus.UNAUTHORIZED);
+        }
+        Game game =gameRepository.getOne(gameId);
+        if(game==null){
+            return new ResponseEntity<>(makeMap("error","Game doesn´t exist"), HttpStatus.FORBIDDEN);
+        }
+
+        Set<GamePlayer> gamePlayers = game.getGamePlayers();
+        if(gamePlayers.size()== 2){
+            return new ResponseEntity<>(makeMap("error","Game is full"), HttpStatus.FORBIDDEN);
+        }
+
+
+
+        String username = authentication.getName();
+        Player player = playerRepository.findByUsername(username);
+
+        GamePlayer gamePlayer = new GamePlayer(game, player);
+        gamePlayerRepository.save(gamePlayer);
+
+        return new ResponseEntity<>(makeMap("gamePlayerId", gamePlayer.getId()), HttpStatus.CREATED);
+
+    }
 
     @RequestMapping("/api/game_view/{gamePlayerId}")
     public ResponseEntity<Map<String, Object>> getGameView(@PathVariable Long gamePlayerId, Authentication authentication) {
@@ -172,9 +199,9 @@ public class SalvoController {
             Set<Score> scores = gamePlayer.get().getPlayer().scores;
             Score playerScore = scores.stream().filter(score -> score.getGame().getId() == gameId).findAny().orElse(null);
 
-
-            gameView.put("score", playerScore.getPoints());
-
+            if(playerScore != null) {
+                gameView.put("score", playerScore.getPoints());
+            }
             return new ResponseEntity<>(gameView, HttpStatus.OK);
         }
 

@@ -79,3 +79,23 @@ function getCurrentUser(callback) {
             callback(error)
         })
 }
+
+function createGame(callback){
+    $.post("/api/games")
+    .done(function(gamePlayerId){
+        callback(gamePlayerId)
+    })
+    .fail(function(){
+        callback(error)
+    })
+}
+
+function joinInGame(gameId,callback){
+    $.post("/api/game/"+gameId+"/players")
+    .done(function(gamePlayerId){
+        callback(gamePlayerId)
+    })
+    .fail(function(){
+        callback(error)
+    })
+}

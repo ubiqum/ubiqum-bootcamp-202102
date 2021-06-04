@@ -23,10 +23,9 @@ body {
   border: black;
   border-style: double;
   width: 35rem;
-}
-
-.grid-container__cell {
-  background-color: white;
+  background-image: url("OwZ.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .grid-container__cell--ship {

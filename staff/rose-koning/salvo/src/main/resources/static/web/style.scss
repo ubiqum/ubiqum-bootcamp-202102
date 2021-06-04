@@ -15,9 +15,12 @@ body {
   border: black;
   border-style: double;
   width: 35rem;
+  background-image:url('OwZ.gif'); 
+  background-repeat:no-repeat; 
+  background-size:cover;
 
   &__cell {
-    background-color: white;
+    
   }
   
   &__cell--ship {
