@@ -28,6 +28,7 @@ class Game extends Component {
     handleSubmitGuess(charOrWord) {
         // TODO check char or word. if char check and show it in guessed array. if word check if matches the word in state.
         //const attemps = this.state.attemps
+        // const {state: {attemps}} = this
         // TODO learn js destructuring
 
 
@@ -65,7 +66,7 @@ class Game extends Component {
 
 
     handleGuessedWord(charOrWord) {
-        let { state: { word, attemps, correctAttemps,guessed } } = this
+         let { state: { word, attemps, correctAttemps,guessed } } = this
 
         if (charOrWord !== word) {
 
@@ -83,9 +84,6 @@ class Game extends Component {
             guessed = charOrWord
 
             this.setState({ attemps,correctAttemps,guessed }, () => { this.checkWinorLose() })
-
-            this.setState({ won: true })
-
 
         }
     }
