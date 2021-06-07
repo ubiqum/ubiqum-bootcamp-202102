@@ -164,9 +164,10 @@ const Games = {
       })
     },
     createNewGame(){
-      createGame((gamePlayerId, error) =>{
+      createGame((gamePlayerObjectId, error) =>{
         if(error) return alert(error)
 
+        var gamePlayerId = Object.values(gamePlayerObjectId);
         this.$router.push({ path: `/game/${gamePlayerId}` })
       })
     },
