@@ -26,6 +26,11 @@ class Game extends Component {
     }
 
     handleSubmitGuess(charOrWord) {
+        // TODO check char or word. if char check and show it in guessed array. if word check if matches the word in state.
+        //const attemps = this.state.attemps
+        // const {state: {attemps}} = this
+        // TODO learn js destructuring
+
 
         if (charOrWord.length === 1) {
             this.handleGuessedCharacter(charOrWord)
@@ -37,7 +42,7 @@ class Game extends Component {
 
 
     handleGuessedCharacter(charOrWord) { // use from state
-        let { state: { word, guessed, attemps, correctAttemps, won, lose } } = this
+        let { state: { word, guessed, attemps, correctAttemps } } = this
 
         guessed = [...guessed]
 
@@ -50,57 +55,48 @@ class Game extends Component {
 
             }
         }
-
         attemps++
 
-        if (attemps < MAX_ATTEMPS && correctAttemps === word.length) {
 
-            won = true
+        // TODO check lose or win here
 
-            lose = false
-        }
-
-        if (attemps === MAX_ATTEMPS) {
-            lose = true
-        }
-
-        this.setState({ guessed, attemps, correctAttemps, won, lose })
+        this.setState({ guessed, attemps, correctAttemps }, () => { this.checkWinOrLose() })
     }
 
 
     handleGuessedWord(charOrWord) {
-        let { state: { word, attemps, correctAttemps, guessed, won, lose } } = this
+        let { state: { word, attemps, correctAttemps, guessed } } = this
 
-        if (charOrWord !== word) {
+        if (charOrWord !== word) { 
 
             attemps++
 
-            if (attemps === MAX_ATTEMPS) {
+            this.setState({ attemps }, () => { this.checkWinOrLose() })
 
-                lose = true
-
-                won = false
-
-            }
-
-            this.setState({ attemps, lose, won })
         }
         if (charOrWord === word) {
 
-            won = true
-
-            lose = false
-
-            correctAttemps = word.length
-
             attemps++
+
+            correctAttemps++
 
             guessed = charOrWord
 
-            this.setState({ attemps, correctAttemps, guessed, won, lose })
+            this.setState({ attemps, correctAttemps, guessed }, () => { this.checkWinOrLose() })
 
         }
     }
+
+    checkWinOrLose() {
+
+        if (this.state.attemps < MAX_ATTEMPS && this.state.correctAttemps === this.state.word.length) {
+            this.setState({ won: true })
+        }
+        if (this.state.attemps === MAX_ATTEMPS) {
+            this.setState({ lose: true })
+        }
+    }
+
 
     handleSubmitRefresh() {
 
