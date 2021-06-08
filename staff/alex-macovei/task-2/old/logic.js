@@ -33,17 +33,42 @@ function retrieveMembersByParties(members, parties) {
     return filteredMembers
 }
 
+function retrieveMembersByPartysAndStates(members, parties, state){
+    if(parties==null){
+        var filteredMembersStates = members.filter(function (member) {
+            return state.includes(member.state)
+        })
+    
+        return filteredMembersStates
+    }
+    else if(state==null){
+        var filteredMembers = members.filter(function (member) {
+            return parties.includes(member.party)
+        })
+    
+        return filteredMembers
+    } else {
+        var filteredMembers = members.filter(function (member) {
+            return parties.includes(member.party)
+        })
+
+        var filteredMembers = members.filter(function (member) {
+            return state.includes(member.state)
+        })
+
+    }
+}
 /**
  * Retrieves members filtered by states
  * 
- * @param {Array} States The states to filter from
+ * @param {Array} State The states to filter from
  * 
  * @returns {Array} The filtered members
  */
-function retrieveMembersByStates(members, states) {
+function retrieveMembersByState(members, state) {
 
     var filteredMembersStates = members.filter(function (member) {
-        return states.includes(member.state)
+        return state.includes(member.state)
     })
 
     return filteredMembersStates
@@ -62,7 +87,6 @@ function retrieveStates(members) {
             states.push(members[i].state);
         }
     }
-
     return states.sort();
 }
 
@@ -270,6 +294,10 @@ function retrieveMemberVotesWithParty(member) {
     return Math.round(votesWithParty);
 }
 
+function prepareMembers(data, dataToChange){
+    dataToChange = data;
+}
 
-
-
+function prepareStates(members, states){
+    states = retrieveStates(members)
+}

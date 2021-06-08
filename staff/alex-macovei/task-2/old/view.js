@@ -1,91 +1,91 @@
 /**
  * Sets the table for member rendering
  */
-function setTable() {       
-    var table = document.getElementById("table");
+// function setTable() {       
+//     var table = document.getElementById("table");
 
-    table.innerHTML = ""
+//     table.innerHTML = ""
 
-    var thead = document.createElement("thead");
-    table.appendChild(thead);
+//     var thead = document.createElement("thead");
+//     table.appendChild(thead);
 
-    var trh = document.createElement("tr");
-    thead.appendChild(trh)
+//     var trh = document.createElement("tr");
+//     thead.appendChild(trh)
 
-    var thName = document.createElement("th");
-    trh.appendChild(thName);
-    thName.textContent = "Full Name";
+//     var thName = document.createElement("th");
+//     trh.appendChild(thName);
+//     thName.textContent = "Full Name";
 
-    var thParty = document.createElement("th");
-    trh.appendChild(thParty);
-    thParty.textContent = "Party Affilication";
+//     var thParty = document.createElement("th");
+//     trh.appendChild(thParty);
+//     thParty.textContent = "Party Affilication";
 
-    var thState = document.createElement("th");
-    trh.appendChild(thState);
-    thState.textContent = "State";
+//     var thState = document.createElement("th");
+//     trh.appendChild(thState);
+//     thState.textContent = "State";
 
-    var thSeniority = document.createElement("th");
-    trh.appendChild(thSeniority);
-    thSeniority.textContent = "Seniority";
+//     var thSeniority = document.createElement("th");
+//     trh.appendChild(thSeniority);
+//     thSeniority.textContent = "Seniority";
 
-    var thVotes = document.createElement("th");
-    trh.appendChild(thVotes);
-    thVotes.textContent = "Votes";
+//     var thVotes = document.createElement("th");
+//     trh.appendChild(thVotes);
+//     thVotes.textContent = "Votes";
 
-    thName.setAttribute("class", "text-center");
-    thParty.setAttribute("class", "text-center");
-    thState.setAttribute("class", "text-center");
-    thSeniority.setAttribute("class", "text-center");
-    thVotes.setAttribute("class", "text-center");
-}
+//     thName.setAttribute("class", "text-center");
+//     thParty.setAttribute("class", "text-center");
+//     thState.setAttribute("class", "text-center");
+//     thSeniority.setAttribute("class", "text-center");
+//     thVotes.setAttribute("class", "text-center");
+// }
 
 /**
  * Renders specified members in the table
  * 
  * @param {Array} members members to render
  */
-function renderCongressMembers(members) {     
-    setTable();
+// function renderCongressMembers(members) {     
+//     setTable();
 
-    var table = document.querySelector("table");
+//     var table = document.querySelector("table");
 
-    var tbody = document.createElement("tbody");
-    table.appendChild(tbody);
+//     var tbody = document.createElement("tbody");
+//     table.appendChild(tbody);
 
-    for (var i = 0; i < members.length; i++) {
-        var name = members[i].last_name + " " + (members[i].middle_name || "") + " " + members[i].first_name;
-        var tr = document.createElement("tr");
-        tbody.appendChild(tr)
-        var a = document.createElement('a');
-        a.setAttribute("href", members[i].url);
+//     for (var i = 0; i < members.length; i++) {
+//         var name = members[i].last_name + " " + (members[i].middle_name || "") + " " + members[i].first_name;
+//         var tr = document.createElement("tr");
+//         tbody.appendChild(tr)
+//         var a = document.createElement('a');
+//         a.setAttribute("href", members[i].url);
 
-        var td1 = document.createElement("td");
-        tr.appendChild(td1);
-        td1.appendChild(a);
-        a.innerHTML = name;
+//         var td1 = document.createElement("td");
+//         tr.appendChild(td1);
+//         td1.appendChild(a);
+//         a.innerHTML = name;
 
-        var td2 = document.createElement("td");
-        tr.appendChild(td2);
-        td2.textContent = members[i].party;
+//         var td2 = document.createElement("td");
+//         tr.appendChild(td2);
+//         td2.textContent = members[i].party;
 
-        var td3 = document.createElement("td");
-        tr.appendChild(td3);
-        td3.textContent = members[i].state;
+//         var td3 = document.createElement("td");
+//         tr.appendChild(td3);
+//         td3.textContent = members[i].state;
 
-        var td4 = document.createElement("td");
-        tr.appendChild(td4);
-        td4.textContent = members[i].seniority;
+//         var td4 = document.createElement("td");
+//         tr.appendChild(td4);
+//         td4.textContent = members[i].seniority;
 
-        var td5 = document.createElement("td");
-        tr.appendChild(td5);
-        td5.textContent = members[i].votes_with_party_pct + "%";
-    }
-}
+//         var td5 = document.createElement("td");
+//         tr.appendChild(td5);
+//         td5.textContent = members[i].votes_with_party_pct + "%";
+//     }
+// }
 
 /**
  * Checks filter checkboxes and executes the filter for the specific checkbox
  */
-function onCheckboxClicked(members) { 
+function onCheckboxClicked(members) {
     var parties = []
 
     if (republican.checked) parties.push('R')
@@ -178,7 +178,7 @@ function renderAtGlanceTable() {
  */
 function renderEngaged(members, tbody) {
     var tbody = document.getElementById(tbody);
-    
+
     for (var i = 0; i < members.length; i++) {
         var tr = document.createElement("tr");
         var tdn = document.createElement("td");
@@ -199,14 +199,14 @@ function renderEngaged(members, tbody) {
 /**
  * Renders table in attendance from most to least
  */
-function renderMostEngaged(members){
+function renderMostEngaged(members) {
     renderEngaged(members, "tbodyMostEngaged");
 }
 
 /**
  * Renders table in attendance from least to most
  */
-function renderLeastEngaged(members){
+function renderLeastEngaged(members) {
     renderEngaged(members, "tbodyLeastEngaged");
 }
 
