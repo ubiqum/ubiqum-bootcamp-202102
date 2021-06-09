@@ -99,3 +99,21 @@ function joinInGame(gameId,callback){
         callback(error)
     })
 }
+
+function setShips(gamePlayerId, ships, callback){
+    $.post("/games/players/"+gamePlayerId+"/ships)",{
+        ships
+    })
+    .done(getGameView(gamePlayerId,callback))
+    .fail(function(){
+        callback(error)
+    })
+}
+
+function selectCellForShip(cells, cell, ship) {
+    // TODO validate that this cell is selectable for the current ship
+    
+    cells.push(cell)
+
+    return cells
+}

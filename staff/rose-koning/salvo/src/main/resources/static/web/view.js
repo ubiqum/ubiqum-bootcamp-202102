@@ -198,8 +198,11 @@ const Game = {
       <template v-if="isShip(cell)">
         <div class="grid-container__cell--ship">{{cell}}</div>
       </template>
+      <template v-if="isSelected(cell)">
+        <div class="grid-container__cell--active">{{cell}}</div>
+      </template>
       <template v-else>
-        <div class="grid-container__cell">{{cell}}</div>
+        <div class="grid-container__cell" v-on:click="selectCell(cell)">{{cell}}</div>
       </template>
       </template>
     </div>
@@ -218,8 +221,17 @@ const Game = {
       </template>
     </div>
   </div>
-
   </div>
+
+  <div class="setShips">
+    <h3>Select your ship positions</h3>
+    <button v-on:click="selectShip('aircraftcarrier')" :class="myShips.aircraftcarrier? 'button__boat--active' : 'button__boat'" value="aircraftcarrier"><img src="aircraftcarrier.png" class="boat">Aircraftcarrier(5)</button>
+    <button v-on:click="selectShip('battleship')" :class="myShips.battleship? 'button__boat--active' : 'button__boat'" value="battleship"><img src="battleship.png" class="boat">Battleship(4)</button>
+    <button v-on:click="selectShip('submarine')" :class="myShips.submarine? 'button__boat--active' : 'button__boat'" value="submarine"><img src="submarine.png" class="boat">Submarine(3)</button>
+    <button v-on:click="selectShip('destoyer')" :class="myShips.destoyer? 'button__boat--active' : 'button__boat'" value="destroyer"><img src="destroyer.png" class="boat">Destroyer(3)</button>
+    <button v-on:click="selectShip('patrolboat')" :class="myShips.patrolboat? 'button__boat--active' : 'button__boat'" value="patrolboat"><img src="patrolboat.png" class="boat--patrol">Patrolboat(2)</button>
+  </div>
+
   </div>
 `,
   data() {
@@ -229,8 +241,18 @@ const Game = {
       ships: [],
       salvoes: [],
       currentPlayer: {},
-      opponent: {}
-    }
+      opponent: {},
+      isActive: false,
+      selectedCells:[],
+      selectedShip:{},
+      myShips:{
+        submarine:false,
+        aircraftcarrier:false,
+       battleship:false,
+        destroyer:false,
+        patrolboat:false
+      }
+         }
   },
   created() {
     this.fetchData()
@@ -261,6 +283,22 @@ const Game = {
     },
     isShip(location) {
       return isShipInLocation(this.ships, location)
+    },
+    selectCell(cell){
+      this.selectedCells = selectCell(this.selectedCells, cell)
+    },
+    isSelected(cell){
+      return isCellSelected(this.selectedCells, cell)
+    },
+    selectShip(ship){
+      this.selectedShip = ship;
+     var keys = Object.keys(this.myShips);
+     
+     keys.forEach(ship=>{
+       this.myShips[ship]=false;
+     })
+     
+      this.myShips[ship]=true;
     }
   }
 }
@@ -279,9 +317,18 @@ const router = new VueRouter({
 });
 
 function isSalvoInLocation(salvoes, location) {
+  if(salvoes != null){
   return salvoes.some(salvo => salvo.location.includes(location))
+  }
 }
 
 function isShipInLocation(ships, location) {
+  if (ships != null){
   return ships.some(ship => ship.location.includes(location))
+  }
 }
+
+function isCellSelected(cells, location){
+  return cells.includes(location);
+}
+

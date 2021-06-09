@@ -15,30 +15,37 @@ body {
   border: black;
   border-style: double;
   width: 35rem;
-  background-image:url('OwZ.gif'); 
-  background-repeat:no-repeat; 
-  background-size:cover;
+  background-image: url("OwZ.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
 
   &__cell {
-    
   }
-  
+
   &__cell--ship {
     background-color: rgb(13, 175, 162);
   }
-  
+
   &__cell--salvo {
     background-color: rgb(201, 96, 11);
   }
+  &__cell:hover {
+    background-color: rgb(19, 75, 70);
+    opacity: 0.5;
+  }
+  &__cell--active {
+    background-color: rgb(19, 75, 70);
+    opacity: 0.5;
+  }
 }
 
-.main-box{
+.main-box {
   border: rgb(78, 102, 150);
-  background-color:rgb(168, 183, 214) ;
+  background-color: rgb(168, 183, 214);
   border-style: solid;
 }
 
-.button{
+.button {
   background-color: #ddd;
   border: none;
   color: black;
@@ -48,13 +55,32 @@ body {
   display: inline-block;
   margin: 1px 1px;
   cursor: pointer;
-  border-radius: 16px;}
+  border-radius: 16px;
 
+  &__boat {
+    max-width: 8rem;
+    max-height: 4rem;
 
+    &--active {
+      border: orange;
+      border-style: double;
+      max-width: 8rem;
+    max-height: 4rem;
+    }
+  }
+}
+
+.boat {
+  max-width: 4rem;
+  max-height: 3rem;
+  &--patrol {
+    max-height: 1rem;
+  }
+}
 
 @media only screen and (min-width: 650px) {
-  
   .flex-container {
     flex-direction: row;
-  justify-content: space-around;}
+    justify-content: space-around;
   }
+}

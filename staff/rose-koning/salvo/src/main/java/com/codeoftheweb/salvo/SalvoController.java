@@ -208,6 +208,41 @@ public class SalvoController {
         return new ResponseEntity<>(makeMap("error", "user is not authorized for access"), HttpStatus.UNAUTHORIZED);
     }
 
+   @RequestMapping(value = "/api/games/players/{gamePlayerId}/ships", method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> setShips (@PathVariable Long gamePlayerId, @RequestBody Set<Ship>ships, Authentication authentication){
+
+
+        if(!isAuthenticated(authentication)){
+            return new ResponseEntity<>(makeMap("error", "Player is not logged in"), HttpStatus.UNAUTHORIZED);
+        }
+
+        Optional<GamePlayer> gamePlayer = gamePlayerRepository.findById(gamePlayerId);
+         Set<Ship> presentShips = gamePlayer.get().getShips();
+        if(presentShips.size() >5 ){
+           return new ResponseEntity<>(makeMap("error","Ships are already placed"),HttpStatus.FORBIDDEN);
+       }
+
+        String username = gamePlayer.get().getPlayer().getUsername();
+        if(username!= authentication.getName()){
+            return new ResponseEntity<>(makeMap("error","user not authorized"), HttpStatus.UNAUTHORIZED);
+        }
+
+        if(!gamePlayer.isPresent()){
+            return new ResponseEntity<>(makeMap("error","this gameplayer doens´t exist"), HttpStatus.UNAUTHORIZED);
+        }
+
+        Set<Ship> shipSet = new HashSet<Ship>(ships);
+        gamePlayer.get().setShips(shipSet);
+
+        shipSet.forEach(ship -> {
+            shipRepository.save(ship);
+        });
+
+        gamePlayerRepository.save(gamePlayer.get());
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     private Map<String, Object> makeMap(String key, Object value) {
         Map<String, Object> map = new HashMap<>();
         map.put(key, value);
