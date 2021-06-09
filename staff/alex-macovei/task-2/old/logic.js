@@ -260,7 +260,7 @@ function getTenPercent(members) {
 }
 
 /**
- * Finds the 10% lowest votes percentage, and includes members that are outside the 10% but have the same percentage as sombody in the 10%
+ * Finds the 10% lowest votes and includes members that are outside the 10% but have the same percentage as sombody in the 10%
  * 
  * @param {Array} members the members from which to take 10% of
  * 
@@ -284,7 +284,7 @@ function retrieveLowestPartyVotes(members) {
 /**
  * Calculates the votes to party from specific member
  * 
- * @param {Array} members the member to calculate from
+ * @param {Array} member the member to calculate from
  * 
  * @returns {int} returns the rounded calculated votes
  */

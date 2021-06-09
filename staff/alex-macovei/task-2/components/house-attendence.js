@@ -1,6 +1,6 @@
 const HouseAttendence = {
-    template: /*html*/ 
-    `<div>
+    template: /*html*/
+        `<div>
         <footer>
         <div class="row">
             <div class="col-sm-6">
@@ -25,27 +25,33 @@ const HouseAttendence = {
                     present) cast the tiebreaking vote.</p>
             </div>
             <div class="col-sm-6 text-right">
-                <h2>Senate at a glance</h2>
+                <h2>House at a glance</h2>
                 <table class="table text-center">
                     <thead>
                         <tr>
                             <th class="text-center">Party</th>
                             <th class="text-center">Number of Reps</th>
-                            <th class="text-center">% Voted with Prty</th>
+                            <th class="text-center">% Voted with Party</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr id="trDemocrat">
                             <td>Democrat</td>
+                            <td>{{numDemocrats}}</td>
+                            <td>{{democratsVotesParty}}</td>
                         </tr>
                         <tr id="trRepublican">
                             <td>Republican</td>
+                            <td>{{numRepublicans}}</td>
+                            <td>{{republicansVotesParty}}</td>
                         </tr>
                         <tr id="trIndependent">
                             <td>Independent</td>
+                            <td>{{numIndependents}}</td>
                         </tr>
                         <tr id="trTotal">
                             <td>Total</td>
+                            <td>{{numDemocrats+numRepublicans+numIndependents}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -62,7 +68,13 @@ const HouseAttendence = {
                             <th>% Missed</th>
                         </tr>
                     </thead>
-                    <tbody id="tbodyMostEngaged"></tbody>
+                    <tbody>
+                        <tr v-for="(member, key) in displayedMembersLeast">
+                            <td>{{member.first_name}} {{member.last_name}}</td>
+                            <td>{{member.missed_votes}}</td>
+                            <td>{{member.missed_votes_pct}}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="col-sm-6">
@@ -75,7 +87,13 @@ const HouseAttendence = {
                             <th>% Missed</th>
                         </tr>
                     </thead>
-                    <tbody id="tbodyLeastEngaged"></tbody>
+                    <tbody>
+                    <tr v-for="(member, key) in displayedMembersMost">
+                    <td>{{member.first_name}} {{member.last_name}}</td>
+                    <td>{{member.missed_votes}}</td>
+                    <td>{{member.missed_votes_pct}}</td>
+                    </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -88,14 +106,27 @@ const HouseAttendence = {
     data() {
         return {
             allMembers: [],
-            displayedMembers: [],
+            displayedMembersMost: [],
+            displayedMembersLeast: [],
+            numDemocrats: 0,
+            numRepublicans: 0,
+            numIndependents: 0,
+            democratsVotesParty: "",
+            republicansVotesParty: "",
         }
     },
     created() {
         retrieveHouseMembers(function (members) {
             this.allMembers = members;
-            this.displayedMembers = members;
             this.states = retrieveStates(members);
+            this.numDemocrats = retrieveMembersByParties(this.allMembers, ["D"]).length,
+            this.numRepublicans = retrieveMembersByParties(this.allMembers, ["R"]).length,
+            this.numIndependents = retrieveMembersByParties(this.allMembers, ["ID"]).length,
+            this.democratsVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(this.allMembers, ["D"]))) + "%",
+            this.republicansVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(this.allMembers, ["R"]))) + "%",
+            this.displayedMembersMost = getTenPercent(sortMemberByMissedVotes(this.allMembers))
+            this.displayedMembersLeast = getTenPercent(sortMemberByMissedVotesOposite(this.allMembers))
         }.bind(this))
+
     },
 }
