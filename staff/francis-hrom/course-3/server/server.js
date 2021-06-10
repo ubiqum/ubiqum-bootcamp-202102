@@ -1,3 +1,9 @@
+require("dotenv").config();
+
+const {
+  env: { PORT = 5000, MONGO_URI },
+} = process;
+
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
@@ -7,11 +13,10 @@ const cors = require("cors");
 const passport = require("passport");
 
 // Database connection
-const db = require("./keys").mongoURI;
 const mongoose = require("mongoose");
 
 mongoose
-  .connect(db, { useNewUrlParser: true, useCreateIndex: true })
+  .connect(MONGO_URI, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log("Connection to Mongo DB established"))
   .catch((err) => console.log(err));
 

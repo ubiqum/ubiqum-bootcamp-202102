@@ -3,13 +3,14 @@ const express = require("express");
 const router = express.Router();
 const cityModel = require("../model/cityModel");
 
+const retrieveAllCities = require("../logic/retrieveAllCities");
+
 /*get all cities*/
 router.get("/all", (req, res) => {
   // logic/retrieveAllCities.js (.spec.js)
-  cityModel
-    .find({})
-    .then((files) => {
-      res.send(files);
+  retrieveAllCities()
+    .then((cities) => {
+      res.send(cities);
     })
     .catch((err) => console.log(err));
 });

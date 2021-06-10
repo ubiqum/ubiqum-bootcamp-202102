@@ -2,46 +2,21 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import React from "react";
+
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 
 import HomeButton from "../components/HomeButton";
 
-// Login
+import { registerUser } from "../logic";
 
 const CreateAccount = (props) => {
-  /*   const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
- */
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (user) => {
-    fetch("http://localhost:5000/users/registration", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(user),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else if (response.status === 400) {
-          alert(
-            "User with this email already exist. Please login with that email or use another email."
-          );
-        } else {
-          throw new Error("Something went wrong");
-        }
-      })
+    registerUser(user)
       .then((responseJson) => {
-        //console.log("responseJson:");
-        //console.log(responseJson);
-        // add redirect after login
-        alert("New user created.");
+        alert("New user created."); // TODO create a feedback panel for errors, do not use the native alert modal window
         props.history.push("/login");
       })
       .catch((error) => {
@@ -49,11 +24,8 @@ const CreateAccount = (props) => {
       });
   };
 
-  // console.log(watch("name")); // watch input value by passing the name of it
-
   return (
     <div>
-      <h1>CreateAccount.js</h1>
       <Row>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group controlId="name">

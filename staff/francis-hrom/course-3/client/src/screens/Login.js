@@ -4,15 +4,13 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { connect, useDispatch } from "react-redux";
 
 import HomeButton from "../components/HomeButton";
 import { loginUser } from "../store/actions/authActions";
 import LogOut from "../components/LogOut";
-
-// Login
 
 const Login = (props) => {
   const auth = props.auth;
@@ -22,7 +20,6 @@ const Login = (props) => {
   const token = queryParams.get("token");
 
   useEffect(() => {
-    console.log(token);
     if (token) {
       localStorage.setItem("jwtToken", token);
       props.history.push("/cities");
@@ -35,30 +32,16 @@ const Login = (props) => {
     }
   }, [props.auth.isAuthenticated]);
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    //formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, watch } = useForm();
 
   const dispatch = useDispatch();
   const onSubmit = (user) => {
     dispatch(loginUser(user));
   };
 
-  /*   const handleClickLoginWithGoogle = () => {
-    console.log("CLICK");
-    dispatch(loginUserViaGoogle());
-  }; */
-
-  // console.log(watch("name")); // watch input value by passing the name of it
-
   return (
     <div>
-      <h1>Login.js</h1>
       <LogOut />
-      <h1>Auth: {auth.isAuthenticated ? "true" : "false"}</h1>
       {errors.length > 0 ? (
         <Alert variant="danger">
           {errors.emailnotfound} {errors.passwordincorrect}
@@ -69,11 +52,7 @@ const Login = (props) => {
       <Row>
         <Col>
           <a href="http://localhost:5000/users/login/google">
-            <Button
-              variant="primary"
-              type="submit"
-              /*     onClick={handleClickLoginWithGoogle} */
-            >
+            <Button variant="primary" type="submit">
               Login with Google
             </Button>
           </a>

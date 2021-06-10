@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -10,6 +10,8 @@ import Activity from "../components/Activity";
 import LogOut from "../components/LogOut";
 
 import { loadActivities } from "../store/reducers/itineraryReducer";
+
+import { retrieveFavoriteActivities } from "../logic";
 
 const Itinerary = (props) => {
   const { city } = useParams();
@@ -21,8 +23,7 @@ const Itinerary = (props) => {
   useEffect(() => {
     dispatch(loadActivities(city));
 
-    fetch(`http://localhost:5000/users/${props.userId}/get-favorite`)
-      .then((response) => response.text())
+    retrieveFavoriteActivities(props.userId)
       .then((result) => {
         setFavoriteActivities(result);
       })
@@ -33,7 +34,6 @@ const Itinerary = (props) => {
 
   return (
     <div>
-      <h1>Itinerary.js</h1>
       <LogOut />
       <h2>{city}</h2>
       <Row>

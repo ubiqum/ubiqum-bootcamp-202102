@@ -1,21 +1,22 @@
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
+import { authenticateUser } from "../../logic";
 
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
-// Register User
-export const registerUser = (userData, history) => (dispatch) => {
-  axios
-    .post("/api/users/register", userData)
-    .then((res) => history.push("/login")) // re-direct to login on successful register
-    .catch((err) =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data,
-      })
-    );
-};
+// // Register User
+// export const registerUser = (userData, history) => (dispatch) => {
+//   axios
+//     .post("/api/users/register", userData)
+//     .then((res) => history.push("/login")) // re-direct to login on successful register
+//     .catch((err) =>
+//       dispatch({
+//         type: GET_ERRORS,
+//         payload: err.response.data,
+//       })
+//     );
+// };
 
 /* export const loginUserViaGoogle = () => (dispatch) => {
   axios
@@ -45,13 +46,10 @@ export const registerUser = (userData, history) => (dispatch) => {
 
 // Login - get user token
 // with  (dispatch) =>  it does not work
-export const loginUser = (userData) => (dispatch) => {
-  axios
-    .post("http://localhost:5000/users/login", userData)
-    .then((res) => {
-      // Save to localStorage
+export const loginUser = (email, password) => (dispatch) => {
+  authenticateUser(email, password)
+    .then((token) => {
       // Set token to localStorage
-      const { token } = res.data;
       localStorage.setItem("jwtToken", token);
       // Set token to Auth header
       setAuthToken(token);

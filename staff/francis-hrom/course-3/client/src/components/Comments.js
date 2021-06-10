@@ -15,42 +15,44 @@ const Comments = (props) => {
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (comment) => {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    if (!props.user.id) {
+      alert("In order to comment, please log in.");
+    } else {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-    const urlencoded = new URLSearchParams();
-    urlencoded.append("activityId", props.activityId);
-    urlencoded.append("userId", props.user.id);
-    urlencoded.append("userName", props.user.name);
-    urlencoded.append("commentText", comment.commentText);
+      const urlencoded = new URLSearchParams();
+      urlencoded.append("activityId", props.activityId);
+      urlencoded.append("userId", props.user.id);
+      urlencoded.append("userName", props.user.name);
+      urlencoded.append("commentText", comment.commentText);
 
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: urlencoded,
-      redirect: "follow",
-    };
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: "follow",
+      };
 
-    fetch("http://localhost:5000/itineraries/add-comment", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+      fetch("http://localhost:5000/itineraries/add-comment", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
 
-    setComments([
-      ...comments,
-      {
-        userId: props.user.id,
-        userName: props.user.name,
-        commentText: comment.commentText,
-      },
-    ]);
-    reset();
+      setComments([
+        ...comments,
+        {
+          userId: props.user.id,
+          userName: props.user.name,
+          commentText: comment.commentText,
+        },
+      ]);
+      reset();
+    }
   };
 
   return (
     <div>
-      <h4>Comments.js</h4>
-      <h6>Comments:</h6>
       {comments.map((comment) => (
         <Comment
           comment={comment}

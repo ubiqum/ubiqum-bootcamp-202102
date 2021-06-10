@@ -1,13 +1,12 @@
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+
 import FavoriteButton from "../components/FavoriteButton";
 import Comments from "./Comments";
 
 const Activity = (props) => {
   return (
     <div>
-      <p>Activity.js</p>
-
       <Accordion defaultActiveKey="0">
         <Card>
           <Accordion.Toggle as={Card.Header} eventKey="1">

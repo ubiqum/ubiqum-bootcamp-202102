@@ -2,8 +2,30 @@
 
 exports[`landing component snapshot with Enzyme 1`] = `
 <div>
-  <h1>
-    Landing.js
-  </h1>
+  <Row
+    noGutters={false}
+  >
+    <Header />
+  </Row>
+  <Row
+    noGutters={false}
+  >
+    <Col>
+       
+    </Col>
+    <Col
+      xs={6}
+    >
+      <CityButton />
+    </Col>
+    <Col>
+       
+    </Col>
+  </Row>
+  <Row
+    noGutters={false}
+  >
+    <Footer />
+  </Row>
 </div>
 `;

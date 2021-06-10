@@ -2,15 +2,13 @@ import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import jwt_decode from "jwt-decode";
+
 import setAuthToken from "../utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "../store/actions/authActions";
 
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
-// change to LogInOut
-// save the JWT from server to localStorage
 
 const LogOut = (props) => {
   const dispatch = useDispatch();
@@ -27,7 +25,6 @@ const LogOut = (props) => {
       // Decode token and get user info and exp
       const decoded = jwt_decode(token);
       // Set user and isAuthenticated
-
       dispatch(setCurrentUser(decoded));
       //store.dispatch(setCurrentUser(decoded));
       // Check for expired token
@@ -35,9 +32,8 @@ const LogOut = (props) => {
       if (decoded.exp < currentTime) {
         // Logout user
         //  store.dispatch(logoutUser());
-
         dispatch(logoutUser());
-        // Redirect to login
+        // Redirect to login screen
         window.location.href = "./login";
       }
     }

@@ -5,10 +5,9 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CityButton from "../components/CityButton";
 
-export default function Landing() {
+const Landing = () => {
   return (
     <div>
-      <h1>Landing.js</h1>
       <Row>
         <Header />
       </Row>
@@ -24,4 +23,6 @@ export default function Landing() {
       </Row>
     </div>
   );
-}
+};
+
+export default Landing;

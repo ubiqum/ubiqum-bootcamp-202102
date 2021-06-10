@@ -12,10 +12,6 @@ const Comment = (props) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (comment) => {
-    console.log(props.activityId);
-    console.log(props.comment._id);
-    console.log(comment.commentText);
-
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
@@ -69,7 +65,6 @@ const Comment = (props) => {
 
   return (
     <div>
-      <h6>Comment.js</h6>
       {show ? (
         <p>
           <strong>{props.comment.userName}: </strong>
