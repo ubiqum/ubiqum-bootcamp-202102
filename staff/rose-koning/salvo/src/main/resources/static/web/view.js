@@ -145,11 +145,11 @@ const Games = {
 
       getGames(games => {
         games.forEach(game => {
-           const { gamePlayers } = game
+          const { gamePlayers } = game
 
-           gamePlayers.forEach(gamePlayer => {
-             gamePlayer.isMine = gamePlayer.player.username === username
-           })
+          gamePlayers.forEach(gamePlayer => {
+            gamePlayer.isMine = gamePlayer.player.username === username
+          })
         })
         this.games = games;
       })
@@ -163,17 +163,17 @@ const Games = {
         this.$router.push("home");
       })
     },
-    createNewGame(){
-      createGame((gamePlayerObjectId, error) =>{
-        if(error) return alert(error)
+    createNewGame() {
+      createGame((gamePlayerObjectId, error) => {
+        if (error) return alert(error)
 
         var gamePlayerId = Object.values(gamePlayerObjectId);
         this.$router.push({ path: `/game/${gamePlayerId}` })
       })
     },
-    joinGame(){
-      joinInGame((gamePlayerId,error) =>{
-        if(error) return alert(error)
+    joinGame() {
+      joinInGame((gamePlayerId, error) => {
+        if (error) return alert(error)
 
         this.$router.push({ path: `/game/${gamePlayerId}` })
       })
@@ -207,6 +207,7 @@ const Game = {
       </template>
     </div>
   </div>
+ 
 
   <div class="flex-container__item">
     <h2>Your salvoes</h2>
@@ -225,11 +226,15 @@ const Game = {
 
   <div class="setShips">
     <h3>Select your ship positions</h3>
-    <button v-on:click="selectShip('aircraftcarrier')" :class="myShips.aircraftcarrier? 'button__boat--active' : 'button__boat'" value="aircraftcarrier"><img src="aircraftcarrier.png" class="boat">Aircraftcarrier(5)</button>
-    <button v-on:click="selectShip('battleship')" :class="myShips.battleship? 'button__boat--active' : 'button__boat'" value="battleship"><img src="battleship.png" class="boat">Battleship(4)</button>
-    <button v-on:click="selectShip('submarine')" :class="myShips.submarine? 'button__boat--active' : 'button__boat'" value="submarine"><img src="submarine.png" class="boat">Submarine(3)</button>
-    <button v-on:click="selectShip('destoyer')" :class="myShips.destoyer? 'button__boat--active' : 'button__boat'" value="destroyer"><img src="destroyer.png" class="boat">Destroyer(3)</button>
-    <button v-on:click="selectShip('patrolboat')" :class="myShips.patrolboat? 'button__boat--active' : 'button__boat'" value="patrolboat"><img src="patrolboat.png" class="boat--patrol">Patrolboat(2)</button>
+    <button v-on:click="selectShip('aircraftcarrier',5)" :class="myShips.aircraftcarrier? 'button__boat--active' : 'button__boat'" value="aircraftcarrier"><img src="aircraftcarrier.png" class="boat">Aircraftcarrier(5)</button>
+    <button v-on:click="selectShip('battleship',4)" :class="myShips.battleship? 'button__boat--active' : 'button__boat'" value="battleship"><img src="battleship.png" class="boat">Battleship(4)</button>
+    <button v-on:click="selectShip('submarine',3)" :class="myShips.submarine? 'button__boat--active' : 'button__boat'" value="submarine"><img src="submarine.png" class="boat">Submarine(3)</button>
+    <button v-on:click="selectShip('destoyer',3)" :class="myShips.destoyer? 'button__boat--active' : 'button__boat'" value="destroyer"><img src="destroyer.png" class="boat">Destroyer(3)</button>
+    <button v-on:click="selectShip('patrolboat',2)" :class="myShips.patrolboat? 'button__boat--active' : 'button__boat'" value="patrolboat"><img src="patrolboat.png" class="boat--patrol">Patrolboat(2)</button>
+  </div>
+
+  <div v-if="error">
+  <h3 class="error">{{error}}</h3>
   </div>
 
   </div>
@@ -238,21 +243,27 @@ const Game = {
     return {
       cells: getCells(),
       gameData: {},
-      ships: [],
       salvoes: [],
       currentPlayer: {},
       opponent: {},
       isActive: false,
-      selectedCells:[],
-      selectedShip:{},
-      myShips:{
-        submarine:false,
-        aircraftcarrier:false,
-       battleship:false,
-        destroyer:false,
-        patrolboat:false
-      }
-         }
+      savedShips:{},
+      selectedCells: {
+        aircraftcarrier: [],
+        battleship: [],
+        submarine: [],
+        destroyer: [],
+        patrolboat: []
+      },
+      myShips: {
+        submarine: false,
+        aircraftcarrier: false,
+        battleship: false,
+        destroyer: false,
+        patrolboat: false
+      },
+      error: ""
+    }
   },
   created() {
     this.fetchData()
@@ -260,9 +271,9 @@ const Game = {
   methods: {
     fetchData() {
       var gamePlayerId = this.$route.params.gamePlayerId;
-      getGameView(gamePlayerId, function (game) {
+      getGameView(gamePlayerId, game => {
         this.gameData = game;
-        this.ships = game.ships;
+        this.savedShips = game.ships;
         this.salvoes = game.salvoes;
         this.gamePlayerId = gamePlayerId;
         const { gamePlayers } = game;
@@ -276,29 +287,41 @@ const Game = {
         }
         this.currentPlayer = currentPlayer;
         this.opponent = opponent;
-      }.bind(this))
+      })
+        .catch(error => {
+          this.$router.push({ path: `/login` })
+        })
     },
     isSalvo(location) {
       return isSalvoInLocation(this.salvoes, location)
     },
     isShip(location) {
-      return isShipInLocation(this.ships, location)
+      return isShipInLocation(this.savedShips, location)
     },
-    selectCell(cell){
-      this.selectedCells = selectCell(this.selectedCells, cell)
+    selectCell(cell) {
+        try {
+          this.selectedCells = selectCellsForShip(this.selectedCells, this.selectedShip, cell)
+        } catch (error) {
+          this.setError(error.message)
+      }
     },
-    isSelected(cell){
+    isSelected(cell) {
       return isCellSelected(this.selectedCells, cell)
     },
-    selectShip(ship){
-      this.selectedShip = ship;
-     var keys = Object.keys(this.myShips);
-     
-     keys.forEach(ship=>{
-       this.myShips[ship]=false;
-     })
-     
-      this.myShips[ship]=true;
+    selectShip(ship, length) {
+      this.setError(null)
+
+      this.selectedShip = { ship, length };
+      var keys = Object.keys(this.myShips);
+
+      keys.forEach(ship => {
+        this.myShips[ship] = false;
+      })
+
+      this.myShips[ship] = true;
+    },
+    setError(error) {
+      this.error = error;
     }
   }
 }
@@ -316,19 +339,5 @@ const router = new VueRouter({
   routes,
 });
 
-function isSalvoInLocation(salvoes, location) {
-  if(salvoes != null){
-  return salvoes.some(salvo => salvo.location.includes(location))
-  }
-}
 
-function isShipInLocation(ships, location) {
-  if (ships != null){
-  return ships.some(ship => ship.location.includes(location))
-  }
-}
-
-function isCellSelected(cells, location){
-  return cells.includes(location);
-}
 

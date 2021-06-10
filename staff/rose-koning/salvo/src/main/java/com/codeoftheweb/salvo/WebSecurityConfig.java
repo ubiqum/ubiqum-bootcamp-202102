@@ -47,6 +47,10 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // if logout is successful, just send a success response
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+
+        http.sessionManagement()
+                .maximumSessions(1)
+                .expiredUrl("/salvo.html?#/login");
     }
 
     private void clearAuthenticationAttributes(HttpServletRequest request) {

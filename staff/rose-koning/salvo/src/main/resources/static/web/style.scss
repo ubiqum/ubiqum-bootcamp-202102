@@ -19,9 +19,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 
-  &__cell {
-  }
-
   &__cell--ship {
     background-color: rgb(13, 175, 162);
   }
@@ -76,6 +73,10 @@ body {
   &--patrol {
     max-height: 1rem;
   }
+}
+
+.error {
+  color: red;
 }
 
 @media only screen and (min-width: 650px) {
