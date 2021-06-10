@@ -121,8 +121,8 @@ class Game extends Component {
                 <p>You have {MAX_ATTEMPS - attemps} tries.</p>
                 <p>You guessed {letters} Letters from {word.length}.</p>
             </div>}
-            {won && <div><p>you win!</p><form onSubmit={this.handleSubmitRefresh}><button>Restart the Game</button></form></div>}
-            {lose && <div><p>you lose!</p><form onSubmit={this.handleSubmitRefresh}><button>Restart the Game</button></form></div>}
+            {won && <div><p>you win!</p><button onClick={this.handleSubmitRefresh}>Restart the Game</button></div>}
+            {lose && <div><p>you lose!</p><button onClick={this.handleSubmitRefresh}>Restart the Game</button></div>}
         </div>
     }
 }
