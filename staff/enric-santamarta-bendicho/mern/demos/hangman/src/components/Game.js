@@ -8,7 +8,7 @@ class Game extends Component {
         super()
 
         this.state = {
-            correctAttemps: 0,
+            letters: 0,
             attemps: 0,
             word: null,
             guessed: [],
@@ -26,7 +26,7 @@ class Game extends Component {
     }
 
     handleSubmitGuess(charOrWord) {
-
+        //test if the user is trying to guess a word or just a letter from the word
         if (charOrWord.length === 1) {
             this.handleGuessedCharacter(charOrWord)
         } else {
@@ -37,7 +37,7 @@ class Game extends Component {
 
 
     handleGuessedCharacter(charOrWord) { // use from state
-        let { state: { word, guessed, attemps, correctAttemps, won, lose } } = this
+        let { state: { word, guessed, attemps, letters, won, lose } } = this
 
         guessed = [...guessed]
 
@@ -46,14 +46,14 @@ class Game extends Component {
 
                 guessed[i] = charOrWord
 
-                correctAttemps++
+                letters++
 
             }
         }
 
         attemps++
-
-        if (attemps < MAX_ATTEMPS && correctAttemps === word.length) {
+        //check if the user won or lose//
+        if (attemps < MAX_ATTEMPS && letters === word.length) {
 
             won = true
 
@@ -62,19 +62,21 @@ class Game extends Component {
 
         if (attemps === MAX_ATTEMPS) {
             lose = true
+
+            won = false
         }
 
-        this.setState({ guessed, attemps, correctAttemps, won, lose })
+        this.setState({ guessed, attemps, letters, won, lose })
     }
 
 
     handleGuessedWord(charOrWord) {
-        let { state: { word, attemps, correctAttemps, guessed, won, lose } } = this
+        let { state: { word, attemps, letters, guessed, won, lose } } = this
 
         if (charOrWord !== word) {
 
             attemps++
-
+            //check if the user won or lose//
             if (attemps === MAX_ATTEMPS) {
 
                 lose = true
@@ -86,30 +88,30 @@ class Game extends Component {
             this.setState({ attemps, lose, won })
         }
         if (charOrWord === word) {
-
+            //check if the user won or lose//
             won = true
 
             lose = false
 
-            correctAttemps = word.length
+            letters = word.length
 
             attemps++
 
             guessed = charOrWord
 
-            this.setState({ attemps, correctAttemps, guessed, won, lose })
+            this.setState({ attemps, letters, guessed, won, lose })
 
         }
     }
 
     handleSubmitRefresh() {
-
+        //start the game again
         this.setState({ word: null })
     }
 
 
     render() {
-        const { state: { word, guessed, won, lose, attemps, correctAttemps }, handleSubmitWord, handleSubmitGuess } = this
+        const { state: { word, guessed, won, lose, attemps, letters }, handleSubmitWord, handleSubmitGuess } = this
 
         return <div>
             {!word && <TextForm title="Enter a word" onSubmit={handleSubmitWord.bind(this)} />}
@@ -117,7 +119,7 @@ class Game extends Component {
                 {guessed}
                 <TextForm title="Guess a character or the word" onSubmit={handleSubmitGuess.bind(this)} />
                 <p>You have {MAX_ATTEMPS - attemps} tries.</p>
-                <p>You guessed {correctAttemps} Letters from {word.length}.</p>
+                <p>You guessed {letters} Letters from {word.length}.</p>
             </div>}
             {won && <div><p>you win!</p><form onSubmit={this.handleSubmitRefresh}><button>Restart the Game</button></form></div>}
             {lose && <div><p>you lose!</p><form onSubmit={this.handleSubmitRefresh}><button>Restart the Game</button></form></div>}
