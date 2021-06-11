@@ -5,6 +5,9 @@ body {
 .flex-container {
   display: flex;
   flex-direction: column;
+  &__ship-buttons{
+    display: inline-flex;
+  }
 }
 
 .grid-container {
@@ -36,6 +39,7 @@ body {
   }
 }
 
+
 .main-box {
   border: rgb(78, 102, 150);
   background-color: rgb(168, 183, 214);
@@ -63,6 +67,12 @@ body {
       border-style: double;
       max-width: 8rem;
     max-height: 4rem;
+    }
+    &--placed{
+      border:green;
+      border-style: double;
+      margin: 2px;
+      max-height: 2.6rem;
     }
   }
 }

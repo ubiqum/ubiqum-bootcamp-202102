@@ -107,18 +107,27 @@ function joinInGame(gameId, callback) {
 }
 
 function setShips(gamePlayerId, ships, callback) {
-    $.post("/games/players/" + gamePlayerId + "/ships)", {
-        ships
-    })
-        .done(getGameView(gamePlayerId, callback))
-        .fail(function () {
-            callback(error)
-        })
+    $.ajax({
+        type: "POST",
+        url: "/api/games/players/" + gamePlayerId + "/ships",
+        data: JSON.stringify(ships),
+        contentType: "application/json"
+})
+.done(function () {
+    callback()
+ })
+.fail(function (error) {
+    callback(error)
+ })
 }
 
 function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
     if (!selectedShip) {
         throw Error("select a ship first!");
+    }
+
+    if(selectedCell.length=== 1|| selectedCell === "10"){
+        throw Error("Not a valid cell!")
     }
 
     var shipLength = selectedShip.length;
@@ -162,6 +171,7 @@ function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
 
         var xLast = lastCell[0];//first letter
         var yLast = lastCell[1];//first number
+    
 
         if (xFirst === xLast) {
             if (xSelected === xLast) {
@@ -186,6 +196,7 @@ function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
     }
     if (selectedCell > firstCell) {
         //after
+      
         if (lastCell === firstCell) {
             cells.push(selectedCell);
             cells.sort();
@@ -199,6 +210,7 @@ function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
 
         var xLast = lastCell[0];//first letter
         var yLast = lastCell[1];//first number
+
 
         if (xFirst === xLast) {
             if (xSelected === xLast) {

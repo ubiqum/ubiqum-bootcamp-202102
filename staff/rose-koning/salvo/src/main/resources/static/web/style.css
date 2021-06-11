@@ -12,6 +12,12 @@ body {
           flex-direction: column;
 }
 
+.flex-container__ship-buttons {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
 .grid-container {
   display: -ms-grid;
   display: grid;
@@ -75,6 +81,13 @@ body {
   border-style: double;
   max-width: 8rem;
   max-height: 4rem;
+}
+
+.button__boat--placed {
+  border: green;
+  border-style: double;
+  margin: 2px;
+  max-height: 2.6rem;
 }
 
 .boat {

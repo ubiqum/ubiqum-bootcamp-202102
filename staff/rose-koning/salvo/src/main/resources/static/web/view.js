@@ -224,17 +224,31 @@ const Game = {
   </div>
   </div>
 
-  <div class="setShips">
+  <div class="flex-container__ship-buttons">
     <h3>Select your ship positions</h3>
-    <button v-on:click="selectShip('aircraftcarrier',5)" :class="myShips.aircraftcarrier? 'button__boat--active' : 'button__boat'" value="aircraftcarrier"><img src="aircraftcarrier.png" class="boat">Aircraftcarrier(5)</button>
-    <button v-on:click="selectShip('battleship',4)" :class="myShips.battleship? 'button__boat--active' : 'button__boat'" value="battleship"><img src="battleship.png" class="boat">Battleship(4)</button>
-    <button v-on:click="selectShip('submarine',3)" :class="myShips.submarine? 'button__boat--active' : 'button__boat'" value="submarine"><img src="submarine.png" class="boat">Submarine(3)</button>
-    <button v-on:click="selectShip('destoyer',3)" :class="myShips.destoyer? 'button__boat--active' : 'button__boat'" value="destroyer"><img src="destroyer.png" class="boat">Destroyer(3)</button>
-    <button v-on:click="selectShip('patrolboat',2)" :class="myShips.patrolboat? 'button__boat--active' : 'button__boat'" value="patrolboat"><img src="patrolboat.png" class="boat--patrol">Patrolboat(2)</button>
+    <div :class="maxLength('aircraftcarrier', 5)? 'button__boat--placed' : 'null'">
+      <button v-on:click="selectShip('aircraftcarrier',5)" :class="myShips.aircraftcarrier? 'button__boat--active' : 'button__boat'" value="aircraftcarrier"><img src="aircraftcarrier.png" class="boat">Aircraftcarrier(5)</button>
+    </div>
+    <div :class="maxLength('battleship', 4)? 'button__boat--placed' : 'null'">
+      <button v-on:click="selectShip('battleship',4)" :class="myShips.battleship? 'button__boat--active' : 'button__boat'" value="battleship"><img src="battleship.png" class="boat">Battleship(4)</button>
+    </div>
+    <div :class="maxLength('submarine', 3)? 'button__boat--placed' : 'null'">
+      <button v-on:click="selectShip('submarine',3)" :class="myShips.submarine? 'button__boat--active' : 'button__boat'" value="submarine"><img src="submarine.png" class="boat">Submarine(3)</button>
+    </div>
+    <div :class="maxLength('destroyer', 3)? 'button__boat--placed' : 'null'">
+      <button v-on:click="selectShip('destroyer',3)" :class="myShips.destroyer? 'button__boat--active' : 'button__boat'" value="destroyer"><img src="destroyer.png" class="boat">Destroyer(3)</button>
+    </div>
+    <div :class="maxLength('patrolboat', 2)? 'button__boat--placed' : 'null'">
+      <button v-on:click="selectShip('patrolboat',2)" :class="myShips.patrolboat? 'button__boat--active' : 'button__boat'" value="patrolboat"><img src="patrolboat.png" class="boat--patrol">Patrolboat(2)</button>
+    </div>
   </div>
 
   <div v-if="error">
   <h3 class="error">{{error}}</h3>
+  </div>
+  <div v-if="shipsPlaced()">
+    <h3>Do you want to permanently save your ships?</h3>
+    <button v-on:click="confirmShips">yes</button>
   </div>
 
   </div>
@@ -247,7 +261,7 @@ const Game = {
       currentPlayer: {},
       opponent: {},
       isActive: false,
-      savedShips:{},
+      savedShips: {},
       selectedCells: {
         aircraftcarrier: [],
         battleship: [],
@@ -256,6 +270,13 @@ const Game = {
         patrolboat: []
       },
       myShips: {
+        submarine: false,
+        aircraftcarrier: false,
+        battleship: false,
+        destroyer: false,
+        patrolboat: false
+      },
+      myPlacedShips: {
         submarine: false,
         aircraftcarrier: false,
         battleship: false,
@@ -299,10 +320,10 @@ const Game = {
       return isShipInLocation(this.savedShips, location)
     },
     selectCell(cell) {
-        try {
-          this.selectedCells = selectCellsForShip(this.selectedCells, this.selectedShip, cell)
-        } catch (error) {
-          this.setError(error.message)
+      try {
+        this.selectedCells = selectCellsForShip(this.selectedCells, this.selectedShip, cell)
+      } catch (error) {
+        this.setError(error.message)
       }
     },
     isSelected(cell) {
@@ -322,6 +343,33 @@ const Game = {
     },
     setError(error) {
       this.error = error;
+    },
+    maxLength(ship, size) {
+      selectedShip = this.selectedCells[ship];
+      if (selectedShip.length === size) {
+        this.myPlacedShips[ship] = true;
+        return true;
+      }
+    },
+    shipsPlaced() {
+      var keys = Object.keys(this.myPlacedShips);
+      var count = 0;
+      keys.forEach(ship => {
+        if (this.myPlacedShips[ship] != false) {
+          count++;
+        }
+      })
+      if (count === 5) {
+        return true;
+      }
+    },
+    confirmShips() {
+      var ships= [];
+      var keys = Object.keys(this.selectedCells)
+      ships.push("type":keys[0], "location":)
+      setShips(this.$route.params.gamePlayerId,ships, () => {
+        this.fetchData();
+      })
     }
   }
 }
