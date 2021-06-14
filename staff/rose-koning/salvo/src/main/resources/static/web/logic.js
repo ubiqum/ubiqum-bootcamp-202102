@@ -112,13 +112,13 @@ function setShips(gamePlayerId, ships, callback) {
         url: "/api/games/players/" + gamePlayerId + "/ships",
         data: JSON.stringify(ships),
         contentType: "application/json"
-})
-.done(function () {
-    callback()
- })
-.fail(function (error) {
-    callback(error)
- })
+    })
+        .done(function () {
+            callback()
+        })
+        .fail(function (error) {
+            callback(error)
+        })
 }
 
 function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
@@ -126,7 +126,7 @@ function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
         throw Error("select a ship first!");
     }
 
-    if(selectedCell.length=== 1|| selectedCell === "10"){
+    if (selectedCell.length === 1 || selectedCell === "10") {
         throw Error("Not a valid cell!")
     }
 
@@ -171,7 +171,7 @@ function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
 
         var xLast = lastCell[0];//first letter
         var yLast = lastCell[1];//first number
-    
+
 
         if (xFirst === xLast) {
             if (xSelected === xLast) {
@@ -185,7 +185,7 @@ function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
 
         if (yFirst === yLast) {
             if (ySelected === yLast) {
-                var previousLetter= rowToNumber.substring(rowToNumber.indexOf(xFirst)-1,rowToNumber.indexOf(xFirst));
+                var previousLetter = rowToNumber.substring(rowToNumber.indexOf(xFirst) - 1, rowToNumber.indexOf(xFirst));
                 if (previousLetter === xSelected) {
                     cells.push(selectedCell);
                     cells.sort();
@@ -196,7 +196,7 @@ function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
     }
     if (selectedCell > firstCell) {
         //after
-      
+
         if (lastCell === firstCell) {
             cells.push(selectedCell);
             cells.sort();
@@ -224,7 +224,7 @@ function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
 
         if (yFirst === yLast) {
             if (ySelected === yLast) {
-                var nextLetter= rowToNumber.substring(rowToNumber.indexOf(xSelected),rowToNumber.indexOf(xSelected)+1);
+                var nextLetter = rowToNumber.substring(rowToNumber.indexOf(xSelected), rowToNumber.indexOf(xSelected) + 1);
                 if (nextLetter === xSelected) {
                     cells.push(selectedCell);
                     cells.sort();
@@ -232,7 +232,7 @@ function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
                 }
             }
         }
-       
+
         else {
             throw Error("not a valid input cell");
         }
@@ -249,20 +249,22 @@ function isSalvoInLocation(salvoes, location) {
 }
 
 function isShipInLocation(ships, location) {
-    var keys = Object.keys(ships);
+    if (ships.length != null){
+        var keys = Object.keys(ships);
 
-    return keys.some(ship => {
-        if (ships[ship].includes(location)) {
-            return true;
-        }
-    })
+        return keys.some(ship => {
+            if (ships[ship].location.includes(location)) {
+                return true;
+            }
+        })
+    }
 }
 
 function isCellSelected(cells, location) {
     var keys = Object.keys(cells);
 
     return keys.some(ship => {
-        if (cells[ship].includes(location)) {
+        if (cells[ship] != null && cells[ship].includes(location)) {
             return true;
         }
     }

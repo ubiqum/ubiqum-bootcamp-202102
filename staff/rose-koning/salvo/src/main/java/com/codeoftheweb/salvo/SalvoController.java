@@ -235,6 +235,7 @@ public class SalvoController {
         gamePlayer.get().setShips(shipSet);
 
         shipSet.forEach(ship -> {
+            ship.setGamePlayer(gamePlayer.get());
             shipRepository.save(ship);
         });
 

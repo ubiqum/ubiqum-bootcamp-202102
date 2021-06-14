@@ -198,7 +198,7 @@ const Game = {
       <template v-if="isShip(cell)">
         <div class="grid-container__cell--ship">{{cell}}</div>
       </template>
-      <template v-if="isSelected(cell)">
+      <template v-else-if="isSelected(cell)">
         <div class="grid-container__cell--active">{{cell}}</div>
       </template>
       <template v-else>
@@ -365,9 +365,13 @@ const Game = {
     },
     confirmShips() {
       var ships= [];
-      var keys = Object.keys(this.selectedCells)
-      ships.push("type":keys[0], "location":)
-      setShips(this.$route.params.gamePlayerId,ships, () => {
+      var selectedShips = this.selectedCells
+      var keys = Object.keys(selectedShips)
+      for(var i = 0; i < keys.length; i++){
+        ships.push({"type": keys[i], "location":selectedShips[keys[i]]})
+      }
+
+      setShips(this.$route.params.gamePlayerId, ships, () => {
         this.fetchData();
       })
     }
