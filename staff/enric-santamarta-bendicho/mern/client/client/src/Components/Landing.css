@@ -1,0 +1,14 @@
+table {
+    margin-left: 30px;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    width: 80vw;
+}
+
+.text {
+    text-align: center;
+}

@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
-//import {button} from '@material-ui/core';
+
+
+
 
 class Landing extends Component {
     constructor() {
@@ -13,24 +22,46 @@ class Landing extends Component {
             appartmentName: [],
             appartmentPrice: [],
             appartmentAdress: [],
-            appartmentRanking: []
+            appartmentRanking: [],
+            
         }
     }
-    
+
+    retrieveHotelList() { }
+
+    retrieveAppartmentList() { }
+
     render() {
+
 
         const { state: { hotelAdress, hotelName, hotelPrice, hotelRanking, appartmentRanking, appartmentName, appartmentPrice, appartmentAdress } } = this
 
         return (<div><h2>Hotel List</h2>
-        <tr className="List"><th>Hotel Name </th><th>Hotel Adress </th><th>Hotel Price </th><th>Hotel Ranking </th></tr>
-        <tr><td>{hotelName}</td><td>{hotelAdress}</td><td>{hotelPrice}</td><td>{hotelRanking}</td></tr>
-        <h2>Appartment List</h2>
-        <tr className="List"><th>Appartment Name </th><th>Appartment Adress </th><th>Appartment Price </th><th>Appartment Ranking </th></tr>
-        <tr><td>{appartmentName}</td><td>{appartmentAdress}</td><td>{appartmentPrice}</td><td>{appartmentRanking}</td></tr></div>)
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow><TableCell align="center">Hotel Name </TableCell><TableCell align="center">Hotel Adress </TableCell><TableCell align="center">Hotel Price </TableCell><TableCell align="center">Hotel Ranking </TableCell></TableRow>
+                    </TableHead>
+                    <TableBody>
+                        <TableRow><TableCell align="center">{hotelName}</TableCell><TableCell align="center">{hotelAdress}</TableCell><TableCell align="center">{hotelPrice}</TableCell><TableCell align="center">{hotelRanking}</TableCell></TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <h2>Appartment List</h2>
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow><TableCell align="center">Appartment Name </TableCell><TableCell align="center">Appartment Adress </TableCell><TableCell align="center">Appartment Price </TableCell><TableCell align="center">Appartment Ranking </TableCell></TableRow>
+                    </TableHead>
+                    <TableBody>
+                        <TableRow><TableCell align="center">{appartmentName}</TableCell><TableCell align="center">{appartmentAdress}</TableCell><TableCell align="center">{appartmentPrice}</TableCell><TableCell align="center">{appartmentRanking}</TableCell></TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>)
     }
 
+
 }
-
-
 
 export default Landing
