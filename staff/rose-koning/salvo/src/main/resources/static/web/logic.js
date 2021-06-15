@@ -121,6 +121,21 @@ function setShips(gamePlayerId, ships, callback) {
         })
 }
 
+function setSalvoes(gamePlayerId, salvoes, callback){
+    $.ajax({
+        type: "POST",
+        url: "/api/games/players/" + gamePlayerId + "/salvoes",
+        data: JSON.stringify(salvoes),
+        contentType: "application/json"
+    })
+    .done(function(){
+        callback()
+    })
+    .fail(function(error){
+        callback(error)
+    })
+}
+
 function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
     if (!selectedShip) {
         throw Error("select a ship first!");
@@ -242,6 +257,25 @@ function selectCellsForShip(selectedCells, selectedShip, selectedCell) {
     return selectedCells
 }
 
+function selectCellsForSalvo(placedSalvoes, salvoSize, cell) {
+    if (cell.length === 1 || cell === "10") {
+        throw Error("Not a valid cell!")
+    }
+
+    placedSalvoes.forEach(salvo => {
+        if (salvo.location === cell) {
+            throw Error("shot already fired on this cell")
+        }
+    })
+
+
+    if (salvoSize > 2) {
+        throw Error("wait until next turn")
+    }
+
+    return cell;
+}
+
 function isSalvoInLocation(salvoes, location) {
     if (salvoes != null) {
         return salvoes.some(salvo => salvo.location.includes(location))
@@ -249,7 +283,7 @@ function isSalvoInLocation(salvoes, location) {
 }
 
 function isShipInLocation(ships, location) {
-    if (ships.length != null){
+    if (ships.length != null) {
         var keys = Object.keys(ships);
 
         return keys.some(ship => {
@@ -260,7 +294,7 @@ function isShipInLocation(ships, location) {
     }
 }
 
-function isCellSelected(cells, location) {
+function isShipCellSelected(cells, location) {
     var keys = Object.keys(cells);
 
     return keys.some(ship => {
@@ -269,5 +303,13 @@ function isCellSelected(cells, location) {
         }
     }
     )
+}
 
+function isSalvoCellSelected(cells,location){
+    var keys = Object.keys(cells);
+    return keys.some(salvo=>{
+        if(cells[salvo] !=null && cells[salvo]== location){
+            return true;
+        }
+    })
 }

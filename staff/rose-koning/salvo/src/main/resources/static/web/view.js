@@ -198,11 +198,11 @@ const Game = {
       <template v-if="isShip(cell)">
         <div class="grid-container__cell--ship">{{cell}}</div>
       </template>
-      <template v-else-if="isSelected(cell)">
+      <template v-else-if="isShipSelected(cell)">
         <div class="grid-container__cell--active">{{cell}}</div>
       </template>
       <template v-else>
-        <div class="grid-container__cell" v-on:click="selectCell(cell)">{{cell}}</div>
+        <div class="grid-container__cell" v-on:click="selectShipCell(cell)">{{cell}}</div>
       </template>
       </template>
     </div>
@@ -216,15 +216,18 @@ const Game = {
       <template v-if="isSalvo(cell)">
         <div class="grid-container__cell--salvo">{{cell}}</div>
       </template>
+      <template v-else-if="isSalvoSelected(cell)">
+      <div class="grid-container__cell--active">{{cell}}</div>
+    </template>
       <template v-else>
-        <div class="grid-container__cell">{{cell}}</div>
+        <div class="grid-container__cell" v-on:click ="selectSalvoCell(cell)">{{cell}}</div>
       </template>
       </template>
     </div>
   </div>
   </div>
 
-  <div class="flex-container__ship-buttons">
+  <div class="flex-container__ship-buttons" v-if="!shipsPlaced()">
     <h3>Select your ship positions</h3>
     <div :class="maxLength('aircraftcarrier', 5)? 'button__boat--placed' : 'null'">
       <button v-on:click="selectShip('aircraftcarrier',5)" :class="myShips.aircraftcarrier? 'button__boat--active' : 'button__boat'" value="aircraftcarrier"><img src="aircraftcarrier.png" class="boat">Aircraftcarrier(5)</button>
@@ -246,10 +249,17 @@ const Game = {
   <div v-if="error">
   <h3 class="error">{{error}}</h3>
   </div>
-  <div v-if="shipsPlaced()">
+  <div v-if="shipsPlaced()" id="shipSaveButton">
+  <template v-if="!shipSaveButton"> 
     <h3>Do you want to permanently save your ships?</h3>
     <button v-on:click="confirmShips">yes</button>
+    </template>
   </div>
+  <div v-if="salvoesPlaced()">
+  <h3>Do you want to fire these salvoes?</h3>
+  <button v-on:click="confirmSalvoes">yes</button>
+</div>
+  
 
   </div>
 `,
@@ -262,13 +272,16 @@ const Game = {
       opponent: {},
       isActive: false,
       savedShips: {},
-      selectedCells: {
+      selectedShipCells: {
         aircraftcarrier: [],
         battleship: [],
         submarine: [],
         destroyer: [],
         patrolboat: []
       },
+      selectedSalvoCells: [],
+      turnTracker: 1,
+      salvoSize: 0,
       myShips: {
         submarine: false,
         aircraftcarrier: false,
@@ -283,7 +296,8 @@ const Game = {
         destroyer: false,
         patrolboat: false
       },
-      error: ""
+      error: "",
+      shipSaveButton: false
     }
   },
   created() {
@@ -319,15 +333,15 @@ const Game = {
     isShip(location) {
       return isShipInLocation(this.savedShips, location)
     },
-    selectCell(cell) {
+    selectShipCell(cell) {
       try {
-        this.selectedCells = selectCellsForShip(this.selectedCells, this.selectedShip, cell)
+        this.selectedShipCells = selectCellsForShip(this.selectedShipCells, this.selectedShip, cell)
       } catch (error) {
         this.setError(error.message)
       }
     },
-    isSelected(cell) {
-      return isCellSelected(this.selectedCells, cell)
+    isShipSelected(cell) {
+      return isShipCellSelected(this.selectedShipCells, cell)
     },
     selectShip(ship, length) {
       this.setError(null)
@@ -341,11 +355,22 @@ const Game = {
 
       this.myShips[ship] = true;
     },
+    selectSalvoCell(cell) {
+      try {
+        this.salvoSize++;
+        this.selectedSalvoCells.push(selectCellsForSalvo(this.salvoes, this.salvoSize, cell))
+      } catch (error) {
+        this.setError(error.message)
+      }
+    },
+    isSalvoSelected(cell) {
+      return isSalvoCellSelected(this.selectedSalvoCells, cell);
+    },
     setError(error) {
       this.error = error;
     },
     maxLength(ship, size) {
-      selectedShip = this.selectedCells[ship];
+      selectedShip = this.selectedShipCells[ship];
       if (selectedShip.length === size) {
         this.myPlacedShips[ship] = true;
         return true;
@@ -361,23 +386,44 @@ const Game = {
       })
       if (count === 5) {
         return true;
+
       }
     },
+    salvoesPlaced() {
+      if (this.salvoSize === 2)
+        return true;
+    },
     confirmShips() {
-      var ships= [];
-      var selectedShips = this.selectedCells
+      this.shipSaveButton = true;
+      var ships = [];
+      var selectedShips = this.selectedShipCells
       var keys = Object.keys(selectedShips)
-      for(var i = 0; i < keys.length; i++){
-        ships.push({"type": keys[i], "location":selectedShips[keys[i]]})
+      for (var i = 0; i < keys.length; i++) {
+        ships.push({ "type": keys[i], "location": selectedShips[keys[i]] })
+      }
+      try {
+        setShips(this.$route.params.gamePlayerId, ships, () => {
+          this.fetchData();
+        })
+      } catch {
+        this.setError(error);
       }
 
-      setShips(this.$route.params.gamePlayerId, ships, () => {
-        this.fetchData();
-      })
+    },
+    confirmSalvoes() {
+
+
+      var salvoes = { "turnTracker": this.turnTracker, "location": this.selectedSalvoCells }
+      try {
+        setSalvoes(this.$route.params.gamePlayerId, salvoes, () => {
+          this.fetchData();
+        })
+      } catch (error) {
+        this.setError(error);
+      }
     }
   }
 }
-
 const routes = [
   { path: '/', redirect: '/home', component: Home },
   { path: "/home", component: Home },

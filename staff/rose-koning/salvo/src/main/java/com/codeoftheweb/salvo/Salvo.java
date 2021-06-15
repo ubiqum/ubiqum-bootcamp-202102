@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class Salvo {
@@ -38,7 +39,7 @@ public class Salvo {
         return gamePlayer;
     }
 
-    @JsonIgnore
+
     public List<String> getLocation() {
         return location;
     }
@@ -47,7 +48,7 @@ public class Salvo {
         this.location = location;
     }
 
-    @JsonIgnore
+
     public long getTurnTracker() {
         return turnTracker;
     }
@@ -55,4 +56,5 @@ public class Salvo {
     public void setTurnTracker(long turnTracker) {
         this.turnTracker = turnTracker;
     }
+
 }
