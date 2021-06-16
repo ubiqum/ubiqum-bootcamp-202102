@@ -81,14 +81,31 @@ const Game = {
       </thead>
       <tbody>
         <tr>
-          <td>turns</td>
+          <td>hits</td>
           <td>boats</td>
-          <td>left</td>
         </tr>
+        <tr v-for="(hit,key) in shotsAgainstPlayer.hits">
+          <template v-for="(location, key) in hit.hits">
+            <td>{{location}}</td>
+          </template>
+          <td>{{key}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        <th>Your hits on {{opponent}}</th>
+      </thead>
+      <tbody>
         <tr>
-          <td>1</td>
-          <td>boat</td>
-          <td>5</td>
+          <td>hits</td>
+          <td>boats</td>
+        </tr>
+        <tr v-for="(hit,key) in shotsFromPlayer.hits">
+          <template v-for="(location, key) in hit.hits">
+            <td>{{location}}</td>
+          </template>
+          <td>{{key}}</td>
         </tr>
       </tbody>
     </table>
@@ -129,7 +146,9 @@ const Game = {
           patrolboat: false
         },
         error: "",
-        shipSaveButton: false
+        shipSaveButton: false,
+        shotsFromPlayer:{},
+        shotsAgainstPlayer:{}
       }
     },
     created() {
@@ -154,6 +173,8 @@ const Game = {
           }
           this.currentPlayer = currentPlayer;
           this.opponent = opponent;
+          this.shotsFromPlayer = shots.shotsFromPlayer;
+          this.shotsAgainstPlayer= shots.shotsAgainstPlayer;
         })
           .catch(error => {
             this.$router.push({ path: `/login` })

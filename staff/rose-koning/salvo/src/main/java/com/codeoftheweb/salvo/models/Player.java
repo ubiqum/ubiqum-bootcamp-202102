@@ -55,9 +55,8 @@ import static java.util.stream.Collectors.toList;
     public void setScores(Set<Score> scores){
         this.scores = scores;
     }
-    public Set<Score> getScores(){
-        return scores;
-    }
+
+    public Set<Score> getScores(){return scores;}
 
     public void addScore(Score score){
         score.setPlayer(this);
