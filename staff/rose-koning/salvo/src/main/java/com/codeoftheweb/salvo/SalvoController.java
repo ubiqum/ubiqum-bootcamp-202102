@@ -1,5 +1,7 @@
 package com.codeoftheweb.salvo;
 
+import com.codeoftheweb.salvo.models.*;
+import com.codeoftheweb.salvo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -275,7 +277,7 @@ public class SalvoController {
         gamePlayer.get().addSalvo(salvo);
         salvo.setGamePlayer(gamePlayer.get());
         salvoRepository.save(salvo);
-        
+
         gamePlayerRepository.save(gamePlayer.get());
 
         return new ResponseEntity<>(HttpStatus.CREATED);

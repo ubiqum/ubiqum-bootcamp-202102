@@ -1,7 +1,4 @@
-new Vue({
-el:"#app",
-router,
-})
+new Vue(App)
 
 
 

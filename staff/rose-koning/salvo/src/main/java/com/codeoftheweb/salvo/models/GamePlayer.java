@@ -1,5 +1,4 @@
-package com.codeoftheweb.salvo;
-
+package com.codeoftheweb.salvo.models;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;

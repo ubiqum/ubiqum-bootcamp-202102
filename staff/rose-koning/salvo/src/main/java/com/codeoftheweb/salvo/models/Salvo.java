@@ -1,11 +1,10 @@
-package com.codeoftheweb.salvo;
+package com.codeoftheweb.salvo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Optional;
 
 @Entity
 public class Salvo {
