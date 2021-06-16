@@ -1,67 +1,69 @@
-import React, { Component } from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
+import { NavLink } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box'
+import Circle from './images/circled-right-2.png'
+import { MusicNoteSharp, AirplanemodeActiveSharp, RestaurantSharp, TrainSharp } from '@material-ui/icons';
+import Home from './images/homeIcon.png'
 
+const useStyles = makeStyles({
+  applogo: {
+    fontFamily: '"Helvetica Neue"',
+    fontDisplay: 'swap' ,
+    margin:'auto',
+    color:'white',
+    fontWeight:10000,
+    fontSize:70,
+    padding:20
+  
+  },
+  logo: {
+    width: 80
+  },
+  landing: {
+    minWidth: 800
+  },
+  bigbox:{
+    width: 1300,
+    margin: 'auto'
+  },
+  box: {
+    width: 650,
+    margin: 'auto'
+  },
+  footer:{
+    margin:'auto'
+  }
 
+});
 
+function Landing() {
 
+  const classes = useStyles();
 
-class Landing extends Component {
-    constructor() {
-        super()
-        this.state = {
-            hotelName: [],
-            hotelAdress: [],
-            hotelPrice: [],
-            hotelRanking: [],
-            appartmentName: [],
-            appartmentPrice: [],
-            appartmentAdress: [],
-            appartmentRanking: [],
-            
-        }
-    }
-
-    retrieveHotelList() { }
-
-    retrieveAppartmentList() { }
-
-    render() {
-
-
-        const { state: { hotelAdress, hotelName, hotelPrice, hotelRanking, appartmentRanking, appartmentName, appartmentPrice, appartmentAdress } } = this
-
-        return (<div><h2>Hotel List</h2>
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead>
-                        <TableRow><TableCell align="center">Hotel Name </TableCell><TableCell align="center">Hotel Adress </TableCell><TableCell align="center">Hotel Price </TableCell><TableCell align="center">Hotel Ranking </TableCell></TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <TableRow><TableCell align="center">{hotelName}</TableCell><TableCell align="center">{hotelAdress}</TableCell><TableCell align="center">{hotelPrice}</TableCell><TableCell align="center">{hotelRanking}</TableCell></TableRow>
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <h2>Appartment List</h2>
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead>
-                        <TableRow><TableCell align="center">Appartment Name </TableCell><TableCell align="center">Appartment Adress </TableCell><TableCell align="center">Appartment Price </TableCell><TableCell align="center">Appartment Ranking </TableCell></TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <TableRow><TableCell align="center">{appartmentName}</TableCell><TableCell align="center">{appartmentAdress}</TableCell><TableCell align="center">{appartmentPrice}</TableCell><TableCell align="center">{appartmentRanking}</TableCell></TableRow>
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </div>)
-    }
-
-
+  return (<div className={classes.landing}>
+    <Box bgcolor="success.main" borderRadius={40} className={classes.bigbox}>
+    <Box bgcolor="error.main" borderRadius={40} className={classes.box}>
+      <div>
+        <h1 className={classes.applogo}>MYtinerary</h1>
+        <MusicNoteSharp /> <AirplanemodeActiveSharp /> <RestaurantSharp /> <TrainSharp />
+      </div>
+      <p>Find your perfect trip, designed by insiders who know and love their cities.</p>
+      <h2>Start browsing</h2>
+      <div style={{ width: '100%' }}>
+        <NavLink to='/cities'><Button><img className={classes.logo} src={Circle} alt="Page Cities" /></Button></NavLink>
+      </div>
+      <div>
+        <p>Want to build your own MYtinerary?</p>
+        <Button>Log in</Button>
+        <Button>Create Account</Button>
+      </div>
+    </Box>
+      <footer className={classes.footer}>
+       <Button><img className={classes.logo} src={Home} alt="return home" /> </Button>
+      </footer>
+      </Box>
+  </div>)
 }
 
 export default Landing

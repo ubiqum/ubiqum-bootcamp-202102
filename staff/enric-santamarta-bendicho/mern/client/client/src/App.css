@@ -1,6 +1,12 @@
 .App {
   text-align: center;
   padding: 5vw;
+
+}
+
+.buttons{
+  display: inline;
+  margin-left: 3vw;
 }
 
 .inactive{
