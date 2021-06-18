@@ -45,6 +45,7 @@ const HouseLoyalty=  {
                 </table>
             </div>
             </div>
+            <h3 class="text-center" style="color: red" v-if="feedback">{{feedback}}</h3> 
             <div class="row">
                 <div class="col-sm-6">
                     <h2>Least Loyal (Bottom 10% of Party)</h2>
@@ -93,6 +94,7 @@ const HouseLoyalty=  {
     `,
     data() {
         return {
+            feedback: null,
             allMembers: [],
             mostLoyal: [],
             leastLoyal: [],
@@ -104,7 +106,10 @@ const HouseLoyalty=  {
         }
     },
     created() {
-        retrieveHouseMembers(function (members) {
+        retrieveHouseMembers(function (error, members) {
+            if (error)
+                return this.feedback = error.message
+                
             this.allMembers = members;
             this.states = retrieveStates(members);
             this.numDemocrats = retrieveMembersByParties(this.allMembers, ["D"]).length,

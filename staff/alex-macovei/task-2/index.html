@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+
 </head>
 
 <body>
@@ -23,6 +24,10 @@
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
 
+  <!-- local data -->
+  <script src="data/alabama-legislators.js"></script>
+  <script src="data/jurisdictions.js"></script>
+
   <!-- business logic -->
   <script src="logic/retrieve-senate-members.js"></script>
   <script src="logic/retrieve-house-members.js"></script>
@@ -37,6 +42,8 @@
   <script src="logic/retrieve-member-votes-with-party.js"></script>
   <script src="logic/sort-member-percentage.js"></script>
   <script src="logic/sort-member-percentage-oposite.js"></script>
+  <script src="logic/retrieve-legislators.js"></script>
+  <script src="logic/retrieve-jurisdictions.js"></script>
 
   <!-- more components here -->
   <script src="components/senate.js"></script>
@@ -46,10 +53,14 @@
   <script src="components/house-attendence.js"></script>
   <script src="components/senate-loyalty.js"></script>
   <script src="components/house-loyalty.js"></script>
+  <script src="components/jurisdiction-legislators.js"></script>
+
   <!-- main app -->
   <script src="components/app.js"></script>
 
+  <!-- vue mounter -->
   <script src="main.js"></script>
+
 </body>
 
 </html>

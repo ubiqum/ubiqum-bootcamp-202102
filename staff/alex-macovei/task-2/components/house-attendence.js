@@ -57,6 +57,7 @@ const HouseAttendence = {
                 </table>
             </div>
         </div>
+        <h3 class="text-center" style="color: red" v-if="feedback">{{feedback}}</h3> 
         <div class="row">
             <div class="col-sm-6">
                 <h2>Least Engaged (Bottom 10% Attendance)</h2>
@@ -105,6 +106,7 @@ const HouseAttendence = {
     `,
     data() {
         return {
+            feedback: null,
             allMembers: [],
             displayedMembersMost: [],
             displayedMembersLeast: [],
@@ -116,7 +118,10 @@ const HouseAttendence = {
         }
     },
     created() {
-        retrieveHouseMembers(function (members) {
+        retrieveHouseMembers(function (error, members) {
+            if (error)
+                return this.feedback = error.message
+
             this.allMembers = members;
             this.states = retrieveStates(members);
             this.numDemocrats = retrieveMembersByParties(this.allMembers, ["D"]).length,

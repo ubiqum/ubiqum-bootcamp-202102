@@ -5,7 +5,8 @@ const routes = [
   { path: "/senate-attendence", component: SenateAttendence },
   { path: "/house-attendence", component: HouseAttendence },
   { path: "/senate-loyalty", component: SenateLoyalty },
-  { path: "/house-loyalty", component: HouseLoyalty }
+  { path: "/house-loyalty", component: HouseLoyalty },
+  { path: "/state-legislatures", component: StateLegislatures }
 ]
 
 const router = new VueRouter({ routes })
@@ -48,6 +49,13 @@ const App = {
                   <ul class="dropdown-menu">
                     <li><router-link to="/senate-loyalty">Senate</router-link></li>
                     <li><router-link to="/house-loyalty">House</router-link></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Other
+                    <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                  <li><router-link to="/state-legislatures">State Legislatures</router-link></li>
                   </ul>
                 </li>
               </ul>

@@ -1,11 +1,11 @@
 const Senate = {
-    props: {
-        members: {
-            members: [],
-        }
-    },
-    template: /*html*/
-        `
+  props: {
+    members: {
+      members: [],
+    }
+  },
+  template: /*html*/
+    `
     <div class="container">
       <footer class="bg-light text-lg-start">
         <!--Table container-->
@@ -24,6 +24,7 @@ const Senate = {
               </p>
             </div>
           </div>
+          <h3 class="text-center" style="color: red" v-if="feedback">{{feedback}}</h3> 
           <div class="row">
             <div class="col-sm-8" style="z-index: 1;">
               <p>Filter by Party:
@@ -77,32 +78,36 @@ const Senate = {
     </div>
   
     `,
-    data() {
-      return {
-        allMembers: [],
-        displayedMembers: [],
-        checkedPartys: [],
-        states: [],
-        selectedState: ""
+  data() {
+    return {
+      feedback: null,
+      allMembers: [],
+      displayedMembers: [],
+      checkedPartys: [],
+      states: [],
+      selectedState: ""
 
     }
   },
-    created() {
-      retrieveSenateMembers(function (members) {
-        this.allMembers = members;
-        this.displayedMembers = members;
-        this.states = retrieveStates(members);
-      }.bind(this))
+  created() {
+    retrieveSenateMembers(function (error, members) {
+      if (error)
+        return this.feedback = error.message
+
+      this.allMembers = members;
+      this.displayedMembers = members;
+      this.states = retrieveStates(members);
+    }.bind(this))
+  },
+  methods: {
+    checkboxClicked() {
+      // this.displayedMembers = retrieveMembersByParties(this.allMembers, this.checkedPartys)
+      this.displayedMembers = retrieveMembersByPartiesAndState(this.allMembers, this.checkedPartys, this.selectedState)
     },
-    methods: {
-        checkboxClicked() {
-            this.displayedMembers=retrieveMembersByParties(this.allMembers, this.checkedPartys)
-            // this.displayedMembers=retrieveMembersByPartiesAndState(this.allMembers, this.checkedPartys, this.checkedPartys)
-        },
-        statesChanged(){
-            this.displayedMembers=retrieveMembersByState(this.allMembers, this.selectedState)
-            // this.displayedMembers=retrieveMembersByPartiesAndState(this.allMembers, this.checkedPartys, this.checkedPartys)
-        },
-    }
+    statesChanged() {
+      // this.displayedMembers = retrieveMembersByState(this.allMembers, this.selectedState)
+      this.displayedMembers = retrieveMembersByPartiesAndState(this.allMembers, this.checkedPartys, this.selectedState)
+    },
+  }
 
 }

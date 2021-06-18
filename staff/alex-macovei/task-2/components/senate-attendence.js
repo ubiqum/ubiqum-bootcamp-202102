@@ -1,6 +1,6 @@
 const SenateAttendence = {
-    template: /*html*/ 
-    `<div>
+    template: /*html*/
+        `<div>
     <footer>
     <div class="row">
         <div class="col-sm-6">
@@ -57,6 +57,7 @@ const SenateAttendence = {
             </table>
         </div>
     </div>
+    <h3 class="text-center" style="color: red" v-if="feedback">{{feedback}}</h3> 
     <div class="row">
         <div class="col-sm-6">
             <h2>Least Engaged (Bottom 10% Attendance)</h2>
@@ -105,6 +106,7 @@ const SenateAttendence = {
 `,
     data() {
         return {
+            feedback: null,
             allMembers: [],
             displayedMembersMost: [],
             displayedMembersLeast: [],
@@ -116,15 +118,18 @@ const SenateAttendence = {
         }
     },
     created() {
-        retrieveSenateMembers(function (members) {
+        retrieveSenateMembers(function (error, members) {
+            if (error)
+                return this.feedback = error.message
+
             this.allMembers = members;
             this.states = retrieveStates(members);
             this.numDemocrats = retrieveMembersByParties(this.allMembers, ["D"]).length,
-            this.numRepublicans = retrieveMembersByParties(this.allMembers, ["R"]).length,
-            this.numIndependents = retrieveMembersByParties(this.allMembers, ["ID"]).length,
-            this.democratsVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(this.allMembers, ["D"]))) + "%",
-            this.republicansVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(this.allMembers, ["R"]))) + "%",
-            this.displayedMembersMost = getTenPercent(sortMemberByMissedVotes(this.allMembers))
+                this.numRepublicans = retrieveMembersByParties(this.allMembers, ["R"]).length,
+                this.numIndependents = retrieveMembersByParties(this.allMembers, ["ID"]).length,
+                this.democratsVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(this.allMembers, ["D"]))) + "%",
+                this.republicansVotesParty = Math.round(calculateAverageVotes(retrieveMembersByParties(this.allMembers, ["R"]))) + "%",
+                this.displayedMembersMost = getTenPercent(sortMemberByMissedVotes(this.allMembers))
             this.displayedMembersLeast = getTenPercent(sortMemberByMissedVotesOposite(this.allMembers))
         }.bind(this))
     },

@@ -19,6 +19,7 @@ const House = {
                     every state is entitled to at least one representative. </p>
                 </div>
             </div>
+            <h3 class="text-center" style="color: red" v-if="feedback">{{feedback}}</h3> 
             <div class="row">
                 <div class="col-sm-8" style="z-index: 1;">
                 <p>Filter by Party:
@@ -69,6 +70,7 @@ const House = {
         </div>`,
     data() {
         return {
+            feedback: null,
             allMembers: [],
             displayedMembers: [],
             checkedParties: [],
@@ -78,7 +80,10 @@ const House = {
         }
     },
     created() {
-        retrieveHouseMembers(function (members) {
+        retrieveHouseMembers(function (error, members) {
+            if (error)
+                return this.feedback = error.message
+
             this.allMembers = members;
             this.displayedMembers = members;
             this.states = retrieveStates(members);
@@ -87,11 +92,11 @@ const House = {
     methods: {
         checkboxClicked() {
             // this.displayedMembers = retrieveMembersByParties(this.allMembers, this.checkedPartys)
-            this.displayedMembers=retrieveMembersByPartiesAndState(this.allMembers, this.checkedParties, this.selectedState)
+            this.displayedMembers = retrieveMembersByPartiesAndState(this.allMembers, this.checkedParties, this.selectedState)
         },
         statesChanged() {
             // this.displayedMembers = retrieveMembersByState(this.allMembers, this.selectedState)
-            this.displayedMembers=retrieveMembersByPartiesAndState(this.allMembers, this.checkedParties, this.selectedState)
+            this.displayedMembers = retrieveMembersByPartiesAndState(this.allMembers, this.checkedParties, this.selectedState)
         },
     }
 
