@@ -11,15 +11,21 @@ const Game = {
       <h2>Your ships</h2>
       <div class="grid-container" id="ships">
         <template v-for="(cell, key) in cells">
-        <template v-if="isShip(cell)">
-          <div class="grid-container__cell--ship">{{cell}}</div>
-        </template>
-        <template v-else-if="isShipSelected(cell)">
-          <div class="grid-container__cell--active">{{cell}}</div>
-        </template>
-        <template v-else>
-          <div class="grid-container__cell" v-on:click="selectShipCell(cell)">{{cell}}</div>
-        </template>
+          <template v-if="isShot(cell)">
+            <div class="grid-container__cell--shot">{{cell}}</div>
+          </template>
+          <template v-else-if="isMissedShot(cell)">
+            <div class="grid-container__cell--missed-shot">{{cell}}</div>
+          </template>
+          <template v-else-if="isShip(cell)">
+            <div class="grid-container__cell--ship">{{cell}}</div>
+          </template>
+          <template v-else-if="isShipSelected(cell)">
+            <div class="grid-container__cell--active">{{cell}}</div>
+          </template>
+          <template v-else>
+            <div class="grid-container__cell" v-on:click="selectShipCell(cell)">{{cell}}</div>
+          </template>
         </template>
       </div>
     </div>
@@ -29,15 +35,15 @@ const Game = {
       <h2>Your salvoes</h2>
       <div class="grid-container" id="salvoes">
         <template v-for="(cell, key) in cells">
-        <template v-if="isSalvo(cell)">
-          <div class="grid-container__cell--salvo">{{cell}}</div>
-        </template>
-        <template v-else-if="isSalvoSelected(cell)">
-        <div class="grid-container__cell--active">{{cell}}</div>
-      </template>
-        <template v-else>
-          <div class="grid-container__cell" v-on:click ="selectSalvoCell(cell)">{{cell}}</div>
-        </template>
+          <template v-if="isSalvo(cell)">
+            <div class="grid-container__cell--salvo">{{cell}}</div>
+          </template>
+          <template v-else-if="isSalvoSelected(cell)">
+            <div class="grid-container__cell--active">{{cell}}</div>
+          </template>
+          <template v-else>
+            <div class="grid-container__cell" v-on:click ="selectSalvoCell(cell)">{{cell}}</div>
+          </template>
         </template>
       </div>
     </div>
@@ -173,8 +179,8 @@ const Game = {
           }
           this.currentPlayer = currentPlayer;
           this.opponent = opponent;
-          this.shotsFromPlayer = shots.shotsFromPlayer;
-          this.shotsAgainstPlayer= shots.shotsAgainstPlayer;
+          this.shotsFromPlayer = game.hits.shotsFromPlayer;
+          this.shotsAgainstPlayer=game.hits.shotsAgainstPlayer;
         })
           .catch(error => {
             this.$router.push({ path: `/login` })
@@ -188,6 +194,7 @@ const Game = {
       },
       selectShipCell(cell) {
         try {
+          if(!this.shipsPlaced)
           this.selectedShipCells = selectCellsForShip(this.selectedShipCells, this.selectedShip, cell)
         } catch (error) {
           this.setError(error.message)
@@ -269,8 +276,6 @@ const Game = {
   
       },
       confirmSalvoes() {
-  
-  
         var salvoes = { "turnTracker": this.turnTracker, "location": this.selectedSalvoCells }
         try {
           setSalvoes(this.$route.params.gamePlayerId, salvoes, () => {
@@ -279,6 +284,12 @@ const Game = {
         } catch (error) {
           this.setError(error);
         }
+      },
+      isShot(cell){
+        isShipShot(cell, this.shotsAgainstPlayer)
+      },
+      isMissedShot(cell){
+        isMissedShipShot(cell,this.shotsAgainstPlayer)
       }
     }
   }

@@ -3,6 +3,7 @@ package com.codeoftheweb.salvo.logic;
 import com.codeoftheweb.salvo.models.*;
 import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
 import org.springframework.security.core.Authentication;
+import org.yaml.snakeyaml.util.ArrayUtils;
 
 import java.security.AccessControlException;
 import java.util.*;
@@ -38,8 +39,8 @@ public class GetGameView {
             long gameId = gamePlayer.get().getGame().getId();
 
             gameView.put("id", gameId);
-
             gameView.put("created", gamePlayer.get().getGame().getCreation());
+
 
             Set<GamePlayer> gamePlayers = gamePlayer.get().getGame().getGamePlayers();
             List<Map<String, Object>> gamePlayerList = gamePlayers.stream().map(gamePlayer1 -> {
@@ -52,26 +53,49 @@ public class GetGameView {
                 return gamePlayerInfo;
             }).collect(toList());
 
-
             gameView.put("gamePlayers", gamePlayerList);
+
+
+            GamePlayer opponent = game.getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1.getId() != gamePlayerId).findAny().orElse(null);
+            List<String> opponentSalvoes= new ArrayList<>();
+           opponent.getSalvoes().forEach(salvo->{
+               salvo.getLocation().forEach(location->opponentSalvoes.add(location));
+           });
 
             Set<Ship> ships = gamePlayer.get().getShips();
             List<Map<String, Object>> shipList = ships.stream().map(ship -> {
+                List<String> hits;
                 Map<String, Object> shipInfo = new TreeMap<>();
                 shipInfo.put("player", ship.getGamePlayer().getId());
                 shipInfo.put("type", ship.getType());
                 shipInfo.put("location", ship.getLocation());
+                hits = ship.getLocation().stream().filter(opponentSalvoes::contains).collect(toList());
+                shipInfo.put("hits", hits);
+                if(hits.size() == ship.getLocation().size()){
+                    shipInfo.put("sunk", true);
+                }
                 return shipInfo;
             }).collect(toList());
             gameView.put("ships", shipList);
 
             List<Salvo> salvoes = gamePlayer.get().getSalvoes();
-            List<Salvo> salvoes2 = new ArrayList<>();
-            salvoes.forEach(salvo -> {
-                if (!salvoes2.contains(salvo)) {
-                    salvoes2.add(salvo);
+            Set<Ship> opponentShips = opponent.getShips();
+            List<Map<String, Object>> opponentShipList = opponentShips.stream().map(ship -> {
+                List <String> hits = new ArrayList<>();
+                Map<String,Object> opppenentShipInfo = new TreeMap<>();
+                ship.getLocation().forEach(location->{
+                    salvoes.stream().filter(salvo -> salvo.getLocation().contains(location)).map(salvo -> location).forEach(hits::add);
+                });
+                opppenentShipInfo.put("hits", hits);
+
+                if(ship.getLocation().size()== hits.size()){
+                    opppenentShipInfo.put("type", ship.getType());
                 }
-            });
+                return opppenentShipInfo;
+            }).collect(toList());
+            gameView.put("opponentShips", opponentShipList);
+
+            List<Salvo> salvoes2 = salvoes.stream().distinct().collect(toList());
             List<Map<String, Object>> salvoList = salvoes2.stream().map(salvo -> {
                 Map<String, Object> salvoInfo = new TreeMap<>();
                 salvoInfo.put("turn", salvo.getTurnTracker());
@@ -80,6 +104,16 @@ public class GetGameView {
                 return salvoInfo;
             }).collect(toList());
             gameView.put("salvoes", salvoList);
+            ships.forEach(ship -> {
+                ship.getLocation().forEach(location -> {
+                    if (opponentSalvoes.contains(location)) {
+                        int locationToRemove = opponentSalvoes.indexOf(location);
+                        opponentSalvoes.remove(locationToRemove);
+                    }
+                });
+            });
+
+            gameView.put("missedShots", opponentSalvoes);
 
             Set<Score> scores = gamePlayer.get().getPlayer().getScores();
             Score playerScore = scores.stream().filter(score -> score.getGame().getId() == gameId).findAny().orElse(null);
@@ -88,72 +122,11 @@ public class GetGameView {
                 gameView.put("score", playerScore.getPoints());
             }
 
-            GamePlayer opponent = game.getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1.getId() != gamePlayerId).findAny().orElse(null);
-
-            List<Salvo> opponentSalvoes = opponent.getSalvoes();
-
-            Map<String, Object> hits = new TreeMap<>();
-            Map<String, Object> hitsPerShipPlayer = new TreeMap<>();
-            gamePlayer.get().getShips().forEach(ship -> {
-                List<String> shipLocationPlayer = ship.getLocation();
-                List<String> hitLocations = new ArrayList<>();
-                Map<String, Object> shipProfile = new TreeMap<>();
-                opponentSalvoes.forEach(salvo -> {
-                            shipLocationPlayer.forEach(location -> {
-                                if (salvo.getLocation().contains(location)) {
-                                    hitLocations.add(location);
-                                }
-                            });
-                            shipProfile.put("shipLocation", ship.getLocation());
-                            shipProfile.put("hits", hitLocations);
-
-
-                            if (hitLocations.size() == shipLocationPlayer.size()) {
-                                shipProfile.put("sunk", true);
-                            } else {
-                                shipProfile.put("sunk", false);
-                            }
-                            hitsPerShipPlayer.put((ship.getType()), shipProfile);
-                        }
-                );
-
-            });
-            hits.put("shotsAgainstPlayer", hitsPerShipPlayer);
-
-            Set<Ship> opponentShips = opponent.getShips();
-
-            Map<String, Object> hitsPerShipOpponent = new TreeMap<>();
-            opponentShips.forEach(ship -> {
-                List<String> shipLocationOpponent = ship.getLocation();
-                List<String> hitLocations = new ArrayList<>();
-                Map<String, Object> shipProfile = new TreeMap<>();
-                gamePlayer.get().getSalvoes().forEach(salvo -> {
-                    shipLocationOpponent.forEach(location -> {
-                        if (salvo.getLocation().contains(location)) {
-                            hitLocations.add(location);
-                        }
-                    });
-                    shipProfile.put("shipLocation", ship.getLocation());
-                    shipProfile.put("hits", hitLocations);
-
-
-                    if (hitLocations.size() == shipLocationOpponent.size()) {
-                        shipProfile.put("sunk", true);
-                    } else {
-                        shipProfile.put("sunk", false);
-                    }
-                    hitsPerShipOpponent.put((ship.getType()), shipProfile);
-                });
-            });
-        hits.put("shotsFromPlayer", hitsPerShipOpponent);
-
-        gameView.put("hits", hits);
-
-        return gameView;
-    }
+            return gameView;
+        }
 
         throw new
 
-    AccessControlException("Player is not authorized");
-}
+                AccessControlException("Player is not authorized");
+    }
 }

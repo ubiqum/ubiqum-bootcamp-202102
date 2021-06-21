@@ -29,7 +29,7 @@ body {
   border: black;
   border-style: double;
   width: 35rem;
-  background-image: url("OwZ.gif");
+  background-image: url("../images/OwZ.gif");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -50,6 +50,15 @@ body {
 .grid-container__cell--active {
   background-color: #134b46;
   opacity: 0.5;
+}
+
+.grid-container__cell--shot {
+  background-color: firebrick;
+  opacity: 0.5;
+}
+
+.grid-container__cell--missed-shot {
+  background-color: #09d6fa;
 }
 
 .main-box {

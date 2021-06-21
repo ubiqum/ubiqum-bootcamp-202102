@@ -18,7 +18,7 @@ body {
   border: black;
   border-style: double;
   width: 35rem;
-  background-image: url("OwZ.gif");
+  background-image: url("../images/OwZ.gif");
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -36,6 +36,13 @@ body {
   &__cell--active {
     background-color: rgb(19, 75, 70);
     opacity: 0.5;
+  }
+  &__cell--shot{
+    background-color: firebrick;
+    opacity: 0.5;
+  }
+  &__cell--missed-shot{
+    background-color: rgb(9, 214, 250);
   }
 }
 
