@@ -3,6 +3,7 @@ package com.codeoftheweb.salvo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -36,7 +37,7 @@ public class SalvoController {
 //        dto.put("creationDate", game.getCreationDate());
 //        return dto;
 //    }
-
+    @CrossOrigin(origins = "*")
     @RequestMapping("/api/games")
     public List<Object> getAllGames() {
         return gameRepository
