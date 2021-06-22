@@ -1,0 +1,22 @@
+CACHE MANIFEST
+
+js/config.js
+js/geolocation.js
+js/logic.js
+js/message.js
+js/scripts.js
+js/view.js
+js/dataInfo.json
+js/dataOct.json
+js/dataSept.json
+assets/img/location/school1.png
+assets/img/location/school2.jpg
+assets/img/location/school3.jpg
+assets/img/location/school4.jpg
+assets/img/location/school5.jpg
+assets/img/location/school6.jpg
+assets/img/apple-touch-icon-iphone.jpg
+assets/img/favicon.ico
+assets/img/nysl-logo.jpg
+css/style.css
+css/main.css

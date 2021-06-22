@@ -1,0 +1,60 @@
+{
+    "results": [
+        {
+            "OCTOBER": "Oct-06",
+            "Teams": "U2 and U5",
+            "Location": "Marjorie P Hart",
+            "Map": "http://bit.ly/3tKhBhD",
+            "Times": "9:30 a.m."
+        },
+        {
+            "OCTOBER": "Oct-06",
+            "Teams": "U1 and U6",
+            "Location": "South",
+            "Map": "http://bit.ly/3caHDov",
+            "Times": "1:00 p.m."
+        },
+        {
+            "OCTOBER": "Oct-13",
+            "Teams": "U3 and U4",
+            "Location": "Howard A Yeager",
+            "Map": "http://bit.ly/2PiHQwU",
+            "Times": "9:30 a.m"
+        },
+        {
+            "OCTOBER": "Oct-13",
+            "Teams": "U5 and U1",
+            "Location": "Greenbay",
+            "Map": "http://bit.ly/3cSaZqK",
+            "Times": "1:00 p.m"
+        },
+        {
+            "OCTOBER": "Oct-20",
+            "Teams": "U6 and U3",
+            "Location": "North",
+            "Map": "http://bit.ly/3vMmDvY",
+            "Times": "9:30 a.m."
+        },
+        {
+            "OCTOBER": "Oct-20",
+            "Teams": "U2 and U4",
+            "Location": "Marjorie P Hart",
+            "Map": "http://bit.ly/3tKhBhD",
+            "Times": "1:00 p.m"
+        },
+        {
+            "OCTOBER": "Oct-27",
+            "Teams": "U3 and U1",
+            "Location": "AJ Katzenmaier",
+            "Map": "http://bit.ly/3tP1YWr",
+            "Times": "9:30 a.m."
+        },
+        {
+            "OCTOBER": "Oct-27",
+            "Teams": "U5 and U6",
+            "Location": "Howard A Yeager",
+            "Map": "http://bit.ly/2PiHQwU",
+            "Times": "1:00 p.m"
+        }
+    ]
+}
