@@ -58,7 +58,8 @@ body {
 }
 
 .grid-container__cell--missed-shot {
-  background-color: #09d6fa;
+  background-image: url("../images/splash.png");
+  background-size: cover;
 }
 
 .main-box {

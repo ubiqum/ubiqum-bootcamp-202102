@@ -42,7 +42,8 @@ body {
     opacity: 0.5;
   }
   &__cell--missed-shot{
-    background-color: rgb(9, 214, 250);
+    background-image: url("../images/splash.png");
+    background-size: cover;
   }
 }
 

@@ -58,9 +58,11 @@ public class GetGameView {
 
             GamePlayer opponent = game.getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1.getId() != gamePlayerId).findAny().orElse(null);
             List<String> opponentSalvoes= new ArrayList<>();
-           opponent.getSalvoes().forEach(salvo->{
-               salvo.getLocation().forEach(location->opponentSalvoes.add(location));
-           });
+            if(opponent!=null) {
+                opponent.getSalvoes().forEach(salvo -> {
+                    salvo.getLocation().forEach(location -> opponentSalvoes.add(location));
+                });
+            }
 
             Set<Ship> ships = gamePlayer.get().getShips();
             List<Map<String, Object>> shipList = ships.stream().map(ship -> {
@@ -79,22 +81,23 @@ public class GetGameView {
             gameView.put("ships", shipList);
 
             List<Salvo> salvoes = gamePlayer.get().getSalvoes();
+            if (opponent != null){
             Set<Ship> opponentShips = opponent.getShips();
-            List<Map<String, Object>> opponentShipList = opponentShips.stream().map(ship -> {
-                List <String> hits = new ArrayList<>();
-                Map<String,Object> opppenentShipInfo = new TreeMap<>();
-                ship.getLocation().forEach(location->{
-                    salvoes.stream().filter(salvo -> salvo.getLocation().contains(location)).map(salvo -> location).forEach(hits::add);
-                });
-                opppenentShipInfo.put("hits", hits);
+                List<Map<String, Object>> opponentShipList = opponentShips.stream().map(ship -> {
+                    List<String> hits = new ArrayList<>();
+                    Map<String, Object> opppenentShipInfo = new TreeMap<>();
+                    ship.getLocation().forEach(location -> {
+                        salvoes.stream().filter(salvo -> salvo.getLocation().contains(location)).map(salvo -> location).forEach(hits::add);
+                    });
+                    opppenentShipInfo.put("hits", hits);
 
-                if(ship.getLocation().size()== hits.size()){
-                    opppenentShipInfo.put("type", ship.getType());
-                }
-                return opppenentShipInfo;
-            }).collect(toList());
-            gameView.put("opponentShips", opponentShipList);
-
+                    if (ship.getLocation().size() == hits.size()) {
+                        opppenentShipInfo.put("type", ship.getType());
+                    }
+                    return opppenentShipInfo;
+                }).collect(toList());
+                gameView.put("opponentShips", opponentShipList);
+            }
             List<Salvo> salvoes2 = salvoes.stream().distinct().collect(toList());
             List<Map<String, Object>> salvoList = salvoes2.stream().map(salvo -> {
                 Map<String, Object> salvoInfo = new TreeMap<>();

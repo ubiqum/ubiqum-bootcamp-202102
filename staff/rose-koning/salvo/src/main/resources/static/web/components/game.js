@@ -71,50 +71,14 @@ const Game = {
     <div v-if="error">
     <h3 class="error">{{error}}</h3>
     </div>
-    <div v-if="shipsPlaced()" id="shipSaveButton">
-    <template v-if="!shipSaveButton"> 
+    <div v-if="!shipsPlaced()">
       <h3>Do you want to permanently save your ships?</h3>
       <button v-on:click="confirmShips">yes</button>
-      </template>
     </div>
     <div v-if="salvoesPlaced()">
     <h3>Do you want to fire these salvoes?</h3>
     <button v-on:click="confirmSalvoes">yes</button>
   </div>
-    <table>
-      <thead>
-        <th>Hits on you</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>hits</td>
-          <td>boats</td>
-        </tr>
-        <tr v-for="(hit,key) in shotsAgainstPlayer.hits">
-          <template v-for="(location, key) in hit.hits">
-            <td>{{location}}</td>
-          </template>
-          <td>{{key}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <table>
-      <thead>
-        <th>Your hits on {{opponent}}</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>hits</td>
-          <td>boats</td>
-        </tr>
-        <tr v-for="(hit,key) in shotsFromPlayer.hits">
-          <template v-for="(location, key) in hit.hits">
-            <td>{{location}}</td>
-          </template>
-          <td>{{key}}</td>
-        </tr>
-      </tbody>
-    </table>
   
     </div>
   `,
@@ -153,8 +117,8 @@ const Game = {
         },
         error: "",
         shipSaveButton: false,
-        shotsFromPlayer:{},
-        shotsAgainstPlayer:{}
+        missedShots:{},
+        hits:{}
       }
     },
     created() {
@@ -179,8 +143,8 @@ const Game = {
           }
           this.currentPlayer = currentPlayer;
           this.opponent = opponent;
-          this.shotsFromPlayer = game.hits.shotsFromPlayer;
-          this.shotsAgainstPlayer=game.hits.shotsAgainstPlayer;
+         this.missedShots = game.missedShots;
+         this.hits = game.hits;
         })
           .catch(error => {
             this.$router.push({ path: `/login` })
@@ -286,10 +250,10 @@ const Game = {
         }
       },
       isShot(cell){
-        isShipShot(cell, this.shotsAgainstPlayer)
+        return isShipShot(cell, this.hits)
       },
       isMissedShot(cell){
-        isMissedShipShot(cell,this.shotsAgainstPlayer)
+       return isCellMissedShot(cell,this.missedShots)
       }
     }
   }
