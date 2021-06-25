@@ -16,15 +16,12 @@ public class Game {
     private long id;
     private Date creationDate;
 
-    @OneToMany(mappedBy="gameID", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="gameI", fetch=FetchType.EAGER)
     Set<GamePlayer> gamePlayers;
 
-    public Game() {
-        creationDate = new Date();
-    }
-
-    public Game(Date cDate) {
-        creationDate = cDate;
+    public Game() { creationDate = new Date();}
+    public Game(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public Long getId() {
@@ -34,10 +31,10 @@ public class Game {
         return creationDate;
     }
 
-    public void addGame(GamePlayer gamePlayer) {
-        gamePlayer.setGameID(this);
-        gamePlayers.add(gamePlayer);
-    }
+//    public void addGame(GamePlayer gamePlayer) {
+//        gamePlayer.setGameID(this);
+//        gamePlayers.add(gamePlayer);
+//    }
 
 //    public Map<String, Object> toDTO() {
 //        Map<String, Object> dto = new LinkedHashMap<String, Object>();

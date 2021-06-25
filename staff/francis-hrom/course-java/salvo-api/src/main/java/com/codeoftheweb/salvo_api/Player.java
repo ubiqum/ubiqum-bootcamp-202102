@@ -1,14 +1,9 @@
 package com.codeoftheweb.salvo_api;
 
 import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-import javax.persistence.FetchType;
+import javax.persistence.*;
 
-import javax.persistence.OneToMany;
 import java.util.Set;
 
 
@@ -18,36 +13,33 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
-
-    @OneToMany(mappedBy="playerID", fetch=FetchType.EAGER)
-    Set<GamePlayer> gamePlayers;
-
-
     private String userName;
 
-    public Player() { }
+    @OneToMany(mappedBy="playerI", fetch=FetchType.EAGER)
+    Set<GamePlayer> gamePlayers;
 
-    public Player(String uName) {
-        userName = uName;
+    public Player() { }
+    public Player(String userName) {
+        this.userName = userName;
     }
 
+   public Long getId() {
+        return id;
+    }
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String uName) {
-        this.userName = uName;
-    }
+//  public void setUserName(String uName) {
+//        this.userName = uName;
+//    }
+
+//    public void addGame(GamePlayer gamePlayer) {
+//        gamePlayer.setPlayerID(this);
+//        gamePlayers.add(gamePlayer);
+//    }
 
 
-    public void addGame(GamePlayer gamePlayer) {
-        gamePlayer.setPlayerID(this);
-        gamePlayers.add(gamePlayer);
-    }
-
-    public Long getId() {
-        return id;
-    }
 
 //    public List<Game> getGames() {
 //        return gamePlayers.stream().map(sub -> sub.getGame()).collect(toList());

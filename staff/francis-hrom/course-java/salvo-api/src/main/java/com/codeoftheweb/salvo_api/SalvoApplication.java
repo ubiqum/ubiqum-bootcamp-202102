@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Arrays;
 import java.util.Date;
 
 
@@ -16,43 +17,8 @@ public class SalvoApplication {
 		SpringApplication.run(SalvoApplication.class, args);
 	}
 
-//	@Bean
-//	public CommandLineRunner initData(PlayerRepository repository) {
-//		return (args) -> {
-//			repository.save(new Player("j.bauer@ctu.gov"));
-//			repository.save(new Player("c.obrian@ctu.gov"));
-//			repository.save(new Player("kim_bauer@gmail.com"));
-//			repository.save(new Player("t.almeida@ctu.gov"));
-//		};
-//	}
-//
-//	@Bean
-//	public CommandLineRunner initData(GameRepository repository) {
-//		return (args) -> {
-//			repository.save(new Game());
-//			Date date = new Date();
-//			Date newDate1h = Date.from(date.toInstant().plusSeconds(3600));
-//			repository.save(new Game(newDate1h));
-//			Date newDate3h = Date.from(date.toInstant().plusSeconds(3600*3));
-//			repository.save(new Game(newDate3h));
-//		};
-//	}
-
-//	@Bean
-//	public CommandLineRunner initData(GamePlayerRepository repository) {
-//		return (args) -> {
-//			repository.save(new GamePlayer(new Player("j.bauer@ctu.gov"),new Game()));
-////			repository.save(new GamePlayer(new Player("j.bauer@ctu.gov"),new Game()));
-////			repository.save(new GamePlayer(new Player("c.obrian@ctu.gov"),new Game()));
-////			repository.save(new GamePlayer(new Player("kim_bauer@gmail.com"),new Game()));
-////			repository.save(new GamePlayer(new Player("t.almeida@ctu.gov"),new Game()));
-//
-//		};
-//	}
-
-
 	@Bean
-	public CommandLineRunner initData(PlayerRepository playerRepository, GameRepository gameRepository, GamePlayerRepository gamePlayerRepository) {
+	public CommandLineRunner initData(PlayerRepository playerRepository, GameRepository gameRepository, GamePlayerRepository gamePlayerRepository, ShipRepository shipRepository) {
 		return (args) -> {
 			Player p1 = new Player("j.bauer@ctu.gov");
 			Player p2 = new Player("c.obrian@ctu.gov");
@@ -77,14 +43,23 @@ public class SalvoApplication {
 			gameRepository.save(g3);
 
 
-			GamePlayer gp1 = new GamePlayer(p1, g1);
-			GamePlayer gp2 = new GamePlayer(p2, g1);
+			GamePlayer gp1 = new GamePlayer(p2, g1);
+			GamePlayer gp2 = new GamePlayer(p1, g1);
 			GamePlayer gp3 = new GamePlayer(p1, g2);
-
 
 			gamePlayerRepository.save(gp1);
 			gamePlayerRepository.save(gp2);
 			gamePlayerRepository.save(gp3);
+
+			Ship s1 = new Ship("Destroyer",gp1, Arrays.asList("H2", "H3", "H4"));
+			Ship s2 = new Ship("Submarine",gp1, Arrays.asList("E1", "F1", "G1"));
+			Ship s3 = new Ship("Patrol Boat",gp1, Arrays.asList("B4", "B5"));
+			Ship s4 = new Ship("Destroyer",gp2, Arrays.asList("B5", "C5", "D5"));
+
+			shipRepository.save(s1);
+			shipRepository.save(s2);
+			shipRepository.save(s3);
+			shipRepository.save(s4);
 
 		};
 	}

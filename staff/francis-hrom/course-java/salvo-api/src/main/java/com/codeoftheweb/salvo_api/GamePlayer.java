@@ -1,16 +1,10 @@
 package com.codeoftheweb.salvo_api;
 
 import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Date;
-
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import java.util.Set;
 
 
 @Entity
@@ -23,40 +17,51 @@ public class GamePlayer {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="player_id")
-    private Player playerID;
+    private Player playerI;
+    // investigate - when using just "player" it does not work
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="game_id")
-    private Game gameID;
+    private Game gameI;
+
+    @OneToMany(mappedBy="gamePlayerI", fetch=FetchType.EAGER)
+    Set<Ship> ships;
 
     public GamePlayer() { }
 
-    public GamePlayer(Player playerID, Game gameID) {
-        this.playerID = playerID;
-        this.gameID = gameID;
+    public GamePlayer(Player player, Game game) {
+        this.playerI = player;
+        this.gameI = game;
         this.joinDate = new Date();
-    }
-
-    public Player getPlayer() {
-        return playerID;
-    }
-
-    public void setPlayerID(Player playerID) {
-        this.playerID = playerID;
-    }
-
-    public Game getGame() {
-        return gameID;
-    }
-
-    public void setGameID(Game gameID) {
-        this.gameID = gameID;
     }
 
     public Long getId() {
         return id;
     }
+    public Game getGame() {
+        return gameI;
+    }
+    public Player getPlayer() { return playerI; }
+    public Date getJoinDate() { return joinDate; }
 
+
+
+
+
+//    public void setPlayerID(Player playerID) {
+//        this.playerID = playerID;
+//    }
+//    public void setGameID(Game gameID) {
+//        this.gameID = gameID;
+//    }
+//    public void addShip(Ship ship) {
+//        ship.setGamePlayer(this);
+//        ships.add(ship);
+//    }
+
+//    public Ship getShip() {
+//        return ship;
+//    }
 
 //    public GamePlayer(Date joinDateP) {
 //        joinDate = joinDateP;
