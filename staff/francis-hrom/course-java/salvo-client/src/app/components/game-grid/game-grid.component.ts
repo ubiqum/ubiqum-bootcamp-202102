@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { GameViewService } from '../../services/game-view.service';
 
 import { Square, GameView } from 'src/app/models';
@@ -16,20 +17,26 @@ export class GameGridComponent implements OnInit {
   gameView: GameView;
   userPlayer: string;
   opponent: string;
+  locationMap: { [key: string]: number } = {};
+  gamePlayerId: string = '';
 
-  constructor(private gameViewService: GameViewService) {}
+  constructor(
+    private gameViewService: GameViewService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.renderEmptyGrid();
-    this.gameViewService.getGameView('1').subscribe((gameView) => {
-      this.gameView = gameView;
-      this.newGame();
-    });
+    this.gamePlayerId = this.route.snapshot.paramMap.get('id') || '';
+    this.gameViewService
+      .getGameView(this.gamePlayerId)
+      .subscribe((gameView) => {
+        this.gameView = gameView;
+        this.newGame();
+      });
   }
 
   newGame() {
-    console.log('NEW GAME');
-    console.log(this.gameView);
     this.userPlayer = this.gameView.player.email;
     // ? improvements -> get opponent directly from API
     if (this.gameView.gamePlayers.length > 1) {
@@ -46,21 +53,15 @@ export class GameGridComponent implements OnInit {
     }
 
     for (let ship of this.gameView.ships) {
-      console.log(ship);
       for (let location of ship.locations) {
-        console.log(location);
-        for (let i = 0; i < this.squares.length; i++) {
-          if (this.squares[i].location === location) {
-            console.log('MATCH');
-            this.squares[i].type = 'ship';
-          }
-        }
+        this.setSquareType(location, 'ship');
       }
     }
   }
 
-  renderShipSquare(location: string) {
-    console.log(location);
+  setSquareType(location: string, type: string) {
+    const idx = this.locationMap[location];
+    this.squares[idx].type = type;
   }
 
   renderEmptyGrid() {
@@ -80,11 +81,15 @@ export class GameGridComponent implements OnInit {
         location: '',
       };
       for (let j = 1; j < 11; j++) {
-        this.squares[i * 11 + j] = {
+        const arrIdx = i * 11 + j;
+        const location = letter.concat(j.toString());
+        this.squares[arrIdx] = {
           value: '',
           type: 'water',
-          location: letter.concat(j.toString()),
+          location: location,
         };
+
+        this.locationMap[location] = arrIdx;
       }
     }
   }
