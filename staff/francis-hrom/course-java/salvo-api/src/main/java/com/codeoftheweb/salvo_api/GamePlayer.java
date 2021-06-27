@@ -18,7 +18,7 @@ public class GamePlayer {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="player_id")
     private Player playerI;
-    // investigate - when using just "player" it does not work
+    // investigate - why using just "player" it does not work
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="game_id")
@@ -26,6 +26,9 @@ public class GamePlayer {
 
     @OneToMany(mappedBy="gamePlayerI", fetch=FetchType.EAGER)
     Set<Ship> ships;
+
+    @OneToMany(mappedBy="gamePlayerI", fetch=FetchType.EAGER)
+    Set<Salvo> salvoes;
 
     public GamePlayer() { }
 
@@ -43,32 +46,5 @@ public class GamePlayer {
     }
     public Player getPlayer() { return playerI; }
     public Date getJoinDate() { return joinDate; }
-
-
-
-
-
-//    public void setPlayerID(Player playerID) {
-//        this.playerID = playerID;
-//    }
-//    public void setGameID(Game gameID) {
-//        this.gameID = gameID;
-//    }
-//    public void addShip(Ship ship) {
-//        ship.setGamePlayer(this);
-//        ships.add(ship);
-//    }
-
-//    public Ship getShip() {
-//        return ship;
-//    }
-
-//    public GamePlayer(Date joinDateP) {
-//        joinDate = joinDateP;
-//    }
-//
-//    public Date getJoinDate() {
-//        return joinDate;
-//    }
 
 }

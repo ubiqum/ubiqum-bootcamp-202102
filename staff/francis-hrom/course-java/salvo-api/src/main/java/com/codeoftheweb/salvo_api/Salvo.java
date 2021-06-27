@@ -7,27 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Ship {
+public class Salvo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
-    private String type;
-    //change for better performance to private Integer type;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="gamePlayer_id")
     private GamePlayer gamePlayerI;
+
+    private Integer turn;
 
     @ElementCollection
     @Column(name="location")
     private List<String> locations = new ArrayList<>();
 
-    public Ship() { }
+    public Salvo() { }
 
-    public Ship(String type,GamePlayer gamePlayer, List<String> locations) {
-        this.type = type;
+    public Salvo(Integer turn,GamePlayer gamePlayer, List<String> locations) {
+        this.turn = turn;
         this.gamePlayerI = gamePlayer;
         this.locations = locations;
     }
@@ -35,11 +34,14 @@ public class Ship {
     public Long getId() {
         return id;
     }
-    public String getType() {
-        return type;
+    public Integer getTurn() {
+        return turn;
     }
     public GamePlayer getGamePlayer() {
         return gamePlayerI;
+    }
+    public Long getGamePlayerId() {
+        return gamePlayerI.getId();
     }
     public List<String> getLocations() { return locations; }
 

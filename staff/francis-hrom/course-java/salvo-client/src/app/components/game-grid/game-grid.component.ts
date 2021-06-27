@@ -26,8 +26,9 @@ export class GameGridComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // show empty game grid as game loads, so user see something as soon as possible
     this.renderEmptyGrid();
-    this.gamePlayerId = this.route.snapshot.paramMap.get('id') || '';
+    this.setGamePlayerId();
     this.gameViewService
       .getGameView(this.gamePlayerId)
       .subscribe((gameView) => {
@@ -37,8 +38,21 @@ export class GameGridComponent implements OnInit {
   }
 
   newGame() {
-    this.userPlayer = this.gameView.player.email;
+    this.setUserPlayer();
     // ? improvements -> get opponent directly from API
+    this.setOpponent();
+    this.setShips();
+  }
+
+  setGamePlayerId() {
+    this.gamePlayerId = this.route.snapshot.paramMap.get('id') || '';
+  }
+
+  setUserPlayer() {
+    this.userPlayer = this.gameView.player.email;
+  }
+
+  setOpponent() {
     if (this.gameView.gamePlayers.length > 1) {
       if (
         this.gameView.gamePlayers[0].player.email !== this.gameView.player.email
@@ -51,7 +65,9 @@ export class GameGridComponent implements OnInit {
         this.opponent = this.gameView.gamePlayers[1].player.email;
       }
     }
+  }
 
+  setShips() {
     for (let ship of this.gameView.ships) {
       for (let location of ship.locations) {
         this.setSquareType(location, 'ship');

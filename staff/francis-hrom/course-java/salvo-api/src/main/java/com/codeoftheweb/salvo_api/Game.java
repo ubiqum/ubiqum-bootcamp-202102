@@ -31,16 +31,4 @@ public class Game {
         return creationDate;
     }
 
-//    public void addGame(GamePlayer gamePlayer) {
-//        gamePlayer.setGameID(this);
-//        gamePlayers.add(gamePlayer);
-//    }
-
-//    public Map<String, Object> toDTO() {
-//        Map<String, Object> dto = new LinkedHashMap<String, Object>();
-//        dto.put("id", getId());
-//        dto.put("creationDate", getCreationDate());
-//        return dto;
-//    }
-
 }

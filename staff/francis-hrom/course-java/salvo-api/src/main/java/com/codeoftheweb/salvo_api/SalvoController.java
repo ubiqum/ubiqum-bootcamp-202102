@@ -18,26 +18,6 @@ public class SalvoController {
     @Autowired
     private GameRepository gameRepository;
 
-//    @RequestMapping("/api/games")
-//    public List<Game> getAll() {
-//        return gameRepository.findAll();
-//    }
-
-    //    @RequestMapping("/api/games")
-//    public List<Object> getAllGames() {
-//        return gameRepository
-//                .findAll()
-//                .stream()
-//                .map(game -> toDTO(game))
-//                .collect(Collectors.toList());
-//    }
-//
-//    private  Map<String, Object> toDTO(Game game) {
-//        Map<String, Object> dto = new LinkedHashMap<String, Object>();
-//        dto.put("id", game.getId());
-//        dto.put("creationDate", game.getCreationDate());
-//        return dto;
-//    }
     @CrossOrigin(origins = "*")
     @RequestMapping("/api/games")
     public List<Object> getAllGames() {
@@ -87,9 +67,12 @@ public class SalvoController {
         dto.put("id", gamePlayer.getId());
         dto.put("game", gamePlayer.getGame());
         dto.put("player", makePlayerDTO(gamePlayer.getPlayer()));
+        dto.put("opponent", gamePlayer.getGame().gamePlayers.stream().filter(gp -> gp != gamePlayer).map(gp -> makePlayerDTO(gp.getPlayer())));
         dto.put("joinDate", gamePlayer.getJoinDate());
         dto.put("gamePlayers", gamePlayer.getGame().gamePlayers.stream().map(gp -> makeGamePlayerDTO(gp)));
         dto.put("ships", gamePlayer.ships.stream().map(ship -> makeShipDTO(ship)));
+        //dto.put("salvoes", gamePlayer.getGame().gamePlayers.stream().map(gp -> gp.getId()));
+        dto.put("salvoes", gamePlayer.getGame().gamePlayers.stream().map(gp -> makeGamePlayerSalvoesDTO(gp)));
         return dto;
     }
 
@@ -101,6 +84,17 @@ public class SalvoController {
         return dto;
     }
 
+    private Map<String, Object> makeGamePlayerSalvoesDTO(GamePlayer gamePlayer) {
+        Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        dto.put(gamePlayer.getPlayer().getId().toString(), gamePlayer.salvoes.stream().map(salvo -> makeSalvoDTO(salvo)));
+        return dto;
+    }
+
+    private Map<String, Object> makeSalvoDTO(Salvo salvo) {
+        Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        dto.put(salvo.getTurn().toString(),salvo.getLocations());
+        return dto;
+    }
 
 }
 

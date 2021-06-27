@@ -30,19 +30,4 @@ public class Player {
         return userName;
     }
 
-//  public void setUserName(String uName) {
-//        this.userName = uName;
-//    }
-
-//    public void addGame(GamePlayer gamePlayer) {
-//        gamePlayer.setPlayerID(this);
-//        gamePlayers.add(gamePlayer);
-//    }
-
-
-
-//    public List<Game> getGames() {
-//        return gamePlayers.stream().map(sub -> sub.getGame()).collect(toList());
-//    }
-
 }
