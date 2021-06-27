@@ -104,7 +104,7 @@ public class SalvoApplication {
 			Ship s17 = new Ship("Patrol Boat",gp8, Arrays.asList("G6","H6"));
 			Ship s18 = new Ship("Destroyer",gp9, Arrays.asList("B5","C5","D5"));
 			Ship s19 = new Ship("Patrol Boat",gp9, Arrays.asList("C6","C7"));
-			Ship s20 = new Ship("Submarine",gp1, Arrays.asList("A2","A3","A4"));
+			Ship s20 = new Ship("Submarine",gp10, Arrays.asList("A2","A3","A4"));
 			Ship s21 = new Ship("Patrol Boat",gp10, Arrays.asList("G6","H6"));
 			Ship s22 = new Ship("Destroyer",gp11, Arrays.asList("B5","C5","D5"));
 			Ship s23 = new Ship("Patrol Boat",gp11, Arrays.asList("C6","C7"));

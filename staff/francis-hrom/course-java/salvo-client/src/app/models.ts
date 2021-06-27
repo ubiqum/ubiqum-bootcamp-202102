@@ -40,11 +40,19 @@ export interface Ship {
   locations: string[];
 }
 
+export interface Salvo {
+  turn: number;
+  locations: string[];
+}
+
 export interface GameView {
   id: number;
   game: Game;
   player: Player;
+  opponent: Player;
   joinDate: string;
   gamePlayers: GamePlayer[];
   ships: Ship[];
+  salvoesPlayer: Salvo[];
+  salvoesOpponent: Salvo[];
 }

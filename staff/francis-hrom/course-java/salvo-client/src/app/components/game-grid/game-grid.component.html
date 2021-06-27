@@ -1,10 +1,19 @@
 <h2 *ngIf="winner">Player {{ winner }} won the game!</h2>
-<p>Player: {{ userPlayer }}</p>
-<p>Opponent: {{ opponent }}</p>
 <h4>Current player: {{ player }}</h4>
+
+<p>Player: {{ userPlayer }}</p>
 <div class="game-grid">
   <app-game-square
-    *ngFor="let square of squares; let idx = index"
+    *ngFor="let square of squaresPlayer; let idx = index"
+    [square]="square"
+    (click)="makeMove(idx)"
+  ></app-game-square>
+</div>
+
+<p>Opponent: {{ opponent }}</p>
+<div class="game-grid">
+  <app-game-square
+    *ngFor="let square of squaresOpponent; let idx = index"
     [square]="square"
     (click)="makeMove(idx)"
   ></app-game-square>

@@ -10,7 +10,16 @@ import { Square, GameView } from 'src/app/models';
   styleUrls: ['./game-grid.component.scss'],
 })
 export class GameGridComponent implements OnInit {
-  squares: Square[];
+  squaresPlayer: Square[] = Array(11 * 11).fill({
+    value: '',
+    type: '',
+    location: '',
+  });
+  squaresOpponent: Square[] = Array(11 * 11).fill({
+    value: '',
+    type: '',
+    location: '',
+  });
   // square.type options -> '',water, header, ship, hitShip, hitWater
   userIsNextPlayer: boolean;
   winner: string;
@@ -27,7 +36,8 @@ export class GameGridComponent implements OnInit {
 
   ngOnInit(): void {
     // show empty game grid as game loads, so user see something as soon as possible
-    this.renderEmptyGrid();
+    this.makeDefaultGrid(this.squaresPlayer);
+    this.makeDefaultGrid(this.squaresOpponent);
     this.setGamePlayerId();
     this.gameViewService
       .getGameView(this.gamePlayerId)
@@ -42,6 +52,7 @@ export class GameGridComponent implements OnInit {
     // ? improvements -> get opponent directly from API
     this.setOpponent();
     this.setShips();
+    this.setSalvoes();
   }
 
   setGamePlayerId() {
@@ -53,45 +64,47 @@ export class GameGridComponent implements OnInit {
   }
 
   setOpponent() {
-    if (this.gameView.gamePlayers.length > 1) {
-      if (
-        this.gameView.gamePlayers[0].player.email !== this.gameView.player.email
-      ) {
-        this.opponent = this.gameView.gamePlayers[0].player.email;
-      }
-      if (
-        this.gameView.gamePlayers[1].player.email !== this.gameView.player.email
-      ) {
-        this.opponent = this.gameView.gamePlayers[1].player.email;
-      }
-    }
+    this.opponent = this.gameView.opponent.email;
   }
 
   setShips() {
     for (let ship of this.gameView.ships) {
       for (let location of ship.locations) {
-        this.setSquareType(location, 'ship');
+        const idx = this.locationMap[location];
+        this.squaresPlayer[idx].type = 'ship';
       }
     }
   }
 
-  setSquareType(location: string, type: string) {
-    const idx = this.locationMap[location];
-    this.squares[idx].type = type;
+  setSalvoes() {
+    for (let salvo of this.gameView.salvoesPlayer) {
+      for (let location of salvo.locations) {
+        const idx = this.locationMap[location];
+        this.squaresOpponent[idx].value = salvo.turn.toString();
+        this.squaresOpponent[idx].type = 'hitWater';
+      }
+    }
+
+    for (let salvo of this.gameView.salvoesOpponent) {
+      for (let location of salvo.locations) {
+        const idx = this.locationMap[location];
+        this.squaresPlayer[idx].value = salvo.turn.toString();
+        if (this.squaresPlayer[idx].type === 'ship') {
+          this.squaresPlayer[idx].type = 'hitShip';
+        } else {
+          this.squaresPlayer[idx].type = 'hitWater';
+        }
+      }
+    }
   }
 
-  renderEmptyGrid() {
-    this.squares = Array(11 * 11).fill({
-      value: '',
-      type: '',
-      location: '',
-    });
-    this.squares[0].type = 'header';
+  makeDefaultGrid(squaresArray: Square[]) {
+    squaresArray[0].type = 'header';
     for (let i = 1; i < 11; i++) {
-      this.squares[i] = { value: i.toString(), type: 'header', location: '' };
-      this.squares[i] = { value: i.toString(), type: 'header', location: '' };
+      squaresArray[i] = { value: i.toString(), type: 'header', location: '' };
+      squaresArray[i] = { value: i.toString(), type: 'header', location: '' };
       const letter = (i + 9).toString(36).toUpperCase();
-      this.squares[i * 11] = {
+      squaresArray[i * 11] = {
         value: letter,
         type: 'header',
         location: '',
@@ -99,7 +112,7 @@ export class GameGridComponent implements OnInit {
       for (let j = 1; j < 11; j++) {
         const arrIdx = i * 11 + j;
         const location = letter.concat(j.toString());
-        this.squares[arrIdx] = {
+        squaresArray[arrIdx] = {
           value: '',
           type: 'water',
           location: location,
@@ -115,15 +128,15 @@ export class GameGridComponent implements OnInit {
   }
 
   makeMove(idx: number) {
-    if (this.squares[idx].type === 'water') {
-      const location = this.squares[idx].location;
-      this.squares.splice(idx, 1, {
+    if (this.squaresPlayer[idx].type === 'water') {
+      const location = this.squaresPlayer[idx].location;
+      this.squaresPlayer.splice(idx, 1, {
         value: '',
         type: 'hitWater',
         location: location,
       });
       this.userIsNextPlayer = !this.userIsNextPlayer;
-      console.log(this.squares[idx]);
+      console.log(this.squaresPlayer[idx]);
     }
   }
 
