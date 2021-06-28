@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`landing component snapshot with Enzyme 1`] = `
+<div
+  className="container"
+>
+  <footer>
+    <div>
+      <img
+        alt="Logo"
+        className="logoIcon"
+        src="MYtineraryLogo.png"
+      />
+    </div>
+    <p
+      style={
+        Object {
+          "padding": "40px",
+          "textAlign": "center",
+        }
+      }
+    >
+       find your perfect trip, designed by insiders who know and love their cities.
+    </p>
+    <div>
+      <h3
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }
+      >
+        Start browsing
+      </h3>
+      <Link
+        to="/cities"
+      >
+        <img
+          alt="Browsing"
+          className="browsing"
+          src="start-browsing.png"
+        />
+      </Link>
+    </div>
+    <p
+      style={
+        Object {
+          "padding": "30px",
+          "textAlign": "center",
+        }
+      }
+    >
+      Want to build your own MYtinerary?
+    </p>
+    <div
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      <Link
+        to="/login"
+      >
+        <span
+          className="mr-5"
+          style={
+            Object {
+              "textAlign": "left",
+            }
+          }
+        >
+          Log In
+        </span>
+      </Link>
+      <Link
+        to="/register"
+      >
+        <span
+          className="mr-7"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          Create Account
+        </span>
+      </Link>
+    </div>
+    <div>
+      <img
+        alt="HomeIcon"
+        className="homeI"
+        src="homeIcon.png"
+      />
+    </div>
+  </footer>
+</div>
+`;
