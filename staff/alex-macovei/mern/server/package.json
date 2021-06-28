@@ -2,13 +2,15 @@
   "name": "my-server",
   "version": "1.0.0",
   "description": "my first server",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "concurrently \"nodemon server.js\" \"cd ../client && npm start\"",
     "test": "prova"
   },
   "author": "alex macovei",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^6.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.15"
   }

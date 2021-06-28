@@ -58,6 +58,7 @@ out/
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
+
 # JIRA plugin
 atlassian-ide-plugin.xml
 
@@ -321,5 +322,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Node Modules
+node_modules/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,intellij,visualstudiocode,java,node
