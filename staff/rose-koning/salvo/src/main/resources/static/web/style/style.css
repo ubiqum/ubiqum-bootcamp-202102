@@ -1,0 +1,126 @@
+body {
+  background-color: #c9d4ec;
+}
+
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.flex-container__ship-buttons {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.grid-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
+      grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
+  -ms-grid-rows: 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem;
+      grid-template-rows: 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem;
+  grid-gap: 0.2rem;
+  border: black;
+  border-style: double;
+  width: 35rem;
+  background-image: url("../images/OwZ.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.grid-container__cell--ship {
+  background-color: #0dafa2;
+}
+
+.grid-container__cell--salvo {
+  background-color: #c9600b;
+}
+
+.grid-container__cell:hover {
+  background-color: #134b46;
+  opacity: 0.5;
+}
+
+.grid-container__cell--active {
+  background-color: #134b46;
+  opacity: 0.5;
+}
+
+.grid-container__cell--shot {
+  background-color: firebrick;
+  opacity: 0.5;
+}
+
+.grid-container__cell--missed-shot {
+  background-image: url("../images/splash.png");
+  background-size: cover;
+}
+
+.main-box {
+  border: #4e6696;
+  background-color: #a8b7d6;
+  border-style: solid;
+}
+
+.button {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 1px 1px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.button__boat {
+  max-width: 8rem;
+  max-height: 4rem;
+}
+
+.button__boat--active {
+  border: orange;
+  border-style: double;
+  max-width: 8rem;
+  max-height: 4rem;
+}
+
+.button__boat--placed {
+  border: green;
+  border-style: double;
+  margin: 2px;
+  max-height: 2.6rem;
+}
+
+.boat {
+  max-width: 4rem;
+  max-height: 3rem;
+}
+
+.boat--patrol {
+  max-height: 1rem;
+}
+
+.error {
+  color: red;
+}
+
+@media only screen and (min-width: 650px) {
+  .flex-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+/*# sourceMappingURL=style.css.map */

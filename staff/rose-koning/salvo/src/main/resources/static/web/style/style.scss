@@ -1,0 +1,105 @@
+body {
+  background-color: rgb(201, 212, 236);
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  &__ship-buttons{
+    display: inline-flex;
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
+  grid-template-rows: 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem 1.5rem;
+  grid-gap: 0.2rem;
+  border: black;
+  border-style: double;
+  width: 35rem;
+  background-image: url("../images/OwZ.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__cell--ship {
+    background-color: rgb(13, 175, 162);
+  }
+
+  &__cell--salvo {
+    background-color: rgb(201, 96, 11);
+  }
+  &__cell:hover {
+    background-color: rgb(19, 75, 70);
+    opacity: 0.5;
+  }
+  &__cell--active {
+    background-color: rgb(19, 75, 70);
+    opacity: 0.5;
+  }
+  &__cell--shot{
+    background-color: firebrick;
+    opacity: 0.5;
+  }
+  &__cell--missed-shot{
+    background-image: url("../images/splash.png");
+    background-size: cover;
+  }
+}
+
+
+.main-box {
+  border: rgb(78, 102, 150);
+  background-color: rgb(168, 183, 214);
+  border-style: solid;
+}
+
+.button {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 1px 1px;
+  cursor: pointer;
+  border-radius: 16px;
+
+  &__boat {
+    max-width: 8rem;
+    max-height: 4rem;
+
+    &--active {
+      border: orange;
+      border-style: double;
+      max-width: 8rem;
+    max-height: 4rem;
+    }
+    &--placed{
+      border:green;
+      border-style: double;
+      margin: 2px;
+      max-height: 2.6rem;
+    }
+  }
+}
+
+.boat {
+  max-width: 4rem;
+  max-height: 3rem;
+  &--patrol {
+    max-height: 1rem;
+  }
+}
+
+.error {
+  color: red;
+}
+
+@media only screen and (min-width: 650px) {
+  .flex-container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
