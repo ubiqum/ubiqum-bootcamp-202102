@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class FilterForms extends Component {
+class FilterCities extends Component {
     constructor() {
         super()
         this.state = {
@@ -24,4 +24,4 @@ class FilterForms extends Component {
 
 }
 
-export default FilterForms
+export default FilterCities

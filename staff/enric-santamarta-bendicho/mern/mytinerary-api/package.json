@@ -1,11 +1,11 @@
 {
-  "name": "mytinerary-server",
+  "name": "mytinerary-api",
   "version": "1.0.0",
   "description": "server for mytinerary app",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"nodemon server.js\" \"cd ../client && npm start\""
+    "start": "concurrently \"nodemon server.js\" \"cd ../mytinerary-app && npm start\""
   },
   "repository": {
     "type": "git",
