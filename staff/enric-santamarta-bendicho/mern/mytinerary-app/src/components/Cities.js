@@ -12,63 +12,87 @@ import Button from '@material-ui/core/Button';
 import Home from './images/homeIcon.png'
 import { NavLink } from 'react-router-dom'
 import FilterCities from './FilterCities';
+import retrieveAllCities from '../logic/retrieve-all-cities'
+
 
 //separar cada componente
 
 class Cities extends Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
-            isFetching:false,
-            cities:[],
-            citiesFilter:""
+            isFetching: false,
+            cities: [],
+            citiesFilter: ""
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         this.fetchCities()
-        this.timer = setInterval(() => this.fetchCities(), 5000)
+
+        //this.timer = setInterval(() => this.fetchCities(), 5000)
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.timer = null
     }
 
-    fetchCities = () => {this.setState({ ...this.state, isFetching: true })
-    fetch('http://localhost:5000/cities/all')
-        .then(response => response.json())
-        .then(result => this.setState({
-            cities: result,
-            isFetching: false}))
-        .catch(e => console.log(e))
+    fetchCities = () => {
+        this.setState({ ...this.state, isFetching: true })
+
+        retrieveAllCities()
+            .then(cities => {
+                this.setState({
+                    cities,
+                    isFetching: false
+                })
+            })
+            .catch(error => {
+                alert(error)
+            })
+    }
+
+    handleFilterCities = filter => {
+        retrieveAllCities()
+            .then(cities => {
+                const filteredCities = cities.filter(city => city.name.includes(filter))
+
+                this.setState({
+                    cities: filteredCities,
+                    isFetching: false
+                })
+            })
+            .catch(error => {
+                alert(error)
+            })
     }
 
 
-    render() { 
+    render() {
 
-      const {state: {cities, isFetching }} = this
+        const { state: { cities, isFetching } } = this
 
-      const listCitiesNames = cities.map((cities) => <ul> {cities.name} </ul>)
+        const listCitiesNames = cities.map((cities) => <ul> {cities.name} </ul>)
 
-      const listCitiesCountries = cities.map((cities) => <ul> {cities.country} </ul>)
+        const listCitiesCountries = cities.map((cities) => <ul> {cities.country} </ul>)
 
-    return <div><h2>City List</h2>
-        <Box>
-        <FilterCities />
-        <TableContainer component={Paper}>
-            <Table>
-                <TableHead>
-                    <TableRow><TableCell align="center">City</TableCell><TableCell align="center">Country</TableCell></TableRow>
-                </TableHead>
-                <TableBody>
-                    <TableRow><TableCell align="center">{listCitiesNames}</TableCell><TableCell align="center">{listCitiesCountries}</TableCell></TableRow>
-                </TableBody>
-            </Table>
-        </TableContainer>
-        <footer>
-            <NavLink to='/' ><Button><img src={Home} alt="return home" /> </Button></NavLink>
-        </footer>
-        </Box>
-    </div>
+        return <div><h2>City List</h2>
+            <Box>
+                <FilterCities onChange={this.handleFilterCities} />
+                <TableContainer component={Paper}>
+                    <Table>
+                        <TableHead>
+                            <TableRow><TableCell align="center">City</TableCell><TableCell align="center">Country</TableCell></TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow><TableCell align="center">{listCitiesNames}</TableCell><TableCell align="center">{listCitiesCountries}</TableCell></TableRow>
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <footer>
+                    <NavLink to='/' ><Button><img src={Home} alt="return home" /> </Button></NavLink>
+                </footer>
+            </Box>
+        </div>
     }
 }
 export default Cities

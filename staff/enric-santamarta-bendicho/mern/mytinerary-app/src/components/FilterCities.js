@@ -4,20 +4,23 @@ class FilterCities extends Component {
     constructor() {
         super()
         this.state = {
-            citiesFilter: ""
+            filter: ""
         }
     }
 
-    handleChange = (e) => {
+    handleChange = event => {
+        const filter = event.target.value
+
         this.setState({
-            citiesFilter: e.target.value
+            filter
         })
-        this.props.onChange(Event.target.value)
+
+        this.props.onChange(filter)
     }
     render() {
 
         return <div>
-            <input type="text" id="filter" value={this.state.citiesFilter}
+            <input type="text" name="filter" value={this.state.filter}
                 onChange={this.handleChange} />
         </div>
     }
