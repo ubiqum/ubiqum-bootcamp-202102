@@ -1,6 +1,7 @@
 package com.codeoftheweb.salvo.models;
 
 import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -16,23 +17,24 @@ public class GamePlayer {
     private Date joinDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="player_id")
+    @JoinColumn(name = "player_id")
     private Player player;
     // investigate - why using just "player" it does not work
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="game_id")
+    @JoinColumn(name = "game_id")
     private Game game;
 
-    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "gamePlayer", fetch = FetchType.EAGER)
     private
     Set<Ship> ships;
 
-    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "gamePlayer", fetch = FetchType.EAGER)
     private
     Set<Salvo> salvoes;
 
-    public GamePlayer() { }
+    public GamePlayer() {
+    }
 
     public GamePlayer(Player player, Game game) {
         this.player = player;
@@ -43,11 +45,18 @@ public class GamePlayer {
     public Long getId() {
         return id;
     }
+
     public Game getGame() {
         return game;
     }
-    public Player getPlayer() { return player; }
-    public Date getJoinDate() { return joinDate; }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Date getJoinDate() {
+        return joinDate;
+    }
 
     public Set<Ship> getShips() {
         return ships;

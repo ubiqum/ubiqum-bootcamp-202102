@@ -30,13 +30,22 @@ public class SalvoApplication {
 			GamePlayerRepository gamePlayerRepository,
 			ShipRepository shipRepository,
 			SalvoRepository salvoRepository,
-			ScoreRepository scoreRepository
+			ScoreRepository scoreRepository,
+			RoleRepository roleRepository
 			) {
 		return (args) -> {
-			Player p1 = new Player("j.bauer@ctu.gov", passwordEncoder.encode("24"));
-			Player p2 = new Player("c.obrian@ctu.gov", passwordEncoder.encode("42"));
-			Player p3 = new Player("kim_bauer@gmail.com", passwordEncoder.encode("kb"));
-			Player p4 = new Player("t.almeida@ctu.gov", passwordEncoder.encode("mole"));
+			Role r1 = new Role(ERole.ROLE_USER);
+			Role r2 = new Role(ERole.ROLE_MODERATOR);
+			Role r3 = new Role(ERole.ROLE_ADMIN);
+
+			roleRepository.save(r1);
+			roleRepository.save(r2);
+			roleRepository.save(r3);
+
+			Player p1 = new Player("Captain_Jack","j.bauer@ctu.gov", passwordEncoder.encode("24"));
+			Player p2 = new Player("Obrian","c.obrian@ctu.gov", passwordEncoder.encode("42"));
+			Player p3 = new Player("Kiminator","kim_bauer@gmail.com", passwordEncoder.encode("kb"));
+			Player p4 = new Player("Almeida","t.almeida@ctu.gov", passwordEncoder.encode("mole"));
 
 			playerRepository.save(p1);
 			playerRepository.save(p2);

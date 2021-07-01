@@ -32,17 +32,17 @@ public class SalvoController {
     @RequestMapping("/api/games")
     private Map<String, Object> makeApiGamesDTO(Authentication authentication) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
-        dto.put("authPlayer", getAuthPlayer(authentication));
+//        dto.put("authPlayer", getAuthPlayer(authentication));
         dto.put("games", getAllGames());
         return dto;
     }
 
-    public Map<String, Object>  getAuthPlayer(Authentication authentication) {
-        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
-             return  makePlayerDTO(playerRepository.findByEmail(authentication.getName()));
-        }
-        return null;
-    }
+//    public Map<String, Object> getAuthPlayer(Authentication authentication) {
+//        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+//            return makePlayerDTO(playerRepository.findByUsername(authentication.getName()));
+//        }
+//        return null;
+//    }
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/api/game_view/{gamePlayerId}")
@@ -63,18 +63,22 @@ public class SalvoController {
     }
 
     @RequestMapping(path = "/api/players/create", method = RequestMethod.POST)
-    public ResponseEntity<Object> register(
-            @RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<Object> register( @RequestParam String username,
+                                            @RequestParam String email, @RequestParam String password) {
 
-        if (email.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() ||email.isEmpty() || password.isEmpty()) {
             return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
         }
 
-        if (playerRepository.findByEmail(email) !=  null) {
+        if (playerRepository.findByUsername(username) != null) {
+            return new ResponseEntity<>("Username already in use", HttpStatus.FORBIDDEN);
+        }
+
+        if (playerRepository.findByEmail(email) != null) {
             return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
         }
 
-        playerRepository.save(new Player(email, passwordEncoder.encode(password)));
+        playerRepository.save(new Player(username,email, passwordEncoder.encode(password)));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -99,8 +103,12 @@ public class SalvoController {
         dto.put("id", gamePlayer.getId());
         dto.put("player", makePlayerDTO(gamePlayer.getPlayer()));
         Score score = gamePlayer.getGame().getScores().stream().filter(sc -> sc.getPlayer() == gamePlayer.getPlayer()).findFirst().orElse(null);
-        if (score != null) { dto.put("score", score.getScore().toString()); }
-        else {dto.put("score",null);};
+        if (score != null) {
+            dto.put("score", score.getScore().toString());
+        } else {
+            dto.put("score", null);
+        }
+        ;
         return dto;
     }
 
@@ -137,8 +145,8 @@ public class SalvoController {
 
     private Map<String, Object> makeSalvoDTO(Salvo salvo) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
-        dto.put("turn",salvo.getTurn().toString());
-        dto.put("locations",salvo.getLocations());
+        dto.put("turn", salvo.getTurn().toString());
+        dto.put("locations", salvo.getLocations());
         return dto;
     }
 
