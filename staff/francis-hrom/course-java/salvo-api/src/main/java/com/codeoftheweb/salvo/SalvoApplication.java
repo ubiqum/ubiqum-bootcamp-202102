@@ -2,11 +2,12 @@ package com.codeoftheweb.salvo;
 
 import com.codeoftheweb.salvo.models.*;
 import com.codeoftheweb.salvo.repos.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -19,6 +20,9 @@ public class SalvoApplication {
 		SpringApplication.run(SalvoApplication.class, args);
 	}
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Bean
 	public CommandLineRunner initData(
 			PlayerRepository playerRepository,
@@ -29,10 +33,10 @@ public class SalvoApplication {
 			ScoreRepository scoreRepository
 			) {
 		return (args) -> {
-			Player p1 = new Player("j.bauer@ctu.gov");
-			Player p2 = new Player("c.obrian@ctu.gov");
-			Player p3 = new Player("kim_bauer@gmail.com");
-			Player p4 = new Player("t.almeida@ctu.gov");
+			Player p1 = new Player("j.bauer@ctu.gov", passwordEncoder.encode("24"));
+			Player p2 = new Player("c.obrian@ctu.gov", passwordEncoder.encode("42"));
+			Player p3 = new Player("kim_bauer@gmail.com", passwordEncoder.encode("kb"));
+			Player p4 = new Player("t.almeida@ctu.gov", passwordEncoder.encode("mole"));
 
 			playerRepository.save(p1);
 			playerRepository.save(p2);
@@ -212,3 +216,4 @@ public class SalvoApplication {
 		};
 	}
 }
+

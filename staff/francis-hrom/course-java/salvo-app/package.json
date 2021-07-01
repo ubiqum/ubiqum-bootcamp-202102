@@ -12,10 +12,12 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.0.5",
+    "@angular/cdk": "^12.1.0",
     "@angular/common": "~12.0.5",
     "@angular/compiler": "~12.0.5",
     "@angular/core": "~12.0.5",
     "@angular/forms": "~12.0.5",
+    "@angular/material": "^12.1.0",
     "@angular/platform-browser": "~12.0.5",
     "@angular/platform-browser-dynamic": "~12.0.5",
     "@angular/router": "~12.0.5",
@@ -25,6 +27,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "json-server": "^0.16.3",
+    "ngx-cookie-service": "^12.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"

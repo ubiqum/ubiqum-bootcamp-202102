@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GameViewService } from '../../services/game-view.service';
 
-import { Square, GameView } from 'src/app/models';
+import { Square, GameView, SquareType } from 'src/app/models';
 
 @Component({
   selector: 'app-game-grid',
@@ -71,7 +71,7 @@ export class GameGridComponent implements OnInit {
     for (let ship of this.gameView.ships) {
       for (let location of ship.locations) {
         const idx = this.locationMap[location];
-        this.squaresPlayer[idx].type = 'ship';
+        this.squaresPlayer[idx].type = SquareType.Ship;
       }
     }
   }
@@ -81,7 +81,7 @@ export class GameGridComponent implements OnInit {
       for (let location of salvo.locations) {
         const idx = this.locationMap[location];
         this.squaresOpponent[idx].value = salvo.turn.toString();
-        this.squaresOpponent[idx].type = 'hitWater';
+        this.squaresOpponent[idx].type = SquareType.HitShip;
       }
     }
 
@@ -89,24 +89,32 @@ export class GameGridComponent implements OnInit {
       for (let location of salvo.locations) {
         const idx = this.locationMap[location];
         this.squaresPlayer[idx].value = salvo.turn.toString();
-        if (this.squaresPlayer[idx].type === 'ship') {
-          this.squaresPlayer[idx].type = 'hitShip';
+        if (this.squaresPlayer[idx].type === SquareType.Ship) {
+          this.squaresPlayer[idx].type = SquareType.HitShip;
         } else {
-          this.squaresPlayer[idx].type = 'hitWater';
+          this.squaresPlayer[idx].type = SquareType.HitWater;
         }
       }
     }
   }
 
   makeDefaultGrid(squaresArray: Square[]) {
-    squaresArray[0].type = 'header';
+    squaresArray[0].type = SquareType.Header;
     for (let i = 1; i < 11; i++) {
-      squaresArray[i] = { value: i.toString(), type: 'header', location: '' };
-      squaresArray[i] = { value: i.toString(), type: 'header', location: '' };
+      squaresArray[i] = {
+        value: i.toString(),
+        type: SquareType.Header,
+        location: '',
+      };
+      squaresArray[i] = {
+        value: i.toString(),
+        type: SquareType.Header,
+        location: '',
+      };
       const letter = (i + 9).toString(36).toUpperCase();
       squaresArray[i * 11] = {
         value: letter,
-        type: 'header',
+        type: SquareType.Header,
         location: '',
       };
       for (let j = 1; j < 11; j++) {
@@ -114,7 +122,7 @@ export class GameGridComponent implements OnInit {
         const location = letter.concat(j.toString());
         squaresArray[arrIdx] = {
           value: '',
-          type: 'water',
+          type: SquareType.Water,
           location: location,
         };
 
@@ -132,7 +140,7 @@ export class GameGridComponent implements OnInit {
       const location = this.squaresPlayer[idx].location;
       this.squaresPlayer.splice(idx, 1, {
         value: '',
-        type: 'hitWater',
+        type: SquareType.HitWater,
         location: location,
       });
       this.userIsNextPlayer = !this.userIsNextPlayer;

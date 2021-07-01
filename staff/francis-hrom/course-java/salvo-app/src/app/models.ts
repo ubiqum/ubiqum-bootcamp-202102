@@ -1,21 +1,21 @@
-// export interface Game {
-//   id: number;
-//   created: string;
-//   gamePlayers: [
-//     {
-//       id: number;
-//       player: {
-//         id: number;
-//         email: string;
-//       };
-//     }
-//   ];
-// }
-
 export interface Square {
   value: string;
-  type: string;
+  type: SquareType;
   location: string;
+}
+
+export enum SquareType {
+  Water = 'water',
+  Header = 'header',
+  Ship = 'ship',
+  HitShip = 'hitShip',
+  HitWater = 'hitWater',
+  Empty = '',
+}
+
+export interface AuthPlayerGames {
+  authPlayer: Player;
+  games: Game[];
 }
 
 export interface Game {
@@ -36,8 +36,16 @@ export interface Player {
 
 export interface Ship {
   id: number;
-  type: string;
+  type: ShipType;
   locations: string[];
+}
+
+export enum ShipType {
+  Carrier,
+  Battleship,
+  Submarine,
+  Destroyer,
+  PatrolBoat,
 }
 
 export interface Salvo {
@@ -63,4 +71,10 @@ export interface PlayerScore {
   won: number;
   lost: number;
   tied: number;
+}
+
+export interface CommonResponse {
+  ErrorCode: number;
+  message: String;
+  data: Object;
 }

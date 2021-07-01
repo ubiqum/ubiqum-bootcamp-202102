@@ -1,14 +1,14 @@
 package com.codeoftheweb.salvo;
 
 import com.codeoftheweb.salvo.models.*;
-import com.codeoftheweb.salvo.repos.GamePlayerRepository;
-import com.codeoftheweb.salvo.repos.GameRepository;
-import com.codeoftheweb.salvo.repos.PlayerRepository;
+import com.codeoftheweb.salvo.repos.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -17,10 +17,67 @@ import java.util.stream.Collectors;
 public class SalvoController {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    private GamePlayerRepository gamePlayerRepository;
+
+    @Autowired
+    private PlayerRepository playerRepository;
 
     @CrossOrigin(origins = "*")
     @RequestMapping("/api/games")
+    private Map<String, Object> makeApiGamesDTO(Authentication authentication) {
+        Map<String, Object> dto = new LinkedHashMap<String, Object>();
+        dto.put("authPlayer", getAuthPlayer(authentication));
+        dto.put("games", getAllGames());
+        return dto;
+    }
+
+    public Map<String, Object>  getAuthPlayer(Authentication authentication) {
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+             return  makePlayerDTO(playerRepository.findByEmail(authentication.getName()));
+        }
+        return null;
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping("/api/game_view/{gamePlayerId}")
+    public Optional<Object> getGameView(@PathVariable Long gamePlayerId) {
+        return gamePlayerRepository
+                .findById(gamePlayerId)
+                .map(gamePlayer -> makeGameViewDTO(gamePlayer));
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping("/api/players")
+    public List<Object> getPlayerScores() {
+        return playerRepository
+                .findAll()
+                .stream()
+                .map(player -> makePlayerScoreDTO(player))
+                .collect(Collectors.toList());
+    }
+
+    @RequestMapping(path = "/api/players/create", method = RequestMethod.POST)
+    public ResponseEntity<Object> register(
+            @RequestParam String email, @RequestParam String password) {
+
+        if (email.isEmpty() || password.isEmpty()) {
+            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        }
+
+        if (playerRepository.findByEmail(email) !=  null) {
+            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
+        }
+
+        playerRepository.save(new Player(email, passwordEncoder.encode(password)));
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     public List<Object> getAllGames() {
         return gameRepository
                 .findAll()
@@ -50,20 +107,8 @@ public class SalvoController {
     private Map<String, Object> makePlayerDTO(Player player) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
         dto.put("id", player.getId());
-        dto.put("email", player.getUserName());
+        dto.put("email", player.getEmail());
         return dto;
-    }
-
-    @Autowired
-    private GamePlayerRepository gamePlayerRepository;
-
-    @CrossOrigin(origins = "*")
-    @RequestMapping("/api/game_view/{gamePlayerId}")
-    public Optional<Object> getGameView(@PathVariable Long gamePlayerId) {
-        //gamePlayerRepository.findById(gamePlayerId).orElse(null);
-        return gamePlayerRepository
-                .findById(gamePlayerId)
-                .map(gamePlayer -> makeGameViewDTO(gamePlayer));
     }
 
     private Map<String, Object> makeGameViewDTO(GamePlayer gamePlayer) {
@@ -97,29 +142,17 @@ public class SalvoController {
         return dto;
     }
 
-    @Autowired
-    private PlayerRepository playerRepository;
-
-    @CrossOrigin(origins = "*")
-    @RequestMapping("/api/players")
-    public List<Object> getPlayerScores() {
-        return playerRepository
-                .findAll()
-                .stream()
-                .map(player -> makePlayerScoreDTO(player))
-                .collect(Collectors.toList());
-    }
-
     private Map<String, Object> makePlayerScoreDTO(Player player) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
         dto.put("id", player.getId());
-        dto.put("email", player.getUserName());
+        dto.put("email", player.getEmail());
         Set<Score> scores = player.getScores();
         dto.put("won", scores.stream().filter(score -> score.getScore() == 1).count());
         dto.put("lost", scores.stream().filter(score -> score.getScore() == 0).count());
         dto.put("tied", scores.stream().filter(score -> score.getScore() == 0.5).count());
         return dto;
     }
+
 }
 
 

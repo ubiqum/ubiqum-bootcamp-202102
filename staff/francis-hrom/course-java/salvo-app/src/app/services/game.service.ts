@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-import { Game } from 'src/app/models';
+import { Player, Game, AuthPlayerGames } from 'src/app/models';
 
 const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
+  observe: 'response',
 };
 
 @Injectable({
@@ -18,7 +16,21 @@ export class GameService {
   private apiUrl = environment.salvoApi + '/games';
   constructor(private http: HttpClient) {}
 
-  getGames(): Observable<Game[]> {
-    return this.http.get<Game[]>(this.apiUrl, httpOptions);
+  // getGames(): Promise<Game[]> {
+  //   interface Config {
+  //     authPlayer: Player;
+  //     games: Game[];
+  //   }
+
+  //   return new Promise<Game[]>((resolve, reject) => {
+  //     const res = this.http.get<Config>(this.apiUrl).subscribe((config) => {
+  //       debugger;
+  //       resolve(config.games);
+  //     });
+  //   });
+  // }
+
+  getGames(): Observable<AuthPlayerGames> {
+    return this.http.get<AuthPlayerGames>(this.apiUrl);
   }
 }
