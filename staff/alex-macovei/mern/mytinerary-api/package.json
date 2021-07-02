@@ -4,7 +4,8 @@
   "description": "my first server",
   "main": "server.js",
   "scripts": {
-    "start": "concurrently \"nodemon server.js\" \"cd ../client && npm start\"",
+    "start": "node server.js",
+    "start-concurrently": "concurrently \"nodemon server.js\" \"cd ../mytinerary-app && npm start\"",
     "test": "/test"
   },
   "author": "alex macovei",

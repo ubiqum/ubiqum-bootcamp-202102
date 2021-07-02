@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import homeIcon from './homeIcon.png';
+import retrieveAllCities from '../logic/retrieve-all-cities'
 
 
 export default class Cities extends Component {
@@ -15,11 +16,17 @@ export default class Cities extends Component {
         }
     }
 
+    // TODO RTFM Promises
+    // TODO RTFM aync await
+
     async componentDidMount() {
-        const api = "http://localhost:5000/cities/all";
-        const response = await fetch(api);
-        const data = await response.json();
-        this.setState({ myCities: data, filteredCities: data, loading: false, })
+        try {
+            const cities = await retrieveAllCities()
+
+            this.setState({ myCities: cities, filteredCities: cities, loading: false, })
+        } catch (error) {
+            this.setState({ myCities: [], filteredCities: [], loading: false, })
+        }
     }
 
     handleChange(event) {
