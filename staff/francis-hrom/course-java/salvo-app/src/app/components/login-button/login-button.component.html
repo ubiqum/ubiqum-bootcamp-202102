@@ -1,0 +1,6 @@
+<button class="btn-primary" *ngIf="!isLoggedIn" routerLink="/signin">
+  Login
+</button>
+<button class="btn-primary" *ngIf="isLoggedIn" (click)="logout()">
+  Logout
+</button>

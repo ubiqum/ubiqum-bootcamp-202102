@@ -2,6 +2,7 @@ package com.codeoftheweb.salvo.controllers;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -53,6 +54,18 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        //
+//        if (!userRepository.existsByUsername(loginRequest.getUsername())) {
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(new MessageResponse("Error: This username is not registered!"));
+//        }
+//
+//        if ( !encoder.matches(loginRequest.getPassword(),userRepository.findByUsername(loginRequest.getUsername()).orElse(null).getPassword()) ) {
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(new MessageResponse("Error: Wrong password!"));
+//        }
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));

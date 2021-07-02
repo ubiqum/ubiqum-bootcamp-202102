@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,11 +7,11 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  constructor(private loginService: LoginService) {}
+  currentUser: any;
 
-  ngOnInit(): void {}
+  constructor(private token: TokenStorageService) {}
 
-  logout() {
-    this.loginService.logout();
+  ngOnInit(): void {
+    this.currentUser = this.token.getUser();
   }
 }
