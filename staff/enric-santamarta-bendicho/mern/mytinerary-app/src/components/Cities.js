@@ -66,33 +66,34 @@ class Cities extends Component {
             })
     }
 
+render() {
 
-    render() {
+    const { state: { cities, isFetching } } = this
 
-        const { state: { cities, isFetching } } = this
+    const listCitiesNames = cities.map((cities,index) => <ul key={index}> {cities.name} </ul>)
 
-        const listCitiesNames = cities.map((cities) => <ul> {cities.name} </ul>)
+    const listCitiesCountries = cities.map((cities,index) => <ul key={index}> {cities.country} </ul>)
 
-        const listCitiesCountries = cities.map((cities) => <ul> {cities.country} </ul>)
-
-        return <div><h2>City List</h2>
-            <Box>
-                <FilterCities onChange={this.handleFilterCities} />
-                <TableContainer component={Paper}>
-                    <Table>
-                        <TableHead>
-                            <TableRow><TableCell align="center">City</TableCell><TableCell align="center">Country</TableCell></TableRow>
-                        </TableHead>
-                        <TableBody>
-                            <TableRow><TableCell align="center">{listCitiesNames}</TableCell><TableCell align="center">{listCitiesCountries}</TableCell></TableRow>
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <footer>
-                    <NavLink to='/' ><Button><img src={Home} alt="return home" /> </Button></NavLink>
-                </footer>
-            </Box>
-        </div>
-    }
+    return <div><h2>City List</h2>
+        <Box>
+            <p>Search a city name:</p>
+            <FilterCities onChange={this.handleFilterCities} />
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow><TableCell align="center">City</TableCell><TableCell align="center">Country</TableCell></TableRow>
+                    </TableHead>
+                    <TableBody>
+                        <TableRow><TableCell align="center">{listCitiesNames}</TableCell><TableCell align="center">{listCitiesCountries}</TableCell></TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <footer>
+                <NavLink to='/' ><Button><img src={Home} alt="return home" /> </Button></NavLink>
+            </footer>
+        </Box>
+    </div>
+}
 }
 export default Cities
+
