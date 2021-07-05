@@ -76,9 +76,12 @@ public class GetGameView {
                 if(hits.size() == ship.getLocation().size()){
                     shipInfo.put("sunk", true);
                 }
+                //if all ships are sunk = gameover
+
                 return shipInfo;
             }).collect(toList());
             gameView.put("ships", shipList);
+
 
             List<Salvo> salvoes = gamePlayer.get().getSalvoes();
             if (opponent != null){
@@ -124,6 +127,7 @@ public class GetGameView {
             if (playerScore != null) {
                 gameView.put("score", playerScore.getPoints());
             }
+
 
             return gameView;
         }
