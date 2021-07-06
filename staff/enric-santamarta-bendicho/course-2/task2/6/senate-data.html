@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='eng'>
+
+<head>
+</head>
+
+<body>
+    <script src="pro-congress-113-senate.js"></script>
+
+    <table id="senate-data" border="5"></table>
+
+    <script>
+        var table = document.getElementById("senate-data")
+
+        var members = data.results[0].members;
+
+        var rows = ''
+        var names = ''
+        var party = ''
+        var state = ''
+        var seniority = ''
+        var votes = ''
+        var url = ''
+
+        var row1 = '<tr><th>' + "SENATOR" + '</th><th>' + "PARTY AFFILIATION" + 
+            '</th><th>' + "STATE" + '</th><th>' + "SENIORITY" + '</th><th>'
+            + "PERCENTAGE OF VOTES WITH PARTY"
+            + '</th></tr>'
+        rows += row1
+
+        for (var i = 0; i <= members.length; i++) {
+
+            url = members[i].url
+            names = (members[i].first_name) + ' ' + (members[i].middle_name ||= '') 
+            + ' ' + (members[i].last_name)
+            party = members[i].party
+            state = members[i].state
+            seniority = members[i].seniority
+            votes = members[i].votes_with_party_pct
+
+            var row2 = '<tr><td>' + '<a href = ' + url + '>' + names +'</a>' + '</td><td>' + party + '</td><td>' + state + 
+            '</td><td>' + seniority + '</td><td>' + votes + '%' + '</td></tr>'
+            rows += row2
+
+        
+            table.innerHTML = rows 
+        }
+
+            table.innerHTML = rows
+
+
+
+    </script>
+</body>
+
+</html>

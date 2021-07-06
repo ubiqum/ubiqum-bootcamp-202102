@@ -1,0 +1,60 @@
+.email {
+    position: absolute;
+    margin-left: 62vw;
+    margin-top: 3.5vw;
+}
+
+.logo {
+    margin-left: 10vw;
+    margin-top: 3vw;
+    font-style: italic;
+}
+.icon{
+    margin-right: 1vw;
+    margin-bottom: 1vw;
+    width: 3vw;
+    height: 3vw;
+}
+
+.maintext {
+    text-align: justify;
+    width: 60vw;
+}
+
+.footer {
+    
+    text-align: center;
+}
+
+.table {
+    width: 60vw;
+}
+
+.menu {
+    margin-top: 3vw;
+   
+}
+
+.dropdown{
+    display: inline-block;
+    
+   
+}
+.dropdown-toggle{
+    background-color: rgba(13, 170, 233, 0.897);
+    color:white;
+}
+
+.selector {
+    margin-right: 3vw;
+}
+
+.panel {
+    width: 60vw;
+}
+
+.button1 {
+    margin-left: 31vw;
+}
+
+

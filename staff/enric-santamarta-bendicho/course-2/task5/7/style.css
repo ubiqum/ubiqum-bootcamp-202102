@@ -1,0 +1,41 @@
+.email {
+    position: absolute;
+    margin-left: 64vw;
+    margin-top: 3vw;
+}
+
+.logo {
+    margin-left: 10vw;
+    margin-top: 3vw;
+    font-style: italic;
+}
+
+.maintext {
+    text-align: justify;
+    width: 60vw;
+}
+
+.footer {
+    text-align: center;
+}
+
+.table {
+    width: 60vw;
+}
+
+.menu {
+    margin-top: 3vw;
+}
+
+.selector {
+    margin-right: 3vw;
+}
+
+.panel {
+    width: 60vw;
+}
+
+.button1 {
+    margin-left: 31vw;
+}
+
