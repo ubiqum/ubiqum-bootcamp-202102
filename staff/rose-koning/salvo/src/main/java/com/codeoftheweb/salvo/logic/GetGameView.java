@@ -30,18 +30,13 @@ public class GetGameView {
 
         if (username == authentication.getName()) {
             Game game = gamePlayer.get().getGame();
-            game.getGamePlayers().forEach(gamePlayer1 -> {
-                if (gamePlayer1.getId() != gamePlayerId) {
-                    GamePlayer opponent = gamePlayer1;
-                }
-            });
 
             long gameId = gamePlayer.get().getGame().getId();
 
             gameView.put("id", gameId);
             gameView.put("created", gamePlayer.get().getGame().getCreation());
 
-
+            GamePlayer opponent = game.getGamePlayers().stream().filter(gamePlayer2 -> gamePlayer2.getId() != gamePlayerId).findAny().orElse(null);
             Set<GamePlayer> gamePlayers = gamePlayer.get().getGame().getGamePlayers();
             List<Map<String, Object>> gamePlayerList = gamePlayers.stream().map(gamePlayer1 -> {
                 Map<String, Object> gamePlayerInfo = new TreeMap<>();
@@ -50,19 +45,23 @@ public class GetGameView {
                 playerInfo.put("id", gamePlayer1.getPlayer().getId());
                 playerInfo.put("userName", gamePlayer1.getPlayer().getUsername());
                 gamePlayerInfo.put("player", playerInfo);
+                if(opponent!=null && opponent.getId()> gamePlayer.get().getId()){
+                    playerInfo.put("turn","odd");
+                }else{
+                    playerInfo.put("turn", "even");
+                }
                 return gamePlayerInfo;
             }).collect(toList());
 
             gameView.put("gamePlayers", gamePlayerList);
 
-
-            GamePlayer opponent = game.getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1.getId() != gamePlayerId).findAny().orElse(null);
             List<String> opponentSalvoes= new ArrayList<>();
             if(opponent!=null) {
                 opponent.getSalvoes().forEach(salvo -> {
                     salvo.getLocation().forEach(location -> opponentSalvoes.add(location));
                 });
             }
+
 
             Set<Ship> ships = gamePlayer.get().getShips();
             List<Map<String, Object>> shipList = ships.stream().map(ship -> {
@@ -76,7 +75,6 @@ public class GetGameView {
                 if(hits.size() == ship.getLocation().size()){
                     shipInfo.put("sunk", true);
                 }
-                //if all ships are sunk = gameover
 
                 return shipInfo;
             }).collect(toList());
@@ -127,7 +125,16 @@ public class GetGameView {
             if (playerScore != null) {
                 gameView.put("score", playerScore.getPoints());
             }
+            List<Long> allSalvoes = new ArrayList<>();
+            game.getGamePlayers().forEach(gamePlayer1 -> gamePlayer1.getSalvoes().forEach(salvo-> allSalvoes.add(salvo.getTurnTracker())));
+            if(allSalvoes.size() != 0) {
+                long turnTracker = Collections.max(allSalvoes)+1;
+                gameView.put("turn", turnTracker);
+            }else{
+                long turnTracker = 1;
+                gameView.put("turn", turnTracker);
 
+            }
 
             return gameView;
         }

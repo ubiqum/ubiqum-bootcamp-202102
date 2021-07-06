@@ -4,6 +4,7 @@ const Game = {
       <h1> Ship Locations!</h1>
       {{gameData.created}}
       <h2>{{currentPlayer}}, you are playing against: {{opponent}}</h2>
+      <h2>Turn:{{turnTracker}}</h2>
   
     <div class="flex-container">
   
@@ -71,7 +72,7 @@ const Game = {
     <div v-if="error">
     <h3 class="error">{{error}}</h3>
     </div>
-    <div v-if="!shipsPlaced()">
+    <div v-if="shipsPlaced()">
       <h3>Do you want to permanently save your ships?</h3>
       <button v-on:click="confirmShips">yes</button>
     </div>
@@ -99,7 +100,8 @@ const Game = {
         patrolboat: []
       },
       selectedSalvoCells: [],
-      turnTracker: 1,
+      turnTracker: 0,
+      turnType: "",
       salvoSize: 0,
       myShips: {
         submarine: false,
@@ -116,10 +118,9 @@ const Game = {
         patrolboat: false
       },
       error: "",
-      shipSaveButton: false,
       missedShots: {},
       hits: {},
-      polling: null
+      polling: null,
     }
   },
   created() {
@@ -139,6 +140,7 @@ const Game = {
           for (var i = 0; i < gamePlayers.length; i++) {
             if (gamePlayers[i].id == this.gamePlayerId) {
               var currentPlayer = gamePlayers[i].player.userName;
+              this.turnType = gamePlayers[i].player.turn;
             }
             else {
               var opponent = gamePlayers[i].player.userName;
@@ -148,6 +150,7 @@ const Game = {
           this.opponent = opponent;
           this.missedShots = game.missedShots;
           this.hits = game.hits;
+          this.turnTracker = game.turn;
         }).catch(error => {
           this.$router.push({ path: `/login` })
         }), 1000)
@@ -161,7 +164,7 @@ const Game = {
     },
     selectShipCell(cell) {
       try {
-        if (!this.shipsPlaced)
+        if (! this.shipsPlaced())
           this.selectedShipCells = selectCellsForShip(this.selectedShipCells, this.selectedShip, cell)
       } catch (error) {
         this.setError(error.message)
@@ -215,7 +218,6 @@ const Game = {
         })
         if (count === 5) {
           return true;
-
         }
       }
     },
@@ -225,6 +227,7 @@ const Game = {
     },
     confirmShips() {
       this.shipSaveButton = true;
+      this.playMode = true;
       var ships = [];
       var selectedShips = this.selectedShipCells
       var keys = Object.keys(selectedShips)
@@ -243,7 +246,7 @@ const Game = {
     confirmSalvoes() {
       var salvoes = { "turnTracker": this.turnTracker, "location": this.selectedSalvoCells }
       try {
-        setSalvoes(this.$route.params.gamePlayerId, salvoes, () => {
+        setSalvoes(this.turnType, this.$route.params.gamePlayerId, salvoes, () => {
           this.fetchData();
         })
       } catch (error) {

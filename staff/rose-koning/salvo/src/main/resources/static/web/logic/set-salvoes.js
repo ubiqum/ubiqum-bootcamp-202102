@@ -1,4 +1,5 @@
-function setSalvoes(gamePlayerId, salvoes, callback){
+function setSalvoes(turnType, gamePlayerId, salvoes, callback){
+    if(turnType === "even"&& salvoes.turnTracker% 2 == 0|| turnType ==="odd" && salvoes.turnTracker% 2 != 0){
     $.ajax({
         type: "POST",
         url: "/api/games/players/" + gamePlayerId + "/salvoes",
@@ -11,4 +12,8 @@ function setSalvoes(gamePlayerId, salvoes, callback){
     .fail(function(error){
         callback(error)
     })
+}
+else{
+    throw Error("Wait until your turn");
+}
 }
