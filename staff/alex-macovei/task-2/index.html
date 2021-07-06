@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js "></script>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+  <!-- local data -->
+  <script src="data/alabama-legislators.js"></script>
+  <script src="data/jurisdictions.js"></script>
+
+  <!-- business logic -->
+  <script src="logic/retrieve-senate-members.js"></script>
+  <script src="logic/retrieve-house-members.js"></script>
+  <script src="logic/retrieve-states.js"></script>
+  <script src="logic/retrieve-members-by-parties.js"></script>
+  <script src="logic/retrieve-members-by-state.js"></script>
+  <script src="logic/retrieve-members-by-parties-and-state.js"></script>
+  <script src="logic/calculate-average-votes.js"></script>
+  <script src="logic/sort-members-by-missed-votes.js"></script>
+  <script src="logic/sort-members-by-missed-votes-oposite.js"></script>
+  <script src="logic/get-ten-percent.js"></script>
+  <script src="logic/retrieve-member-votes-with-party.js"></script>
+  <script src="logic/sort-member-percentage.js"></script>
+  <script src="logic/sort-member-percentage-oposite.js"></script>
+  <script src="logic/retrieve-legislators.js"></script>
+  <script src="logic/retrieve-jurisdictions.js"></script>
+
+  <!-- more components here -->
+  <script src="components/senate.js"></script>
+  <script src="components/house.js"></script>
+  <script src="components/home.js"></script>
+  <script src="components/senate-attendence.js"></script>
+  <script src="components/house-attendence.js"></script>
+  <script src="components/senate-loyalty.js"></script>
+  <script src="components/house-loyalty.js"></script>
+  <script src="components/jurisdiction-legislators.js"></script>
+
+  <!-- main app -->
+  <script src="components/app.js"></script>
+
+  <!-- vue mounter -->
+  <script src="main.js"></script>
+
+</body>
+
+</html>
