@@ -323,3 +323,33 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,intellij,visualstudiocode,java,node
+staff/francis-hrom/course-3/test-project/.gitignore
+staff/francis-hrom/course-3/test-project/db.json
+staff/francis-hrom/course-3/test-project/package-lock.json
+staff/francis-hrom/course-3/test-project/package.json
+staff/francis-hrom/course-3/test-project/README.md
+staff/francis-hrom/course-3/test-project/public/favicon.ico
+staff/francis-hrom/course-3/test-project/public/index.html
+staff/francis-hrom/course-3/test-project/public/logo192.png
+staff/francis-hrom/course-3/test-project/public/logo512.png
+staff/francis-hrom/course-3/test-project/public/manifest.json
+staff/francis-hrom/course-3/test-project/public/robots.txt
+staff/francis-hrom/course-3/test-project/src/App.css
+staff/francis-hrom/course-3/test-project/src/App.js
+staff/francis-hrom/course-3/test-project/src/App.test.js
+staff/francis-hrom/course-3/test-project/src/index.css
+staff/francis-hrom/course-3/test-project/src/index.js
+staff/francis-hrom/course-3/test-project/src/logo.svg
+staff/francis-hrom/course-3/test-project/src/reportWebVitals.js
+staff/francis-hrom/course-3/test-project/src/setupTests.js
+staff/francis-hrom/course-3/test-project/src/Todo.js
+staff/francis-hrom/course-3/test-project/src/TodoList.js
+staff/francis-hrom/course-3/test-project/src/components/About.js
+staff/francis-hrom/course-3/test-project/src/components/AddTask.js
+staff/francis-hrom/course-3/test-project/src/components/Button.js
+staff/francis-hrom/course-3/test-project/src/components/Footer.js
+staff/francis-hrom/course-3/test-project/src/components/Header.js
+staff/francis-hrom/course-3/test-project/src/components/Task.js
+staff/francis-hrom/course-3/test-project/src/components/Tasks.js
+staff/francis-hrom/course-3/server/keys.js
+staff/francis-hrom/course-3/test-project/test.js
