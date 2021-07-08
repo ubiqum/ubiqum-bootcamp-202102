@@ -98,7 +98,7 @@ public class SalvoController {
     @RequestMapping("/api/game_view/{gamePlayerId}")
     public ResponseEntity<Map<String, Object>> getGameView(@PathVariable long gamePlayerId, Authentication authentication) {
         try {
-            Map<String, Object> gameView = new GetGameView(gamePlayerRepository, authentication, gamePlayerId).run();
+            Map<String, Object> gameView = new GetGameView(gameRepository, gamePlayerRepository, authentication, gamePlayerId).run();
             return new ResponseEntity<>(gameView, HttpStatus.OK);
         } catch (AccessControlException e) {
             return new ResponseEntity<>(makeMap("error", e.getMessage()), HttpStatus.UNAUTHORIZED);

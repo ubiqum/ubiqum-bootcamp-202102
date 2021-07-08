@@ -1,5 +1,31 @@
 body {
   background-color: rgb(201, 212, 236);
+  text-align: center;
+}
+
+.header{
+  background-color: rgb(10, 139, 190);
+}
+
+.main{
+  background-image: url("../images/battleshipbackground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 30rem;
+}
+.info-box{
+  background-image: url("../images/wood.jpg");
+  display: inline-block;
+  padding: 2rem;
+  border-radius: 100px / 70px;
+  color:rgb(5, 46, 80);
+  text-shadow: 1px 0 rgb(255, 255, 255), 0 -1px rgb(255, 255, 255), 0 1px 0 rgb(255, 255, 255), -1px 0 0 rgb(255, 255, 255);
+}
+
+.salvo-button{
+  border-radius: 50%;
+  background-color: black;
+  color: aliceblue;
 }
 
 .flex-container {
@@ -94,7 +120,7 @@ body {
 }
 
 .error {
-  color: red;
+  color: rgb(168, 5, 5);
 }
 
 @media only screen and (min-width: 650px) {

@@ -2,8 +2,8 @@ package com.codeoftheweb.salvo.logic;
 
 import com.codeoftheweb.salvo.models.*;
 import com.codeoftheweb.salvo.repositories.GamePlayerRepository;
+import com.codeoftheweb.salvo.repositories.GameRepository;
 import org.springframework.security.core.Authentication;
-import org.yaml.snakeyaml.util.ArrayUtils;
 
 import java.security.AccessControlException;
 import java.util.*;
@@ -11,11 +11,13 @@ import java.util.*;
 import static java.util.stream.Collectors.toList;
 
 public class GetGameView {
+    private GameRepository gameRepository;
     private GamePlayerRepository gamePlayerRepository;
     private Authentication authentication;
     private long gamePlayerId;
 
-    public GetGameView(GamePlayerRepository gamePlayerRepository, Authentication authentication, long gamePlayerId) {
+    public GetGameView(GameRepository gameRepository, GamePlayerRepository gamePlayerRepository, Authentication authentication, long gamePlayerId) {
+        this.gameRepository = gameRepository;
         this.gamePlayerRepository = gamePlayerRepository;
         this.authentication = authentication;
         this.gamePlayerId = gamePlayerId;
@@ -31,10 +33,10 @@ public class GetGameView {
         if (username == authentication.getName()) {
             Game game = gamePlayer.get().getGame();
 
-            long gameId = gamePlayer.get().getGame().getId();
+            long gameId = game.getId();
 
             gameView.put("id", gameId);
-            gameView.put("created", gamePlayer.get().getGame().getCreation());
+            gameView.put("created", game.getCreation());
 
             GamePlayer opponent = game.getGamePlayers().stream().filter(gamePlayer2 -> gamePlayer2.getId() != gamePlayerId).findAny().orElse(null);
             Set<GamePlayer> gamePlayers = gamePlayer.get().getGame().getGamePlayers();
@@ -45,9 +47,9 @@ public class GetGameView {
                 playerInfo.put("id", gamePlayer1.getPlayer().getId());
                 playerInfo.put("userName", gamePlayer1.getPlayer().getUsername());
                 gamePlayerInfo.put("player", playerInfo);
-                if(opponent!=null && opponent.getId()> gamePlayer.get().getId()){
-                    playerInfo.put("turn","odd");
-                }else{
+                if (opponent != null && opponent.getId() > gamePlayer.get().getId()) {
+                    playerInfo.put("turn", "odd");
+                } else {
                     playerInfo.put("turn", "even");
                 }
                 return gamePlayerInfo;
@@ -55,8 +57,8 @@ public class GetGameView {
 
             gameView.put("gamePlayers", gamePlayerList);
 
-            List<String> opponentSalvoes= new ArrayList<>();
-            if(opponent!=null) {
+            List<String> opponentSalvoes = new ArrayList<>();
+            if (opponent != null) {
                 opponent.getSalvoes().forEach(salvo -> {
                     salvo.getLocation().forEach(location -> opponentSalvoes.add(location));
                 });
@@ -72,18 +74,17 @@ public class GetGameView {
                 shipInfo.put("location", ship.getLocation());
                 hits = ship.getLocation().stream().filter(opponentSalvoes::contains).collect(toList());
                 shipInfo.put("hits", hits);
-                if(hits.size() == ship.getLocation().size()){
+                if (hits.size() == ship.getLocation().size()) {
                     shipInfo.put("sunk", true);
                 }
-
                 return shipInfo;
             }).collect(toList());
             gameView.put("ships", shipList);
 
 
             List<Salvo> salvoes = gamePlayer.get().getSalvoes();
-            if (opponent != null){
-            Set<Ship> opponentShips = opponent.getShips();
+            if (opponent != null) {
+                Set<Ship> opponentShips = opponent.getShips();
                 List<Map<String, Object>> opponentShipList = opponentShips.stream().map(ship -> {
                     List<String> hits = new ArrayList<>();
                     Map<String, Object> opppenentShipInfo = new TreeMap<>();
@@ -98,7 +99,17 @@ public class GetGameView {
                     return opppenentShipInfo;
                 }).collect(toList());
                 gameView.put("opponentShips", opponentShipList);
+                if(game.getEndDate() == null) {
+                    boolean gameOver = this.areAllOpponentShipsSunk(opponentShipList);
+
+                    if (gameOver) {
+                        game.setEndDate(new Date());
+
+                        gameRepository.save(game);
+                    }
+                }
             }
+
             List<Salvo> salvoes2 = salvoes.stream().distinct().collect(toList());
             List<Map<String, Object>> salvoList = salvoes2.stream().map(salvo -> {
                 Map<String, Object> salvoInfo = new TreeMap<>();
@@ -116,7 +127,21 @@ public class GetGameView {
                     }
                 });
             });
+            if (game.getEndDate() == null) {
 
+                // TODO check whether all my ships (or the opponent's) are already sunk (if yes, then mark game as over)
+                boolean gameOver = this.areAllShipsSunk(shipList);
+
+                if (gameOver) {
+                    game.setEndDate(new Date());
+
+                    gameRepository.save(game);
+                }
+            }
+
+            if (game.getEndDate() != null) {
+                gameView.put("endDate", game.getEndDate());
+            }
             gameView.put("missedShots", opponentSalvoes);
 
             Set<Score> scores = gamePlayer.get().getPlayer().getScores();
@@ -126,11 +151,11 @@ public class GetGameView {
                 gameView.put("score", playerScore.getPoints());
             }
             List<Long> allSalvoes = new ArrayList<>();
-            game.getGamePlayers().forEach(gamePlayer1 -> gamePlayer1.getSalvoes().forEach(salvo-> allSalvoes.add(salvo.getTurnTracker())));
-            if(allSalvoes.size() != 0) {
-                long turnTracker = Collections.max(allSalvoes)+1;
+            game.getGamePlayers().forEach(gamePlayer1 -> gamePlayer1.getSalvoes().forEach(salvo -> allSalvoes.add(salvo.getTurnTracker())));
+            if (allSalvoes.size() != 0) {
+                long turnTracker = Collections.max(allSalvoes) + 1;
                 gameView.put("turn", turnTracker);
-            }else{
+            } else {
                 long turnTracker = 1;
                 gameView.put("turn", turnTracker);
 
@@ -142,5 +167,33 @@ public class GetGameView {
         throw new
 
                 AccessControlException("Player is not authorized");
+    }
+
+    private boolean areAllOpponentShipsSunk(List<Map<String, Object>> opponentShipList) {
+        List<Object> count = new ArrayList<>();
+        opponentShipList.forEach(ship->{
+            if(ship.containsKey("type")){
+                count.add(ship.get("type"));
+            }
+        });
+        if (count.size()==5){
+            return true;
+        }
+        else
+            return false;
+    }
+
+    private boolean areAllShipsSunk(List<Map<String, Object>> shipList) {
+        List<Object> count = new ArrayList<>();
+        shipList.forEach(ship->{
+            if(ship.containsKey("sunk")){
+                count.add(ship.get("sunk"));
+            }
+        });
+        if (count.size()==5){
+            return true;
+        }
+        else
+        return false;
     }
 }

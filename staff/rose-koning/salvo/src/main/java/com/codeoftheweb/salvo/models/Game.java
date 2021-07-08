@@ -29,11 +29,13 @@ public class Game {
         return id;
     }
 
-
     @JsonIgnore
     public Date getCreation(){
         return creationDate;
     }
+
+    private Date endDate;
+
 
     @OneToMany(mappedBy = "game", fetch = FetchType.EAGER)
     private Set<GamePlayer>gamePlayers;
@@ -50,5 +52,13 @@ public class Game {
     @JsonIgnore
     public List<Player> getPlayers() {
         return gamePlayers.stream().map(sub -> sub.getPlayer()).collect(toList());
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }
