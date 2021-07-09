@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @SpringBootApplication
@@ -47,6 +49,13 @@ public class SalvoApplication {
             Player p3 = new Player("Kiminator", "kim_bauer@gmail.com", passwordEncoder.encode("1234pass"));
             Player p4 = new Player("Almeida", "t.almeida@ctu.gov", passwordEncoder.encode("pass1234"));
 
+            Set<Role> roles = new HashSet<>();
+            roles.add(r1);
+            p1.setRoles(roles);
+            p2.setRoles(roles);
+            p3.setRoles(roles);
+            p4.setRoles(roles);
+
             playerRepository.save(p1);
             playerRepository.save(p2);
             playerRepository.save(p3);
@@ -61,8 +70,8 @@ public class SalvoApplication {
             Game g4 = new Game();
             Game g5 = new Game();
             Game g6 = new Game();
-            Game g7 = new Game();
-            Game g8 = new Game();
+//            Game g7 = new Game();
+//            Game g8 = new Game();
 
             gameRepository.save(g1);
             gameRepository.save(g2);
@@ -70,8 +79,8 @@ public class SalvoApplication {
             gameRepository.save(g4);
             gameRepository.save(g5);
             gameRepository.save(g6);
-            gameRepository.save(g7);
-            gameRepository.save(g8);
+//            gameRepository.save(g7);
+//            gameRepository.save(g8);
 
             GamePlayer gp1 = new GamePlayer(p1, g1);
             GamePlayer gp2 = new GamePlayer(p2, g1);
@@ -84,9 +93,16 @@ public class SalvoApplication {
             GamePlayer gp9 = new GamePlayer(p4, g5);
             GamePlayer gp10 = new GamePlayer(p1, g5);
             GamePlayer gp11 = new GamePlayer(p3, g6);
-            GamePlayer gp12 = new GamePlayer(p4, g7);
-            GamePlayer gp13 = new GamePlayer(p4, g8);
-            GamePlayer gp14 = new GamePlayer(p3, g8);
+           // GamePlayer gp12 = new GamePlayer(p4, g7);
+//            GamePlayer gp13 = new GamePlayer(p4, g8);
+//            GamePlayer gp14 = new GamePlayer(p3, g8);
+            // in theory, there should be max one game with only one gamePlayer since next gamePlayer would join that game
+            // TEST SCENARIO:
+            // player2 does not have any has unfinnished game
+            // player3 has unfinished game g6 (game without score) as gp11
+            // player4 should get new gp and join g6 as gp12
+            // player1 should create new game g7 and new gp as gp13
+
 
             gamePlayerRepository.save(gp1);
             gamePlayerRepository.save(gp2);
@@ -99,9 +115,9 @@ public class SalvoApplication {
             gamePlayerRepository.save(gp9);
             gamePlayerRepository.save(gp10);
             gamePlayerRepository.save(gp11);
-            gamePlayerRepository.save(gp12);
-            gamePlayerRepository.save(gp13);
-            gamePlayerRepository.save(gp14);
+//            gamePlayerRepository.save(gp12);
+//            gamePlayerRepository.save(gp13);
+//            gamePlayerRepository.save(gp14);
 
             Ship s1 = new Ship("Destroyer", gp1, Arrays.asList("H2", "H3", "H4"));
             Ship s2 = new Ship("Submarine", gp1, Arrays.asList("E1", "F1", "G1"));
@@ -126,10 +142,10 @@ public class SalvoApplication {
             Ship s21 = new Ship("Patrol Boat", gp10, Arrays.asList("G6", "H6"));
             Ship s22 = new Ship("Destroyer", gp11, Arrays.asList("B5", "C5", "D5"));
             Ship s23 = new Ship("Patrol Boat", gp11, Arrays.asList("C6", "C7"));
-            Ship s24 = new Ship("Destroyer", gp12, Arrays.asList("B5", "C5", "D5"));
-            Ship s25 = new Ship("Patrol Boat", gp12, Arrays.asList("C6", "C7"));
-            Ship s26 = new Ship("Submarine", gp13, Arrays.asList("A2", "A3", "A4"));
-            Ship s27 = new Ship("Patrol Boat", gp13, Arrays.asList("G6", "H6"));
+//            Ship s24 = new Ship("Destroyer", gp12, Arrays.asList("B5", "C5", "D5"));
+//            Ship s25 = new Ship("Patrol Boat", gp12, Arrays.asList("C6", "C7"));
+//            Ship s26 = new Ship("Submarine", gp13, Arrays.asList("A2", "A3", "A4"));
+//            Ship s27 = new Ship("Patrol Boat", gp13, Arrays.asList("G6", "H6"));
 
             shipRepository.save(s1);
             shipRepository.save(s2);
@@ -154,10 +170,10 @@ public class SalvoApplication {
             shipRepository.save(s21);
             shipRepository.save(s22);
             shipRepository.save(s23);
-            shipRepository.save(s24);
-            shipRepository.save(s25);
-            shipRepository.save(s26);
-            shipRepository.save(s27);
+//            shipRepository.save(s24);
+//            shipRepository.save(s25);
+//            shipRepository.save(s26);
+//            shipRepository.save(s27);
 
             Salvo sv1 = new Salvo(1, gp1, Arrays.asList("B5", "C5", "F1"));
             Salvo sv2 = new Salvo(2, gp1, Arrays.asList("F2", "D5"));
@@ -209,8 +225,10 @@ public class SalvoApplication {
             Score sc4 = new Score(p2, g2, 0.5);
             Score sc5 = new Score(p2, g3, 1.0);
             Score sc6 = new Score(p4, g3, 0.0);
-            Score sc7 = new Score(p2, g4, 0.0);
+            Score sc7 = new Score(p2, g4, 1.0);
             Score sc8 = new Score(p1, g4, 0.0);
+            Score sc9 = new Score(p4, g5, 1.0);
+            Score sc10 = new Score(p1, g5, 0.0);
 
             scoreRepository.save(sc1);
             scoreRepository.save(sc2);
@@ -220,6 +238,8 @@ public class SalvoApplication {
             scoreRepository.save(sc6);
             scoreRepository.save(sc7);
             scoreRepository.save(sc8);
+            scoreRepository.save(sc9);
+            scoreRepository.save(sc10);
 
 
         };

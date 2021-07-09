@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class SalvoController {
 
@@ -28,7 +29,7 @@ public class SalvoController {
     @Autowired
     private PlayerRepository playerRepository;
 
-    @CrossOrigin(origins = "*")
+    //@CrossOrigin(origins = "*")
     @RequestMapping("/api/games")
     private Map<String, Object> makeApiGamesDTO(Authentication authentication) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
@@ -44,7 +45,7 @@ public class SalvoController {
 //        return null;
 //    }
 
-    @CrossOrigin(origins = "*")
+    //@CrossOrigin(origins = "*")
     @RequestMapping("/api/game_view/{gamePlayerId}")
     public Optional<Object> getGameView(@PathVariable Long gamePlayerId) {
         return gamePlayerRepository
@@ -52,7 +53,7 @@ public class SalvoController {
                 .map(gamePlayer -> makeGameViewDTO(gamePlayer));
     }
 
-    @CrossOrigin(origins = "*")
+    //@CrossOrigin(origins = "*")
     @RequestMapping("/api/players")
     public List<Object> getPlayerScores() {
         return playerRepository
@@ -63,10 +64,10 @@ public class SalvoController {
     }
 
     @RequestMapping(path = "/api/players/create", method = RequestMethod.POST)
-    public ResponseEntity<Object> register( @RequestParam String username,
-                                            @RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<Object> register(@RequestParam String username,
+                                           @RequestParam String email, @RequestParam String password) {
 
-        if (username.isEmpty() ||email.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
             return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
         }
 
@@ -78,7 +79,7 @@ public class SalvoController {
             return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
         }
 
-        playerRepository.save(new Player(username,email, passwordEncoder.encode(password)));
+        playerRepository.save(new Player(username, email, passwordEncoder.encode(password)));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
