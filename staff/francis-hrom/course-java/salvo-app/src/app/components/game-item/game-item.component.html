@@ -1,0 +1,13 @@
+<ul>
+  <li>Game ID: {{ game.id }}</li>
+  <li>Created: {{ game.created }}</li>
+  <li>
+    Players:
+    <ul>
+      <li *ngIf="!game.gamePlayers.length">No players</li>
+      <li *ngFor="let gamePlayer of game.gamePlayers">
+        {{ gamePlayer.player.email }}
+      </li>
+    </ul>
+  </li>
+</ul>

@@ -1,0 +1,20 @@
+<h4>Player scores:</h4>
+
+<table>
+  <thead>
+    <td>Name</td>
+    <td>Total</td>
+    <td>Won</td>
+    <td>Lost</td>
+    <td>Tied</td>
+  </thead>
+  <tbody>
+    <tr *ngFor="let playerScore of playerScores">
+      <td>{{ playerScore.email }}</td>
+      <td>{{ playerScore.won + playerScore.tied * 0.5 }}</td>
+      <td>{{ playerScore.won }}</td>
+      <td>{{ playerScore.lost }}</td>
+      <td>{{ playerScore.tied }}</td>
+    </tr>
+  </tbody>
+</table>
