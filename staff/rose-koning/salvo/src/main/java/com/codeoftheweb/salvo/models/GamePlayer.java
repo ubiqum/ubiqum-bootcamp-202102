@@ -31,7 +31,7 @@ public class GamePlayer {
     private Set<Ship> ships = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private List<Salvo> salvoes = new ArrayList<>();
+    private Set<Salvo> salvoes = new HashSet<>();
 
     public GamePlayer() {
     }
@@ -81,11 +81,11 @@ public class GamePlayer {
     }
 
 
-    public List<Salvo> setSalvoes(List<Salvo> salvoes) {
+    public Set<Salvo> setSalvoes(Set<Salvo> salvoes) {
         return this.salvoes = salvoes;
     }
 
-    public List<Salvo> getSalvoes() {
+    public Set<Salvo> getSalvoes() {
         return salvoes;
     }
 

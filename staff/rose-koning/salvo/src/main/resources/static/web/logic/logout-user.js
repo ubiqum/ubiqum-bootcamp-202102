@@ -1,9 +1,5 @@
 function logoutUser(username, callback) {
     $.post("/api/logout", { username })
-        .done(function () {
-            callback(null)
-        })
-        .fail(function (error) {
-            callback(error)
-        })
+        .done(callback(null))
+        .fail(response => callback(new Error(response.responseJSON.error)))
 }

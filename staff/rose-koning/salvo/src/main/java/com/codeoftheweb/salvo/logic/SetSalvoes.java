@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import java.security.AccessControlException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.codeoftheweb.salvo.utils.ApiUtils.makeMap;
 
@@ -46,9 +47,9 @@ public class SetSalvoes {
        throw new AccessControlException("user not authorized");
     }
 
-    List<Salvo> previousSalvoes = gamePlayer.get().getSalvoes();
+    Set<Salvo> previousSalvoes = gamePlayer.get().getSalvoes();
 
-        if (previousSalvoes != null) {
+        if (previousSalvoes.size() != 0) {
         for (Salvo previousSalvo : previousSalvoes) {
             if (previousSalvo.getTurnTracker() == salvo.getTurnTracker()) {
                 throw new NotYourTurnException("wait until your turn");
@@ -57,8 +58,6 @@ public class SetSalvoes {
     }
 
         gamePlayer.get().addSalvo(salvo);
-        salvo.setGamePlayer(gamePlayer.get());
-        salvoRepository.save(salvo);
 
         gamePlayerRepository.save(gamePlayer.get());
     }

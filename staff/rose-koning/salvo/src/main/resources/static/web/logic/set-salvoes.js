@@ -6,12 +6,8 @@ function setSalvoes(turnType, gamePlayerId, salvoes, callback){
         data: JSON.stringify(salvoes),
         contentType: "application/json"
     })
-    .done(function(){
-        callback()
-    })
-    .fail(function(error){
-        callback(error)
-    })
+    .done(callback())
+    .fail(response=> callback(new Error(response.responseJSON.error)))
 }
 else{
     throw Error("Wait until your turn");

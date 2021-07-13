@@ -5,10 +5,6 @@ function setShips(gamePlayerId, ships, callback) {
         data: JSON.stringify(ships),
         contentType: "application/json"
     })
-        .done(function () {
-            callback()
-        })
-        .fail(function (error) {
-            callback(error)
-        })
+        .done(callback())
+        .fail(response => callback(new Error(response.responseJSON.error)))
 }

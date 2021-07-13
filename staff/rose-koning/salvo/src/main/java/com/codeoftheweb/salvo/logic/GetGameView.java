@@ -47,7 +47,7 @@ public class GetGameView {
                 playerInfo.put("id", gamePlayer1.getPlayer().getId());
                 playerInfo.put("userName", gamePlayer1.getPlayer().getUsername());
                 gamePlayerInfo.put("player", playerInfo);
-                if (opponent != null && opponent.getId() > gamePlayer.get().getId()) {
+                if (opponent != null && opponent.getId() < gamePlayer.get().getId()) {
                     playerInfo.put("turn", "odd");
                 } else {
                     playerInfo.put("turn", "even");
@@ -82,7 +82,7 @@ public class GetGameView {
             gameView.put("ships", shipList);
 
 
-            List<Salvo> salvoes = gamePlayer.get().getSalvoes();
+            Set<Salvo> salvoes = gamePlayer.get().getSalvoes();
             if (opponent != null) {
                 Set<Ship> opponentShips = opponent.getShips();
                 List<Map<String, Object>> opponentShipList = opponentShips.stream().map(ship -> {
@@ -104,7 +104,7 @@ public class GetGameView {
 
                     if (gameOver) {
                         game.setEndDate(new Date());
-
+                        gameView.put("winner", gamePlayer.get().getPlayer().getUsername());
                         gameRepository.save(game);
                     }
                 }
@@ -134,7 +134,7 @@ public class GetGameView {
 
                 if (gameOver) {
                     game.setEndDate(new Date());
-
+                    gameView.put("winner", opponent.getPlayer().getUsername());
                     gameRepository.save(game);
                 }
             }

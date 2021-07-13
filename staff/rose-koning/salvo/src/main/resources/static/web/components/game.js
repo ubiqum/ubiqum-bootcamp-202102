@@ -2,10 +2,10 @@ const Game = {
   template: `
     <div>
     <header class="header">
-      <router-link to="/games" class="button">back</router-link>
+      <router-link to="/games" class="back-button button">back</router-link>
       <h1>Battleship</h1>
       <h2>{{currentPlayer}}, you are playing against: {{opponent}}</h2>
-      <h2 v-if="gameStarted && !gameover">Turn:{{turnTracker}},{{activePlayer}}</h2>
+      <h2 v-if="isGameStarted() && !isGameOver()">Turn:{{turnTracker}}</h2>
     </header>
 
     <div class="main">
@@ -34,25 +34,28 @@ const Game = {
       </div>
    
   
-      <div class="flex-container__item" v-if="isGameStarted">
+      <div class="flex-container__item" v-if="isGameStarted()">
         <h2>Your salvoes</h2>
         <div class="grid-container" id="salvoes">
           <template v-for="(cell, key) in cells">
-            <template v-if="isSalvo(cell)">
-              <div class="grid-container__cell--salvo">{{cell}}</div>
+          <template v-if="isSalvoHit(cell)">
+              <div class="grid-container__cell--shot">{{cell}}</div>
             </template>
             <template v-else-if="isSalvoSelected(cell)">
-              <div class="grid-container__cell--active">{{cell}}</div>
+              <div class="grid-container__cell--salvo">{{cell}}</div>
             </template>
+            <template v-else-if="isSalvo(cell)">
+            <div class="grid-container__cell--missed-shot">{{cell}}</div>
+          </template>
             <template v-else>
-              <div class="grid-container__cell" v-on:click ="selectSalvoCell(cell)">{{cell}}</div>
+              <div class="grid-container__cell" v-on:click="selectSalvoCell(cell)">{{cell}}</div>
             </template>
           </template>
         </div>
       </div>
       </div>
   
-      <div class="flex-container__ship-buttons main__info-box" v-if="!isGameStarted">
+      <div class="flex-container__ship-buttons main__info-box" v-if="!isGameStarted()">
         <h3>Select your ship positions</h3>
         <div :class="maxLength('aircraftcarrier', 5)? 'button__boat--placed' : 'null'">
           <button v-on:click="selectShip('aircraftcarrier',5)" :class="myShips.aircraftcarrier? 'button__boat--active' : 'button__boat'" value="aircraftcarrier"><img src="./images/aircraftcarrier.png" class="boat">Aircraftcarrier(5)</button>
@@ -83,6 +86,10 @@ const Game = {
         <button v-on:click="confirmSalvoes" class="salvo-button">yes</button>
       </div>
     </div>
+
+    <div v-if="isGameOver()">
+      <h1> GAME OVER </h1>
+    </div>
   
     </div>
   `,
@@ -93,6 +100,7 @@ const Game = {
       salvoes: [],
       currentPlayer: {},
       opponent: {},
+      opponentShips:[],
       savedShips: [],
       selectedShipCells: {
         aircraftcarrier: [],
@@ -121,11 +129,9 @@ const Game = {
       },
       error: "",
       missedShots: {},
-      hits: {},
       polling: null,
       gameStarted:false,
-      gameover: false,
-      activePlayer: this.activePlayerName()
+      winner: ""
     }
   },
   created() {
@@ -136,7 +142,13 @@ const Game = {
     fetchData() {
       var gamePlayerId = this.$route.params.gamePlayerId;
       this.polling= setInterval(()=>
-        getGameView(gamePlayerId, game => {
+        getGameView(gamePlayerId, (error, game) => {
+          if (error) {
+            this.$router.push({ path: `/login` })
+
+            return
+          }
+
           this.gameData = game;
           this.savedShips = game.ships;
           this.salvoes = game.salvoes;
@@ -154,16 +166,20 @@ const Game = {
           this.currentPlayer = currentPlayer;
           this.opponent = opponent;
           this.missedShots = game.missedShots;
-          this.hits = game.hits;
           this.turnTracker = game.turn;
           this.endDate = game.endDate;
-        }).catch(error => {
-          this.$router.push({ path: `/login` })
-        }), 1000)
+          this.opponentShips = game.opponentShips;
+          this.winner = game.winner
+        }), 3000)
 
     },
     isGameStarted(){
       return !!this.savedShips.length;
+    },
+    isGameOver(){
+      if(this.endDate != null){
+        return true;
+      }
     },
     isSalvo(location) {
       return isSalvoInLocation(this.salvoes, location)
@@ -195,21 +211,23 @@ const Game = {
       this.myShips[ship] = true;
     },
     selectSalvoCell(cell) {
-      if(this.currentPlayer== this.activePlayer){
+      if(!this.isGameOver())
       try {
         this.salvoSize++;
         this.selectedSalvoCells.push(selectCellsForSalvo(this.salvoes, this.salvoSize, cell))
         
       } catch (error) {
         this.setError(error.message)
+        this.salvoSize=0;
+        this.selectedSalvoCells = []
       }
-    }
     },
     isSalvoSelected(cell) {
       return isSalvoCellSelected(this.selectedSalvoCells, cell);
     },
     setError(error) {
-      this.error = error;
+      this.error = error
+      setTimeout((this.error = ""), 10000);
     },
     maxLength(ship, size) {
       selectedShip = this.selectedShipCells[ship];
@@ -258,23 +276,22 @@ const Game = {
       try {
         setSalvoes(this.turnType, this.$route.params.gamePlayerId, salvoes, () => {
           this.fetchData();
+          this.salvoSize=0;
         })
       } catch (error) {
+        this.selectedSalvoCells=[];
+        this.salvoSize= 0;
         this.setError(error);
       }
     },
     isShot(cell) {
-      return isShipShot(cell, this.hits)
+      return isShipShot(cell, this.savedShips)
     },
     isMissedShot(cell) {
       return isCellMissedShot(cell, this.missedShots)
     },
-    activePlayerName(){
-      if(this.turnType === "even"&& salvoes.turnTracker% 2 == 0|| this.turnType ==="odd" && salvoes.turnTracker% 2 != 0){
-        return this.currentPlayer;
-      }else{
-        return this.opponent;
-      }
+    isSalvoHit(cell){
+      return isSalvoAHit(cell, this.opponentShips)
     }
 
   }

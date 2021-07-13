@@ -29,6 +29,10 @@ body {
   color: aliceblue;
 }
 
+.back-button {
+  float: left;
+}
+
 .flex-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -80,8 +84,8 @@ body {
 }
 
 .grid-container__cell--shot {
-  background-color: firebrick;
-  opacity: 0.5;
+  background-image: url("../images/hit.png");
+  background-size: cover;
 }
 
 .grid-container__cell--missed-shot {

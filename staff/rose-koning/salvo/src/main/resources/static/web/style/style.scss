@@ -28,6 +28,10 @@ body {
   color: aliceblue;
 }
 
+.back-button{
+  float: left;
+}
+
 .flex-container {
   display: flex;
   flex-direction: column;
@@ -64,8 +68,8 @@ body {
     opacity: 0.5;
   }
   &__cell--shot{
-    background-color: firebrick;
-    opacity: 0.5;
+   background-image: url("../images/hit.png");
+   background-size: cover;
   }
   &__cell--missed-shot{
     background-image: url("../images/splash.png");

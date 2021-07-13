@@ -3,10 +3,6 @@ function registerUser(username, password, callback) {
         username,
         password
     })
-        .done(function () {
-            callback(null)
-        })
-        .fail(function (error) {
-            callback(error)
-        })
+        .done(callback(null))
+        .fail(response => callback(new Error(response.responseJSON.error)))
 }
