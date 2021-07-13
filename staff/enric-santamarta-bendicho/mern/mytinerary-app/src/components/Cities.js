@@ -74,6 +74,8 @@ render() {
 
     const listCitiesCountries = cities.map((cities,index) => <ul key={index}> {cities.country} </ul>)
 
+    const listCitiesImage = cities.map((cities,index) => <ul key={index}> {cities.img} </ul>)
+
     return <div><h2>City List</h2>
         <Box>
             <p>Search a city name:</p>

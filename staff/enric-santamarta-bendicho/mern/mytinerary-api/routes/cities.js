@@ -23,7 +23,8 @@ router.get('/all',
 router.post('/', (req, res) => {
     const newCity = new cityModel({
         name: req.body.name,
-        country: req.body.country
+        country: req.body.country,
+        img: req.body.img
     })
     cityModel.findOne({ name: newCity.name, country:newCity.country }, function (err, cityModel) {
         if (err) { 
