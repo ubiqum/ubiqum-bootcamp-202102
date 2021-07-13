@@ -1,0 +1,9 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+function Register(){
+
+    
+}
+
+//ejercicio hacer una app con input y contrasena

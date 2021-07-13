@@ -1,0 +1,25 @@
+{
+  "name": "mytinerary-api",
+  "version": "1.0.0",
+  "description": "server for mytinerary app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"nodemon server.js\" \"cd ../mytinerary-app && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/death4santamarta/mytinerary-server.git"
+  },
+  "author": "Enric Santamarta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/death4santamarta/mytinerary-server/issues"
+  },
+  "homepage": "https://github.com/death4santamarta/mytinerary-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.14"
+  }
+}
